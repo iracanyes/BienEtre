@@ -21,7 +21,7 @@ Symfony3.3.9 application
 <ul>
     <li>Intégration du template</li>
 </ul>
-<h3>Tâches à effectuer<h3> 
+<h3>Tâches à effectuer</h3> 
 <ul>
     <li>
         Intégration librairies nodejs : Webpack(gestionnaire de dépendances)
