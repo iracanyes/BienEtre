@@ -44,7 +44,6 @@ App\Entity\Provider:
         postalCode: '@postalCode<numberBetween(1,2)>'
         logo: '@image<numberBetween(3, 4)>'
         images: '@image{1..2}'
-        stages: '@stage{1..2}'
         serviceCategories: '@serviceCategory{1..2}'
 
 App\Entity\Client:

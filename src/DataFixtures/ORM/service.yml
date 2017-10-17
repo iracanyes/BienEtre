@@ -1,5 +1,5 @@
-App\Entity\Stage:
-    stage{1..4}:
+App\Entity\Service:
+    service{1..4}:
         name: '<fr_FR:catchPhrase()>'
         description: '<fr_FR:realText(120)>'
         pricing: '<realText(60)>'
@@ -8,3 +8,4 @@ App\Entity\Stage:
         endDate: '<dateTimeBetween($startDate, "now")>'
         releaseDate: '<dateTimeBetween("-3 years", $startDate)>'
         expiryDate: '<dateTimeBetween("now", "+2 years")>'
+        provider: '@provider<numberBetween(1, 4)>'

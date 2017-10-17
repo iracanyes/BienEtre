@@ -18,7 +18,7 @@ class ServiceController extends Controller
     {
         $em = $this->get("doctrine.orm.entity_manager");
 
-        $services = $em->getRepository('App\Entity\Stage')
+        $services = $em->getRepository('App\Entity\Service')
             ->findAll();
 
         if(!$services){

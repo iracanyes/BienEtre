@@ -8,8 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use App\Entity\User;
-use Doctrine\ORM\PersistentCollection;
+use App\Entity\Service;
+use App\Entity\ServiceCategory;
+use App\Entity\Promotion;
+use App\Entity\Comment;
+use App\Entity\Image;
+use App\Entity\Client;
 
 /**
  * Provider
@@ -73,9 +77,9 @@ class Provider extends User
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Stage", mappedBy="provider")
+     * @ORM\OneToMany(targetEntity="Service", mappedBy="provider")
      */
-    private $stages;
+    private $services;
 
     /**
      * @var ArrayCollection
@@ -120,7 +124,7 @@ class Provider extends User
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->stages = new ArrayCollection();
+        $this->services = new ArrayCollection();
         $this->serviceCategories = new ArrayCollection();
         $this->promotions = new ArrayCollection();
         $this->fans = new ArrayCollection();
@@ -320,41 +324,41 @@ class Provider extends User
     }
 
     /**
-     * Get stages
+     * Get services
      *
      * @return mixed
      */
-    public function getStages()
+    public function getServices()
     {
-        return $this->stages;
+        return $this->services;
     }
 
     /**
-     * Add stage
+     * Add service
      *
-     * @param Stage $stage
+     * @param Service $service
      */
-    public function addStage(Stage $stage)
+    public function addService(Service $service)
     {
 
-        $this->stages[] = $stage;
+        $this->services[] = $service;
 
         /*
          * Association du prestataire au service créée
          */
-        $stage->setProvider($this);
+        $service->setProvider($this);
 
     }
 
     /**
-     * Remove stage
+     * Remove service
      *
-     * @param Stage $stage
+     * @param Service $service
      */
-    public function removeStage(Stage $stage)
+    public function removeService(Service $service)
     {
 
-        $this->stages->removeElement($stage);
+        $this->services->removeElement($service);
 
     }
 

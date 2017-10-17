@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+// Definition de slug avec les annotations @gedmo\slug
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use App\Entity\Provider;
 
 /**
- * Stage
+ * Service
  *
- * @ORM\Table(name="be_stage")
- * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
+ * @ORM\Table(name="be_service")
+ * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  */
-class Stage
+class Service
 {
     /**
      * @var int
@@ -81,11 +84,18 @@ class Stage
     /**
      * @ var Provider
      *
-     * @ ORM\ManyToOne(targetEntity="App\Entity\Provider", cascade={"persist","remove"}, inversedBy="stages")
-     * @ ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", cascade={"persist","remove"}, inversedBy="services")
+     * @ORM\JoinColumn(nullable=false)
      */
-    //private $provider;
+    private $provider;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     /**
      * Get id
@@ -102,7 +112,7 @@ class Stage
      *
      * @param string $name
      *
-     * @return Stage
+     * @return Service
      */
     public function setName($name)
     {
@@ -126,7 +136,7 @@ class Stage
      *
      * @param string $description
      *
-     * @return Stage
+     * @return Service
      */
     public function setDescription($description)
     {
@@ -150,7 +160,7 @@ class Stage
      *
      * @param string $pricing
      *
-     * @return Stage
+     * @return Service
      */
     public function setPricing($pricing)
     {
@@ -174,7 +184,7 @@ class Stage
      *
      * @param string $additionalInformation
      *
-     * @return Stage
+     * @return Service
      */
     public function setAdditionalInformation($additionalInformation)
     {
@@ -198,7 +208,7 @@ class Stage
      *
      * @param \DateTime $startDate
      *
-     * @return Stage
+     * @return Service
      */
     public function setStartDate(\DateTime $startDate)
     {
@@ -222,7 +232,7 @@ class Stage
      *
      * @param \DateTime $endDate
      *
-     * @return Stage
+     * @return Service
      */
     public function setEndDate(\DateTime $endDate)
     {
@@ -246,7 +256,7 @@ class Stage
      *
      * @param \DateTime $releaseDate
      *
-     * @return Stage
+     * @return Service
      */
     public function setReleaseDate(\DateTime $releaseDate)
     {
@@ -270,7 +280,7 @@ class Stage
      *
      * @param \DateTime $expiryDate
      *
-     * @return Stage
+     * @return Service
      */
     public function setExpiryDate(\DateTime $expiryDate)
     {
@@ -294,9 +304,9 @@ class Stage
      *
      * @param Provider $provider
      *
-     * @return Stage
+     * @return Service
      */
-    public function setProvider($provider)
+    public function setProvider(Provider $provider)
     {
         $this->provider = $provider;
     }
@@ -311,6 +321,24 @@ class Stage
     {
         return $this->provider;
     }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
+    }
+
+
 
 }
 
