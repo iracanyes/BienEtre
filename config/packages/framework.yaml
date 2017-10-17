@@ -12,3 +12,11 @@ framework:
     #fragments: ~
     php_errors:
         log: true
+
+    templating:
+        engines: ['twig']
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~

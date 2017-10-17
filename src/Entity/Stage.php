@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Prestataire;
+use App\Entity\Provider;
 
 /**
  * Stage
@@ -25,9 +25,9 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
@@ -39,52 +39,52 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="tarif", type="string", length=255)
+     * @ORM\Column(name="pricing", type="string", length=255)
      */
-    private $tarif;
+    private $pricing;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="infoComplementaire", type="text", nullable=true)
+     * @ORM\Column(name="additional_information", type="text", nullable=true)
      */
-    private $infoComplementaire;
+    private $additionalInformation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDebut", type="datetime")
+     * @ORM\Column(name="start_date", type="datetime")
      */
-    private $dateDebut;
+    private $startDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateFin", type="datetime")
+     * @ORM\Column(name="end_date", type="datetime")
      */
-    private $dateFin;
+    private $endDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datePublication", type="datetime")
+     * @ORM\Column(name="release_date", type="datetime")
      */
-    private $datePublication;
+    private $releaseDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateValidite", type="datetime")
+     * @ORM\Column(name="expiry_date", type="datetime")
      */
-    private $dateValidite;
+    private $expiryDate;
 
     /**
-     * @var Prestataire
+     * @ var Provider
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Prestataire", cascade={"persist","remove"}, inversedBy="stages")
-     * @ORM\JoinColumn(nullable=false)
+     * @ ORM\ManyToOne(targetEntity="App\Entity\Provider", cascade={"persist","remove"}, inversedBy="stages")
+     * @ ORM\JoinColumn(nullable=false)
      */
-    private $prestataire;
+    //private $provider;
 
 
     /**
@@ -98,27 +98,27 @@ class Stage
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return Stage
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
@@ -146,171 +146,171 @@ class Stage
     }
 
     /**
-     * Set tarif
+     * Set pricing
      *
-     * @param string $tarif
+     * @param string $pricing
      *
      * @return Stage
      */
-    public function setTarif($tarif)
+    public function setPricing($pricing)
     {
-        $this->tarif = $tarif;
+        $this->pricing = $pricing;
 
         return $this;
     }
 
     /**
-     * Get tarif
+     * Get pricing
      *
      * @return string
      */
-    public function getTarif()
+    public function getPricing()
     {
-        return $this->tarif;
+        return $this->pricing;
     }
 
     /**
-     * Set infoComplementaire
+     * Set additionalInformation
      *
-     * @param string $infoComplementaire
+     * @param string $additionalInformation
      *
      * @return Stage
      */
-    public function setInfoComplementaire($infoComplementaire)
+    public function setAdditionalInformation($additionalInformation)
     {
-        $this->infoComplementaire = $infoComplementaire;
+        $this->additionalInformation = $additionalInformation;
 
         return $this;
     }
 
     /**
-     * Get infoComplementaire
+     * Get additionalInformation
      *
      * @return string
      */
-    public function getInfoComplementaire()
+    public function getAdditionalInformation()
     {
-        return $this->infoComplementaire;
+        return $this->additionalInformation;
     }
 
     /**
-     * Set dateDebut
+     * Set startDate
      *
-     * @param \DateTime $dateDebut
+     * @param \DateTime $startDate
      *
      * @return Stage
      */
-    public function setDateDebut($dateDebut)
+    public function setStartDate(\DateTime $startDate)
     {
-        $this->dateDebut = $dateDebut;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     /**
-     * Get dateDebut
+     * Get startDate
      *
      * @return \DateTime
      */
-    public function getDateDebut()
+    public function getStartDate(): \DateTime
     {
-        return $this->dateDebut;
+        return $this->startDate;
     }
 
     /**
-     * Set dateFin
+     * Set endDate
      *
-     * @param \DateTime $dateFin
+     * @param \DateTime $endDate
      *
      * @return Stage
      */
-    public function setDateFin($dateFin)
+    public function setEndDate(\DateTime $endDate)
     {
-        $this->dateFin = $dateFin;
+        $this->endDate = $endDate;
 
         return $this;
     }
 
     /**
-     * Get dateFin
+     * Get endDate
      *
      * @return \DateTime
      */
-    public function getDateFin()
+    public function getEndDate(): \DateTime
     {
-        return $this->dateFin;
+        return $this->endDate;
     }
 
     /**
-     * Set datePublication
+     * Set releaseDate
      *
-     * @param \DateTime $datePublication
+     * @param \DateTime $releaseDate
      *
      * @return Stage
      */
-    public function setDatePublication($datePublication)
+    public function setReleaseDate(\DateTime $releaseDate)
     {
-        $this->datePublication = $datePublication;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
 
     /**
-     * Get datePublication
+     * Get releaseDate
      *
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getReleaseDate(): \DateTime
     {
-        return $this->datePublication;
+        return $this->releaseDate;
     }
 
     /**
-     * Set dateValidite
+     * Set expiryDate
      *
-     * @param \DateTime $dateValidite
+     * @param \DateTime $expiryDate
      *
      * @return Stage
      */
-    public function setDateValidite($dateValidite)
+    public function setExpiryDate(\DateTime $expiryDate)
     {
-        $this->dateValidite = $dateValidite;
+        $this->expiryDate = $expiryDate;
 
         return $this;
     }
 
     /**
-     * Get dateValidite
+     * Get expiryDate
      *
      * @return \DateTime
      */
-    public function getDateValidite()
+    public function getExpiryDate(): \DateTime
     {
-        return $this->dateValidite;
+        return $this->expiryDate;
     }
 
     /**
-     * Set prestataire
+     * Set provider
      *
-     * @param Prestataire $prestataire
+     * @param Provider $provider
      *
      * @return Stage
      */
-    public function setPrestataire($prestataire)
+    public function setProvider($provider)
     {
-        $this->prestataire = $prestataire;
-
-        return $this;
+        $this->provider = $provider;
     }
 
     /**
-     * Get prestataire
+     * Get provider
      *
-     * @return Prestataire
+     * @return Provider
      */
-    public function getPrestataire()
+
+    public function getProvider()
     {
-        return $this->prestataire;
+        return $this->provider;
     }
+
 }
 

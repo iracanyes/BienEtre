@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html>
+
     <head>
-        <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+        {% block stylesheets %}
+
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+
+        {% endblock %}
+
+
+        {% block javascripts %}
+            {#
+                Chargement unique de ressources JS utilisant Assetic
+             #}
+                <script src="{{ asset('js/jquery.min.js') }}"></script>
+            {#
+                Chargement multiple de ressources JS utilisant Assetic. Ici on utilise "@" pour les ressources non-public
+             #}
+
+        {% endblock %}
     </body>
 </html>

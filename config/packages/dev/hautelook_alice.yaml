@@ -1,0 +1,15 @@
+# Read the documentation: https://github.com/hautelook/AliceBundle/blob/v1.4.1/README.md
+
+
+nelmio_alice:
+    #Configuration optionnelle
+    #locale: en_US
+    #seed: 1
+    #persist_once: false
+    loading_limit: 15
+# Configuration à vérifier car bloque le fonctionnement
+#fidry_alice_data_fixtures:
+#    db_drivers:
+#        doctrine_orm: ~
+hautelook_alice:
+    fixtures_path: 'src/DataFixtures/ORM'

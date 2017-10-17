@@ -1,0 +1,11 @@
+App\Entity\Promotion:
+    promotion{1..2}:
+        name: '<fr_BE:catchPhrase(6)>'
+        description: '<fr_BE:realText(80)>'
+        pdf: '<slug()>'
+        startDate: '<dateTimeBetween("-2 years", "-1 years")>'
+        endDate: '<dateTimeBetween("-1 years", "now")>'
+        releaseDate: '<dateTimeBetween("-2 years", "now")>'
+        expiryDate: '<dateTimeBetween("now", "+2 years")>'
+        serviceCategory: '@serviceCategory<numberBetween(1, 2)>'
+        provider: '@provider<numberBetween(1, 4)>'

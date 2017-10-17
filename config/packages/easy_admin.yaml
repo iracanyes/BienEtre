@@ -6,11 +6,16 @@
 #        - App\Entity\User
 easy_admin:
     entities:
+        - App\Entity\Abuse
         - App\Entity\Bloc
-        - App\Entity\CategorieService
+        - App\Entity\Client
+        - App\Entity\Locality
         - App\Entity\Image
-        - App\Entity\Internaute
+        - App\Entity\PostalCode
         - App\Entity\Position
-        - App\Entity\Prestataire
+        - App\Entity\Provider
         - App\Entity\Promotion
         - App\Entity\Stage
+        - App\Entity\ServiceCategory
+        - App\Entity\Township
+        - App\Entity\User

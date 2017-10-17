@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Prestataire;
-use App\Entity\CategorieService;
+use App\Entity\Provider;
+use App\Entity\ServiceCategory;
 
 /**
  * Promotion
@@ -26,9 +26,9 @@ class Promotion
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
@@ -47,46 +47,46 @@ class Promotion
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDebut", type="datetime")
+     * @ORM\Column(name="start_date", type="datetime")
      */
-    private $dateDebut;
+    private $startDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateFin", type="datetime")
+     * @ORM\Column(name="end_date", type="datetime")
      */
-    private $dateFin;
+    private $endDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datePublication", type="datetime")
+     * @ORM\Column(name="release_date", type="datetime")
      */
-    private $datePublication;
+    private $releaseDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateValidite", type="datetime")
+     * @ORM\Column(name="expiry_date", type="datetime")
      */
-    private $dateValidite;
+    private $expiryDate;
 
     /**
-     * @var Prestataire
+     * @ var Provider
      *
-     * @ORM\ManyToOne(targetEntity="Prestataire", cascade={"persist","remove"}, inversedBy="promotions")
+     * @ ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="promotions")
+     * @ ORM\JoinColumn(nullable=false)
+     */
+    private $provider;
+
+    /**
+     * @var ServiceCategory
+     *
+     * @ORM\ManyToOne(targetEntity="ServiceCategory", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $prestataire;
-
-    /**
-     * @var CategorieService
-     *
-     * @ORM\ManyToOne(targetEntity="CategorieService", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $categorieService;
+    private $serviceCategory;
 
 
 
@@ -101,27 +101,27 @@ class Promotion
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return Promotion
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
@@ -173,151 +173,147 @@ class Promotion
     }
 
     /**
-     * Set dateDebut
+     * Set startDate
      *
-     * @param \DateTime $dateDebut
+     * @param \DateTime $startDate
      *
      * @return Promotion
      */
-    public function setDateDebut($dateDebut)
+    public function setStartDate($startDate)
     {
-        $this->dateDebut = $dateDebut;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     /**
-     * Get dateDebut
+     * Get startDate
      *
      * @return \DateTime
      */
-    public function getDateDebut()
+    public function getStartDate()
     {
-        return $this->dateDebut;
+        return $this->startDate;
     }
 
     /**
-     * Set dateFin
+     * Set endDate
      *
-     * @param \DateTime $dateFin
+     * @param \DateTime $endDate
      *
      * @return Promotion
      */
-    public function setDateFin($dateFin)
+    public function setEndDate($endDate)
     {
-        $this->dateFin = $dateFin;
+        $this->endDate = $endDate;
 
         return $this;
     }
 
     /**
-     * Get dateFin
+     * Get endDate
      *
      * @return \DateTime
      */
-    public function getDateFin()
+    public function getEndDate()
     {
-        return $this->dateFin;
+        return $this->endDate;
     }
 
     /**
-     * Set datePublication
+     * Set releaseDate
      *
-     * @param \DateTime $datePublication
+     * @param \DateTime $releaseDate
      *
      * @return Promotion
      */
-    public function setDatePublication($datePublication)
+    public function setReleaseDate($releaseDate)
     {
-        $this->datePublication = $datePublication;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
 
     /**
-     * Get datePublication
+     * Get releaseDate
      *
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getReleaseDate()
     {
-        return $this->datePublication;
+        return $this->releaseDate;
     }
 
     /**
-     * Set dateValidite
+     * Set expiryDate
      *
-     * @param \DateTime $dateValidite
+     * @param \DateTime $expiryDate
      *
      * @return Promotion
      */
-    public function setDateValidite($dateValidite)
+    public function setExpiryDate($expiryDate)
     {
-        $this->dateValidite = $dateValidite;
+        $this->expiryDate = $expiryDate;
 
         return $this;
     }
 
     /**
-     * Get dateValidite
+     * Get expiryDate
      *
      * @return \DateTime
      */
-    public function getDateValidite()
+    public function getExpiryDate()
     {
-        return $this->dateValidite;
+        return $this->expiryDate;
     }
 
     /**
-     * Set prestataire
+     * Set provider
      *
-     * @param Prestataire $prestataire
+     * @ param Provider $provider
      *
-     * @return Promotion
+     * @ return Promotion
      */
-    public function setPrestataire(Prestataire $prestataire)
+
+    public function setProvider(Provider $provider)
     {
-        $this->prestataire = $prestataire;
+        $this->provider = $provider;
 
         return $this;
     }
 
     /**
-     * Get prestataire
+     * Get provider
      *
-     * @return Prestataire
+     * @return Provider
      */
-    public function getPrestataire()
+
+    public function getProvider(): Provider
     {
-        return $this->prestataire;
+        return $this->provider;
     }
 
     /**
-     * Set categorieService
+     * Set serviceCategory
      *
-     * @param CategorieService $categorieService
+     * @param ServiceCategory $serviceCategory
      *
      * @return Promotion
      */
-    /**
-     * @param mixed $categorieService
-     */
-    public function setCategorieService(CategorieService $categorieService)
+    public function setServiceCategory(ServiceCategory $serviceCategory)
     {
-        $this->categorieService = $categorieService;
+        $this->serviceCategory = $serviceCategory;
     }
 
     /**
-     * Get categorieService
+     * Get serviceCategory
      *
-     * @return CategorieService
+     * @return ServiceCategory
      */
-    /**
-     * @return mixed
-     */
-    public function getCategorieService()
+    public function getServiceCategory()
     {
-        return $this->categorieService;
+        return $this->serviceCategory;
     }
 }
 

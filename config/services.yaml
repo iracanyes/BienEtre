@@ -27,3 +27,9 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    # Faker Provider : Permet de fournir les types d'utilisateur
+    data_fixtures.provider.foo:
+        class: App\Resources\fixtures\Faker\Provider\UserTypeProvider
+        tags:
+            name: nelmio_alice.faker.provider

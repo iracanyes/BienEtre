@@ -6,7 +6,10 @@
         "doctrine/orm": "^2.5",
         "javiereguiluz/easyadmin-bundle": "^1.17",
         "sensio/framework-extra-bundle": "^4.0",
+        "symfony/assetic-bundle": "^2.8",
         "symfony/console": "^3.3",
+        "symfony/debug": "^3.3",
+        "symfony/debug-bundle": "^3.3",
         "symfony/dependency-injection": "^3.3",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.3",
@@ -14,6 +17,7 @@
         "symfony/monolog-bundle": "^3.1",
         "symfony/profiler-pack": "^1.0",
         "symfony/requirements-checker": "^1.0",
+        "symfony/templating": "4.0.x-dev",
         "symfony/translation": "^3.3",
         "symfony/twig-bundle": "^3.3",
         "symfony/validator": "^3.3",
@@ -23,11 +27,14 @@
         "symfony/yaml": "^3.3"
     },
     "require-dev": {
+        "doctrine/data-fixtures": "~1.1.1",
+        "hautelook/alice-bundle": "^2.0@beta",
+        "nelmio/alice": "^3.0@beta",
+        "sensio/generator-bundle": "^3.1",
         "symfony/dotenv": "^3.3",
-        "symfony/web-server-bundle": "^3.3",
         "symfony/web-profiler-bundle": "^3.3",
-        "symfony/debug": "^3.3",
-        "sensio/generator-bundle": "^3.1"
+        "symfony/web-server-bundle": "^3.3",
+        "theofidry/alice-data-fixtures": "^1.0@beta"
     },
     "config": {
         "preferred-install": {
@@ -47,9 +54,10 @@
     },
     "scripts": {
         "auto-scripts": {
+            "requirements-checker": "script",
             "make cache-warmup": "script",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "requirements-checker": "script"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+
         },
         "post-install-cmd": [
             "@auto-scripts"

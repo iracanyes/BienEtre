@@ -1,0 +1,7 @@
+App\Entity\ServiceCategory:
+    serviceCategory{1..2}:
+        name: '<fr_FR:catchPhrase()>'
+        description: '<fr_FR:realText(80)>'
+        inFrontPage: '<boolean()>'
+        isValid: '<boolean()>'
+        image (unique): '@image<numberBetween(1,5)>'

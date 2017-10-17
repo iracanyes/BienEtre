@@ -3,7 +3,10 @@
 #
 composer.lock
 sudo
-.idea
+/.idea/
+.web-server-pid
+backup_bien_etre.sql
+error-fixtures.txt
 
 ###> symfony/framework-bundle ###
 .env

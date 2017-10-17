@@ -1,0 +1,56 @@
+# Permet d'inclure un fichier
+#include:
+#    - 'client.yml'
+#    - 'provider.yml'
+
+# Attention: La classe User étend les classes Client et Provider
+App\Entity\User:
+    #user1:
+    #    email: 'iracanyes@gmail.com'
+    #    password: '<md5("admin")>'
+    #    registryDate: '<fr_FR:dateTimeBetween("-4 years", "-3 years")>'
+    #    userType: 'admin'
+
+    user_provider (template):
+        email: '<fr_FR:email()>'
+        password: '<md5("provider")>'
+        registryDate: '<dateTimeBetween("-3 years","now")>'
+        nbErrorConnection: 0
+        banned: '<boolean()>'
+        registryConfirmed: '<boolean(100)>'
+        avatar: '@image<numberBetween(1,2)>'
+        userType: 'provider'
+
+    user_client (template):
+        email: '<fr_FR:email()>'
+        password: '<md5("client")>'
+        registryDate: '<fr_FR:dateTimeBetween("-3 years","now")>'
+        nbErrorConnection: 0
+        banned: '<boolean()>'
+        registryConfirmed: '<boolean(100)>'
+        avatar: '@image<numberBetween(1,2)>'
+        userType: 'client'
+
+App\Entity\Provider:
+    provider{1..4} (extends user_provider):
+        brandName: '<company()> <companySuffix()>'
+        website: '<url()>'
+        emailContact: '<freeEmail()>'
+        phoneNumber: '<e164PhoneNumber()>'
+        tvaNumber: '<ean13()>'
+        # Les relations seront créées par les utilisateurs
+        township: '@township<numberBetween(1,2)>'
+        locality: '@locality<numberBetween(1,2)>'
+        postalCode: '@postalCode<numberBetween(1,2)>'
+        logo: '@image<numberBetween(3, 4)>'
+        images: '@image{1..2}'
+        stages: '@stage{1..2}'
+        serviceCategories: '@serviceCategory{1..2}'
+
+App\Entity\Client:
+    client{1..2} (extends user_client):
+        lastname: '<lastname()>'
+        firstname: '<firstname()>'
+        newsletter: '<boolean()>'
+        favorites: ['@provider<numberBetween(1,2)>']
+

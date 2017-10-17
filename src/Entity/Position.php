@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use App\Entity\Internaute;
+use App\Entity\Client;
 use App\Entity\Bloc;
 
 /**
@@ -27,17 +27,17 @@ class Position
     /**
      * @var int
      *
-     * @ORM\Column(name="ordre", type="integer")
+     * @ORM\Column(name="place", type="integer")
      */
-    private $ordre;
+    private $place;
 
     /**
-     * @var Internaute
+     * @var Client
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Internaute", cascade={"persist","remove"}, inversedBy="positions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", cascade={"persist","remove"}, inversedBy="positions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $internaute;
+    private $client;
 
     /**
      * @var Bloc
@@ -59,43 +59,43 @@ class Position
     }
 
     /**
-     * Set ordre
+     * Set place
      *
-     * @param integer $ordre
+     * @param integer $place
      *
      * @return Position
      */
-    public function setOrdre($ordre)
+    public function setPlace($place)
     {
-        $this->ordre = $ordre;
+        $this->place = $place;
 
         return $this;
     }
 
     /**
-     * Get ordre
+     * Get place
      *
      * @return int
      */
-    public function getOrdre()
+    public function getPlace(): int
     {
-        return $this->ordre;
+        return $this->place;
     }
 
     /**
-     * @return Internaute
+     * @return Client
      */
-    public function getInternaute()
+    public function getClient()
     {
-        return $this->internaute;
+        return $this->client;
     }
 
     /**
-     * @param Internaute $internaute
+     * @param Client $client
      */
-    public function setInternaute(Internaute $internaute)
+    public function setClient(Client $client)
     {
-        $this->internaute = $internaute;
+        $this->client = $client;
     }
 
     /**

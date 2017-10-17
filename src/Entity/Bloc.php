@@ -24,9 +24,9 @@ class Bloc
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
@@ -41,7 +41,7 @@ class Bloc
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -53,21 +53,21 @@ class Bloc
      *
      * @return Bloc
      */
-    public function setNom($nom)
+    public function setName(string $name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string
      */
-    public function getNom()
+    public function getName(): string
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
@@ -77,7 +77,7 @@ class Bloc
      *
      * @return Bloc
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
 
@@ -89,7 +89,7 @@ class Bloc
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

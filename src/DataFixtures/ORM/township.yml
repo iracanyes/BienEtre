@@ -1,0 +1,3 @@
+App\Entity\Township:
+    township{1..2}:
+        township: '<fr_FR:city()>'

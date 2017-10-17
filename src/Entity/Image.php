@@ -25,9 +25,9 @@ class Image
     /**
      * @var int
      *
-     * @ORM\Column(name="ordre", type="integer")
+     * @ORM\Column(name="place", type="integer")
      */
-    private $ordre;
+    private $place;
 
     /**
      * @var string
@@ -48,27 +48,27 @@ class Image
     }
 
     /**
-     * Set ordre
+     * Set place
      *
-     * @param integer $ordre
+     * @param integer $place
      *
      * @return Image
      */
-    public function setOrdre($ordre)
+    public function setPlace($place)
     {
-        $this->ordre = $ordre;
+        $this->place = $place;
 
         return $this;
     }
 
     /**
-     * Get ordre
+     * Get place
      *
      * @return int
      */
-    public function getOrdre()
+    public function getPlace()
     {
-        return $this->ordre;
+        return $this->place;
     }
 
     /**
@@ -78,7 +78,7 @@ class Image
      *
      * @return Image
      */
-    public function setUrl($url)
+    public function setUrl(string $url)
     {
         $this->url = $url;
 
@@ -90,9 +90,8 @@ class Image
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 }
-

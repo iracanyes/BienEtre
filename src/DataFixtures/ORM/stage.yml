@@ -1,0 +1,10 @@
+App\Entity\Stage:
+    stage{1..4}:
+        name: '<fr_FR:catchPhrase()>'
+        description: '<fr_FR:realText(120)>'
+        pricing: '<realText(60)>'
+        additionalInformation: '<realText(100)>'
+        startDate: '<dateTimeBetween("-2 years", "now")>'
+        endDate: '<dateTimeBetween($startDate, "now")>'
+        releaseDate: '<dateTimeBetween("-3 years", $startDate)>'
+        expiryDate: '<dateTimeBetween("now", "+2 years")>'

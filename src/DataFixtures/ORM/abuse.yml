@@ -1,0 +1,6 @@
+App\Entity\Abuse:
+    abuse{1..2}:
+        description: '<fr_FR:realText(80)>'
+        entryDate: '<dateTimeBetween("-2 years", "now")>'
+        client: '@client<numberBetween(1, 2)>'
+        comment: '@comment<numberBetween(1,2)>'

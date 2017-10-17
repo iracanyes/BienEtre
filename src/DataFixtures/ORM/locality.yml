@@ -1,0 +1,3 @@
+App\Entity\Locality:
+    locality{1..2}:
+        locality: '<city()> <cityPrefix()>'
