@@ -10,7 +10,7 @@ error-fixtures.txt
 
 ###> symfony/framework-bundle ###
 .env
-/public/bundles/
+#/public/bundles/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
