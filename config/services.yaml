@@ -33,3 +33,17 @@ services:
         class: App\Resources\fixtures\Faker\Provider\UserTypeProvider
         tags:
             name: nelmio_alice.faker.provider
+
+    # Service d'envoie d'email de confirmation d'inscription
+    # Installation de SwiftMailer nécessaire
+    #email.user_mailer:
+    #    class: App\Email\UserMailer
+    #    arguments:
+    #        - '@mailer'
+    # Service écoutant l'événement postPersist pour déclencher l'action email.user_mailer
+    #doctrine_listener.user_confirmation:
+    #    class: App\DoctrineListener\UserConfirmationListener
+    #    arguments:
+    #        - '@email.user_mailer'
+    #    tags:
+    #        - { name: doctrine.event_listener, event: postPersist }

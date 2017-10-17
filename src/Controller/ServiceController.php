@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 
-class StageController extends Controller
+class ServiceController extends Controller
 {
     /**
      * @Route("/services", name="services_list")
@@ -26,9 +26,30 @@ class StageController extends Controller
         }
 
         return $this->render(
-            "templates:views:service:service-boxed.html.twig",
+            "superlist/service/service-boxed.html.twig",
             array("services"=>$services)
         );
     }
 
+    /**
+     * @Route("/services/{slug}", name="services_list")
+     *
+     * @param Request $request
+     */
+    public function showAction()
+    {
+        $em = $this->get("doctrine.orm.entity_manager");
+
+        // Élement à vérifier avec regEx
+        $slug = $this->attributes->get('slug');
+
+        $services = $em->getRepository("App:Service")
+            ->findOneBySlug($slug);
+
+        if(!$services){
+            throw new NotFoundHttpException("Aucun service n'est enregistré en DB!");
+        }
+
+        return $this->render("superlist/service/service-detail.html.twig");
+    }
 }

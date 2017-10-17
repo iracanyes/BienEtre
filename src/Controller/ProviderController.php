@@ -54,7 +54,7 @@ class ProviderController extends Controller
         $slug = $request->attributes->get("slug");
 
         $provider = $em->getRepository('App:Provider')
-            ->findBySlug($slug);
+            ->findOneBySlug($slug);
 
         if(!$provider){
             throw new NotFoundHttpException("Le prestataire ".$slug." n'existe pas");

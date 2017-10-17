@@ -4,6 +4,8 @@ namespace App\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+// Ajout de slug
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Entity\User;
@@ -104,6 +106,13 @@ class Provider extends User
      * @ORM\OneToMany(targetEntity="\App\Entity\Comment", mappedBy="provider")
      */
     private $opinions;
+
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"brandName"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     /**
      * Provider constructor.
@@ -239,6 +248,24 @@ class Provider extends User
     }
 
     /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
+    }
+
+
+
+    /**
      * Get logo
      *
      * @return \App\Entity\Image
@@ -259,9 +286,9 @@ class Provider extends User
     /**
      * Get images
      *
-     * @return Array
+     * @return mixed
      */
-    public function getImages(): Array
+    public function getImages()
     {
         return $this->images;
     }
@@ -295,9 +322,9 @@ class Provider extends User
     /**
      * Get stages
      *
-     * @return ArrayCollection
+     * @return mixed
      */
-    public function getStages(): Array
+    public function getStages()
     {
         return $this->stages;
     }
