@@ -4,3 +4,4 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         site_name: 'ISL Symfony3.9 cours'
+        logo_url: 'build/images/favicon.png'

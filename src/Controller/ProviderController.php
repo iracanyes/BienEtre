@@ -23,7 +23,7 @@ class ProviderController extends Controller
     /**
      * Route interne /providers
      * 
-     * @Route("/providers", name="providers_list")
+     * @Route("/providers", name="provider_list ")
      */
     public function indexAction(): Response
     {

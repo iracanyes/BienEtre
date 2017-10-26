@@ -35,7 +35,7 @@ class HomeController extends Controller
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
         }
         return $this->render(
-            "index.html.twig",
+            "superlist/index.html.twig",
             array("providers"=>$providers)
             );
     }            

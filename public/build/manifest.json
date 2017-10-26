@@ -1,0 +1,17 @@
+{
+  "build/css/vendors.css": "/build/css/vendors.css",
+  "build/fonts/glyphicons-halflings-regular.eot": "/build/fonts/glyphicons-halflings-regular.eot",
+  "build/fonts/glyphicons-halflings-regular.ttf": "/build/fonts/glyphicons-halflings-regular.ttf",
+  "build/fonts/glyphicons-halflings-regular.woff": "/build/fonts/glyphicons-halflings-regular.woff",
+  "build/fonts/glyphicons-halflings-regular.woff2": "/build/fonts/glyphicons-halflings-regular.woff2",
+  "build/images/bg-transparent.jpg": "/build/images/bg-transparent.jpg",
+  "build/images/favicon.png": "/build/images/favicon.png",
+  "build/images/glyphicons-halflings-regular.svg": "/build/images/glyphicons-halflings-regular.svg",
+  "build/images/logo-white.png": "/build/images/logo-white.png",
+  "build/images/logo.png": "/build/images/logo.png",
+  "build/images/product-4.jpg": "/build/images/product-4.jpg",
+  "build/images/slider-large-3.jpg": "/build/images/slider-large-3.jpg",
+  "build/js/main.js": "/build/js/main.js",
+  "build/js/vendors.js": "/build/js/vendors.js",
+  "build/manifest.js": "/build/manifest.js"
+}

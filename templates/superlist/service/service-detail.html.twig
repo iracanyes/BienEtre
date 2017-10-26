@@ -4,22 +4,22 @@
 {% block contentDetail %}
 
     <div class="page-title">
-        <h1>Information Prestataire : {{ provider.brandName }}</h1>
+        <h1>Information Service : {{ service.name }}</h1>
     </div><!-- /.page-title -->
 
     <div class="posts post-detail">
 
-        <img src="{{ provider.logo.url }}" alt="A Clockwork Origin">
+        <img src="{{ service.provider.logo.url }}" alt="A Clockwork Origin">
 
         <div class="post-meta clearfix">
-            <div class="post-meta-author">Par <a href="blog-detail.html">{{ provider.email }}</a></div><!-- /.post-meta-author -->
-            <div class="post-meta-date">{{ provider.registryDate|date("d/m/Y h:i:s") }}</div><!-- /.post-meta-date -->
+            <div class="post-meta-author">Par <a href="blog-detail.html">{{ service.provider.email }}</a></div><!-- /.post-meta-author -->
+            <div class="post-meta-date">{{ service.provider.registryDate|date("d/m/Y h:i:s") }}</div><!-- /.post-meta-date -->
 
-            {% for serviceCategory in provider.serviceCategories %}
+            {% for serviceCategory in service.provider.serviceCategories %}
             <div class="post-meta-categories"><i class="fa fa-tags"></i> <a href="blog-detail.html">{{ serviceCategory.name }}</a></div>
 
             {% endfor %}<!-- /.post-meta-categories -->
-            <div class="post-meta-comments"><i class="fa fa-comments"></i> <a href="blog-detail.html">{{ provider.opinions|length }} comments</a></div><!-- /.post-meta-comments -->
+            <div class="post-meta-comments"><i class="fa fa-comments"></i> <a href="blog-detail.html">{{ service.provider.opinions|length }} comments</a></div><!-- /.post-meta-comments -->
         </div><!-- /.post-meta -->
 
         <div class="post-content">
@@ -70,27 +70,30 @@
             </ul>
         </div><!-- /.post-meta -->
 
-        <h2 id="reviews">{{ provider.opinions|length }} Comments</h2>
+        <h2 id="reviews">{{ service.provider.opinions|length }} Commentaires sur le prestataire</h2>
 
         <div class="comments">
+            {% for comment in service.provider.opinions %}
             <div class="comment">
                 <div class="comment-image">
-                    <img src="assets/img/tmp/agent-1.jpg" alt="">
+                    <img src="{{ comment.client.avatar }}" alt="">
                 </div><!-- /.comment-image -->
 
                 <div class="comment-inner">
                     <div class="comment-header">
-                        <h2>Nancy Collins</h2>
+                        <h2>{{ comment.client.firstname~" "~comment.client.lastname }}</h2>
                         <span class="separator">&#8226;</span>
-                        <span class="comment-date">08/24/2015</span>
+                        <span class="comment-date">{{ comment.entryDate }}</span>
                         <div class="comment-reply">
-                            <a href="#"><i class="fa fa-reply"></i> Reply</a>
+                            <a href="#"><i class="fa fa-reply"></i> Répondre</a>
                         </div><!-- /.comment-reply -->
                     </div><!-- /.comment-header -->
 
                     <div class="comment-content-wrapper">
                         <div class="comment-content">
-                            <p>Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. In congue mattis felis, non hendrerit orci dictum id.</p>
+                            <p>
+                                {{ comment.content }}
+                            </p>
                         </div><!-- /.comment-content -->
                     </div><!-- /.comment-content-wrapper -->
                 </div><!-- /.comment-inner -->
@@ -144,52 +147,7 @@
                 </div><!-- /.comment -->
 
             </div><!-- /.comment -->
-
-            <div class="comment">
-                <div class="comment-image">
-                    <img src="assets/img/tmp/agent-5.jpg" alt="">
-                </div><!-- /.comment-image -->
-
-                <div class="comment-inner">
-                    <div class="comment-header">
-                        <h2>Richard Peterson</h2>
-                        <span class="separator">&#8226;</span>
-                        <span class="comment-date">08/25/2015</span>
-                        <div class="comment-reply">
-                            <a href="#"><i class="fa fa-reply"></i> Reply</a>
-                        </div><!-- /.comment-reply -->
-                    </div><!-- /.comment-header -->
-
-                    <div class="comment-content-wrapper">
-                        <div class="comment-content">
-                            <p>Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. In congue mattis felis, non hendrerit orci dictum id. Duis et magna vel est tempus vehicula vitae sit amet enim. Sed vitae ligula congue.</p>
-                        </div><!-- /.comment-content -->
-                    </div><!-- /.comment-content-wrapper -->
-                </div><!-- /.comment-inner -->
-            </div><!-- /.comment -->
-
-            <div class="comment">
-                <div class="comment-image">
-                    <img src="assets/img/tmp/agent-3.jpg" alt="">
-                </div><!-- /.comment-image -->
-
-                <div class="comment-inner">
-                    <div class="comment-header">
-                        <h2>Britney White</h2>
-                        <span class="separator">&#8226;</span>
-                        <span class="comment-date">08/25/2015</span>
-                        <div class="comment-reply">
-                            <a href="#"><i class="fa fa-reply"></i> Reply</a>
-                        </div><!-- /.comment-reply -->
-                    </div><!-- /.comment-header -->
-
-                    <div class="comment-content-wrapper">
-                        <div class="comment-content">
-                            <p>Suspendisse ac cursus elit. In congue mattis felis, non hendrerit orci dictum id. Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus.</p>
-                        </div><!-- /.comment-content -->
-                    </div><!-- /.comment-content-wrapper -->
-                </div><!-- /.comment-inner -->
-            </div><!-- /.comment -->
+            {% endfor %}
 
         </div><!-- /.comments -->
 

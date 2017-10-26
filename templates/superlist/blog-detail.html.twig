@@ -2,12 +2,7 @@
 
 {% block stylesheets %}
     <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
-    <link href="{{ asset('../assets/libraries/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('../assets/libraries/owl.carousel/assets/owl.carousel.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('../assets/libraries/colorbox/example1/colorbox.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('assets/libraries/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/libraries/bootstrap-fileinput/fileinput.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/superlist.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('build/css/vendors.css') }}" rel="stylesheet" type="text/css">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/favicon.png') }}">
 
@@ -254,33 +249,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/jquery.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/map.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/vendors.js') }}" type="text/javascript"></script>
 
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/collapse.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/carousel.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/transition.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/dropdown.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/tooltip.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/tab.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/alert.js') }}" type="text/javascript"></script>
-
-    <script src="{{ asset('assets/libraries/colorbox/jquery.colorbox-min.js') }}" type="text/javascript"></script>
-
-    <script src="{{ asset('assets/libraries/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/libraries/flot/jquery.flot.spline.js') }}" type="text/javascript"></script>
-
-    <script src="{{ asset('assets/libraries/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
-
-    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false" type="text/javascript"></script>
-
-    <script type="text/javascript" src="{{ asset('assets/libraries/jquery-google-map/infobox.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/libraries/jquery-google-map/markerclusterer.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/libraries/jquery-google-map/jquery-google-map.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('assets/libraries/owl.carousel/owl.carousel.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/libraries/bootstrap-fileinput/fileinput.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/superlist.js') }}" type="text/javascript"></script>
 {% endblock %}
 

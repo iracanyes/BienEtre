@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+var path = require('path');
 
 Encore
     // the project directory where compiled assets will be stored
@@ -11,14 +12,23 @@ Encore
     // .enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
+    .addEntry('js/main', './assets/js/main.js')
+    // Création d'entrées partagés par plusieurs scripts et pages.
+    .createSharedEntry('js/vendors',[
+        './assets/js/jquery.js',
+        './assets/js/map.js',
+        './assets/js/superlist.js'
+    ])
+     .addStyleEntry('css/vendors', './assets/scss/superlist.scss')
 
     // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
+     .enableSassLoader()
 
     // uncomment for legacy applications that require $/jQuery as a global variable
-    // .autoProvidejQuery()
+     .autoProvidejQuery()
+
+
+
 ;
 
 module.exports = Encore.getWebpackConfig();

@@ -55,7 +55,7 @@
     }
 }
 
-.posts-condensed & {
+.posts-condensed /*&*/{
     .post {
         @extend .clearfix;
         background-color: #fff;

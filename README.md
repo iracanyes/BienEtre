@@ -15,32 +15,41 @@ Symfony3.3.9 application
     <li>
         Création des fixtures DB
     </li>
-    
-</ul>
-<h3>Tâches en cours</h3>
-<ul>
-    <li>Intégration du template</li>
-</ul>
-<h3>Tâches à effectuer</h3> 
-<ul>
     <li>
-        Intégration librairies nodejs : Webpack(gestionnaire de dépendances)
+                Intégration librairies nodejs : Webpack(gestionnaire de bundles JS)
         <ul>
             <li>
                 Optimisation Assets
             </li>
         </ul>
     </li>
+</ul>
+<h3>Tâches en cours</h3>
+<ul>
     <li>
-        AJAX : ?symfony/api?
+        Intégration du template
+    </li>
+    
+</ul>
+<h3>Tâches à effectuer</h3> 
+<ul>
+    <li>
+                Intégration librairies nodejs : Webpack(gestionnaire de dépendances)
+        <ul>
+            <li>
+                Comment traiter les ressources images par Webpack?
+            </li>
+        </ul>
+    </li>
+    <li>
+        AJAX : Utilisation json_encode($response) et traitement en JS
         <ol>
+            <li>
+                Recherche des prestataires : nom, localité|commune|code postal, ...
+            </li>
             <li>
                 Mettre un provider en favori
             </li>
         </ol>
     </li>
 </ul>
-    
-     
-    1. 
-    2. 

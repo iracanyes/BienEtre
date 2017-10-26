@@ -29,10 +29,10 @@ services:
         tags: ['controller.service_arguments']
 
     # Faker Provider : Permet de fournir les types d'utilisateur
-    data_fixtures.provider.foo:
-        class: App\Resources\fixtures\Faker\Provider\UserTypeProvider
-        tags:
-            name: nelmio_alice.faker.provider
+    #data_fixtures.provider.foo:
+    #    class: App\Resources\fixtures\Faker\Provider\UserTypeProvider
+    #    tags:
+    #        name: nelmio_alice.faker.provider
 
     # Service d'envoie d'email de confirmation d'inscription
     # Installation de SwiftMailer nécessaire
