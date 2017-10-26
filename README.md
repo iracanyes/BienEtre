@@ -19,7 +19,17 @@ Symfony3.3.9 application
                 Intégration librairies nodejs : Webpack(gestionnaire de bundles JS)
         <ul>
             <li>
-                Optimisation Assets
+                Optimisation Assets 
+            </li>
+            <li>
+                Importation des ressources images : logo, logo-white, favicon
+            </li>
+        </ul>
+    </li>
+    <li>
+        Intégration du template
+        <ul>
+            <li>
             </li>
         </ul>
     </li>
@@ -33,14 +43,6 @@ Symfony3.3.9 application
 </ul>
 <h3>Tâches à effectuer</h3> 
 <ul>
-    <li>
-                Intégration librairies nodejs : Webpack(gestionnaire de dépendances)
-        <ul>
-            <li>
-                Comment traiter les ressources images par Webpack?
-            </li>
-        </ul>
-    </li>
     <li>
         AJAX : Utilisation json_encode($response) et traitement en JS
         <ol>
