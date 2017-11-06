@@ -19,7 +19,10 @@ Encore
         './assets/js/map.js',
         './assets/js/superlist.js'
     ])
-     .addStyleEntry('css/vendors', './assets/scss/superlist.scss')
+     .addStyleEntry('css/vendors',
+         './assets/scss/superlist.scss',
+         './assets/libraries/font-awesome/css/font-awesome.min.css'
+     )
 
     // uncomment if you use Sass/SCSS files
      .enableSassLoader()

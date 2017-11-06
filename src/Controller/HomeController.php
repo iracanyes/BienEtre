@@ -30,13 +30,38 @@ class HomeController extends Controller
 
         $providers = $em->getRepository("App:Provider")
             ->findAll();
+        $townships = $em->getRepository("App:Township")
+            ->findAll();
+        $localities = $em->getRepository("App:Locality")
+            ->findAll();
+        $postalCodes = $em->getRepository("App:PostalCode")
+            ->findAll();
 
         if(!$providers){
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
         }
+
+        if(!$townships){
+            throw new NotFoundHttpException("Aucune ville n'est enregistré en DB!");
+        }
+
+        if(!$localities){
+            throw new NotFoundHttpException("Aucune localité n'est enregistré en DB!");
+        }
+
+        if(!$postalCodes){
+            throw new NotFoundHttpException("Aucune code postal n'est enregistré en DB!");
+        }
+
+
         return $this->render(
             "superlist/index.html.twig",
-            array("providers"=>$providers)
+            array(
+                "providers"=>$providers,
+                "townships"=>$townships,
+                "localities"=>$localities,
+                "postalCodes"=>$postalCodes
+            )
             );
     }            
 }
