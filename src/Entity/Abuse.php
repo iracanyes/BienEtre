@@ -48,7 +48,7 @@ class Abuse
     /**
      * @var Client
      *
-     * @ORM\ManyToOne(targetEntity="\App\Entity\Client", cascade={"persist","remove"})
+     * @ORM\ManyToOne(targetEntity="\App\Entity\Client", cascade={"persist","remove"}, inversedBy="abuses")
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;

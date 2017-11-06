@@ -138,7 +138,7 @@ class Provider extends User
      *
      * @return Provider
      */
-    public function setBrandName(string $brandName)
+    public function setBrandName(string $brandName): Provider
     {
         $this->brandName = $brandName;
 
@@ -162,7 +162,7 @@ class Provider extends User
      *
      * @return Provider
      */
-    public function setWebSite(string $webSite)
+    public function setWebSite(string $webSite): Provider
     {
         $this->webSite = $webSite;
 
@@ -186,7 +186,7 @@ class Provider extends User
      *
      * @return Provider
      */
-    public function setEmailContact(string $emailContact)
+    public function setEmailContact(string $emailContact): Provider
     {
         $this->emailContact = $emailContact;
 
@@ -210,7 +210,7 @@ class Provider extends User
      *
      * @return Provider
      */
-    public function setPhoneNumber(string $phoneNumber)
+    public function setPhoneNumber(string $phoneNumber): Provider
     {
         $this->phoneNumber = $phoneNumber;
 
@@ -234,7 +234,7 @@ class Provider extends User
      *
      * @return Provider
      */
-    public function setTvaNumber(string $tvaNumber)
+    public function setTvaNumber(string $tvaNumber): Provider
     {
         $this->tvaNumber = $tvaNumber;
 
@@ -262,7 +262,7 @@ class Provider extends User
     /**
      * @param string $slug
      */
-    public function setSlug(string $slug)
+    public function setSlug(string $slug): Provider
     {
         $this->slug = $slug;
     }
@@ -281,18 +281,21 @@ class Provider extends User
 
     /**
      * @param \App\Entity\Image $logo
+     * @return Provider
      */
-    public function setLogo(Image $logo)
+    public function setLogo(Image $logo): Provider
     {
             $this->logo = $logo;
+
+            return $this;
     }
 
     /**
      * Get images
      *
-     * @return mixed
+     * @return ArrayCollection
      */
-    public function getImages()
+    public function getImages(): ArrayCollection
     {
         return $this->images;
     }
@@ -301,13 +304,14 @@ class Provider extends User
      * Add image
      *
      * @param Image $image
+     * @return Provider
      */
-    public function addImage(Image $image)
+    public function addImage(Image $image): Provider
     {
 
         $this->images[] = $image;
 
-
+        return $this;
 
     }
 
@@ -316,7 +320,7 @@ class Provider extends User
      *
      * @param Image $image
      */
-    public function removeImage(Image $image)
+    public function removeImage(Image $image): void
     {
 
         $this->images->removeElement($image);
@@ -326,9 +330,9 @@ class Provider extends User
     /**
      * Get services
      *
-     * @return mixed
+     * @return ArrayCollection
      */
-    public function getServices()
+    public function getServices(): ArrayCollection
     {
         return $this->services;
     }
@@ -337,8 +341,9 @@ class Provider extends User
      * Add service
      *
      * @param Service $service
+     * return Provider
      */
-    public function addService(Service $service)
+    public function addService(Service $service): Provider
     {
 
         $this->services[] = $service;
@@ -348,6 +353,8 @@ class Provider extends User
          */
         $service->setProvider($this);
 
+        return $this;
+
     }
 
     /**
@@ -355,7 +362,7 @@ class Provider extends User
      *
      * @param Service $service
      */
-    public function removeService(Service $service)
+    public function removeService(Service $service): void
     {
 
         $this->services->removeElement($service);
@@ -367,7 +374,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getServiceCategories()
+    public function getServiceCategories(): ArrayCollection
     {
         return $this->serviceCategories;
     }
@@ -376,8 +383,9 @@ class Provider extends User
      * Add serviceCategory
      *
      * @param ServiceCategory $serviceCategory
+     * @return Provider
      */
-    public function addServiceCategory(ServiceCategory $serviceCategory)
+    public function addServiceCategory(ServiceCategory $serviceCategory): Provider
     {
 
         $this->serviceCategories[] = $serviceCategory;
@@ -387,6 +395,8 @@ class Provider extends User
          */
         $serviceCategory->addProvider($this);
 
+        return $this;
+
     }
 
     /**
@@ -394,7 +404,7 @@ class Provider extends User
      *
      * @param ServiceCategory $serviceCategory
      */
-    public function removeServiceCategory(ServiceCategory $serviceCategory)
+    public function removeServiceCategory(ServiceCategory $serviceCategory): void
     {
 
         $this->serviceCategories->removeElement($serviceCategory);
@@ -406,7 +416,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getPromotions()
+    public function getPromotions(): ArrayCollection
     {
         return $this->promotions;
     }
@@ -415,9 +425,9 @@ class Provider extends User
      * Add promotion
      *
      * @param Promotion $promotion
-     *
+     * @return Provider
      */
-    public function addPromotion(Promotion $promotion)
+    public function addPromotion(Promotion $promotion): Provider
     {
 
         $this->promotions[] = $promotion;
@@ -426,6 +436,8 @@ class Provider extends User
          * Association entre le prestataire et la promotion créée
          */
         $promotion->setProvider($this);
+
+        return $this;
     }
 
     /**
@@ -433,7 +445,7 @@ class Provider extends User
      *
      * @param Promotion $promotion
      */
-    public function removePromotion(Promotion $promotion)
+    public function removePromotion(Promotion $promotion): void
     {
 
         $this->promotions->removeElement($promotion);
@@ -445,7 +457,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getFans()
+    public function getFans(): ArrayCollection
     {
         return $this->fans;
     }
@@ -455,9 +467,11 @@ class Provider extends User
      *
      * @param Client $client
      */
-    public function addFan(Client $client)
+    public function addFan(Client $client): Provider
     {
         $this->fans[] = $client;
+
+        return $this;
     }
 
     /**
@@ -465,7 +479,7 @@ class Provider extends User
      *
      * @param Client $client
      */
-    public function removeFan(Client $client)
+    public function removeFan(Client $client): void
     {
         $this->fans->removeElement($client);
     }
@@ -475,7 +489,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getOpinions()
+    public function getOpinions(): ArrayCollection
     {
         return $this->opinions;
     }
@@ -484,10 +498,13 @@ class Provider extends User
      * Add remark
      *
      * @param \App\Entity\Comment $comment
+     * @return Provider
      */
-    public function addComment(Comment $comment)
+    public function addComment(Comment $comment): Provider
     {
         $this->opinions[] = $comment;
+
+        return $this;
     }
 
     /**
@@ -495,7 +512,7 @@ class Provider extends User
      *
      * @param \App\Entity\Comment $comment
      */
-    public function removeComment(Comment $comment)
+    public function removeComment(Comment $comment): void
     {
         $this->opinions->removeElement($comment);
     }

@@ -1,6 +1,6 @@
 App\Entity\Comment:
-    comment{1..2}:
-        title: '<fr_FR:catchPhrase()>'
+    comment{1..5}:
+        title: '<fr_FR:sentence(7)>'
         content: '<fr_FR:realText(100)>'
         vote: '<numberBetween(1, 5)>'
         entryDate: '<dateTimeBetween("-2 years", "now")>'

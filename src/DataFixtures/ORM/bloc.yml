@@ -1,4 +1,4 @@
 App\Entity\Bloc:
     bloc{1..2}:
-        name: '<fr_FR:catchPhrase()>'
+        name: '<fr_FR:sentence(7)>'
         description: '<fr_BE:realText(60)>'

@@ -1,6 +1,6 @@
 App\Entity\Service:
-    service{1..4}:
-        name: '<fr_FR:catchPhrase()>'
+    service{1..10}:
+        name: '<fr_FR:sentence(7)>'
         description: '<fr_FR:realText(120)>'
         pricing: '<realText(60)>'
         additionalInformation: '<realText(100)>'

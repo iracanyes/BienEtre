@@ -1,6 +1,6 @@
 App\Entity\Promotion:
-    promotion{1..2}:
-        name: '<fr_BE:catchPhrase(6)>'
+    promotion{1..5}:
+        name: '<fr_FR:sentence(7)>'
         description: '<fr_BE:realText(80)>'
         pdf: '<slug()>'
         startDate: '<dateTimeBetween("-2 years", "-1 years")>'

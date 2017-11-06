@@ -1,6 +1,6 @@
 App\Entity\ServiceCategory:
-    serviceCategory{1..2}:
-        name: '<fr_FR:catchPhrase()>'
+    serviceCategory{1..5}:
+        name: '<fr_FR:sentence(7)>'
         description: '<fr_FR:realText(80)>'
         inFrontPage: '<boolean()>'
         isValid: '<boolean()>'

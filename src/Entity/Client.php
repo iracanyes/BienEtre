@@ -45,14 +45,14 @@ class Client extends User
     private $newsletter;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection $positions
      *
      * @ORM\OneToMany(targetEntity="Position", mappedBy="client")
      */
     private $positions;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection $favorites
      *
      * @ORM\ManyToMany(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="fans")
      * @ORM\JoinTable(name="be_favorite")
@@ -60,13 +60,18 @@ class Client extends User
     private $favorites;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection $comments
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="client")
      */
     private $comments;
 
-
+    /**
+     * @var ArrayCollection $abuses
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Abuse", mappedBy="client")
+     */
+    private $abuses;
 
     /**
      * Client constructor.
@@ -76,6 +81,7 @@ class Client extends User
         $this->positions = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->abuses = new ArrayCollection();
     }
 
     /**
@@ -92,8 +98,9 @@ class Client extends User
      * Set lastname
      *
      * @param string $lastname
+     * @return Client
      */
-    public function setLastname(string $lastname)
+    public function setLastname(string $lastname): Client
     {
         $this->lastname = $lastname;
 
@@ -114,8 +121,9 @@ class Client extends User
      * Set firstname
      *
      * @param string $firstname
+     * @return Client
      */
-    public function setFirstname(string $firstname)
+    public function setFirstname(string $firstname): Client
     {
         $this->firstname = $firstname;
 
@@ -127,7 +135,7 @@ class Client extends User
      *
      * @return bool
      */
-    public function getNewsletter()
+    public function getNewsletter(): bool
     {
         return $this->newsletter;
     }
@@ -136,8 +144,9 @@ class Client extends User
      * Set newsletter
      *
      * @param bool $newsletter
+     * @return Client
      */
-    public function setNewsletter($newsletter)
+    public function setNewsletter($newsletter): Client
     {
         $this->newsletter = $newsletter;
 
@@ -149,7 +158,7 @@ class Client extends User
      *
      * @return ArrayCollection
      */
-    public function getPositions()
+    public function getPositions(): ArrayCollection
     {
         return $this->positions;
     }
@@ -158,10 +167,15 @@ class Client extends User
      * Add position
      *
      * @param Position $position
+     * @return Client
      */
-    public function addPosition(Position $position)
+    public function addPosition(Position $position): Client
     {
         $this->positions[] = $position;
+
+        $position->setClient($this);
+
+        return $this;
     }
 
     /**
@@ -169,7 +183,7 @@ class Client extends User
      *
      * @param Position $position
      */
-    public function removePosition(Position $position)
+    public function removePosition(Position $position): void
     {
         $this->positions->removeElement($position);
     }
@@ -185,23 +199,26 @@ class Client extends User
     }
 
     /**
-     * Add favori
+     * Add favorite
      *
      * @param Provider $provider
+     * @return Client
      */
-    public function addFavorite(Provider $provider)
+    public function addFavorite(Provider $provider): Client
     {
         $this->favorites[] = $provider;
 
         $provider->addFan($this);
+
+        return $this;
     }
 
     /**
-     * Remove favori
+     * Remove favorite
      *
      * @param Provider $provider
      */
-    public function removeFavorite(Provider $provider)
+    public function removeFavorite(Provider $provider): void
     {
         $this->favorites->removeElement($provider);
     }
@@ -220,12 +237,23 @@ class Client extends User
      * Add comment
      *
      * @param \App\Entity\Comment $comment
+     * @return Client
      */
-    public function addComment(Comment $comment)
+    public function addComment(Comment $comment): Client
     {
         $this->comments[] = $comment;
 
+        /*
+         * Association du commentaire au client qui l'a crée
+         */
         $comment->setClient($this);
+
+        /*
+         * Ajout du commentaire dans les opinions du prestataire
+         */
+        $comment->getProvider()->addComment($comment);
+
+        return $this;
     }
 
     /**
@@ -233,8 +261,41 @@ class Client extends User
      *
      * @param \App\Entity\Comment $comment
      */
-    public function removeComment(Comment $comment)
+    public function removeComment(Comment $comment): void
     {
         $this->comments->removeElement($comment);
     }
+
+    /**
+     * Get Abuses
+     *
+     * @return ArrayCollection
+     */
+      public function getAbuses(): string
+      {
+          return $this->abuses;
+      }
+
+      /**
+       * Add Abuse
+       *
+       * @param \App\Entity\Abuse $abuse
+       * @return Client
+       */
+      public function addAbuse(Abuse $abuse): Client
+      {
+          $this->abuses = $abuse;
+
+          $abuse->setClient($this);
+      }
+
+      /**
+       * Remove Abuse
+       *
+       * @param \App\Entity\Abuse $abuse
+       */
+      public function removeAbuse(Abuse $abuse): void
+      {
+          $this->abuses->removeElement($abuse);
+      }
 }
