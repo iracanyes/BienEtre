@@ -30,11 +30,21 @@ class HomeController extends Controller
 
         $providers = $em->getRepository("App:Provider")
             ->findAll();
+
+        // Information pour la barre de recherche
         $townships = $em->getRepository("App:Township")
             ->findAll();
         $localities = $em->getRepository("App:Locality")
             ->findAll();
         $postalCodes = $em->getRepository("App:PostalCode")
+            ->findAll();
+
+        // Slider d'image des catégories de services fournis par le site
+        $serviceCategories = $em->getRepository("App:ServiceCategory")
+            ->findAll();
+
+        // services
+        $services = $em->getRepository("App:Service")
             ->findAll();
 
         if(!$providers){
@@ -57,10 +67,12 @@ class HomeController extends Controller
         return $this->render(
             "superlist/index.html.twig",
             array(
-                "providers"=>$providers,
-                "townships"=>$townships,
-                "localities"=>$localities,
-                "postalCodes"=>$postalCodes
+                "providers" => $providers,
+                "townships" => $townships,
+                "localities" => $localities,
+                "postalCodes" => $postalCodes,
+                "services" => $services,
+                "serviceCategories" => $serviceCategories
             )
             );
     }            

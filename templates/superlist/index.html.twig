@@ -134,8 +134,8 @@
                             <div class="hero-image-inner" style="background-image: url('assets/img/tmp/slider-large-3.jpg');">
                                 <div class="hero-image-content">
                                     <div class="container">
-                                        <h1>Bien-Être</h1>
-                                        <h3>Annuaire de service</h3>
+                                        <h1>Bien-Être : Annuaire de service</h1>
+
                                         <p>Trouver les meilleurs services Bien-Être de votre région</p>
 
                                         <a href="listing-row.html" class="btn btn-primary btn-lg">Voir l'annuaire complet</a>
@@ -151,7 +151,7 @@
                                                     <h2>Retrouver les prestataires de votre région</h2>
 
                                                     <div class="hero-image-keyword form-group">
-                                                        <input type="text" class="form-control" placeholder="Service">
+                                                        <input type="text" class="form-control" placeholder="Prestataire">
                                                     </div><!-- /.form-group -->
 
                                                     <div class="hero-image-location form-group">
@@ -170,7 +170,7 @@
                                                             {% endfor %}
                                                         </select>
                                                     </div><!-- /.form-group -->
-                                                    <div class="hero-image-category form-group">
+                                                    <div class="hero-image-location form-group">
                                                         <select class="form-control" title="Commune">
                                                             {% for postalCode in postalCodes %}
                                                                 <option value="">{{ postalCode.postalCode }}</option>
@@ -179,7 +179,7 @@
                                                     </div><!-- /.form-group -->
 
                                                     <div class="hero-image-price form-group">
-                                                        <input type="text" class="form-control" placeholder="Min. Price">
+                                                        <input type="text" class="form-control" placeholder="Service">
                                                     </div><!-- /.form-group -->
 
                                                     <button type="submit" class="btn btn-primary btn-block">Search</button>
@@ -196,24 +196,15 @@
                     <div class="container">
                         <div class="block background-white fullwidth pt0 pb0">
                             <div class="partners">
-                                <a href="#">
-                                    <img src="assets/img/tmp/partner-1.jpg" alt="">
-                                </a>
+                                <!--
+                                Slider : ServiceCategory Image
+                                -->
+                                {% for serviceCategory in serviceCategories %}
+                                    <a href="#">
+                                        <img src="{{ serviceCategory.image.url }}" alt="{{ serviceCategory.name }}">
+                                    </a>
+                                {% endfor %}
 
-                                <a href="#">
-                                    <img src="assets/img/tmp/partner-2.jpg" alt="">
-                                </a>
-
-                                <a href="#">
-                                    <img src="assets/img/tmp/partner-3.jpg" alt="">
-                                </a>
-
-                                <a href="#">
-                                    <img src="assets/img/tmp/partner-4.jpg" alt="">
-                                </a>
-
-                                <a href="#">
-                                    <img src="assets/img/tmp/partner-5.jpg" alt="">
                                 </a>
                             </div><!-- /.partners -->
 
@@ -230,12 +221,12 @@
                                 Prestataires et Services ajoutés récemment
 
                                 -->
-
+                                {% for service in services %}
                                     <div class="col-sm-6 col-md-3">
-                                    <div class="card-simple" data-background-image="assets/img/tmp/product-2.jpg">
+                                    <div class="card-simple" data-background-image="{{ service.provider.logo.url }}">
                                         <div class="card-simple-background">
                                             <div class="card-simple-content">
-                                                <h2><a href="listing-detail.html">Tasty Brazil Coffee</a></h2>
+                                                <h2><a href="listing-detail.html">{{ service.provider.brandName }}</a></h2>
                                                 <div class="card-simple-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -251,12 +242,12 @@
                                                 </div><!-- /.card-simple-actions -->
                                             </div><!-- /.card-simple-content -->
 
-                                            <div class="card-simple-label">Coffee</div>
+                                            <div class="card-simple-label">service.provider.serviceCategory.name</div>
 
                                         </div><!-- /.card-simple-background -->
                                     </div><!-- /.card-simple -->
                                 </div><!-- /.col-* -->
-
+                                {% endfor %}
 
 
                             </div><!-- /.row -->

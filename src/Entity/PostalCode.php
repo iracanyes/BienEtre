@@ -18,7 +18,7 @@ use App\Entity\User;
  * @package App\Entity
  *
  * @ORM\Table(name="be_postal_code")
- * @ORM\Entity(repositoryClass="App\Entity\PostalCodeRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PostalCodeRepository")
  */
 class PostalCode
 {

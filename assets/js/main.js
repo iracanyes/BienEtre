@@ -2,6 +2,7 @@
 import Logo from '../img/logo.png';
 import LogoWhite from '../img/logo-white.png';
 import Favicon from '../favicon.png';
+import "../img/tmp/ "
 
 $(function(){
 

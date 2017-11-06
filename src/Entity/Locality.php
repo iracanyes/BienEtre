@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity
  *
  * @ORM\Table(name="be_locality")
- * @ORM\Entity(repositoryClass="App\Entity\LocalityRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LocalityRepository")
  */
 class Locality
 {
