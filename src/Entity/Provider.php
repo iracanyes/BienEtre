@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 // Ajout de slug
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use App\Entity\Service;
 use App\Entity\ServiceCategory;
@@ -57,6 +58,13 @@ class Provider extends User
      * @ORM\Column(name="tva_number", type="string", length=20, unique=true, nullable=true)
      */
     private $tvaNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
+     */
+    private $street;
 
     /**
      * @var Image
@@ -261,13 +269,34 @@ class Provider extends User
 
     /**
      * @param string $slug
+     * @return Provider
      */
     public function setSlug(string $slug): Provider
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getStreet(): string
+    {
+        return $this->street;
 
+    }
+
+    /**
+     * @param string $street
+     * @return Provider
+     */
+    public function setStreet(string $street): Provider
+    {
+        $this->street = $street;
+
+        return $this;
+    }
 
     /**
      * Get logo
@@ -341,7 +370,7 @@ class Provider extends User
      * Add service
      *
      * @param Service $service
-     * return Provider
+     * @return Provider
      */
     public function addService(Service $service): Provider
     {
@@ -372,9 +401,9 @@ class Provider extends User
     /**
      * Get serviceCategories
      *
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getServiceCategories(): ArrayCollection
+    public function getServiceCategories(): Collection
     {
         return $this->serviceCategories;
     }
@@ -455,9 +484,9 @@ class Provider extends User
     /**
      * Get fans
      *
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getFans(): ArrayCollection
+    public function getFans(): Collection
     {
         return $this->fans;
     }
@@ -487,9 +516,9 @@ class Provider extends User
     /**
      * Get opinions
      *
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getOpinions(): ArrayCollection
+    public function getOpinions(): Collection
     {
         return $this->opinions;
     }
@@ -515,6 +544,18 @@ class Provider extends User
     public function removeComment(Comment $comment): void
     {
         $this->opinions->removeElement($comment);
+    }
+
+    /**
+     * Get Address
+     *
+     * @return string
+     */
+    public function getAddress(): string
+    {
+        return $this->street+"<br>"
+            +$this->getPostalCode()+"<br>"+$this->getTownship()+"<br>"
+            +$this->getLocality();
     }
 }
 

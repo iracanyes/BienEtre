@@ -10,7 +10,7 @@ Symfony3.3.9 application
         Installation des dépendances
     </li>
     <li>
-        Création des entités et relations
+        Création des entités et relations 
     </li>
     <li>
         Création des fixtures DB
@@ -40,23 +40,52 @@ Symfony3.3.9 application
 <ul>
     <li>
         Intégration du template
-    </li>
-    
+    </li>    
 </ul>
-<h3>Tâches à effectuer</h3> 
-<ul>
-    <li>
-        AJAX : Utilisation json_encode($response) et traitement en JS
-        <ol>
-            <li>
-                Recherche des prestataires : nom, localité|commune|code postal, ...
-            </li>
-            <li>
-                Mettre un provider en favori
-            </li>
-        </ol>
-    </li>
-</ul>
+<div>
+    <h3>Tâches à effectuer</h3> 
+    <ul>
+        <li>
+            Template: provider-listing-detail.html.twig
+            <ul>
+                <li>
+                    Controller: Provider => sur réception de vote (AJAX)
+                    <ul>
+                        <li>
+                            Créer une méthode de calculer de la cotation des prestataires.
+                            4 critères : Accueil , Equipe , Qualité service, Atmosphère
+                        </li>
+                        <li>
+                            Créer une méthode d'affichage vote client dans les commentaires
+                        </li>
+                    </ul>
+                </li>
+            </ul>        
+        </li>
+        <li>
+            Pour les commentaires positifs/négatifs, il faudra contrôler en JS 
+            qu'au moins un des 2 champs soit remplis 
+        </li>
+        <li>
+            AJAX : Utilisation json_encode($response) et traitement en JS
+            <ol>
+                <li>
+                    Recherche des prestataires : nom, localité|commune|code postal, ...
+                </li>
+                <li>
+                    Template : provider-listing-detail.html.twig
+                    <ul>
+                        <li>
+                            Mettre un provider en favori
+                        </li>
+                        <li>
+                            Ajouter un vote à un provider
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+    </ul>
 </div>
 <div class="alert">
     <p class="alert-info">

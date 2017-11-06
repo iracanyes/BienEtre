@@ -36,9 +36,14 @@ class Comment
     private $title;
 
     /**
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="positiveComment", type="text", nullable=true)
      */
-    private $content;
+    private $positiveComment;
+
+    /**
+     * @ORM\Column(name="negativeComment", type="text", nullable=true)
+     */
+    private $negativeComment;
 
     /**
      * @ORM\Column(name="vote", type="integer", length=1)
@@ -94,17 +99,38 @@ class Comment
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getPositiveComment(): string
     {
-        return $this->content;
+        return $this->positiveComment;
     }
 
     /**
-     * @param string $content
+     * @param string $positiveComment
      */
-    public function setContent(string $content)
+    public function setPositiveComment(string $positiveComment)
     {
-        $this->content = $content;
+        $this->positiveComment = $positiveComment;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNegativeComment(): string
+    {
+        return $this->negativeComment;
+    }
+
+    /**
+     * @param string $negativeComment
+     * @return Comment
+     */
+    public function setNegativeComment(string $negativeComment): Comment
+    {
+        $this->negativeComment = $negativeComment;
+
+        return $this;
     }
 
     /**
