@@ -26,7 +26,8 @@
         "symfony/var-dumper": "^3.3",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/workflow": "^3.3",
-        "symfony/yaml": "^3.3"
+        "symfony/yaml": "^3.3",
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "doctrine/data-fixtures": "~1.1.1",

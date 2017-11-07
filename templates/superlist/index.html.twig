@@ -36,7 +36,7 @@
                                     <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
 
                                     <ul class="sub-menu">
-                                        <li><a href="listing-detail.html">Detail</a></li>
+                                        <li><a href="{{ path('provider_detail',{slug: "konopelski-inc-llc"}) }}">Detail</a></li>
 
                                     </ul>
                                 </li>
@@ -131,7 +131,7 @@
                 <div class="content">
                     <div class="mt-150">
                         <div class="hero-image">
-                            <div class="hero-image-inner" style="background-image: url('assets/img/tmp/slider-large-3.jpg');">
+                            <div class="hero-image-inner" style="background-image: url({{ asset('build/images/slider-large-3.jpg') }});">
                                 <div class="hero-image-content">
                                     <div class="container">
                                         <h1>Bien-Être : Annuaire de service</h1>
@@ -182,7 +182,7 @@
                                                         <input type="text" class="form-control" placeholder="Service">
                                                     </div><!-- /.form-group -->
 
-                                                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                                                    <button type="submit" class="btn btn-primary btn-block">Lancer la recherche</button>
                                                 </form>
                                             </div><!-- /.col-* -->
                                         </div><!-- /.row -->
@@ -259,52 +259,24 @@
                                 <div class="col-sm-6">
                                     <div class="posts">
 
-
+                                     {% for i in 0..2 %}
                                         <div class="post">
                                             <div class="post-image">
-                                                <img src="assets/img/tmp/product-6.jpg" alt="">
-                                                <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
+                                                <img src="{{ services[i].provider.logo.url }}" alt="">
+                                                <a class="read-more" href="{{ path('service_detail',{slug: {{ services[i].slug }} }) }}">View</a>
                                             </div><!-- /.post-image -->
 
                                             <div class="post-content">
-                                                <div class="post-label">Automotive</div><!-- /.post-label -->
+                                                <div class="post-label">{{ services[i].provider.brandName }}</div><!-- /.post-label -->
                                                 <div class="post-date">07/12/2015</div><!-- /.post-date -->
-                                                <h2>The Deep South</h2>
-                                                <p>Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. Calculon is gonna kill us and it's a...</p>
+                                                <h2>{{ services[i].name }}</h2>
+                                                <p>
+                                                    {{ services[i].description|slice(0,130) }}
+                                                </p>
                                             </div><!-- /.post-content -->
                                         </div><!-- /.post -->
+                                     {% endfor %}
 
-
-
-                                        <div class="post">
-                                            <div class="post-image">
-                                                <img src="assets/img/tmp/product-8.jpg" alt="">
-                                                <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
-                                            </div><!-- /.post-image -->
-
-                                            <div class="post-content">
-                                                <div class="post-label">Transport</div><!-- /.post-label -->
-                                                <div class="post-date">06/18/2015</div><!-- /.post-date -->
-                                                <h2>Raging Bender</h2>
-                                                <p>For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. Then throw her in the laundry roo...</p>
-                                            </div><!-- /.post-content -->
-                                        </div><!-- /.post -->
-
-
-
-                                        <div class="post">
-                                            <div class="post-image">
-                                                <img src="assets/img/tmp/product-10.jpg" alt="">
-                                                <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
-                                            </div><!-- /.post-image -->
-
-                                            <div class="post-content">
-                                                <div class="post-label">Vacation</div><!-- /.post-label -->
-                                                <div class="post-date">05/26/2015</div><!-- /.post-date -->
-                                                <h2>The Prisoner of Benda</h2>
-                                                <p>Check it out, y'all. Everyone who was invited is here. Well, thanks to the Internet, I'm now bored with. Is there a place on th...</p>
-                                            </div><!-- /.post-content -->
-                                        </div><!-- /.post -->
                                     </div><!-- /.posts -->
 
                                 </div><!-- /.col-* -->

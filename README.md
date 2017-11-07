@@ -46,6 +46,9 @@ Symfony3.3.9 application
     <h3>Tâches à effectuer</h3> 
     <ul>
         <li>
+            Entité Site-web : Définir les sliders de la page d'accueil
+        </li>
+        <li>
             Template: provider-listing-detail.html.twig
             <ul>
                 <li>
