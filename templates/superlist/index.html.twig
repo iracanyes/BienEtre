@@ -263,7 +263,7 @@
                                         <div class="post">
                                             <div class="post-image">
                                                 <img src="{{ services[i].provider.logo.url }}" alt="">
-                                                <a class="read-more" href="{{ path('service_detail',{slug: {{ services[i].slug }} }) }}">View</a>
+                                                <a class="read-more" href="{{ path('service_detail',{slug: "{{ services[i].slug }}" }) }}">View</a>
                                             </div><!-- /.post-image -->
 
                                             <div class="post-content">
@@ -271,7 +271,7 @@
                                                 <div class="post-date">07/12/2015</div><!-- /.post-date -->
                                                 <h2>{{ services[i].name }}</h2>
                                                 <p>
-                                                    {{ services[i].description|slice(0,130) }}
+                                                    {{ services[i].description|truncate(95,true) }}
                                                 </p>
                                             </div><!-- /.post-content -->
                                         </div><!-- /.post -->

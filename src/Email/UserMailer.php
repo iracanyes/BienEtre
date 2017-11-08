@@ -8,7 +8,6 @@
 namespace App\Email;
 
 use App\Entity\User;
-
 /**
  * Class UserMailer
  * @package App\Email

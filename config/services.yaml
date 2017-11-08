@@ -47,3 +47,23 @@ services:
     #        - '@email.user_mailer'
     #    tags:
     #        - { name: doctrine.event_listener, event: postPersist }
+    ##########################################################################################################
+    # Chargement des extensions Twig : ERREUR
+    # Cannot autowire service "Twig\Extensions\Node\TransNode"
+    #
+    #Twig\Extensions\:
+    #    resource: '../vendor/twig/extensions/src/*'
+    #    tags:
+    #      - {name : 'twig.extension'}
+    #
+    # ATTENTION: Autowiring services based on the types they implement is deprecated since Symfony 3.3
+    # and won’t be supported in version 4.0. You should rename (or alias)
+    # the "security.user_password_encoder.generic" service
+    # to "Symfony\Component\Security\Core\Encoder\UserPasswordEncoder" instead.
+    ######################################################################################################
+    app.twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags: { name: 'twig.extension' }
+    app.twig.extension.i18n:
+        class: Twig_Extensions_Extension_I18n
+        tags: { name: 'twig.extension' }
