@@ -1,0 +1,30 @@
+# Chargement des extensions Twig : ERREUR
+    # Cannot autowire service "Twig\Extensions\Node\TransNode"
+    #
+    #Twig\Extensions\:
+    #    resource: '../vendor/twig/extensions/src'
+    #    tags:
+    #      - {name : 'twig.extension'}
+
+Cannot autowire service "Twig\Extensions\Node\TransNode": argument "$lineno" of method "Twig_Extensions_Node_Trans::__construct()" must have a type-hint or be given a value explicitly.
+
+
+
+    Autowiring services based on the types they implement is deprecated since Symfony 3.3 and won't be supported in version 4.0. You should rename (or alias) the "X" service to "X"
+
+It tells me:
+
+    to rename (or alias) the "security.token_storage" service to "Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage" instead
+    to rename (or alias) the "form.factory" service to "Symfony\Component\Form\FormFactory" instead
+
+Pour déclarer plusieurs services :
+
+Symfony 4.0-
+    mon.alias.de.service:
+        class: Namespace\De\La\Classe
+        tags: { name: service.tag }
+
+Symfony 4.0+
+    Namespace\De\La\Classe:
+        alias: mon.alias.de.service
+        tags: { name: service.tag }

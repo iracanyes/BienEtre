@@ -4,8 +4,6 @@
     "require": {
         "php": "^7.0.8",
         "doctrine/orm": "^2.5",
-        "fzaninotto/faker": "1.6.0",
-        "javiereguiluz/easyadmin-bundle": "^1.17",
         "sensio/framework-extra-bundle": "^4.0",
         "stof/doctrine-extensions-bundle": "^1.2",
         "symfony/assetic-bundle": "^2.8",
@@ -30,6 +28,8 @@
         "twig/extensions": "^1.5"
     },
     "require-dev": {
+        "fzaninotto/faker": "1.6.0",
+        "javiereguiluz/easyadmin-bundle": "^1.17",
         "doctrine/data-fixtures": "~1.1.1",
         "hautelook/alice-bundle": "^2.0@beta",
         "nelmio/alice": "^3.0@beta",
