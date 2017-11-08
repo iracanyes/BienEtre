@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Symfony 4.0 : Manuel</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <style type="text/css">
+            body{
+                width:95%;
+                max-width: 1200px;
+                margin: 10px auto;
+                background-color: whitesmoke;
+                font-family: Verdana, Sans-serif;
+            }
+            #main{
+                background-color: white;
+                padding: 5px;
+
+            }
+            h1,h2,h3{
+                border:2px outset #0000FF;
+                padding: 5px;
+
+            }
+            h1,h2{
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            h4,h5,h6{
+                border-bottom: 2px outset #0000FF;
+                padding: 5px;
+
+            }
+            pre{
+                max-width:900px;
+                margin: 0 auto;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Symfony 4.0 : Manuel</h1>
+            <div id="installation">
+                <h2>Installation : PHP 7.1.10 et Symfony 4.0</h2>
+                <p>
+                    Use the following set of commands to add PPA for PHP 7 in your Ubuntu system and install it.
+                </p>
+                <pre class='commande'>
+$ sudo apt-get install python-software-properties
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt-get update
+$ sudo apt-get install -y php7.1
+                </pre>
+                <p>
+                    La commande suivante permet de tester la version de PHP installé.
+                </p>    
+                <pre>
+$ php -v 
+                </pre>
+                <samp>
+PHP 7.1.0-5+deb.sury.org~xenial+1 (cli) ( NTS )
+Copyright (c) 1997-2016 The PHP Group
+Zend Engine v3.1.0-dev, Copyright (c) 1998-2016 Zend Technologies
+    with Zend OPcache v7.1.0-5+deb.sury.org~xenial+1, Copyright (c) 1999-2016, by Zend Technologies
+                </samp>
+                <p>
+                    Pour créer un nouveau projet, il faudra utiliser Composer.
+                </p>
+                <pre class="exemple">
+composer create-project "symfony/skeleton:^3.3" NomProjet && cd NomProjet
+                </pre>
+                <p>
+                    Cette commande permet de télécharger un fichier <code>composer.json</code> contenant la configuration de base.
+                    <br>
+                    Ensuite il crée un répertoire <code>NomProjet</code> pour le projet et lance automatiquement la commande <code>composer install</code>.
+                    La seule version stable est la 3.3 pour le moment. Version lts en cours de développement et sera disponible avec la sortie de Symfony 4.0 LTS.
+                </p>
+                <p>
+                    <code>symfony/flex</code> sera le premier <i>package</i> installé pour permettre d'intervenir dans les processus de Composer.
+                    <br>
+                    Lors de l'installation et la mise à jour de dépendances, Symfony Flex recherche ces éléments associés sur le serveur <i>Symfony Flex server</i> et exécutent leur installation.
+                    <br>
+                    On peut voir les messages de logs de Symfony flex en cours de ces processus.
+                </p>
+                <p>
+                    La commande <code>make serve</code> provient de la tâche <code>serve</code>(une des tâches ajoutés dans le fichier local <code>Makefile</code>).
+                </p>
+                <p>
+                    D'autres commandes ont été ajoutés au fichier <code>composer.json</code> par le composant <code>symfony/framework-bundle</code> et seront exécutés lors de chaque processus.
+                </p>
+                <pre class="exemple">
+"scripts": {
+        "auto-scripts": {
+            "make cache-warmup": "script",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "requirements-checker": "script"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+                </pre>
+                <pre class="commande">
+Executing script <code>make cache-warmup</code> [OK]
+Skipping "assets:install --symlink --relative web" (needs symfony/console to run)
+                </pre>
+                <p>
+                    La seconde commande ne sera pas exécutés car il manque le composant <code>symfony/console</code>
+                </p>
+
+                <div id="prerequisSymfony">
+                    <h2>Pré-requis : Symfony 4.0 </h2>
+                    <p>
+                        Symfony 4.0 nécessite la mise-à-jour de Composer 1.5.2.(Installation globale)
+                    </p>
+                    <pre class="commande">
+composer self-update
+                    </pre>
+                    <p>
+                        L'outil <b>req-checker</b> vérifie les composants pré-requis sur le serveur en plus de PHP 7.1.
+                    </p>
+                    <p>
+                        Il ajoute 2 script : <code>bin/check.php</code>(check en console) et <code>public/check.php</code>(check dans le navigateur). <br />
+                        Comme l'environnement peut varier entre les commandes en console et le serveur web, on aura besoin de ces scripts pour tester ces 2 environnements.
+                    </p>
+                    <pre class="commande">
+$ cd my-project/
+$ composer require req-checker                        
+                    </pre>
+                    <p>
+                        En environnement de production, il faudra supprimer cette outil
+                    </p>
+                    <pre class="commande">
+$ cd my-project/
+$ composer remove req-checker                        
+                    </pre>
+                </div>
+                <div id="updateSymfony">
+                    <h3>Mise à jour des composants</h3>
+                    <p>
+                        Pour garder les composants de l'application à jour, il faudra appliquer des mises à jour regulières.
+                    </p>
+                    <pre class="commande">
+$ cd my-project/
+$ composer update                        
+                    </pre>
+                </div>
+                <div id="installationDependances">
+                    <h3>Installation d'un projet et des dépendances </h3>
+                    <p>
+                        Pour télécharger un projet collaboratif sur GitHub.
+                    </p>
+                    <pre class="commande">
+# Initialisation d'un repository Git
+
+$ git init
+
+# Installation du projet
+
+$ cd my-project/
+$ git clone https://github.com/[nomUser]/[nomRepository]
+
+# Installation des dépendances
+
+$ composer install
+
+# Lancement du projet 
+
+    $ make server
+    
+    # Autre possibilité
+    $ php bin/console server:run
+
+# Sauvegarde du commit
+
+$ git add .
+$ git commit -m "installation initiale des fichiers"
+                    </pre>
+                    <p>
+                        Il faudra bien configurer les fichiers
+                    </p>
+                </div>
+                <div id="creationProjetSymfony">
+                    <h3>Création d'un projet de base Symfony </h3>
+                    <p>
+                        L'outil <code>symfony/skeleton</code> permet de générer la structure de base d'un projet Symfony 4.0
+                    </p>
+                    <pre class="commande">
+# Création d'un projet avec une version spécifique de Symfony
+$ composer create-project symfony/skeleton nomProjet "x.x.x"                        
+# Création d'un projet avec la branche la plus récente d'une version de Symfony
+$ composer create-project symfony/skeleton nomProjet "x.x.*"
+
+# Création d'un projet avec la version master la plus récente
+$ composer create-project symfony/skeleton nomProjet
+                    </pre>
+                </div>
+                <div id="securityCheckSymfony">
+                    <h3>Security check </h3>
+                    <p>
+                        l'outil <code>sec-checker</code> permet de tester votre application contre les vulnérabilités connus;
+                    </p>
+                    <pre class="commande">
+$ cd my-project/
+$ composer sec-checker
+
+$ php bin/console security:check                       
+                    </pre>
+                </div>
+                <div id="framework4">
+                    <h3>Symfony/Framework-bundle : ^3.3</h3>
+                    <p>
+                        Les variables d'environnement sont maintenant définis dans le fichier <code>.env</code>. <br>
+                        Une convention d'annotations permet à Symfony Flex de gérer automatiquement la suppréssion de ces variables lorsque les composants qui les utilisent sont supprimés.
+                    </p>
+                    <pre>
+###> symfony/framework-bundle ###
+APP_ENV=dev
+APP_DEBUG=1
+APP_SECRET=ODtvoHW6pn3bE2rHgTa2MjkjwefzlsJH
+###< symfony/framework-bundle ###
+                    </pre>
+                    <p>
+                        Le <b>front-controller</b> publique web sera maintenant le fichier <code>public/index.php</code>.
+                    </p>
+                    <p>
+                        Le répertoire <code>config/</code> contient les fichiers de configuration de l'application. <br>
+                        <code>container.yaml</code> permet d'ajouter des services et leurs paramètres tandis que <code>routing.yaml</code> permet de définir les routes.
+                        <br>
+                        <code>config/packages/</code> contient la configuration par défaut de <code>symfony/framework-bundle</code> qui peut être modifier.
+                    </p>
+                    <p>
+                        Maintenant les <b>bundles</b> sont enregistré dans le fichier <code>config/bundles.php</code>
+                    </p>
+                    <pre class="exemple">
+&lt;?php
+
+return [
+    # Bundles prod
+    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+    Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
+    Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
+    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
+    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
+    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
+    Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle::class => ['all' => true],
+    Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
+    JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
+    # Bundles dev/test
+    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
+    Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle::class => ['dev' => true, 'test' => true],
+];
+
+                    </pre>
+                    <p>
+                        Symfony détecte automatiquement les <i>packages</i> Composer de type <i>symfony-bundle</i> et les active automatiquement pour tout notre environnement. Cela évite les problèmes d'activation de composants.
+                    </p>
+                    <p>
+                        Le répertoire <code>src/</code> contient toutes les classes PHP sous le <b>namespace</b> <code>App\</code> comme définit dans le fichier <code>composer.json</code>.
+                        <br>
+                        Ce répertoire contient aussi le fichier <code>Kernel.php</code> comme étant <code>App\Kernel</code>
+                    </p>
+                </div>
+                <div id="dependances">
+                    <h3>Dépendances : Installation</h3>
+                    <p>
+                        Maintenant, installons quelques dépendances avec <i>Composer</i>.
+                    </p>
+                    <pre class="commande">
+ # Cette commande permet d'ajouter un server web plus puissant pour le project.
+ # req = require
+ # rem = remove
+ # webserver = ["web-server-bundle","server"]
+ $ composer req webserver
+
+
+ # Symfony console qui permet de lancer des commandes en console
+ # Ex: assets:install --symlink --relative %PUBLIC_DIR%
+ $ composer req cli
+
+ # Symfony/Workflow, Symfony/LDAP(exige ext.ldap)
+
+ $ composer req workflow ldap
+                    </pre>
+                </div>
+            </div>
+            <div id="easyAdmin">
+                <h2>EasyAdmin : Générateur administration</h2>
+                <p>
+                    On commence par installer le bundle <i>EasyAdminBundle</i>.
+                </p>
+                <pre class="commande">
+ $ composer req admin
+                </pre>
+                <p>
+                    En plus de l'installation du générateur admin, il installe aussi les dépendances nécessaires et configure automatiquement celles-ci: <code>TwigBundle</code>, <code>SecurityBundle</code>, <code>FrameworkBundle</code> et <code>DoctrineBundle</code>.
+                </p>
+                <p>
+                    Symfony Flex identifie les <i>packages</i> par leur alias. Ex: <code>orm</code> pour Doctrine/ORM, <code>admin</code> pour EasyAdminBundle.
+                </p>
+                <p>
+                    Maintenant on peut créer nos entités représentant nos tables en DB.
+                </p>
+                <pre class="exemple">
+ &lt;?php
+
+ namespace App\Entity;
+
+ use Doctrine\ORM\Mapping as ORM;
+
+ /**
+ * Image
+ *
+ * @ORM\Table(name="image")
+ * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ */
+class Image
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     *
+     * @return Image
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return int
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Image
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+}
+
+                </pre>
+                <p>
+                    Ensuite on dé-commente la configuration de la base de donnée dans nos variables d'environnement.
+                </p>
+                <pre class="exemple">
+###> doctrine/doctrine-bundle ###
+DATABASE_URL=mysql://root@127.0.0.1:3306/NomDatasae?charset=utf8mb4
+###< doctrine/doctrine-bundle ###
+                </pre>
+                <p>
+                    Ensuite, on peut créer la base de donnée.
+                </p>
+                <pre class="commande">
+                    $ php bin/console doctrine:database:create
+
+                    $ php bin/console doctrine:schema:update --force
+                </pre>
+                <div class="alert">
+                    <p class="alert-info">
+                        Ne jamais autoriser de connection à la base de donnée en tant qu'utilisateur <code>root</code> car il possède tous les droits sur tous les base de données.
+                        <br>
+                        Créer un utilisateur qui ne possède que des droits sur une base de donnée spécifique via les commandes suivantes:
+                    </p>
+                    <pre class="exemple">
+$ mysql  -h nomHote -u root -pMotdePasse
+
+> CREATE USER 'jeffrey'@'localhost' IDENTIFIED BY 'mypass'
+
+> CREATE DATABASE nom_base CHARACTER SET 'utf8';
+
+> GRANT ALL PRIVILEGES ON nom_BaseDeDonnée.* TO 'nomUtilisateur'@'localhost' IDENTIFIED BY 'mot_de_passe';
+                    </pre>
+                </div>
+                <p>
+                    Étant donnée que l'on a déjà créée notre base de donnée en ligne de commande, il ne reste plus qu'à créer nos tables.
+                </p>
+                <pre class="commande">
+                    $ php bin/console doctrine:schema:update --dump-sql
+                    $ php bin/console doctrine:schema:update --force
+                </pre>
+                <p>
+                    Maintenant, on ajoute les entités créées dans la liste des entités gérées par <b>admin generator</b> dans le fichier <code>config/packages/easy_admin.yaml</code> .
+                </p>
+                <pre class="exemple">
+                    easy_admin:
+                        entities:
+                            - App\Entity\Product
+                            - App\Entity\Command
+                            - etc
+                </pre>
+                <p>
+                    On lance ensuite le serveur, pour se rendre sur l'url <code>http://localhost:8000/admin/</code>.
+                    <br>
+                    L' <b>admin generator</b> nous permet de générer nos entités.
+                </p>
+                <p>
+                    Les packages permettent une installation plus aisé des dépendances. <br>
+                    Un package est un <i>repository</i> Git enregistré dans Composer.
+                    Voici une liste d'alias de package intéressants
+                </p>
+                <ul>
+                    <li>
+                        <code>sec-checker</code> : bundle <i>SensioLabs Security Checker</i>
+                    </li>
+                    <li>
+                        <code>req-checker</code>: bundle <i>Symfony requirements checks</i>
+
+                    </li>
+                    <li>
+                        <code>log</code> : <i>MonologBundle</i>
+                    </li>
+                    <li>
+                        <code>template</code> : <i>Twig</i>
+                    </li>
+                    <li>
+                        <code>mailer</code> : <i>SwiftMailer</i>
+                    </li>
+                    <li>
+                        <code>profiler</code> : <i>Symfony Profiler</i>
+                    </li>
+                    <li>
+                        <code>debug-pack</code> : <i>Symfony Debug</i>
+                    </li>
+                    <li>
+                        <code>web-pack</code>
+                    </li>
+                    <li>
+                        <code>orm-pack</code>
+                    </li>
+                    <li>
+                        <code>api</code>
+                    </li>
+                </ul>
+
+                <p>
+                    Le bundle <i>symfony/symfony</i> n'est plus requis, il faudra requiérir les dépendances une à une afin de vérifier la compatibilité.
+                </p>
+                <p>
+                    Tous les <i>recipes</i> sont disponibles en tant que repository Git : <br>
+                    Officiel: <a href="https://github.com/symfony/recipes">Symfony 4.0 recipes</a> <br>
+                    Contribution: <a href="https://github.com/symfony/recipes-contrib">Symfony 4.0 recipes contributors</a> .
+                </p>
+                <p class="alert-info">
+                    Les contributions experimentales peuvent changer radicalement donc utilisation consciencieuse est primordiale.
+                </p>
+
+            </div>
+            <div id="apiSymfony">
+                <h3>API Symfony</h3>
+                <p>
+                    Le package <code>api</code> permet de créer des API rapidement. On peut l'installer et tester l'accés à nos entités en tant que ressource.
+                </p>
+                <pre class="commande">
+                    $ composer create-project symfony/skeleton/:dev-temp api
+
+                    $ composer req api
+                </pre>
+                <p>
+                    On commence par configurer les paramètres d'environnement DB ensuite on crée et indique que nos entités sont des ressources accessibles via l'API.
+                </p>
+                <pre class="exemple">
+ &lt;?php
+
+ namespace App\Entity;
+
+ use Doctrine\ORM\Mapping as ORM;
+
+ /**
+ * Image
+ *
+ * On indique que c'est une ressource accessible par l'API
+ * @APIResource
+ *
+ * @ORM\Table(name="image")
+ * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ */
+class Image
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int The id
+     *
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre;
+
+    /**
+     * @var string A url
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     *
+     * @return Image
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return int
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Image
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+}
+
+                </pre>
+                <p>
+                    On crée la base de donnée ;
+                </p>
+                <pre class="exemple">
+                    $ bin/console doctrine:database:drop --force
+                    $ bin/console doctrine:database:create
+                    $ bin/console doctrine:schema:update --dump-sql
+                    $ bin/console doctrine:schema:update --force
+                </pre>
+                <p>
+                    On pourra ensuite accéder aux données par une simple commande en console.
+                </p>
+                <pre class="exemple">
+$ curl -X GET --header 'Accept: application/ld+json' http://localhost:8000/images | json_pp
+                </pre>
+                <p>
+                    On peut aussi tester le résultat dans le navigateur dans l'<i>API Platform</i>.
+                </p>
+                <pre class="commande">
+                    $ open http://localhost:8000
+                </pre>
+            </div>
+            <div id="creationEntite">
+                <h2>Création des entités en DB</h2>
+                <p>
+
+                </p>
+                <div class="alert">
+                    <p class="alert-info">
+
+                    </p>
+                    <p class="alert-info">
+                        Après chaque modification de nos entités, il faudra mettre à jour les tables en base de données.
+                        <br>
+                        Il faudra d'abord supprimer toutes les tables avant de re-créer la base de donnée afin d'éviter tout conflit!
+
+                    </p>
+                    <pre class="commande">
+# Tester la suppression et Supprimer les tables de la DB
+$ php bin/console doctrine:schema:drop  --dump-sql
+$ php bin/console doctrine:schema:drop  --force
+
+# Créer les tables de la base de donnée
+$ php bin/console doctrine:schema:create
+
+# Tester la création de la base de donnée
+
+# Test et Création des tables en DB
+$ php bin/console doctrine:schema:update --dump-sql
+$ php bin/console doctrine:schema:update --force
+                    </pre>
+                </div>
+                <div id="heritageMappage">
+                    <h3>
+                        Mappage d'une relation d'héritage
+                    </h3>
+                    <p>
+                        Pour représenter les relations d'héritage en base de donnée, nous pouvons utiliser 2 modèles de représentation:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Single table inheritance</b> :
+                            La table parent contiendra les informations des éléments la table parent et toutes les informations de ces tables enfants.
+                            <br>
+                            Une colonne appelé <code>DiscriminatorColumn</code> permettra de différencier les éléments selon un type spécifique définis dans le <code>DiscriminatorMap</code>.
+                            <span class="alert-info">
+                                Ce modèle de représentation en DB est plus performante car il nécessite moins de jointures entre tables en DB.
+                            </span>
+                        </li>
+                        <li>
+                            <b>Class table inheritance</b>:
+                            Toutes les entités sont définis comme tables en DB. Ce qui permet une meilleure lisibilité de la base de donnée mais entraine une réduction de performance.
+                        </li>
+                    </ul>
+                    <div id="singleTableInheritance">
+                        <h4>Single table inheritance</h4>
+                        <p>
+                            Permet de représenter dans une table les éléments de la table parent et les informations des tables enfants.
+                            <br>
+                            L'annotation <code>@ORM\InheritanceType("SINGLE TABLE|JOINED")</code> permet de définir le type de modèle d'héritage que l'on utilisera.
+                            <br>
+                            Les éléments des tables enfants sont différenciés au sein de la table parent à partir d'une colonne discriminante définit à partir de l'annotation <code>@ORM\DiscriminatorColumn(name="nomColonneDB", type="", ...)</code>.
+                            <br>
+                            L'annotation <code>@ORM\DiscriminatorMap({"type1":"Class1","type2":"Class2"})</code> permettra de définir les différents types d'entités contenues par la table et la valeur permettant de les différencier et la classe qui les implémente.
+                        </p>
+                        <div class="alert">
+                            <p class="alert-info">
+                                La <code>DiscriminatorMap</code> doit contenir les valeurs de différenciation entre la table parent et ces enfants ainsi que les <i>entités</i> qui les implémente!
+                            </p>
+                        </div>
+                        <pre class="exemple">
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class User
+ * @package App\Entity
+ *
+ * @ORM\Table(name="be_user")
+ * @ORM\Entity(repositoryClass="App\Entity\UserRepository")
+ *
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="user_type", type="string", length=255)
+ * @ORM\DiscriminatorMap({"user" = "User", "client" = "Client", "provider" = "Provider"})
+ */
+class User
+{
+    /**
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    protected $password;
+}
+                        </pre>
+                        <p>
+                            Puisque les entités enfants sont contenues dans la table parent. Leurs attributs doivent être <b>obligatoirement</b> <code>Nullable</code> car une entité enfant A ne doit pas avoir les attributs d'un autre entité enfant X.
+
+                        </p>
+                        <div class="alert">
+                            <p class="alert-info">
+                                Étant donné que par défaut Doctrine rend tous les attributs obligatoire (<code>nullable=false</code>), il faudra définir les attributs des entités enfants (qui ne représente pas une relation) comme pouvant être nulle (<code>nullable=true</code>)
+                            </p>
+                        </div>
+                        <pre class="exemple">
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class User
+ *
+ * @ORM\Entity(repositoryClass="App\Entity\UserRepository")
+ *
+ */
+class Client
+{
+    /**
+     * @ORM\Column(name="firstname", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
+     */
+    protected $lastname;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Image", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    protected $image;
+}
+                        </pre>
+
+                    </div>
+
+                </div>
+                <div id="data-fixtures">
+                    <h3>Data fixtures : Hautelook/Alice-bundle</h3>
+                    <p>
+                        Le composant <code>hautelook/alice</code> permet de remplir notre base de donnée avec des données fictives.
+                        <br>
+                        Il nécessite comme dépendances <code>nelmio/alice</code>(créer les données fictives), <code>theofidry/alice-data-fixtures</code>(hydrate les entités avec les données avant leur persistence en DB avec <code>doctrine/data-fixtures</code>), <code>doctrine/data-fixtures</code>(gestion de l'implémentation de fixtures en DB).
+                    </p>
+                    <p class="alert-info">
+                        Pour l'utiliser, il faudra charger ces dépendances et les activer <b>avant</b> <code>hautelook/alice-bundle</code>!
+                    </p>
+                    <pre class="commande">
+composer require doctrine/doctrine-bundle doctrine/orm:^2.5
+
+composer require --dev nelmio/alice:dev-master \
+                        doctrine/data-fixtures:dev-master
+                        theofidry/alice-data-fixtures:dev-master \
+                        hautelook/alice-bundle:dev-master
+                    </pre>
+                    <p>
+                        Activation des dépendances et du bundle
+                    </p>
+                    <pre class="exemple">
+&lt;?php
+    return [
+        // Autres bundles actifs //
+        Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle::class => ['dev' => true, 'test' => true],
+        Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'test' =>true],
+        Hautelook\AliceBundle\HautelookAliceBundle::class => ['dev' => true, 'test' => true]
+    ];
+                    </pre>
+                    <p>
+                        Configuration du bundle <code>hautelook/alice</code>
+                    </p>
+                    <pre class="exemple">
+# config/packages/dev/hautelook_alice.yml
+
+hautelook_alice:
+    fixtures_path: 'Resources/fixtures/orm'  # Chemin vers les fixtures de l'application ou des bundles dépendants.                          
+                    </pre>
+                    <div id="creationFixture">
+                        <h4>Fixtures : Création</h4>
+                        <p>
+                            Consultez la page <a href="https://packagist.org/packages/fzaninotto/faker">Fzaninotto/Faker</a> pour voir l'ensemble des formatter disponibles pour remplir nos entités.
+                        </p>
+                        <div class="alert">
+                            <p class="alert-info">
+                                Etant donnée la limite de chargement, il ne faudra pas créer trop de fixtures par table.
+                            </p>
+                        </div>
+                        <pre class="exemple">
+# src/Resources/fixtures/orm/exemple.yml
+
+App\Entity\Exemple:
+    exemple{1..3}:
+        name: '&lt;name()&gt;'
+        exemple_associe: '@exemple_associe&lt;numberBetween(1,3)&gt;' # référence à un objet associé créée au hasard
+
+App\Entity\ExempleAssocie:
+    exemple_associe{1..3}:
+        name: '&lt;name()&gt;'
+                        </pre>
+                        <div id="gestionRelation">
+                            <h5>Gestion des relations</h5>
+                            <p>
+                                Alice permet d'effectuer une référence à un objet ou à plusieurs pour représenter la relation entre nos tables.
+                                <br>
+                                On peut aussi accéder aux valeurs des propriétés d'une entité <code>'@objet->attribut'</code>
+                            </p>
+                            <pre class="exemple">
+App\Entity\Locality
+    locality{1..10}:
+        locality: '&lt;city()&gt;
+
+App\Entity\User:
+    user{1..10}:
+        address: '&lt;streetName()&gt; @locality1->locality'
+                            </pre>
+                            <p>
+                                Le formatteur <code>'@objetX'</code> crée une référence à une entité spécifique générée par Alice.
+                            </p>
+                            <p>
+                                le formatteur <code>'@objet{1..10}'</code> crée une table(<code>Array</code>) contenant une entité ou les références aux entités générés pour une autre table.
+                            </p>
+                            <pre class="exemple">
+# Ici, les 5 premiers entités Client contiendront dans leurs favoris
+# les entités Provider ['@provider2','@provider3','@provider4']
+App\Entity\Client:
+    client{1..5}:
+        name: '&lt;name()&gt;'
+        favorite : '@provider{2..4}'
+
+                            </pre>
+                            <p>
+                                Pour affecter à un objet une indice identique à celui en cours de création, on utilisera le formatteur <code>'&lt;current()&gt;'</code> .
+                                <br>
+                                L'entité en cours de création sera associé à un objet d'un autre type portant le meme indice.
+                            </p>
+                            <pre class="exemple">
+App\Entity\Image:
+    image{1..10}:
+        url: '&lt;url()&gt;'
+
+App\Entity\User
+    user{1..10}:
+        logo : '@image&lt;current()&gt;'
+                                                                
+                            </pre>
+                            <p>
+                                Pour sélectionner un objet aléatoirement, on peut utiliser le <i>wildcard</i> <code>'@objet*'</code> .
+                                <br>
+                                Nelmio choisira au hasard un des objets correspondant aux
+                                <span class="alert-danger">
+
+                                </span>
+                            </p>
+                            <pre class="exemple">
+App\Entity\Stage
+    stage{1..10}:
+        description : '&lt;realText($nbMot = 150)&gt;'
+App\Entity\Image:
+    image{1..10}:
+        url:
+App\Entity\Provider
+    provider{1..10}:
+        logo: '@image*'         # association unique
+        stages: '3x @stage*'    # association multiple => génére une erreur! Utilisez "@stage{1..3}"
+        promotion: '@promotion&lt;numberBetween(1,25)&gt;'
+                            </pre>
+                            <p>
+                                Pour sélectionner un indice aléatoirement dans un intervalle d'indice donnée, on utilisera le formateur <code>'@objet&lt;numberBetween(1, 50)&gt;'</code>
+                            </p>
+                            <pre class="exemple">
+App\Entity\Comment:
+    comment{1..10}:
+        content: '&lt;realText(100)&gt;'
+App\Entity\Client:
+    client{1..10}:
+        comments: '@comment{1..5}'
+
+
+                            </pre>
+                            <p>
+                                Pour générer un nombre aléatoire d'entités, on utilisera l'instruction suivante: <code>'&lt;numberBetween(1,30)&gt;x @objet*'</code>
+                            </p>
+                            <pre class="exemple">
+App\Entity\Provider:
+    provider{1..10}:
+        images: '&lt;numberBetween(1,10)&gt;x @image*'
+                            </pre>
+                            <p>
+                                Cependant si les données doivent être statiques, on utilisera la même syntaxe que pour définir le nombre de fixtures à créer. <code>'@fixture{1..10}'</code>
+                            </p>
+                            <pre class="exemple">
+App\Entity\Comment:
+    comment{1..10}:
+        content: '&lt;realText(100)&gt;'
+
+App\Entity\Provider:
+    provider{1..10}:
+        opinions: '@comment{1..10}'
+                            </pre>
+                        </div>
+                        <p>
+                            Pour effectuer une référence à la fixture en cours de création, on utilisera la notation <code>@self</code>
+                        </p>
+                        <p>
+                            On peut aussi passer des références à nos providers
+                        </p>
+                        <pre class="exemple">
+App\Entity\Group:
+    group1:
+        owner: '&lt;numberBetween(1, 200)&gt;'
+
+    group2:
+        owner: '&lt;numberBetween(@group1->owner, 200)&gt;'
+                        </pre>
+                        <div id="fixtureSingleTable">
+                            <h4>
+                                Fixtures : Single Table Inherintance
+                            </h4>
+                            <p>
+                                Si on représente les relations d'héritage dans une <i>single table inheritance</i>,
+                                On devra créer des templates de l'entité parent pouvant être utilisé pour générer les valeurs des entités enfants
+                            </p>
+                            <pre class="exemple">
+App\Entity\User:
+    user_provider (template):
+        email: '&lt;fr_FR:email()&gt;'
+        password: '&lt;md5("monMotDePasse")&gt;'
+        registryDate: '&lt;dateTimeBetween("-3 years","now")&gt;'
+        nbErrorConnection: 0
+        banned: '&lt;boolean()&gt;'
+        registryConfirmed: '&lt;boolean(100)&gt;'
+        avatar: '@image&lt;numberBetween(1,2)&gt;'
+        userType: 'provider'
+
+    user_client (template):
+        email: '&lt;fr_FR:email()&gt;'
+        password: '&lt;md5("monMotDePasse")&gt;'
+        registryDate: '&lt;fr_FR:dateTimeBetween("-3 years","now")&gt;'
+        nbErrorConnection: 0
+        banned: '&lt;boolean()&gt;'   # FALSE
+        registryConfirmed: '&lt;boolean(100)&gt;'     # 100% de chance que soit TRUE
+        avatar: '@image&lt;numberBetween(1,2)&gt;'
+        userType: 'client'
+
+App\Entity\Provider:
+    provider{1..4} (extends user_provider):
+        brandName: '&lt;company()&gt; &lt;companySuffix()&gt;'
+        phoneNumber: '&lt;e164PhoneNumber()&gt;'
+        tvaNumber: '&lt;ean13()&gt;'
+        # Les relations seront créées par les utilisateurs
+        township: '@township&lt;numberBetween(1,2)&gt;'
+        locality: '@locality&lt;numberBetween(1,2)&gt;'
+        postalCode: '@postalCode&lt;numberBetween(1,2)&gt;'
+        logo: '@image&lt;numberBetween(3, 4)&gt;'
+        images: '@image{1..2}'              # Retourne une table ['@image1','@image2']
+        stages: '@stage{1..2}'
+        serviceCategories: '@serviceCategory{1..2}'
+
+App\Entity\Client:
+    client{1..2} (extends user_client):
+        lastname: '&lt;lastname()&gt;'
+        firstname: '&lt;firstname()&gt;'
+        newsletter: '&lt;boolean()&gt;'
+        favorites: ['@provider&lt;numberBetween(1,2)&gt;']    # Retourne une  table contenant un élément
+
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="assetsManagement">
+                <h2>Asset Management : Webpack-Encore</h2>
+                <p>
+                    <a href="https://webpack.js.org/"><b>Webpack</b></a> est un gestionnaire de bundles front-end. <br>
+                    Il permet de gérer les ressources front-end et de compiler nos modules JS en bundles(pile de code optimisé pour la production).
+                    <br>
+                    Voici quelques exemples d'utilisation
+                </p>
+                <ul>
+                    <li>
+                        On peut par exemple compiler plusieurs modules JS(<i>multiple entry</i>) en un seul bundle optimisé(<i>output</i>) qui sera utilisé en production.
+                    <li>
+                    <li>
+                        Compilation de fichiers de différents types grâce aux loaders:
+                        Typescript en CommonJS
+                    <li>
+                    <li>
+                        Live-reloading : Actualisation immédiat en développement
+                    <li>
+                </ul>
+                <div id="webpackEncoreInstall">
+                    <h4>Installation : Webpack-encore</h4>
+                    <p>
+                        Le bundle <a href="http://symfony.com/doc/current/frontend/encore/installation.html"><code>symfony/webpack-encore</code></a> permet une implémentation rapide de Webpack et de sa configuration.
+                        <br>
+                        Commençons par installer Webpack au sein de notre projet Symfony.
+                    </p>
+                    <pre class="commande">
+# Flex nécessaire dans le projet
+$ composer require --save-dev encore
+
+# Composer installation classique
+$ composer require --save-dev symfony/webpack-encore
+
+# NodeJS installation
+$ npm install --save-dev symfony/webpack-encore
+
+# YARN Package Manager
+$ yarn add @symfony/webpack-encore --dev
+                    </pre>
+                    <p>
+                        Chacune de ses commandes permet l'installation des dépendances et l'ajout du composant dans le fichier de configuration NPM <code>package.json</code>
+                    </p>
+                </div>
+                <div id="configurationWebpackEncore">
+                    <h4>Configuration de Webpack-encore</h4>
+                    <p>
+                        Dans cette exemple, on aura dans le répertoire des ressources du projet <code>assets/</code>, un fichier js <code>assets/js/main.js</code> et un autre SCSS <code>assets/css/global.scss</code>.
+                    </p>
+                    <p>
+                        Encore permet de traiter ces fichiers rapidement en les minifiant et en compilant si nécessaire(SCSS=>CSS, TS=>CommonJS, etc.).
+                    </p>
+                    <div id="configurationEncore">
+                        <h5>Configuration</h5>
+                        <p>
+                            On doit créer un fichier de configuration de Webpack <code>webpack.config.js</code>, dans lequelle on emploiera le composant <code>@symfony/webpack-encore</code>
+                        </p>
+                        <pre class="exemple">
+/* webpack.config.js */
+
+//Chargement du module <code>@symfony/webpack-encore</code>
+const Encore = require('@symfony/webpack-encore');
+
+Encore
+    // Répertoire public des tous les fichiers compilé
+    .setOutputPath('public/build')
+
+    // Le chemin public vers les fichiers compilés (à partir du fichier racine web index.php)
+    .setPublicPath('/build')
+
+    /*
+        Vider le répertoire des fichiers compilés avant la compilation
+        (éviter tous conflits entre les différentes compilations)
+    */
+    .cleanupOutputhBeforeBuild()
+
+    /*
+        Définition des entrées(point d'accès aux modules JS) et du nom fichier compilé
+        addEntry('nomPileCompile', 'path/to/moduleEntry1.js','path/to/moduleEntry2.js','path/to/moduleEntryX.js');
+    */
+    .addEntry('css/app', './assets/js/main.js', './assets/js/map.js', './assets/js/jquery.js')
+
+    /*
+        Module partagés par les autres ressources JS et CSS
+        Ces modules ne devront plus être inclus dans les ressources pour être utilisés.
+    */
+    .createSharedEntry('vendors',[
+        'jquery',
+        'bootstrap',
+
+        // Extraire le CSS pour créer un vendors.css
+        // Ce CSS ne devra plus être inclus dans les autres pages CSS
+        'bootstrap-sass/assets/stylesheets/_bootstrap.scss'
+    ])
+
+    /*
+        Définitions des entrées CSS et du nom de la pile compilé
+    */
+    .addStyleEntry('js/global', './assets/css/main.scss', './assets/css/map.css', './assets/css/bootstrap.css')
+
+    // Activer le traitement des fichiers SASS/SCSS
+    .enableSassLoader()
+
+    // Autoriser les applications propriétaire à utiliser $|Jquery comme variable globale
+    .autoProvideJquery()
+
+    // Permet de créer un mappage des modules après leur compilation en modules pour clairement identifier les erreurs.
+    .enableSourceMaps(!Encore.isProduction())
+
+    // Création d'un hash par nom de fichier pour le versionnement
+    .enableVersioning()
+;
+
+// Exportation de la configuration pour être utilisé par l'exécutable Webpack
+module.exports = Encore.getWebpackConfig();
+                        </pre>
+                        <p>
+                            Cette configuration permet de créer 2 fichiers minimisés , dont un sera compilé du SCSS vers le CSS via les pré-processeur Sass.
+                            Pour exécuter la compilation, on peut utiliser les <i>alias</i> définit dans la section <code>"scripts"</code> du fichier de configuration de NPM <code>package.json</code> lors de l'installation
+                        </p>
+                        <pre class="exemple">
+{
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.12.0",
+    "jquery": "^3.2.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  }
+}
+                        </pre>
+                        <pre class="commande">
+                        # Compilation en développement
+                        $ npm run dev
+
+                            # Compilation et surveillance des fichiers en développement
+                            $ npm run watch
+
+                            # Compilation, surveillance et live-reloading à partir du serveur de développement Webpack
+                            $ npm run dev-server
+
+                            # Compilation et optimisation pour la production
+
+                            $ npm run build
+                        </pre>
+                        <p>
+                            On peut maintenant utiliser les chemins publics vers les ressources optimisés dans nos templates Twig.
+                        </p>
+                        <pre class="exemple">
+{# base.html.twig #}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;!-- ... --&gt;
+        &lt;link rel="stylesheet" href="{{ asset('build/css/global.css') }}"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!-- ... --&gt;
+        &lt;script src="{{ asset('build/js/app.js') }}"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </div>
+                    <div id="importModuleJs">
+                        <h4>Importation de module JS</h4>
+                        <p>
+                            Webpack permet la création de bundles à partir de modules JS. <br>
+                            Pour pouvoir exporter un script JS en tant que module, on doit définir une fonction comme étant le module à exporter.
+                        </p>
+                        <pre class="exemple">
+/* assets/js/bonjour.js */
+
+// Common JS
+module.exports = function(name){
+  return 'Salut! ${name} - Bienvenue sur Encore';
+};
+
+// ES2015
+
+export default function(name){}
+                        </pre>
+                        <p>
+                            Il faut ensuite installer JQuery comme dépendance de développement. Afin de l'utiliser pour afficher notre message.
+                        </p>
+                        <pre class="commande">
+$ npm install --save-dev jquery
+                        </pre>
+                        <p>
+/* assets/js/main.js */
+
+//Chargement de JQuery
+var $ = require('jquery');
+
+//Importation de la fonction anonyme greet.js
+var greet = require('./greet.js');
+
+$(function(){
+    $('h1').html(greet('Jackard'));
+});
+                        </p>
+                        <p>
+                            En accédant à la page qui utilise le template Twig, on voit que le titre H1 contient notre script.
+                        </p>
+                        <p>
+                            Ajout de l'entrée du module dans le fichier de configuration de Webpack-Encore
+                        </p>
+                        <pre class="exemple">
+                        /* webpack.config.js */
+
+                        Encore
+                            // ...
+                            .addEntry('app', './assets/js/main.js')
+                        </pre>
+                    </div>
+                    <div id="importationDependanceCSS">
+                        <h4>Importation de dépendance CSS dans nos modules JS</h4>
+                        <p>
+                            On peut directement importer nos fichiers SCSS au sein de nos modules JS. via le <code>raw-loader</code> qui est pré-installé.
+                        </p>
+                        <pre class="exemple">
+                        /* assets/js/main.js */
+                        var Style = require('../css/main.scss');
+
+
+                        </pre>
+                        <p>
+                            Le style contenu dans <code>app.js</code> sera compilé dans un fichier <code>app.css</code> qu'on pourra ensuite utilisé dans nos pages HTML
+                        </p>
+                        <pre class="exemple">
+&lt;link rel="stylesheet" href="{{ asset('build/global.css') }}"&gt;
++ &lt;link rel="stylesheet" href="{{ asset('build/app.css') }}"&gt;
+                        </pre>
+
+                    </div>
+                </div>
+                <div id="configurationAvancee">
+                    <h3>Configuration avancée</h3>
+                    <p>
+                        <b>Encore</b> génére la configuration Webpack qui sera utilisé par le fichier de configuration de Webpack <code>webpack.config.js</code>.
+                    </p>
+                    <p>
+                        Encore ne fournit pas de support pour tous les options de configuration de Webpack, puisqu'il peuvent être ajouté aisément car on peut importer la configuration en tant qu'objet.
+                    </p>
+                    <p>
+                        Pour les options de surveillance de fichier par exemple
+                    </p>
+                    <pre class="exemple">
+                    /* webpack.config.js */
+
+                        const Encore = require('@symfony/webpack-encore');
+
+                        //... Ici on met toute notre configuration supportez par Encore ...
+
+                        /*
+                            récupération(fetch) de la configuration en tant qu'objet. Ensuite, on peut la modifier.
+                        */
+                        var config = Encore.getWebpackConfig();
+                        config.watchOptions = { poll: true, ignored: /node_modules/ };
+                        // Ajout d'un alias
+                        config.resolve.alias.local = path.resolve(__dirname, './resources/src');
+                        // Ajout d'une extension
+                        config.resolve.extensions.push('json');
+
+                        // Exportation de la configuration
+                        module.exports = config;
+
+                    </pre>
+                    <div class="alert">
+                        <p class="alert-info">
+                            Il faudra définir la configuration supportée par Encore avant le reste de la configuration.
+                            <br>
+
+                        </p>
+                        <p class="alert-danger">
+                            Attention à ne surtout pas écraser la configuration existante.
+                        </p>
+                        <pre class="exemple">
+                        // Ajout d'un élément à la table
+                        config.resolve.extensions.push('json');
+
+                        // Ici, écrasement de la config Encore
+                        config.resolve.extensions = ['json'];
+                        </pre>
+                        <p class="alert-info">
+                            Pour voir l'ensemble des configurations disponibles pour <a href="http://symfony.com/doc/current/frontend.html">Webpack-Encore configuration</a>
+                        </p>
+                    </div>
+                    
+                </div>
+                <div id="loadersAndPlugins">
+                    <h3>Loaders & plugins</h3>
+                    <div id="customLoaders">
+                        <h4>Loaders personnalisés</h4>
+                        <p>
+                            Encore dispose de plusieurs loaders Webpack pré-installé. Cependant, on peut créer nos propres loaders.
+                        </p>
+                        <pre class="exemple">
+                            /* webpack.config.js */
+                            
+                            Encore
+                                // ...
+                                .addLoader(
+                                    {
+                                        test: /\.handlebars$/,
+                                        loader: 'handlebars-loader',
+                                        options: {
+                                            helperDirs: [
+                                                __dirname + '/helpers1',
+                                                __dirname + '/helpers2'
+                                            ],
+                                            partialDirs: [
+                                                path.join(__dirname, 'templates', 'partials')
+                                            ]
+                                    },
+                                    {
+                                        test: /\.(png|svg|jpg|gif)$/,
+                                        loader: 'file-loader',
+                                        options: {
+                                                    /*
+                                                    Définir du nom du fichier:
+                                                    [name] => utiliser le nom original du fichier
+                                                    [hash] => utiliser le hash du fichier après compilation
+                                                    [ext]   =>l'extension du fichier
+                                                     */
+                                                    name: '[name].[ext]',
+                                                    // Chemin vers le répertoire contenant le répertoire output des images compilé
+                                                    publicPath: 'bundles/',
+                                                    //Répertoire des images compilé
+                                                    outputPath: 'images/'
+                                                }
+                                        }
+
+                                    }
+                                })
+                        </pre>
+                    </div>
+                    <div id="customPlugins">
+                        <h4>Plugins personnalisés</h4>
+                        <p>
+                            Encore utilise en interne plusieurs <a href="https://webpack.js.org/plugins/">plugins</a>.
+                            <br>
+                            On peut aussi créer nos propres plugins
+                        </p>
+                        <pre class="exemple">
+/* webpack.config;js */
+var webpack = require('webpack');
+
+Encore
+    // ... autres configurations
+    .addPlugins(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+                        </pre>
+                    </div>
+                    <div id="autresRessources">
+                        <h4>Ressources externe à l'application JS</h4>
+                        <p>
+                            Pour pouvoir traiter des ressources qui ne sont pas directement employés par nos modules, il faudra les charger dans notre application JS.
+                            <br>
+                            Par exemple, pour nos images de logo (<code>favicon.png</code>)
+
+                        </p>
+                        <pre class="exemple">
+/* assets/js/index.js */
+
+/* importation des ressources images */
+
+import '../images/favicon.png';
+import '../images/logo.png';
+import '../images/logo-white.png';
+
+                        </pre>
+                        <p>
+                            Cette syntaxe permet de gérer ces ressources qui ne sont pas utilisés par nos modules.
+                            Ils seront compilés vers leurs répertoires publics mais ne seront pas réellement importer dans nos modules JS.
+                            <br>
+                            Voir toutes syntaxe disponibles pour une déclaration <a href="https://developer.mozilla.org/nl/docs/Web/JavaScript/Reference/Statements/import"><code>import</code></a>
+                        </p>
+                        <pre class="exemple">
+/* webpack.config.js */
+const Encore = require('@symfony/webpack-encore');
+
+Encore
+    // ... notre configuration ...
+    // Ajout de l'entrée contenant les ressources images
+    .addEntry('index', './assets/js/index.js')
+    // ... reste de la configuration ...
+;
+
+module.exports = Encore.getWebpackConfig();
+                        </pre>
+                        <p>
+                            Ainsi, les ressources(non-essentiel aux modules JS) seront traités par Webpack et mis dans le répertoire public des ressources compilés.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="informationComplémentaire">
+                <h2>Information complémentaire</h2>
+                <p>
+                    le composant comme <b>Piwi</b> ou <b>Google Analytics</b> permettent le monitoring du site.
+                    On pourra ainsi savoir les internautes qui auront visité une page spécifique et bien plus.
+                    Pour en savoir un peu plus visitez leur page.
+                </p>
+            </div>
+
+        </div>
+    </body>
+</html>

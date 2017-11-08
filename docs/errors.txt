@@ -1,0 +1,19 @@
+Commande : assets:install --symlink
+
+ERROR PARAMETERNOTFOUNDEXCEPTION : You have requested a non-existent parameter "templating.engines"
+    1.Recherche le bundle qui utilise ce paramètre :
+        Ici symfony\framework-bundle\DependancyInjection\FrameworkExtension.php :
+            $container->setParameter('templating.engines', $config['engines']);
+    2. Allez dans le fichier de configuration du bundle
+    3.il faudra définir le paramètre global "templating.engines" :
+        framework:
+            templating:
+                engines: ['twig']
+    Erreur secondaire:
+
+        ERROR LOGICEXCEPTION : Templating support cannot be enabled as the Templating component is not installed
+
+            1.il faudra ensuite télécharger le composant "templating"
+
+[InvalidArgumentException]  : Unknown formatter "state"
+    .Vérifier qu'un formatteur utilisé soit valide. Dans ce cas, le formatter "<state()>" n'est pas valide!
