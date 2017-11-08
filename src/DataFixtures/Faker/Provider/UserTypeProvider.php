@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: isk
- * Date: 14.10.17
- * Time: 04:48
- */
+
 
 namespace App\DataFixtures\Faker\Provider;
 

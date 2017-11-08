@@ -1024,6 +1024,55 @@ App\Entity\Client:
                         </div>
                     </div>
                 </div>
+                <div id="customFixtures">
+                    <h3>Fixtures personnalisés</h3>
+                    <p>
+                        Pour créer une méthode de fixture personnalisée, on crée un service qui effectuera la tâche voulue et ensuite on lui assigne le tag associée aux fixtures <code>nelmio.alice.faker.provider</code>
+                    </p>
+                    <pre class="exemple">
+# config/service.yaml
+
+services:
+    # Faker Provider : Permet de fournir les types d'utilisateur
+    data_fixtures.provider.foo:
+        class: App\Resources\fixtures\Faker\Provider\UserTypeProvider
+        tags:
+            name: nelmio_alice.faker.provider
+                    </pre>
+                    <pre class="exemple">
+/* src/DataFixtures/Faker/Provider/UserTypeProvider */
+&lt;?php
+
+
+namespace App\DataFixtures\Faker\Provider;
+
+/**
+ * Class UserTypeProvider
+ * @package App\DataFixtures\Faker\Provider
+ *
+ * Permet de générer le type d'utilisateur lors de l'ajout des fixtures.
+ * Ce service aura le tag : nelmio_alice.faker.provider
+ * =>qui permet de charger le service lors de l'événement de chargement des faker providers de nelmio_alice
+ */
+class UserTypeProvider
+{
+    const USER_TYPE = ["user","client","provider"];
+
+    public static function userType()
+    {
+        return array_rand(self::USER_TYPE);
+        /*
+        $userTypes = array("internaute","prestataire");
+
+        return $userTypes[array_rand($userTypes)];
+
+        */
+    }
+
+
+}
+                    </pre>
+                </div>
             </div>
             <div id="assetsManagement">
                 <h2>Asset Management : Webpack-Encore</h2>

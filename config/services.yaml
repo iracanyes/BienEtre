@@ -28,12 +28,9 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # Faker Provider : Permet de fournir les types d'utilisateur
-    #data_fixtures.provider.foo:
-    #    class: App\Resources\fixtures\Faker\Provider\UserTypeProvider
-    #    tags:
-    #        name: nelmio_alice.faker.provider
 
+    ########################################################################################################
+    # Exemple :
     # Service d'envoie d'email de confirmation d'inscription
     # Installation de SwiftMailer nécessaire
     #email.user_mailer:
@@ -64,6 +61,13 @@ services:
     app.twig.extension.text:
         class: Twig_Extensions_Extension_Text
         tags: { name: 'twig.extension' }
+    # Syntaxe Symfony 4.0 ne fonctionne pas
+    #Twig_Extensions_Extension_Text:
+    #    alias: app.twig.extension.text
+    #    tags: { name: 'twig.extension' }
     app.twig.extension.i18n:
         class: Twig_Extensions_Extension_I18n
+        tags: { name: 'twig.extension' }
+    app.twig.extension.date:
+        class: Twig_Extensions_Extension_Date
         tags: { name: 'twig.extension' }
