@@ -369,16 +369,16 @@
                                     <div class="col-sm-8">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <div class="card" data-background-image="assets/img/tmp/product-7.jpg">
+                                                <div class="card" data-background-image="{{ bestProviders[1].logo.url }}">
                                                     <div class="card-label">
-                                                        <a href="listing-detail.html">Coffe</a>
+                                                        <a href="{{ path('provider_detail', {slug: bestProviders[1].slug }) }}">{{ bestProviders[1].serviceCategories[0].name }}</a>
                                                     </div><!-- /.card-label -->
 
                                                     <div class="card-content">
-                                                        <h2><a href="listing-detail.html">Brazilian Coffe Taste</a></h2>
+                                                        <h2><a href="{{ path('provider_detail', {slug: bestProviders[1].slug }) }}" >{{ bestProviders[1].brandName }}</a></h2>
 
                                                         <div class="card-meta">
-                                                            <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                                            <i class="fa fa-map-o"></i> {{ bestProviders[1].street ~ ", " ~ bestProviders[1].locality.locality }}<br>{{ bestProviders[1].postalCode.postalCode ~ " " ~ bestProviders[1].township.township }}
                                                         </div><!-- /.card-meta -->
 
                                                         <div class="card-rating">
@@ -391,7 +391,7 @@
 
                                                         <div class="card-actions">
                                                             <a href="#" class="fa fa-bookmark-o"></a>
-                                                            <a href="listing-detail.html" class="fa fa-search"></a>
+                                                            <a href="{{ path('provider_detail', {slug: bestProviders[1].slug }) }}" class="fa fa-search"></a>
                                                             <a href="#" class="fa fa-heart-o"></a>
                                                         </div>
 
@@ -402,16 +402,16 @@
 
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="card" data-background-image="assets/img/tmp/product-4.jpg">
+                                                <div class="card" data-background-image="{{ bestProviders[2].logo.url }}">
                                                     <div class="card-label">
-                                                        <a href="listing-detail.html">Restaurant</a>
+                                                        <a href="listing-detail.html">{{ bestProviders[2].serviceCategories[0].name }}</a>
                                                     </div><!-- /.card-label -->
 
                                                     <div class="card-content">
-                                                        <h2><a href="listing-detail.html">Coffee &amp; Newspaper</a></h2>
+                                                        <h2><a href="{{ path('provider_detail', {slug: bestProviders[2].slug }) }}">{{ bestProviders[2].brandName }}</a></h2>
 
                                                         <div class="card-meta">
-                                                            <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                                            <i class="fa fa-map-o"></i> {{ bestProviders[2].street ~ ", " ~ bestProviders[2].locality.locality }}<br>{{ bestProviders[2].postalCode.postalCode ~ " " ~ bestProviders[2].township.township }}
                                                         </div><!-- /.card-meta -->
 
                                                         <div class="card-rating">
@@ -424,7 +424,7 @@
 
                                                         <div class="card-actions">
                                                             <a href="#" class="fa fa-bookmark-o"></a>
-                                                            <a href="listing-detail.html" class="fa fa-search"></a>
+                                                            <a href="{{ path('provider_detail', {slug: bestProviders[2].slug }) }}" class="fa fa-search"></a>
                                                             <a href="#" class="fa fa-heart-o"></a>
                                                         </div>
                                                     </div><!-- /.card-content -->
@@ -432,16 +432,16 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <div class="card" data-background-image="assets/img/tmp/product-2.jpg">
+                                                <div class="card" data-background-image="{{ bestProviders[3].logo.url }}">
                                                     <div class="card-label">
-                                                        <a href="listing-detail.html">Vacation</a>
+                                                        <a href="{{ path('provider_detail', {slug: bestProviders[3].slug }) }}">{{ bestProviders[3].serviceCategories[0].name }}</a>
                                                     </div><!-- /.card-label -->
 
                                                     <div class="card-content">
-                                                        <h2><a href="listing-detail.html">Homemade Coffee</a></h2>
+                                                        <h2><a href="listing-detail.html">{{ bestProviders[3].brandName }}</a></h2>
 
                                                         <div class="card-meta">
-                                                            <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                                            <i class="fa fa-map-o"></i>{{ bestProviders[3].street ~ ", " ~ bestProviders[3].locality.locality }}<br>{{ bestProviders[3].postalCode.postalCode ~ " " ~ bestProviders[3].township.township }}
                                                         </div><!-- /.card-meta -->
 
                                                         <div class="card-rating">
@@ -454,7 +454,7 @@
 
                                                         <div class="card-actions">
                                                             <a href="#" class="fa fa-bookmark-o marked"></a>
-                                                            <a href="listing-detail.html" class="fa fa-search"></a>
+                                                            <a href="{{ path('provider_detail', {slug: bestProviders[3].slug }) }}" class="fa fa-search"></a>
                                                             <a href="#" class="fa fa-heart-o"></a>
                                                         </div>
                                                     </div><!-- /.card-content -->
@@ -464,16 +464,16 @@
                                     </div><!-- /.col-* -->
 
                                     <div class="col-sm-4">
-                                        <div class="card card-tall" data-background-image="assets/img/tmp/product-1.jpg">
+                                        <div class="card card-tall" data-background-image="{{ bestProviders[0].logo.url }}">
                                             <div class="card-label">
-                                                <a href="listing-detail.html">Vacation</a>
+                                                <a href="{{ path('provider_detail', {slug: bestProviders[0].slug }) }}">{{ bestProviders[0].serviceCategories[0].name }}</a>
                                             </div><!-- /.card-label -->
 
                                             <div class="card-content">
-                                                <h2><a href="listing-detail.html">Trip to Paris, France</a></h2>
+                                                <h2><a href="listing-detail.html">{{ bestProviders[0].brandName }}</a></h2>
 
                                                 <div class="card-meta">
-                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                                    <i class="fa fa-map-o"></i> {{ bestProviders[2].street ~ ", " ~ bestProviders[2].locality.locality }}<br>{{ bestProviders[2].postalCode.postalCode ~ " " ~ bestProviders[2].township.township }}
                                                 </div><!-- /.card-meta -->
 
                                                 <div class="card-rating">
@@ -486,7 +486,7 @@
 
                                                 <div class="card-actions">
                                                     <a href="#" class="fa fa-bookmark-o"></a>
-                                                    <a href="listing-detail.html" class="fa fa-search"></a>
+                                                    <a href="{{ path('provider_detail', {slug: bestProviders[0].slug }) }}" class="fa fa-search"></a>
                                                     <a href="#" class="fa fa-heart-o marked"></a>
                                                 </div>
                                             </div><!-- /.card-content -->
@@ -499,20 +499,21 @@
 
                         <div class="block background-white fullwidth">
                             <div class="page-header">
-                                <h1>Testimonials</h1>
-                                <p>Read what our customers says about our directory services and products. Do you want to<br> read more? Check out another <a href="#">interesting testimonials</a>.</p>
+                                <h1>Témoignages de nos visiteurs</h1>
+                                <p>Lisez ce que nos autres visiteurs ont pensé des prestataires de votre région <a href="#">... Les meilleurs commentaires ...</a>.</p>
                             </div><!-- /.page-header -->
 
                             <div class="row">
+                                {# 3 Commentaires résumés #}
                                 <div class="col-sm-6">
                                     <div class="testimonial">
                                         <div class="testimonial-image">
-                                            <img src="assets/img/tmp/agent-1.jpg" alt="">
+                                            <img src="{{ recentComments[2].client.avatar.url }}" alt="">
                                         </div><!-- /.testimonial-image -->
 
                                         <div class="testimonial-inner">
                                             <div class="testimonial-title">
-                                                <h2>Exactly What I Need</h2>
+                                                <h2>{{ recentComments[2].title }}</h2>
 
                                                 <div class="testimonial-rating">
                                                     <i class="fa fa-star"></i>
@@ -523,9 +524,9 @@
                                                 </div><!-- /.testimonial-rating -->
                                             </div><!-- /.testimonial-title -->
 
-                                            Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. Donec vel enim sit amet lorem vulputate condimentum.
+                                            {{ recentComments[2].positiveComment }}
 
-                                            <div class="testimonial-sign">- Fiona Wilson</div><!-- /.testimonial-sign -->
+                                            <div class="testimonial-sign">- {{ recentComments[2].client.firstname ~ " " ~ recentComments[2].client.lastname }}</div><!-- /.testimonial-sign -->
                                         </div><!-- /.testimonial-inner -->
                                     </div><!-- /.testimonial -->
 
@@ -577,7 +578,7 @@
                                         </div><!-- /.testimonial-inner -->
                                     </div><!-- /.testimonial -->
                                 </div><!-- /.col-* -->
-
+                                {# 2 Commentaires complet #}
                                 <div class="col-sm-6">
                                     <div class="testimonial">
                                         <div class="testimonial-image">

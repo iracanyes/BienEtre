@@ -45,12 +45,18 @@ class HomeController extends Controller
 
         // Services récents : DQL à faire
         $services = $em->getRepository("App:Service")
-            ->findAll();
+            ->recentServices();
 
-        // Promotions récentes : DQL à faire
+        // Promotions récentes : OK
         $promotions = $em->getRepository("App:Promotion")
             ->recentPromotions();
+        // Provider classé par nombre de fans.
+        $bestProviders = $em->getRepository("App:Provider")
+            ->mostFans();
 
+        // Recent comments
+        $recentComments = $em->getRepository("App:Comment")
+            ->recentComments();
 
         if(!$providers){
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
@@ -68,6 +74,14 @@ class HomeController extends Controller
             throw new NotFoundHttpException("Aucune code postal n'est enregistré en DB!");
         }
 
+        if(!$bestProviders){
+            throw new NotFoundHttpException("Aucun vote pour un prestataire n'a été effectué!");
+        }
+
+        if(!$recentComments){
+            throw new NotFoundHttpException("Aucun commentaire pour un prestataire n'a été effectué!");
+        }
+
 
         return $this->render(
             "superlist/index.html.twig",
@@ -78,7 +92,9 @@ class HomeController extends Controller
                 "postalCodes" => $postalCodes,
                 "services" => $services,
                 "serviceCategories" => $serviceCategories,
-                "promotions" => $promotions
+                "promotions" => $promotions,
+                "bestProviders" => $bestProviders,
+                "recentComments" => $recentComments
             )
         );
     }            

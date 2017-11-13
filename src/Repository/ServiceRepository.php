@@ -10,4 +10,14 @@ namespace App\Repository;
  */
 class ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function recentServices(): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select('s')
+            ->from($this->_entityName,'s')
+            ->orderBy('s.releaseDate','DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
+

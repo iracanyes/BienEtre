@@ -10,4 +10,19 @@ namespace App\Repository;
  */
 class ProviderRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Get Best Providers
+     *
+     * @return array
+     */
+    public function mostFans(){
+
+        $qb = $this->_em->createQueryBuilder()
+            ->select('p')
+            ->from($this->_entityName,'p')
+            ->orderBy('p.totalFans','DESC')
+            ->setMaxResults(4);
+
+        return $qb->getQuery()->getResult();
+    }
 }

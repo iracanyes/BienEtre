@@ -20,6 +20,7 @@ use App\Entity\Client;
  * Provider
  *
  * @ORM\Entity(repositoryClass="App\Repository\ProviderRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Provider extends User
 {
@@ -529,11 +530,26 @@ class Provider extends User
     }
 
     /**
-     * @param int $totalFans
+     * @return void
      */
+
     public function setTotalFans(): void
     {
         $this->totalFans = count($this->fans);
+    }
+
+    /**
+     * Les événements ORM-PrePersist permettent d'apporter des modifications à l'entité qui seront ensuite
+     * enregistrés en DB par la méthode $this->flush().
+     * Les événements ORM-PostPersist permettent de modifier l'entité après enregistrement de ces données en DB.
+     *
+     * @ORM\PrePersist
+     * @ORM\PrePersist()
+     * @return void
+     */
+    public function updateTotalFans(): void
+    {
+        $this->setTotalFans();
     }
 
 

@@ -76,6 +76,9 @@ Symfony3.3.9 application
                     Recherche des prestataires : nom, localité|commune|code postal, ...
                 </li>
                 <li>
+                    Template : index.html.twig
+                </li>
+                <li>
                     Template : provider-listing-detail.html.twig
                     <ul>
                         <li>

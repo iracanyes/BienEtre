@@ -40,6 +40,7 @@ App\Entity\Provider:
         emailContact: '<freeEmail()>'
         phoneNumber: '<e164PhoneNumber()>'
         tvaNumber: '<ean13()>'
+        street: '<fr_BE:streetAddress()>'
         # Les relations seront créées par les utilisateurs
         township: '@township<numberBetween(1,2)>'
         locality: '@locality<numberBetween(1,2)>'
@@ -53,5 +54,5 @@ App\Entity\Client:
         lastname: '<lastname()>'
         firstname: '<firstname()>'
         newsletter: '<boolean()>'
-        favorites: ['@provider<numberBetween(1,2)>']
+        favorites: ['@provider<numberBetween(1,4)>']
 
