@@ -73,10 +73,10 @@ class Promotion
     private $expiryDate;
 
     /**
-     * @ var Provider
+     * @var Provider
      *
-     * @ ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="promotions")
-     * @ ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="promotions")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $provider;
 

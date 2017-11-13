@@ -67,7 +67,7 @@ class Comment
     /**
      * @var Provider
      *
-     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="remarks")
+     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="opinions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $provider;

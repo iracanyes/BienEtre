@@ -113,6 +113,13 @@ class Provider extends User
     private $fans;
 
     /**
+     * @var int totalFans
+     *
+     * @ORM\Column(name="total_fan", type="integer")
+     */
+    private $totalFans;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="\App\Entity\Comment", mappedBy="provider")
@@ -514,6 +521,24 @@ class Provider extends User
     }
 
     /**
+     * @return int
+     */
+    public function getTotalFans(): int
+    {
+        return $this->totalFans;
+    }
+
+    /**
+     * @param int $totalFans
+     */
+    public function setTotalFans(): void
+    {
+        $this->totalFans = count($this->fans);
+    }
+
+
+
+    /**
      * Get opinions
      *
      * @return Collection
@@ -524,7 +549,7 @@ class Provider extends User
     }
 
     /**
-     * Add remark
+     * Add comment
      *
      * @param \App\Entity\Comment $comment
      * @return Provider
@@ -537,7 +562,7 @@ class Provider extends User
     }
 
     /**
-     * Remove remark
+     * Remove comment
      *
      * @param \App\Entity\Comment $comment
      */

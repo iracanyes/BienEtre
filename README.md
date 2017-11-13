@@ -101,4 +101,9 @@ Symfony3.3.9 application
     <p class="alert-info">
     Windows 10 : Hautelook/Alice : catchPhrase() non-supporté remplacé par sentence(5)
     </p>
+    <p>
+        
+</div>
+<div class="alert">
+    
 </div>

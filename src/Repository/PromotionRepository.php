@@ -10,4 +10,14 @@ namespace App\Repository;
  */
 class PromotionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function recentPromotions(): Array
+    {
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select('p')
+            ->from($this->_entityName, 'p')
+            ->orderBy('p.startDate','DESC');
+
+        return $queryBuilder->getQuery()
+            ->getResult();
+    }
 }

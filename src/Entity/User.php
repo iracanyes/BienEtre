@@ -77,19 +77,19 @@ class User
     protected $registryConfirmed;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PostalCode", cascade={"persist"}, inversedBy="postalCode")
+     * @ORM\ManyToOne(targetEntity="PostalCode", cascade={"persist"}, inversedBy="users")
      * @ORM\JoinColumn(name="postal_code")
      */
     protected $postalCode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Locality", cascade={"persist"},inversedBy="locality")
+     * @ORM\ManyToOne(targetEntity="Locality", cascade={"persist"},inversedBy="users")
      * @ORM\JoinColumn(name="locality")
      */
     protected $locality;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Township", cascade={"persist"}, inversedBy="township")
+     * @ORM\ManyToOne(targetEntity="Township", cascade={"persist"}, inversedBy="users")
      * @ORM\JoinColumn(name="township")
      */
     protected $township;

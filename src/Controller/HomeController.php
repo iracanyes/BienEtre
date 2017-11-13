@@ -43,9 +43,14 @@ class HomeController extends Controller
         $serviceCategories = $em->getRepository("App:ServiceCategory")
             ->findAll();
 
-        // services
+        // Services récents : DQL à faire
         $services = $em->getRepository("App:Service")
             ->findAll();
+
+        // Promotions récentes : DQL à faire
+        $promotions = $em->getRepository("App:Promotion")
+            ->recentPromotions();
+
 
         if(!$providers){
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
@@ -72,8 +77,9 @@ class HomeController extends Controller
                 "localities" => $localities,
                 "postalCodes" => $postalCodes,
                 "services" => $services,
-                "serviceCategories" => $serviceCategories
+                "serviceCategories" => $serviceCategories,
+                "promotions" => $promotions
             )
-            );
+        );
     }            
 }

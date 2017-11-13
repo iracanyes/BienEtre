@@ -4,12 +4,9 @@
 nelmio_alice:
     #Configuration optionnelle
     #locale: en_US
-    #seed: 10
+    #seed: 200
     #persist_once: false
     loading_limit: 30
-# Configuration à vérifier car bloque le fonctionnement
-#fidry_alice_data_fixtures:
-#    db_drivers:
-#        doctrine_orm: ~
+
 hautelook_alice:
     fixtures_path: 'src/DataFixtures/ORM'

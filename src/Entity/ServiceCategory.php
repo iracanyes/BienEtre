@@ -63,15 +63,15 @@ class ServiceCategory
     private $image;
 
     /**
-     * @ var ArrayCollection
+     * @var ArrayCollection
      *
-     * @ ORM\ManyToMany(targetEntity="Provider", mappedBy="serviceCategories")
+     * @ORM\ManyToMany(targetEntity="Provider", mappedBy="serviceCategories")
      */
-    //private $providers;
+    private $providers;
 
     public function __construct()
     {
-        //$this->providers = new ArrayCollection();
+        $this->providers = new ArrayCollection();
     }
 
 
