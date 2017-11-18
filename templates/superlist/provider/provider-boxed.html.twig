@@ -1,3 +1,6 @@
+{#
+    Template : Blog-detail-right-sidebar.html
+#}
 {% extends 'superlist/blog-boxed.html.twig' %}
 
 {# page title #}
@@ -11,11 +14,11 @@
             <div class="post post-boxed">
                 <div class="post-image">
                     <img src="{{ provider.logo.url }}" alt="{{ provider.brandName }}">
-                    <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
+                    <a class="read-more" href="{{ path('provider_detail',{'slug': provider.slug }) }}">Voir</a>
                 </div><!-- /.post-image -->
 
                 <div class="post-content">
-                    <h2><a href="blog-detail.html">{{ provider.brandName }}</a></h2>
+                    <h2><a href="{{ path('provider_detail',{'slug': provider.slug }) }}">{{ provider.brandName }}</a></h2>
                     <p>And from now on you're all named Bender Jr. The alien mothership is in orbit here. If we can hit that bullseye, the rest of the dominoes will fall like a house of cards. Checkmate. Now that the, uh, garbage ball is in space, Doctor, perh...</p>
                 </div><!-- /.post-content -->
 

@@ -1,127 +1,129 @@
+{#
+    Template :
+#}
+
 {% extends 'base.html.twig' %}
-
-
 
 {% block header %}
     <header class="header header-transparent">
-        <div class="header-wrapper">
-            <div class="container">
-                <div class="header-inner">
-                    <div class="header-logo">
-                        <a href="index.html">
-                            <img src="build/images/logo-white.png" alt="Logo">
-                            <span>{{ site_name }}</span>
-                        </a>
-                    </div><!-- /.header-logo -->
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="header-inner">
+                <div class="header-logo">
+                    <a href="index.html">
+                        <img src="build/images/logo-white.png" alt="Logo">
+                        <span>{{ site_name }}</span>
+                    </a>
+                </div><!-- /.header-logo -->
 
-                    <div class="header-content">
-                        <div class="header-bottom">
-                            <div class="header-action">
-                                <a href="listing-submit.html" class="header-action-inner" title="Add Listing" data-toggle="tooltip" data-placement="bottom">
-                                    <i class="fa fa-plus"></i>
-                                </a><!-- /.header-action-inner -->
-                            </div><!-- /.header-action -->
+                <div class="header-content">
+                    <div class="header-bottom">
+                        <div class="header-action">
+                            <a href="listing-submit.html" class="header-action-inner" title="Add Listing" data-toggle="tooltip" data-placement="bottom">
+                                <i class="fa fa-plus"></i>
+                            </a><!-- /.header-action-inner -->
+                        </div><!-- /.header-action -->
 
-                            <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
-                                <li class="active">
-                                    <a href="{{ path('homepage') }}">Accueil <i class="fa fa-chevron-down"></i></a>
+                        <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
+                            <li class="active">
+                                <a href="{{ path('homepage') }}">Accueil <i class="fa fa-chevron-down"></i></a>
 
-                                    <ul class="sub-menu">
-                                        <li><a href="index-video.html">Video v1</a></li>
+                                <ul class="sub-menu">
+                                    <li><a href="index-video.html">Video v1</a></li>
 
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
 
-                                <li >
-                                    <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
+                            <li >
+                                <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
 
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ path('provider_detail',{slug: "konopelski-inc-llc"}) }}">Detail</a></li>
+                                <ul class="sub-menu">
+                                    <li><a href="{{ path('provider_detail',{slug: "konopelski-inc-llc"}) }}">Detail</a></li>
 
-                                    </ul>
-                                </li>
-
-
-
-                                <li >
-                                    <a href="{{ path('service_list') }}">Services <i class="fa fa-chevron-down"></i></a>
-
-                                    <ul class="sub-menu">
-                                        <li><a href="admin-dashboard.html">Dashboard</a></li>
-
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
 
 
-                                <li >
-                                    <a href="#">Contact <i class="fa fa-chevron-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="contact-1.html">Contact v1</a></li>
 
-                                    </ul>
-                                </li>
-                                <li class="has-mega-menu ">
-                                    <a href="#">Administrateur <i class="fa fa-chevron-down"></i></a>
+                            <li >
+                                <a href="{{ path('service_list') }}">Services <i class="fa fa-chevron-down"></i></a>
 
-                                    <ul class="mega-menu">
-                                        <li>
-                                            <a href="#">General</a>
+                                <ul class="sub-menu">
+                                    <li><a href="admin-dashboard.html">Dashboard</a></li>
 
-                                            <ul>
-                                                <li><a href="faq.html">FAQ</a></li>
-                                                <li><a href="invoice.html">Invoice</a></li>
-                                                <li><a href="pricing.html">Pricing</a></li>
-                                                <li><a href="grid.html">Grid System</a></li>
-                                                <li><a href="testimonials.html">Testimonials</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">User Account</a>
-
-                                            <ul>
-                                                <li><a href="user-profile-edit.html">Profile Edit</a></li>
-                                                <li><a href="login.html">Login Form</a></li>
-                                                <li><a href="register.html">Register Form</a></li>
-                                                <li><a href="change-password.html">Change Password Form</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Miscellaneous</a>
-
-                                            <ul>
-                                                <li><a href="sticky-footer.html">Sticky Footer</a></li>
-                                                <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                                                <li><a href="error-403.html">403 - Forbidden</a></li>
-                                                <li><a href="error-404.html">404 - Not Found</a></li>
-                                                <li><a href="error-500.html">500 - Internal Error</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="hidden-xs">
-                                            <div class="special">
-                                                <a href="register.html">Sign Up Now</a>
-                                            </div><!-- /.special-->
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                </ul>
+                            </li>
 
 
-                            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".header-nav-primary">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
+                            <li >
+                                <a href="#">Contact <i class="fa fa-chevron-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="contact-1.html">Contact v1</a></li>
 
-                        </div><!-- /.header-bottom -->
-                    </div><!-- /.header-content -->
-                </div><!-- /.header-inner -->
-            </div><!-- /.container -->
-        </div><!-- /.header-wrapper -->
-    </header><!-- /.header -->
+                                </ul>
+                            </li>
+                            <li class="has-mega-menu ">
+                                <a href="#">Administrateur <i class="fa fa-chevron-down"></i></a>
+
+                                <ul class="mega-menu">
+                                    <li>
+                                        <a href="#">General</a>
+
+                                        <ul>
+                                            <li><a href="faq.html">FAQ</a></li>
+                                            <li><a href="invoice.html">Invoice</a></li>
+                                            <li><a href="pricing.html">Pricing</a></li>
+                                            <li><a href="grid.html">Grid System</a></li>
+                                            <li><a href="testimonials.html">Testimonials</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">User Account</a>
+
+                                        <ul>
+                                            <li><a href="user-profile-edit.html">Profile Edit</a></li>
+                                            <li><a href="login.html">Login Form</a></li>
+                                            <li><a href="register.html">Register Form</a></li>
+                                            <li><a href="change-password.html">Change Password Form</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Miscellaneous</a>
+
+                                        <ul>
+                                            <li><a href="sticky-footer.html">Sticky Footer</a></li>
+                                            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+                                            <li><a href="error-403.html">403 - Forbidden</a></li>
+                                            <li><a href="error-404.html">404 - Not Found</a></li>
+                                            <li><a href="error-500.html">500 - Internal Error</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="hidden-xs">
+                                        <div class="special">
+                                            <a href="register.html">Sign Up Now</a>
+                                        </div><!-- /.special-->
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".header-nav-primary">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div><!-- /.header-bottom -->
+                </div><!-- /.header-content -->
+            </div><!-- /.header-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.header-wrapper -->
+</header><!-- /.header -->
 {% endblock %}
 
 {% block main %}
@@ -519,12 +521,16 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa    fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div><!-- /.testimonial-rating -->
                                             </div><!-- /.testimonial-title -->
-
-                                            {{ recentComments[2].positiveComment }}
+                                            <p>
+                                                {{ recentComments[2].positiveComment|truncate(50, true) }}
+                                            </p>
+                                            <p>
+                                                {{ recentComments[2].negativeComment|truncate(50, true) }}
+                                            </p>
 
                                             <div class="testimonial-sign">- {{ recentComments[2].client.firstname ~ " " ~ recentComments[2].client.lastname }}</div><!-- /.testimonial-sign -->
                                         </div><!-- /.testimonial-inner -->
@@ -532,12 +538,12 @@
 
                                     <div class="testimonial">
                                         <div class="testimonial-image">
-                                            <img src="assets/img/tmp/agent-2.jpg" alt="">
+                                            <img src="{{ recentComments[3].client.avatar.url }}" alt="">
                                         </div><!-- /.testimonial-image -->
 
                                         <div class="testimonial-inner">
                                             <div class="testimonial-title">
-                                                <h2>Best Support Ever</h2>
+                                                <h2>{{ recentComments[3].title }}</h2>
 
                                                 <div class="testimonial-rating">
                                                     <i class="fa fa-star"></i>
@@ -548,20 +554,25 @@
                                                 </div><!-- /.testimonial-rating -->
                                             </div><!-- /.testimonial-title -->
 
-                                            Duis et magna vel est tempus vehicula vitae sit amet enim. Sed vitae ligula congue, luctus mauris eu, scelerisque felis.
+                                            <p>
+                                                {{ recentComments[3].positiveComment|truncate(50, true) }}
+                                            </p>
+                                            <p>
+                                                {{ recentComments[3].negativeComment|truncate(50, true) }}
+                                            </p>
 
-                                            <div class="testimonial-sign">- Natasha Samson</div><!-- /.testimonial-sign -->
+                                            <div class="testimonial-sign">- {{ recentComments[2].client.firstname ~ " " ~ recentComments[2].client.lastname }}</div><!-- /.testimonial-sign -->
                                         </div><!-- /.testimonial-inner -->
                                     </div><!-- /.testimonial -->
 
                                     <div class="testimonial last">
                                         <div class="testimonial-image">
-                                            <img src="assets/img/tmp/agent-3.jpg" alt="">
+                                            <img src="{{ recentComments[4].client.avatar.url }}" alt="">
                                         </div><!-- /.testimonial-image -->
 
                                         <div class="testimonial-inner">
                                             <div class="testimonial-title">
-                                                <h2>Best Directory</h2>
+                                                <h2>{{ recentComments[4].title }}</h2>
 
                                                 <div class="testimonial-rating">
                                                     <i class="fa fa-star"></i>
@@ -572,9 +583,14 @@
                                                 </div><!-- /.testimonial-rating -->
                                             </div><!-- /.testimonial-title -->
 
-                                            Duis et magna vel est tempus vehicula vitae sit amet enim. Sed vitae ligula congue, luctus mauris eu, scelerisque felis.
+                                            <p>
+                                                {{ recentComments[4].positiveComment }}
+                                            </p>
+                                            <p>
+                                                {{ recentComments[4].negativeComment }}
+                                            </p>
 
-                                            <div class="testimonial-sign">- Kim Glove</div><!-- /.testimonial-sign -->
+                                            <div class="testimonial-sign">- {{ recentComments[2].client.firstname ~ " " ~ recentComments[2].client.lastname }}</div><!-- /.testimonial-sign -->
                                         </div><!-- /.testimonial-inner -->
                                     </div><!-- /.testimonial -->
                                 </div><!-- /.col-* -->
@@ -582,12 +598,12 @@
                                 <div class="col-sm-6">
                                     <div class="testimonial">
                                         <div class="testimonial-image">
-                                            <img src="assets/img/tmp/agent-4.jpg" alt="">
+                                            <img src="{{ recentComments[0].client.avatar.url }}" alt="">
                                         </div><!-- /.testimonial-image -->
 
                                         <div class="testimonial-inner">
                                             <div class="testimonial-title">
-                                                <h2>Totally Impressed</h2>
+                                                <h2>{{ recentComments[0].title }}</h2>
 
                                                 <div class="testimonial-rating">
                                                     <i class="fa fa-star"></i>
@@ -598,20 +614,25 @@
                                                 </div><!-- /.testimonial-rating -->
                                             </div><!-- /.testimonial-title -->
 
-                                            Curabitur scelerisque nulla consequat elit semper, vitae lobortis velit tempor. Sed purus eros, pellentesque non maximus scelerisque, aliquam id magna. Integer in metus ante. Integer faucibus mi quis rhoncus cursus.
+                                            <p>
+                                                {{ recentComments[0].positiveComment }}
+                                            </p>
+                                            <p>
+                                                {{ recentComments[0].negativeComment }}
+                                            </p>
 
-                                            <div class="testimonial-sign">- Richard Peterson</div><!-- /.testimonial-sign -->
+                                            <div class="testimonial-sign">- {{ recentComments[0].client.firstname ~ " " ~ recentComments[0].client.lastname }}</div><!-- /.testimonial-sign -->
                                         </div><!-- /.testimonial-inner -->
                                     </div><!-- /.testimonial -->
 
                                     <div class="testimonial last">
                                         <div class="testimonial-image">
-                                            <img src="assets/img/tmp/agent-5.jpg" alt="">
+                                            <img src="{{ recentComments[1].client.avatar.url }}" alt="">
                                         </div><!-- /.testimonial-image -->
 
                                         <div class="testimonial-inner">
                                             <div class="testimonial-title">
-                                                <h2>Awesome Directory </h2>
+                                                <h2>{{ recentComments[1].title }}</h2>
 
                                                 <div class="testimonial-rating">
                                                     <i class="fa fa-star"></i>
@@ -622,9 +643,14 @@
                                                 </div><!-- /.testimonial-rating -->
                                             </div><!-- /.testimonial-title -->
 
-                                            Donec finibus consectetur nunc, quis viverra nisi iaculis a. Donec non eros vel turpis bibendum sodales. Curabitur scelerisque nulla consequat elit semper, vitae lobortis velit tempor. Sed purus eros, pellentesque non maximus scelerisque, aliquam id magna. Integer in metus ante. Integer faucibus mi quis rhoncus cursus. Aliquam malesuada eleifend tellus, sit amet eleifend lacus aliquam in. Etiam a neque ut augue mattis gravida vel vel purus. Nullam bibendum viverra enim, in pretium purus.
+                                            <p>
+                                                {{ recentComments[1].positiveComment }}
+                                            </p>
+                                            <p>
+                                                {{ recentComments[1].negativeComment }}
+                                            </p>
 
-                                            <div class="testimonial-sign">- Rachel Fast</div><!-- /.testimonial-sign -->
+                                            <div class="testimonial-sign">- {{ recentComments[0].client.firstname ~ " " ~ recentComments[0].client.lastname }}</div><!-- /.testimonial-sign -->
                                         </div><!-- /.testimonial-inner -->
                                     </div><!-- /.testimonial -->
                                 </div><!-- /.col-* -->
@@ -633,182 +659,54 @@
                         </div>
 
                         <div class="page-header">
-                            <h1>Fair Pricing</h1>
-                            <p>Our company offers best pricing options for field agents and companies. If you are interested <br>in special plan don't hesitate and contact our <a href="#">sales support</a>.</p>
+                            <h1>Nos dernières offres promotionnelles</h1>
+                            <p>Notre équipe a séléctionné les meilleurs offres promotionnelles disponibles <br>Pour profiter de ces offres avant qu'elles n'expirent, contactez notre <a href="#">Service clientèle</a>.</p>
                         </div><!-- /.page-header -->
 
                         <div class="pricings">
                             <div class="row">
+                                {# Boucle des promotions proches de l'expiration #}
+                                {% for expiringPromotion in expiringPromotions %}
                                 <div class="col-sm-4">
                                     <div class="pricing">
-                                        <div class="pricing-title">Personal</div><!-- /.pricing-title -->
-                                        <div class="pricing-subtitle">For Personal Use</div><!-- /.pricing-subtitle -->
-                                        <div class="pricing-price"><span class="pricing-currency">$</span>10.59 <span class="pricing-period">/ month</span></div><!-- /.pricing-price -->
-                                        <a href="#" class="btn-primary">Get Started</a>
+                                        <div class="pricing-title">{{ expiringPromotion.provider.brandName }}</div><!-- /.pricing-title -->
+                                        <div class="pricing-subtitle">{{ expiringPromotion.name }}</div><!-- /.pricing-subtitle -->
+                                        <div class="pricing-price"><span class="pricing-currency">$</span>{{ expiringPromotion.description }} <span class="pricing-period"></span></div><!-- /.pricing-price -->
+                                        <a href="#" class="btn-primary">Profitez de l'offre</a>
                                         <hr>
                                         <ul class="pricing-list">
-                                            <li><span>Max. Submissions</span><strong>Limited number</strong></li>
-                                            <li><span>Custom Agents</span><strong>One agent for all</strong></li>
-                                            <li><span>Support</span><strong>Mail communication</strong></li>
+                                            <li><span>Website: </span><strong>{{ expiringPromotion.provider.website }}</strong></li>
+                                            <li><span>E-mail :</span><strong>{{ expiringPromotion.provider.emailContact }}</strong></li>
+                                            <li>
+                                                <span>Fin promotion :</span><a><strong>{{ expiringPromotion.expiryDate|date("d/m/Y H:m:i") }}</strong></a>
+                                            </li>
                                         </ul><!-- /.pricing-list -->
                                         <hr>
-                                        <a href="#" class="pricing-action">Full List of Features</a>
+                                        <a href="#" class="pricing-action">Plus d'informations</a>
                                     </div><!-- /.pricing -->
                                 </div><!-- /.col-* -->
-
-                                <div class="col-sm-4">
-                                    <div class="pricing">
-                                        <div class="pricing-title">Business</div><!-- /.pricing-title -->
-                                        <div class="pricing-subtitle">Best for Companies</div><!-- /.pricing-subtitle -->
-                                        <div class="pricing-price"><span class="pricing-currency">$</span>19.59 <span class="pricing-period">/ month</span></div><!-- /.pricing-price -->
-                                        <a href="#" class="btn-primary">Get Started</a>
-                                        <hr>
-                                        <ul class="pricing-list">
-                                            <li><span>Max. Submissions</span><strong>Unlimited number</strong></li>
-                                            <li><span>Custom Agents</span><strong>One agent for all</strong></li>
-                                            <li><span>Support</span><strong>Mail communication</strong></li>
-                                        </ul><!-- /.pricing-list -->
-                                        <hr>
-                                        <a href="#" class="pricing-action">Full List of Features</a>
-                                    </div><!-- /.pricing -->
-                                </div><!-- /.col-* -->
-
-                                <div class="col-sm-4">
-                                    <div class="pricing">
-                                        <div class="pricing-title">Unlimited</div><!-- /.pricing-title -->
-                                        <div class="pricing-subtitle">Entrepreneurs</div><!-- /.pricing-subtitle -->
-                                        <div class="pricing-price"><span class="pricing-currency">$</span>49.59 <span class="pricing-period">/ month</span></div><!-- /.pricing-price -->
-                                        <a href="#" class="btn-primary">Get Started</a>
-                                        <hr>
-                                        <ul class="pricing-list">
-                                            <li><span>Max. Submissions</span><strong>Unlimited number</strong></li>
-                                            <li><span>Custom Agents</span><strong>Unlimited number</strong></li>
-                                            <li><span>Support</span><strong>Personal training</strong></li>
-                                        </ul><!-- /.pricing-list -->
-                                        <hr>
-                                        <a href="#" class="pricing-action">Full List of Features</a>
-                                    </div><!-- /.pricing -->
-                                </div><!-- /.col-* -->
+                                {% endfor %}
                             </div><!-- /.row -->
                         </div><!-- /.pricings -->
 
-
                         <div class="block background-white fullwidth mt80 mb-80">
                             <div class="categories">
+                                {# Boucle sur les catégories de services et les prestataires au sein de ces catégories #}
+
                                 <ul>
+                                    {% for h in 0..1 %}
                                     <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-bed"></i> Stay</a>
+                                        <a href="#" class="categories-action">Voir la page</a>
+                                        <a href="#" class="categories-link"><i class="fa fa-bed"></i>{{ serviceCategoriesPlusProviders[h].name }}</a>
                                         <ul>
-                                            <li><a href="#">Homestay</a>,</li>
-                                            <li><a href="#">Hotel</a>,</li>
-                                            <li><a href="#">Camping</a>,</li>
-                                            <li><a href="#">Guesthouse,</a></li>
-                                            <li><a href="#">Hostel</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-car"></i> Automotive</a>
-                                        <ul>
-                                            <li><a href="#">Mechanics</a>,</li>
-                                            <li><a href="#">Gas Stations</a>,</li>
-                                            <li><a href="#">Parts</a>,</li>
-                                            <li><a href="#">Repair</a>,</li>
-                                            <li><a href="#">Tires</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
+                                            {% for i in 0..4 %}
+                                            <li><a href="{{ path('provider_detail', {slug: serviceCategoriesPlusProviders[h].providers[i].slug}) }}">{{ serviceCategoriesPlusProviders[h].providers[i].brandName }}</a>,</li>
+                                            {% endfor %}
+                                            <li class="all"><a href="#">Voir toutes les prestataires de la catégorie <i class="fa fa-chevron-right"></i></a></li>
 
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-suitcase"></i> Jobs</a>
-                                        <ul>
-                                            <li><a href="#">Cook</a>,</li>
-                                            <li><a href="#">Hairdrasser</a>,</li>
-                                            <li><a href="#">Management</a>,</li>
-                                            <li><a href="#">Waiter</a>,</li>
-                                            <li><a href="#">Worker</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
                                         </ul>
                                     </li>
-
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-heart"></i> Medicine</a>
-                                        <ul>
-                                            <li><a href="#">Dental</a>,</li>
-                                            <li><a href="#">Dermatology</a>,</li>
-                                            <li><a href="#">Neurology</a>,</li>
-                                            <li><a href="#">Pediatrics</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-glass"></i> Nightlife</a>
-                                        <ul>
-                                            <li><a href="#">Bars &amp; Pubs</a>,</li>
-                                            <li><a href="#">Concert</a>,</li>
-                                            <li><a href="#">Cinemas</a>,</li>
-                                            <li><a href="#">Disco</a>,</li>
-                                            <li><a href="#">Theater</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-home"></i> Real Estate</a>
-                                        <ul>
-                                            <li><a href="#">Apartmant</a>,</li>
-                                            <li><a href="#">Building Area</a>,</li>
-                                            <li><a href="#">Condo</a>,</li>
-                                            <li><a href="#">House</a>,</li>
-                                            <li><a href="#">Villa</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-cutlery"></i> Restaurant</a>
-                                        <ul>
-                                            <li><a href="#">Bistro</a>,</li>
-                                            <li><a href="#">Brunch</a>,</li>
-                                            <li><a href="#">Caffee</a>,</li>
-                                            <li><a href="#">Dinning</a>,</li>
-                                            <li><a href="#">Fast Food</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-futbol-o"></i> Sports</a>
-                                        <ul>
-                                            <li><a href="#">Bistro</a>,</li>
-                                            <li><a href="#">Brunch</a>,</li>
-                                            <li><a href="#">Caffee</a>,</li>
-                                            <li><a href="#">Dinning</a>,</li>
-                                            <li><a href="#">Fast Food</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="categories-action">Submit</a>
-                                        <a href="#" class="categories-link"><i class="fa fa-map-marker"></i> Travel</a>
-                                        <ul>
-                                            <li><a href="#">Cruises</a>,</li>
-                                            <li><a href="#">Destinations</a>,</li>
-                                            <li><a href="#">Holidays</a>,</li>
-                                            <li><a href="#">Transportations</a></li>
-                                            <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div><!-- /.categories -->
 
@@ -818,12 +716,12 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="contact-info-wrapper">
-                                        <h2>Do You Have Any Questions?</h2>
+                                        <h2>Une question? Contactez-nous...</h2>
 
                                         <div class="contact-info">
                 <span class="contact-info-item">
                     <i class="fa fa-at"></i>
-                    <span>support@sitename.com</span>
+                    <span>support@bien-etre.com</span>
                 </span><!-- /.contact-info-item -->
 
                                             <span class="contact-info-item">
@@ -841,60 +739,6 @@
                 </div><!-- /.content -->
             </div><!-- /.main-inner -->
         </div><!-- /.main -->
-
-        <footer class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h2>About Superlist</h2>
-
-                            <p>Superlist is directory template built upon Bootstrap and SASS to bring great experience in creation of directory.</p>
-                        </div><!-- /.col-* -->
-
-                        <div class="col-sm-4">
-                            <h2>Contact Information</h2>
-
-                            <p>
-                                Your Street 123, Melbourne, Australia<br>
-                                +1-123-456-789, <a href="#">sample@example.com</a>
-                            </p>
-                        </div><!-- /.col-* -->
-
-                        <div class="col-sm-4">
-                            <h2>Stay Connected</h2>
-
-                            <ul class="social-links nav nav-pills">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            </ul><!-- /.header-nav-social -->
-                        </div><!-- /.col-* -->
-                    </div><!-- /.row -->
-                </div><!-- /.container -->
-            </div><!-- /.footer-top -->
-
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="footer-bottom-left">
-                        &copy; 2015 All rights reserved. Created by <a href="#">Aviators</a>.
-                    </div><!-- /.footer-bottom-left -->
-
-                    <div class="footer-bottom-right">
-                        <ul class="nav nav-pills">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                            <li><a href="contact-1.html">Contact</a></li>
-                        </ul><!-- /.nav -->
-                    </div><!-- /.footer-bottom-right -->
-                </div><!-- /.container -->
-            </div>
-        </footer><!-- /.footer -->
 
 {% endblock %}
 

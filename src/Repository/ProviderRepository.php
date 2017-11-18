@@ -15,13 +15,29 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
      *
      * @return array
      */
-    public function mostFans(){
+    public function mostFans(int $limit){
 
         $qb = $this->_em->createQueryBuilder()
             ->select('p')
             ->from($this->_entityName,'p')
             ->orderBy('p.totalFans','DESC')
-            ->setMaxResults(4);
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Get Recent Providers
+     *
+     * @return array
+     */
+    public function recentProviders(int $limit):array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select('p')
+            ->from($this->_entityName, 'p')
+            ->orderBy('p.registryDate','DESC')
+            ->setMaxResults($limit);
 
         return $qb->getQuery()->getResult();
     }

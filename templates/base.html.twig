@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>{{ site_name }}</title>
+        <title>{{ site_name }} - {% block title %}{% endblock %}</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -12,6 +12,7 @@
             <link href="{{ asset('build/css/vendors.css') }}" rel="stylesheet" type="text/css">
             <link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/images/favicon.png') }}">
         {% endblock %}
+
     </head>
     <body>
         <div class="page-wrapper">
@@ -33,7 +34,7 @@
                                 <div class="header-content">
                                     <div class="header-top">
                                         <div class="header-search">
-                                            <input type="text" class="form-control" placeholder="Search for...">
+                                            <input type="text" class="form-control" placeholder="Recherche...">
                                         </div><!-- /.header-search -->
 
                                         <ul class="header-nav-social social-links nav nav-pills">
@@ -43,8 +44,8 @@
                                         </ul><!-- /.header-nav-social -->
 
                                         <ul class="header-nav-secondary nav nav-pills">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="register.html">Register</a></li>
+                                            <li><a href="login.html">Connexion</a></li>
+                                            <li><a href="register.html">Inscription</a></li>
                                         </ul>
                                     </div><!-- /.header-top -->
 
@@ -69,7 +70,8 @@
                                                 <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
 
                                                 <ul class="sub-menu">
-                                                    <li><a href="listing-detail.html">Detail</a></li>
+                                                    <li><a href="{{ path('provider_list') }}">Liste des prestataires</a></li>
+                                                    <li><a href="{{ path('provider_search') }}">Recherche</a></li>
 
                                                 </ul>
                                             </li>
@@ -87,11 +89,8 @@
 
 
                                             <li >
-                                                <a href="#">Contact <i class="fa fa-chevron-down"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="contact-1.html">Contact v1</a></li>
+                                                <a href="{{ path('contact') }}">Contact <i class="fa fa-chevron-down"></i></a>
 
-                                                </ul>
                                             </li>
                                             <li class="has-mega-menu ">
                                                 <a href="#">Administrateur <i class="fa fa-chevron-down"></i></a>
@@ -110,13 +109,13 @@
                                                     </li>
 
                                                     <li>
-                                                        <a href="#">User Account</a>
+                                                        <a href="#">Compte utilisateur</a>
 
                                                         <ul>
-                                                            <li><a href="user-profile-edit.html">Profile Edit</a></li>
-                                                            <li><a href="login.html">Login Form</a></li>
-                                                            <li><a href="register.html">Register Form</a></li>
-                                                            <li><a href="change-password.html">Change Password Form</a></li>
+                                                            <li><a href="user-profile-edit.html">Profil - Édition</a></li>
+                                                            <li><a href="login.html">Connexion</a></li>
+                                                            <li><a href="register.html">Inscription</a></li>
+                                                            <li><a href="change-password.html">Changement de mot de passe</a></li>
                                                         </ul>
                                                     </li>
 
@@ -134,7 +133,7 @@
 
                                                     <li class="hidden-xs">
                                                         <div class="special">
-                                                            <a href="register.html">Sign Up Now</a>
+                                                            <a href="register.html">Inscrivez-vous!</a>
                                                         </div><!-- /.special-->
                                                     </li>
                                                 </ul>
@@ -161,7 +160,60 @@
             {% endblock %}
 
             {% block footer %}
+                <footer class="footer">
+                    <div class="footer-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h2>À propos de nous : </h2>
 
+                                    <p>La société « bien-être » est une association des 10 personnes dont le principal objectif est de promouvoir des services dans le domaine du bien-être</p>
+                                </div><!-- /.col-* -->
+
+                                <div class="col-sm-4">
+                                    <h2>Information de contact</h2>
+
+                                    <p>
+                                        Rue St Laurent 33, 4000 Liège, Belgique<br>
+                                        04 223 11 31, <a href="#">support@bien-etre.com</a>
+                                    </p>
+                                </div><!-- /.col-* -->
+
+                                <div class="col-sm-4">
+                                    <h2>Suivez-nous</h2>
+
+                                    <ul class="social-links nav nav-pills">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    </ul><!-- /.header-nav-social -->
+                                </div><!-- /.col-* -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container -->
+                    </div><!-- /.footer-top -->
+
+                    <div class="footer-bottom">
+                        <div class="container">
+                            <div class="footer-bottom-left">
+                                &copy; 2017 Tous droits réservé. Crée par <a href="https://iracanyes.com">Iracanyes</a>.
+                            </div><!-- /.footer-bottom-left -->
+
+                            <div class="footer-bottom-right">
+                                <ul class="nav nav-pills">
+                                    <li><a href="{{ path('homepage') }}">Accueil</a></li>
+                                    <li><a href="{{ path('provider_list') }}">Prestataires</a></li>
+                                    <li><a href="{{ path('service_list') }}">Services</a></li>
+                                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                                    <li><a href="contact-1.html">Admin</a></li>
+                                </ul><!-- /.nav -->
+                            </div><!-- /.footer-bottom-right -->
+                        </div><!-- /.container -->
+                    </div>
+                </footer><!-- /.footer -->
             {% endblock %}
         </div>
 

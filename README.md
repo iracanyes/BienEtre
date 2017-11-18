@@ -59,7 +59,8 @@ Symfony3.3.9 application
                             4 critères : Accueil , Equipe , Qualité service, Atmosphère
                         </li>
                         <li>
-                            Créer une méthode d'affichage vote client dans les commentaires
+                            Créer une méthode d'affichage vote client dans les commentaires du prestataire.
+                            + Ajoutez aux commentaires récents de la page d'accueil.
                         </li>
                     </ul>
                 </li>

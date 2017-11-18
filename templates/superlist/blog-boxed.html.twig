@@ -30,15 +30,17 @@
 
 
 <div class="pager">
+
     {% block pager %}
-    <ul>
-        <li><a href="#">Prev</a></li>
-        <li><a href="#">5</a></li>
-        <li class="active"><a>6</a></li>
-        <li><a href="#">7</a></li>
-        <li><a href="#">Next</a></li>
-    </ul>
+        <ul>
+            <li><a href="#">Prev</a></li>
+            <li><a href="#">5</a></li>
+            <li class="active"><a>6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>
     {% endblock %}
+
 </div><!-- /.pagination -->
 
 
@@ -47,171 +49,129 @@
 
                     <div class="col-sm-4 col-lg-3">
                         <div class="sidebar">
+
+                            {% block blog_boxed_widget1 %}
                             <div class="widget">
-    <h2 class="widgettitle">Stages récents</h2>
+    <h2 class="widgettitle">Prestataires récents</h2>
 
     
 
     
-        
+        {% for provider in recentProviders %}
 
         <div class="cards-small">
             <div class="card-small">
                 <div class="card-small-image">
                     <a href="listing-detail.html">
-                        <img src="assets/img/tmp/product-2.jpg" alt="Tasty Brazil Coffee">
+                        <img src="{{ provider.avatar.url }}" alt="{{ provider.brandName }}">
                     </a>
                 </div><!-- /.card-small-image -->
 
                 <div class="card-small-content">
-                    <h3><a href="listing-detail.html">Tasty Brazil Coffee</a></h3>
-                    <h4><a href="listing-detail.html">New York / Village</a></h4>
+                    <h3><a href="listing-detail.html">{{ provider.brandName }}</a></h3>
+                    <h4><a href="listing-detail.html">{{ provider.township.township ~ " / " ~ provider.locality.locality }}</a></h4>
 
-                    <div class="card-small-price">$180 / person</div>
+                    <div class="card-small-price">{{ provider.website }}</div>
                 </div><!-- /.card-small-content -->
             </div><!-- /.card-small -->
         </div><!-- /.cards-small -->
     
-        
+        {% endfor %}
 
-        <div class="cards-small">
-            <div class="card-small">
-                <div class="card-small-image">
-                    <a href="listing-detail.html">
-                        <img src="assets/img/tmp/product-3.jpg" alt="Healthy Breakfast">
-                    </a>
-                </div><!-- /.card-small-image -->
 
-                <div class="card-small-content">
-                    <h3><a href="listing-detail.html">Healthy Breakfast</a></h3>
-                    <h4><a href="listing-detail.html">New York / Village</a></h4>
-
-                    <div class="card-small-price">$180 / person</div>
-                </div><!-- /.card-small-content -->
-            </div><!-- /.card-small -->
-        </div><!-- /.cards-small -->
-    
-        
-
-        <div class="cards-small">
-            <div class="card-small">
-                <div class="card-small-image">
-                    <a href="listing-detail.html">
-                        <img src="assets/img/tmp/product-4.jpg" alt="Coffee &amp; Newspaper">
-                    </a>
-                </div><!-- /.card-small-image -->
-
-                <div class="card-small-content">
-                    <h3><a href="listing-detail.html">Coffee &amp; Newspaper</a></h3>
-                    <h4><a href="listing-detail.html">New York / Village</a></h4>
-
-                    <div class="card-small-price">$180 / person</div>
-                </div><!-- /.card-small-content -->
-            </div><!-- /.card-small -->
-        </div><!-- /.cards-small -->
     
 </div><!-- /.widget -->
+                            {% endblock %}
 
-                            
+                            {% block blog_boxed_widget2 %}
                             <div class="widget">
-    <h2 class="widgettitle">Filter</h2>
+    <h2 class="widgettitle">Filtre</h2>
 
     <div class="background-white p20">
         <form method="post" action="?">
             <div class="form-group">
-                <label for="">Keyword</label>
+                <label for="">Mot-clé</label>
                 <input type="text" class="form-control" name="" id="">
             </div><!-- /.form-group -->
 
             <div class="form-group">
-                <label for="">Category</label>
+                <label for="">Catégorie</label>
 
                 <select class="form-control" title="Select Category">
-                    <option>Automotive</option>
-                    <option>Real Estate</option>
+                    {% for category in serviceCategories %}
+                    <option>{{ category.name }}</option>
+                    {% endfor %}
                 </select>
             </div><!-- /.form-group -->
 
             <div class="form-group">
-                <label for="">Location</label>
+                <label for="">Ville</label>
                 <select class="form-control" title="Select Location">
-                    <option>New York</option>
-                    <option>San Francisco</option>
+
+                    {% for locality in localities %}
+                    <option>{{ locality.locality }}</option>
+                    {% endfor %}
+
                 </select>
             </div><!-- /.form-group -->
 
             <div class="form-group">
-                <label for="">Starting Price</label>
+                <label for="">Service</label>
                 <input type="text" class="form-control" name="" id="">
             </div><!-- /.form-group -->
 
-            <button class="btn btn-primary btn-block" type="submit">Search</button>
+            <button class="btn btn-primary btn-block" type="submit">Recherche</button>
         </form>
     </div>
 </div><!-- /.widget -->
+                            {% endblock %}
 
-
+                            {% block blog_boxed_widget3 %}
                             <div class="widget">
-    <h2 class="widgettitle">Working Hours</h2>
+    <h2 class="widgettitle">Meilleurs prestataires</h2>
 
     <div class="p20 background-white">
         <div class="working-hours">
+            {# Boucle des meilleurs prestataires #}
+            {% for provider in bestProviders %}
     		<div class="day clearfix">
-    			<span class="name">Mon</span><span class="hours">07:00 AM - 07:00 PM</span>
+                <a href="{{ path('provider_detail', {'slug': provider.slug }) }}"><span class="name">{{ provider.brandName }}</span></a><br><span class="hours">Fans : {{ provider.totalFans }}</span>
     		</div><!-- /.day -->
+            {% endfor %}
 
-    		<div class="day clearfix">
-    			<span class="name">Tue</span><span class="hours">07:00 AM - 07:00 PM</span>
-    		</div><!-- /.day -->
-
-    		<div class="day clearfix">
-    			<span class="name">Wed</span><span class="hours">07:00 AM - 07:00 PM</span>
-    		</div><!-- /.day -->
-
-    		<div class="day clearfix">
-    			<span class="name">Thu</span><span class="hours">07:00 AM - 07:00 PM</span>
-    		</div><!-- /.day -->
-
-    		<div class="day clearfix">
-    			<span class="name">Fri</span><span class="hours">07:00 AM - 07:00 PM</span>
-    		</div><!-- /.day -->
-
-    		<div class="day clearfix">
-    			<span class="name">Sat</span><span class="hours">07:00 AM - 02:00 PM</span>
-    		</div><!-- /.day -->
-
-    		<div class="day clearfix">
-    			<span class="name">Sun</span><span class="hours">Closed</span>
-    		</div><!-- /.day -->
     	</div>
     </div>
 </div><!-- /.widget -->
+                            {% endblock %}
 
-
+                            {% block blog_boxed_widget4 %}
                             <div class="widget">
-    <h2 class="widgettitle">Categories</h2>
+    <h2 class="widgettitle">Catégories</h2>
 
     <ul class="menu">
-        <li><a href="#">Automotive</a></li>
-        <li><a href="#">Jobs</a></li>
-        <li><a href="#">Nightlife</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Transportation</a></li>
-        <li><a href="#">Real Estate</a></li>
-        <li><a href="#">Restaurants</a></li>
+
+        {% for category in serviceCategories %}
+        <li><a href="#">{{ category.name }}</a></li>
+        {% endfor %}
+
     </ul><!-- /.menu -->
 </div><!-- /.wifget -->
+                            {% endblock %}
 
-
+                            {% block blog_boxed_widget5 %}
                             <div class="widget">
-    <h2 class="widgettitle">Archives</h2>
+    <h2 class="widgettitle">Promotions récentes</h2>
 
     <ul class="menu">
-        <li><a href="#">August <strong class="pull-right">12</strong></a></li>
-        <li><a href="#">July <strong class="pull-right">23</strong></a></li>
-        <li><a href="#">June <strong class="pull-right">53</strong></a></li>
+
+        {# Boucle des promotions récentes #}
+        {% for promotion in recentPromotions %}
+        <li><a href="#">{{ promotion.provider.brandName }} <strong class="pull-right">12    </strong></a></li>
+        {% endfor %}
     </ul><!-- /.menu -->
 </div><!-- /.wifget -->
+                            {% endblock %}
+
 
                         </div><!-- /.sidebar -->
                     </div><!-- /.col-* -->
@@ -222,58 +182,4 @@
 
 {% endblock %}
 
-{% block footer %}
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h2>About Superlist</h2>
 
-                        <p>Superlist is directory template built upon Bootstrap and SASS to bring great experience in creation of directory.</p>
-                    </div><!-- /.col-* -->
-
-                    <div class="col-sm-4">
-                        <h2>Contact Information</h2>
-
-                        <p>
-                            Your Street 123, Melbourne, Australia<br>
-                            +1-123-456-789, <a href="#">sample@example.com</a>
-                        </p>
-                    </div><!-- /.col-* -->
-
-                    <div class="col-sm-4">
-                        <h2>Stay Connected</h2>
-
-                        <ul class="social-links nav nav-pills">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        </ul><!-- /.header-nav-social -->
-                    </div><!-- /.col-* -->
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </div><!-- /.footer-top -->
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-left">
-                    &copy; 2017 All rights reserved. Created by <a href="#">Iracanyes</a>.
-                </div><!-- /.footer-bottom-left -->
-
-                <div class="footer-bottom-right">
-                    <ul class="nav nav-pills">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                        <li><a href="contact-1.html">Contact</a></li>
-                    </ul><!-- /.nav -->
-                </div><!-- /.footer-bottom-right -->
-            </div><!-- /.container -->
-        </div>
-    </footer><!-- /.footer -->
-{% endblock %}

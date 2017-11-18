@@ -43,6 +43,13 @@ class HomeController extends Controller
         $serviceCategories = $em->getRepository("App:ServiceCategory")
             ->findAll();
 
+        /* Pour tester les valeurs retournés par une variable, on peut utiliser la méthode
+            dump(var) pour afficher les valeurs dans le navigateurs
+            die($message) permet de sortir de l'exécution du script
+
+        dump($serviceCategories);
+        die();
+        */
         // Services récents : DQL à faire
         $services = $em->getRepository("App:Service")
             ->recentServices();
@@ -52,11 +59,20 @@ class HomeController extends Controller
             ->recentPromotions();
         // Provider classé par nombre de fans.
         $bestProviders = $em->getRepository("App:Provider")
-            ->mostFans();
+            ->mostFans(4);
 
         // Recent comments
         $recentComments = $em->getRepository("App:Comment")
             ->recentComments();
+
+        // Expiring promotions
+        $expiringPromotions = $em->getRepository("App:Promotion")
+            ->expiringPromotions();
+
+        // Catégorie de service et providers
+        $serviceCategoriesPlusProviders = $em->getRepository("App:ServiceCategory")
+            ->getServiceCategoriesAndProviders();
+
 
         if(!$providers){
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
@@ -82,6 +98,14 @@ class HomeController extends Controller
             throw new NotFoundHttpException("Aucun commentaire pour un prestataire n'a été effectué!");
         }
 
+        if(!$expiringPromotions){
+            throw new NotFoundHttpException("Aucun promotion en cours d'expiration n'est présent!");
+        };
+
+        if(!$serviceCategoriesPlusProviders){
+            throw new NotFoundHttpException("Aucune catégorie de service n'est présente!");
+        }
+
 
         return $this->render(
             "superlist/index.html.twig",
@@ -94,8 +118,18 @@ class HomeController extends Controller
                 "serviceCategories" => $serviceCategories,
                 "promotions" => $promotions,
                 "bestProviders" => $bestProviders,
-                "recentComments" => $recentComments
+                "recentComments" => $recentComments,
+                "expiringPromotions" =>$expiringPromotions,
+                "serviceCategoriesPlusProviders" => $serviceCategoriesPlusProviders
             )
         );
-    }            
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function getContactPage(): Response
+    {
+        return $this->render('superlist/contact.html.twig');
+    }
 }

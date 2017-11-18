@@ -332,7 +332,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getImages(): ArrayCollection
+    public function getImages(): Collection
     {
         return $this->images;
     }
@@ -369,7 +369,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getServices(): ArrayCollection
+    public function getServices(): Collection
     {
         return $this->services;
     }
@@ -494,7 +494,7 @@ class Provider extends User
      *
      * @return Collection
      */
-    public function getFans(): Collection
+    public function getFans(): ArrayCollection
     {
         return $this->fans;
     }
@@ -594,9 +594,10 @@ class Provider extends User
      */
     public function getAddress(): string
     {
-        return $this->street+"<br>"
-            +$this->getPostalCode()+"<br>"+$this->getTownship()+"<br>"
-            +$this->getLocality();
+        return "".$this->getStreet()."</br>"
+            .parent::getPostalCode()->getPostalCode()." "
+            .parent::getTownship()->getTownship()."</br>"
+            .parent::getLocality()->getLocality();
     }
 }
 
