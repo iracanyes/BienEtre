@@ -19,5 +19,48 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function searchBy(array $criteria): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select('s')
+            ->from($this->_entityName, "s")
+            ->innerJoin('s.provider','p')
+            ->addSelect('p')
+            ->innerJoin('p.logo','i')
+            ->addSelect('i')
+            ->innerJoin('p.locality','l')
+            ->addSelect('l')
+            ->innerJoin('p.postalCode', 'pc')
+            ->addSelect('pc')
+            ->innerJoin('p.township','t')
+            ->addSelect('t');
+
+        /* Exemple d'ajout de critère de recherche
+        if($locality) {
+            $qb->andWhere($qb->expr()->like('p.locality',':locality'))
+                ->setParameter('locality', $locality);
+        }
+        */
+        if(!empty($criteria['locality']) || !empty($criteria['postalCode']) || !empty($criteria['township'])){
+            foreach ($criteria as $key=>$value){
+
+                if(is_string($value)){
+
+                    $qb->andWhere($qb->expr()->like("p.".$key, ":".$key))
+                        ->setParameter($key, $value);
+
+                }
+
+                if($key === "postalCode" && is_int($value)){
+
+                    $qb->andWhere($qb->expr()->eq("p.".$key, ":".$key))
+                        ->setParameter($key, $value);
+                }
+            }
+        }
+        return $qb->getQuery()->getResult();
+
+    }
 }
 

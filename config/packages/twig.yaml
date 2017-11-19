@@ -3,5 +3,5 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        site_name: 'ISL Symfony3.9 cours'
+        site_name: 'ISL Symfony3.9 - Bien-Être'
         logo_url: 'build/images/favicon.png'

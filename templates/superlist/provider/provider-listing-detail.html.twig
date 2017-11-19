@@ -1,6 +1,6 @@
-{% extends "superlist/listing-detail.html" %}
+{% extends "superlist/listing-detail.html.twig" %}
 
-{% block provider-title %}
+{% block provider_resume %}
     <div class="detail-banner-left">
     <div class="detail-banner-info">
         <div class="detail-label">Restaurant</div>
@@ -12,7 +12,7 @@
     </h2>
 
     <div class="detail-banner-address">
-        <i class="fa fa-map-o"></i> {{ provider.getAddress }}
+        <i class="fa fa-map-o"></i>{{ provider.getAddress|raw }}
     </div><!-- /.detail-banner-address -->
 
         <!-- /.detail-banner-rating
@@ -31,20 +31,20 @@
          Gestion de l'ajout aux favoris en JS
          -->
     <div class="detail-banner-btn bookmark">
-        <i class="fa fa-bookmark-o"></i> <span data-toggle="Bookmarked">Bookmark</span>
+        <i class="fa fa-bookmark-o"></i> <span data-toggle="Bookmarked">Ajoutez aux favoris</span>
     </div><!-- /.detail-claim -->
 
         <!-- /.detail-claim
          Gestion de l'ajout d'un vote en JS
          -->
     <div class="detail-banner-btn heart">
-        <i class="fa fa-heart-o"></i> <span data-toggle="I Love It">Give Heart</span>
+        <i class="fa fa-heart-o"></i> <span data-toggle="I Love It">Votez</span>
     </div><!-- /.detail-claim -->
 
 </div><!-- /.detail-banner-left -->
 {% endblock %}
 
-{% block provider-content %}
+{% block provider_content %}
 <div class="row detail-content">
     <div class="col-sm-7">
         <div class="detail-gallery">
@@ -58,7 +58,7 @@
                 {% for image in provider.images %}
                 <li class="detail-gallery-list-item active">
                     <a data-target="{{ image.url }}">
-                        <img src="{{ image.url }}" alt="{{ image.alt }}">
+                        <img src="{{ image.url }}" alt="">
                     </a>
                 </li>
                 {% endfor %}
@@ -208,18 +208,18 @@
 
         <div class="background-white p20">
             <div class="detail-overview-hearts">
-                <i class="fa fa-heart"></i> <strong>213 </strong>people love it
+                <i class="fa fa-heart"></i> <strong>{{ provider.totalFans }} </strong>fans
             </div>
             <div class="detail-overview-rating">
-                <i class="fa fa-star"></i> <strong>4.3 / 5 </strong>from <a href="#reviews">316 reviews</a>
+                <i class="fa fa-star"></i> <strong>4.3 / 5 </strong>sur <a href="#reviews">{{ provider.opinions|length }} avis</a>
             </div>
 
             <div class="detail-actions row">
                 <div class="col-sm-4">
-                    <div class="btn btn-primary btn-book"><i class="fa fa-shopping-cart"></i> Book Now</div>
+                    <div class="btn btn-primary btn-book"><i class="fa fa-shopping-cart"></i> Réservation</div>
                 </div><!-- /.col-sm-4 -->
                 <div class="col-sm-4">
-                    <div class="btn btn-secondary btn-share"><i class="fa fa-share-square-o"></i> Share
+                    <div class="btn btn-secondary btn-share"><i class="fa fa-share-square-o"></i> Partager
                         <div class="share-wrapper">
                             <ul class="share">
                                 <li><i class="fa fa-facebook"></i> Facebook</li>
@@ -232,32 +232,31 @@
                     </div>
                 </div><!-- /.col-sm-4 -->
                 <div class="col-sm-4">
-                    <div class="btn btn-secondary btn-claim"><i class="fa fa-hand-peace-o"></i> Claim</div>
+                    <div class="btn btn-secondary btn-claim"><i class="fa fa-hand-peace-o"></i> Réclamation</div>
                 </div><!-- /.col-sm-4 -->
             </div><!-- /.detail-actions -->
         </div>
 
-        <h2>About <span class="text-secondary">Brazilian Coffe Taste</span></h2>
+        <h2>À propos de <span class="text-secondary">{{ provider.brandName }}</span></h2>
         <div class="background-white p20">
             <div class="detail-vcard">
                 <div class="detail-logo">
-                    <img src="assets/img/tmp/pragmaticmates-logo.png">
+                    <img src="{{ provider.logo.url }}">
                 </div><!-- /.detail-logo -->
 
                 <div class="detail-contact">
                     <div class="detail-contact-email">
-                        <i class="fa fa-envelope-o"></i> <a href="mailto:#">company@example.com</a>
+                        <i class="fa fa-envelope-o"></i> <a href="mailto:#">{{ provider.emailContact }}</a>
                     </div>
                     <div class="detail-contact-phone">
-                        <i class="fa fa-mobile-phone"></i> <a href="tel:#">+01-23-456-789</a>
+                        <i class="fa fa-mobile-phone"></i> <a href="tel:#">{{ provider.phoneNumber }}</a>
                     </div>
                     <div class="detail-contact-website">
-                        <i class="fa fa-globe"></i> <a href="#">www.superlist.com</a>
+                        <i class="fa fa-globe"></i> <a href="{{ provider.website }}">{{ provider.website }}</a>
                     </div>
                     <div class="detail-contact-address">
                         <i class="fa fa-map-o"></i>
-                        347/26 22nd Avenue<br>
-                        NYC AZ 85705, USA
+                        {{ provider.getAddress()|raw }}
                     </div>
                 </div><!-- /.detail-contact -->
             </div><!-- /.detail-vcard -->
@@ -269,7 +268,7 @@
             </div>
 
             <div class="detail-follow">
-                <h5>Follow Us:</h5>
+                <h5>Suivez-nous:</h5>
                 <div class="follow-wrapper">
                     <a class="follow-btn facebook" href="#"><i class="fa fa-facebook"></i></a>
                     <a class="follow-btn youtube" href="#"><i class="fa fa-youtube"></i></a>
@@ -281,7 +280,7 @@
         </div>
 
         <div class="widget">
-            <h2 class="widgettitle">Working Hours</h2>
+            <h2 class="widgettitle">Heure d'ouverture</h2>
 
             <div class="p20 background-white">
                 <div class="working-hours">
@@ -293,31 +292,12 @@
                         <span class="name">Tue</span><span class="hours">07:00 AM - 07:00 PM</span>
                     </div><!-- /.day -->
 
-                    <div class="day clearfix">
-                        <span class="name">Wed</span><span class="hours">07:00 AM - 07:00 PM</span>
-                    </div><!-- /.day -->
-
-                    <div class="day clearfix">
-                        <span class="name">Thu</span><span class="hours">07:00 AM - 07:00 PM</span>
-                    </div><!-- /.day -->
-
-                    <div class="day clearfix">
-                        <span class="name">Fri</span><span class="hours">07:00 AM - 07:00 PM</span>
-                    </div><!-- /.day -->
-
-                    <div class="day clearfix">
-                        <span class="name">Sat</span><span class="hours">07:00 AM - 02:00 PM</span>
-                    </div><!-- /.day -->
-
-                    <div class="day clearfix">
-                        <span class="name">Sun</span><span class="hours">Closed</span>
-                    </div><!-- /.day -->
                 </div>
             </div>
         </div><!-- /.widget -->
 
 
-        <h2>Amenities</h2>
+        <h2>Catégories</h2>
 
         <div class="background-white p20">
             <ul class="detail-amenities">
@@ -326,21 +306,15 @@
                 <li class="no">Vine</li>
                 <li class="yes">Terrace</li>
                 <li class="no">Bar</li>
-                <li class="yes">Take Away Coffee</li>
-                <li class="no">Catering</li>
-                <li class="yes">Raw Food</li>
-                <li class="no">Delivery</li>
-                <li class="yes">No-smoking room</li>
-                <li class="no">Reservations</li>
             </ul>
         </div><!-- /.detail-amenities -->
 
-        <h2>Enquire Form</h2>
+        <h2>Contactez-nous</h2>
 
         <div class="detail-enquire-form background-white p20">
             <form method="post" action="?">
                 <div class="form-group">
-                    <label for="">Name</label>
+                    <label for="">Nom</label>
                     <input type="text" class="form-control" name="" id="">
                 </div><!-- /.form-group -->
 
@@ -354,13 +328,13 @@
                     <textarea class="form-control" name="" id="" rows="5" required></textarea>
                 </div><!-- /.form-group -->
 
-                <p>Required fields are marked <span class="required">*</span></p>
+                <p>Champs requis <span class="required">*</span></p>
 
-                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-paper-plane"></i>Send Message</button>
+                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-paper-plane"></i>Envoyer le message</button>
             </form>
         </div><!-- /.detail-enquire-form -->
 
-        <h2>3 Reasons Why Choose Us</h2>
+        <h2>3 Raisons de nous choisir</h2>
 
         <div class="background-white p20 reasons">
             <div class="reason">
@@ -393,7 +367,7 @@
         </div>
 
         <div class="detail-payments">
-            <h3>Accepted Payments</h3>
+            <h3>Mode de paiement autorisé</h3>
 
             <ul>
                 <li><a href="#"><i class="fa fa-paypal"></i></a></li>
@@ -406,12 +380,12 @@
     </div><!-- /.col-sm-5 -->
 
     <div class="col-sm-12">
-        <h2>Submit a Review</h2>
+        <h2>Soumettre votre avis</h2>
 
         <form class="background-white p20 add-review" method="post" action="?">
             <div class="row">
                 <div class="form-group col-sm-6">
-                    <label for="">Name <span class="required">*</span></label>
+                    <label for="">Nom <span class="required">*</span></label>
                     <input type="text" class="form-control" id="" required>
                 </div><!-- /.col-sm-6 -->
 
@@ -424,7 +398,7 @@
             <div class="row">
                 <div class="form-group input-rating col-sm-3">
 
-                    <div class="rating-title">Food</div>
+                    <div class="rating-title">Accueil</div>
 
                     <input type="radio" value="1" name="food" id="rating-food-1">
                     <label for="rating-food-1"></label>
@@ -440,7 +414,7 @@
                 </div><!-- /.col-sm-3 -->
                 <div class="form-group input-rating col-sm-3">
 
-                    <div class="rating-title">Staff</div>
+                    <div class="rating-title">Équipe</div>
 
                     <input type="radio" value="1" name="staff" id="rating-staff-1">
                     <label for="rating-staff-1"></label>
@@ -456,7 +430,7 @@
                 </div><!-- /.col-sm-3 -->
                 <div class="form-group input-rating col-sm-3">
 
-                    <div class="rating-title">Value</div>
+                    <div class="rating-title">Qualité</div>
 
                     <input type="radio" value="1" name="value" id="rating-value-1">
                     <label for="rating-value-1"></label>
@@ -472,7 +446,7 @@
                 </div><!-- /.col-sm-3 -->
                 <div class="form-group input-rating col-sm-3">
 
-                    <div class="rating-title">Atmosphere</div>
+                    <div class="rating-title">Atmosphère</div>
 
                     <input type="radio" value="1" name="atmosphere" id="rating-atmosphere-1">
                     <label for="rating-atmosphere-1"></label>
@@ -490,19 +464,19 @@
 
             <div class="row">
                 <div class="form-group col-sm-6">
-                    <label for="">Pros</label>
+                    <label for="">Comentaire positif</label>
                     <textarea class="form-control" rows="5" id=""></textarea>
                 </div><!-- /.col-sm-6 -->
                 <div class="form-group col-sm-6">
-                    <label for="">Cons</label>
+                    <label for="">Commentaire négatif</label>
                     <textarea class="form-control" rows="5" id=""></textarea>
                 </div><!-- /.col-sm-6 -->
 
                 <div class="col-sm-8">
-                    <p>Required fields are marked <span class="required">*</span></p>
+                    <p>Champs requis <span class="required">*</span></p>
                 </div><!-- /.col-sm-8 -->
                 <div class="col-sm-4">
-                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-star"></i>Submit Review</button>
+                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-star"></i>Envoyer le commentaire</button>
                 </div><!-- /.col-sm-4 -->
             </div><!-- /.row -->
         </form>

@@ -11,6 +11,8 @@ label {
     border: 2px solid $color-gray-medium;
     height: 40px;
     line-height: 20px;
+    // Modification : ajustement balise select avec les Icons
+    padding: 10px 12px 5px 30px;
 
     &:active, &:focus {
         border: 2px solid $color-gray-medium;

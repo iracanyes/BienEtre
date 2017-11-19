@@ -594,7 +594,7 @@ class Provider extends User
      */
     public function getAddress(): string
     {
-        return "".$this->getStreet()."</br>"
+        return "".ucwords($this->getStreet())."</br>"
             .parent::getPostalCode()->getPostalCode()." "
             .parent::getTownship()->getTownship()."</br>"
             .parent::getLocality()->getLocality();

@@ -5,7 +5,7 @@
 #}
 {% extends "superlist/search-map.html.twig" %}
 
-{% block search-list %}
+{% block search_list %}
 
 <div class="fullscreen-scroll">
     <div class="fullscreen-scroll-inner">
@@ -94,15 +94,15 @@
                 {% for provider in providers %}
                     <div class="card-row">
                         <div class="card-row-inner">
-                            <div class="card-row-image" data-background-image="{{ provider.logo.url }}">
-                                <div class="card-row-label"><a href="listing-detail.html">{{ provider.serviceCategories[0].name }}</a></div><!-- /.card-row-label -->
+                            <div class="card-row-image" data-background-image="{{ provider.images[0].url }}">
+                                <div class="card-row-label"><a href="{{ path('provider_detail', {'slug': provider.slug }) }}">{{ provider.serviceCategories[0].name }}</a></div><!-- /.card-row-label -->
 
                                 <div class="card-row-price">{{ provider.totalFans }}</div><!-- -->
 
                             </div><!-- /.card-row-image -->
 
                             <div class="card-row-body">
-                                <h2 class="card-row-title"><a href="listing-detail.html">{{ provider.brandName }}</a></h2>
+                                <h2 class="card-row-title"><a href="{{ path('provider_detail', {'slug': provider.slug }) }}">{{ provider.brandName }}</a></h2>
                                 <div class="card-row-content">
                                     <p>
 
@@ -124,10 +124,10 @@
 
 
 
-                                    <dd>Location</dd><dt>New York / Village</dt>
+                                    <dd>Numéro de télephone</dd><dt>{{ provider.phoneNumber }}</dt>
 
 
-                                    <dd>Rating</dd>
+                                    <dd>Votes</dd>
                                     <dt>
                                         <div class="card-row-rating">
                                             <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>

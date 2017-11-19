@@ -4,7 +4,7 @@
 {% block contentDetail %}
 
     <div class="page-title">
-        <h1>Information Service : {{ service.name }}</h1>
+        <h1>Service : {{ service.name }}</h1>
     </div><!-- /.page-title -->
 
     <div class="posts post-detail">
@@ -76,14 +76,14 @@
             {% for comment in service.provider.opinions %}
             <div class="comment">
                 <div class="comment-image">
-                    <img src="{{ comment.client.avatar }}" alt="">
+                    <img src="{{ comment.client.avatar.url }}" alt="">
                 </div><!-- /.comment-image -->
 
                 <div class="comment-inner">
                     <div class="comment-header">
                         <h2>{{ comment.client.firstname~" "~comment.client.lastname }}</h2>
                         <span class="separator">&#8226;</span>
-                        <span class="comment-date">{{ comment.entryDate }}</span>
+                        <span class="comment-date">{{ comment.entryDate|date("d/m/Y") }}</span>
                         <div class="comment-reply">
                             <a href="#"><i class="fa fa-reply"></i> Répondre</a>
                         </div><!-- /.comment-reply -->
@@ -92,7 +92,10 @@
                     <div class="comment-content-wrapper">
                         <div class="comment-content">
                             <p>
-                                {{ comment.content }}
+                                {{ comment.positiveComment }}
+                            </p>
+                            <p>
+                                {{ comment.negativeComment }}
                             </p>
                         </div><!-- /.comment-content -->
                     </div><!-- /.comment-content-wrapper -->
@@ -151,20 +154,15 @@
 
         </div><!-- /.comments -->
 
-        <h2>Write a Comment</h2>
+        <h2>Écrire un commentaire</h2>
         <form class="background-white p20 add-comment" method="post" action="?">
 
-            <p>Required fields are marked <span class="required">*</span></p>
+            <p>Champs requis <span class="required">*</span></p>
 
             <div class="row">
 
-                <div class="form-group col-sm-12">
-                    <label for="">Comment  <span class="required">*</span></label>
-                    <textarea class="form-control" rows="5" id="" required></textarea>
-                </div><!-- /.col-sm-12 -->
-
                 <div class="form-group col-sm-4">
-                    <label for="">Name <span class="required">*</span></label>
+                    <label for="">Nom <span class="required">*</span></label>
                     <input type="text" class="form-control" id="" required>
                 </div><!-- /.col-sm-4 -->
 
@@ -174,16 +172,21 @@
                 </div><!-- /.col-sm-4 -->
 
                 <div class="form-group col-sm-4">
-                    <label for="">Website</label>
+                    <label for="">Site web</label>
                     <input type="text" class="form-control" id="">
                 </div><!-- /.col-sm-4 -->
 
+                <div class="form-group col-sm-12">
+                    <label for="">Commentaire  <span class="required">*</span></label>
+                    <textarea class="form-control" rows="5" id="" required></textarea>
+                </div><!-- /.col-sm-12 -->
+
                 <div class="col-sm-8">
-                    <p class="form-allowed-tags" id="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
+                    <p class="form-allowed-tags" id="form-allowed-tags">Les balises <abbr title="HyperText Markup Language">HTML</abbr>suivants sont autorisés:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
                 </div><!-- /.col-sm-8 -->
 
                 <div class="col-sm-4">
-                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-comments"></i>Post Comment</button>
+                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-comments"></i>Envoyer le commentaire</button>
                 </div><!-- /.col-sm-4 -->
 
             </div><!-- /.row -->

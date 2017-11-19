@@ -33,12 +33,82 @@ class ServiceController extends Controller
         );
     }
 
+
+
+    /**
+     * Route Service - Search Map
+     * @Route("/services/search", name="service_search")
+     *
+     * @param Request $request
+     * @return Response
+     *
+     */
+    public function searchAction(Request $request): Response
+    {
+        /**
+         * Récupération des paramètres de recherche
+         */
+        $locality = $request->request->get("locality") ? $request->request->get("locality") : null;
+        $postalCode = $request->request->get('postalCode') ?? null;
+        $township = $request->request->get("township") ?? null ;
+
+        /**
+         * Données du formulaire de recherche
+         */
+        $em = $this->getDoctrine();
+
+        $localities = $em->getRepository('App:Locality')
+            ->findAll();
+        $townships = $em->getRepository('App:Township')
+            ->findAll();
+        $postalCodes = $em->getRepository("App:PostalCode")
+            ->findAll();
+
+        /**
+         * Résultat de recherche
+         */
+
+        $services = $em->getRepository("App:Service")
+            ->searchBy(
+                array(
+                    "locality"=> $locality,
+                    "postalCode" => $postalCode,
+                    "township" => $township
+                )
+            );
+
+
+        if(!$localities){
+            throw $this->createNotFoundException("Aucune localité trouvé en DB!");
+        }
+
+        if(!$townships){
+            throw $this->createNotFoundException("Aucune ville trouvé en DB!");
+        }
+
+        if(!$postalCodes){
+            throw $this->createNotFoundException("Aucun code postal trouvé en DB!");
+        }
+
+        return $this->render(
+            'superlist/service/service-search-map.html.twig',
+            array(
+                'localities' => $localities,
+                "townships" => $townships,
+                "postalCodes" => $postalCodes,
+                "services" => $services
+            )
+        );
+
+    }
+
     /**
      * @Route("/services/{slug}", name="service_detail")
      *
      * @param Request $request
+     * @return Response
      */
-    public function showAction(Request $request)
+    public function showAction(Request $request): Response
     {
         $em = $this->get("doctrine.orm.entity_manager");
 
@@ -55,6 +125,6 @@ class ServiceController extends Controller
         return $this->render(
             "superlist/service/service-detail.html.twig",
             array("service"=> $service)
-            );
+        );
     }
 }

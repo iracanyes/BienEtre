@@ -28,17 +28,14 @@
                             <li class="active">
                                 <a href="{{ path('homepage') }}">Accueil <i class="fa fa-chevron-down"></i></a>
 
-                                <ul class="sub-menu">
-                                    <li><a href="index-video.html">Video v1</a></li>
-
-                                </ul>
                             </li>
 
                             <li >
                                 <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
 
                                 <ul class="sub-menu">
-                                    <li><a href="{{ path('provider_detail',{slug: "konopelski-inc-llc"}) }}">Detail</a></li>
+                                    <li><a href="{{ path('provider_list') }}">Liste des prestataires</a></li>
+                                    <li><a href="{{ path('provider_search') }}">Recherche</a></li>
 
                                 </ul>
                             </li>
@@ -49,18 +46,16 @@
                                 <a href="{{ path('service_list') }}">Services <i class="fa fa-chevron-down"></i></a>
 
                                 <ul class="sub-menu">
-                                    <li><a href="admin-dashboard.html">Dashboard</a></li>
+                                    <li><a href="{{ path('service_list') }}">Services disponibles</a></li>
+                                    <li><a href="{{ path('service_search') }}">Recherche</a></li>
 
                                 </ul>
                             </li>
 
 
                             <li >
-                                <a href="#">Contact <i class="fa fa-chevron-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="contact-1.html">Contact v1</a></li>
+                                <a href="{{ path('contact') }}">Contact <i class="fa fa-chevron-down"></i></a>
 
-                                </ul>
                             </li>
                             <li class="has-mega-menu ">
                                 <a href="#">Administrateur <i class="fa fa-chevron-down"></i></a>
@@ -168,14 +163,14 @@
                                                     <div class="hero-image-category form-group">
                                                         <select class="form-control" title="Commune">
                                                             {% for township in townships %}
-                                                                <option value="">{{ township.township }}</option>
+                                                                <option value="{{ township.township }}">{{ township.township }}</option>
                                                             {% endfor %}
                                                         </select>
                                                     </div><!-- /.form-group -->
                                                     <div class="hero-image-location form-group">
                                                         <select class="form-control" title="Commune">
                                                             {% for postalCode in postalCodes %}
-                                                                <option value="">{{ postalCode.postalCode }}</option>
+                                                                <option value="{{ postalCode.postalCode }}">{{ postalCode.postalCode }}</option>
                                                             {% endfor %}
                                                         </select>
                                                     </div><!-- /.form-group -->
@@ -228,7 +223,7 @@
                                     <div class="card-simple" data-background-image="{{ service.provider.logo.url }}">
                                         <div class="card-simple-background">
                                             <div class="card-simple-content">
-                                                <h2><a href="listing-detail.html">{{ service.provider.brandName }}</a></h2>
+                                                <h2><a href="{{ path("provider_detail", {"slug": service.provider.slug }) }}">{{ service.provider.brandName }}</a></h2>
                                                 <div class="card-simple-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -244,7 +239,7 @@
                                                 </div><!-- /.card-simple-actions -->
                                             </div><!-- /.card-simple-content -->
 
-                                            <div class="card-simple-label">service.provider.serviceCategory.name</div>
+                                            <div class="card-simple-label">{{ service.provider.serviceCategories[0].name }}</div>
 
                                         </div><!-- /.card-simple-background -->
                                     </div><!-- /.card-simple -->

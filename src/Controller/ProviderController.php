@@ -20,7 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProviderController extends Controller
 {
-    private const NUM_RECENT_PROVIDERS = 3;
+    private const HOME_NUM_RECENT_PROVIDERS = 3;
+    private const HOME_NUM_BEST_PROVIDERS = 5;
     /**
      * Route interne /providers
      * 
@@ -38,7 +39,7 @@ class ProviderController extends Controller
          * Widget 1 : Prestataires ajoutés récemment
          */
         $recentProviders = $em->getRepository("App:Provider")
-            ->recentProviders(3);
+            ->recentProviders(self::HOME_NUM_RECENT_PROVIDERS);
 
         /**
          * Widget 2 : Filtre
@@ -52,7 +53,7 @@ class ProviderController extends Controller
          * Widget 3 : Best Providers
          */
         $bestProviders = $em->getRepository("App:Provider")
-            ->mostFans(5);
+            ->mostFans(self::HOME_NUM_BEST_PROVIDERS);
 
         /**
          * Widget 4 : Catégorie
@@ -167,7 +168,7 @@ class ProviderController extends Controller
 
 
         $recentProviders = $em->getRepository("App:Provider")
-            ->recentProviders(self::NUM_RECENT_PROVIDERS);
+            ->recentProviders(self::HOME_NUM_RECENT_PROVIDERS);
 
         if(!$provider){
             throw new NotFoundHttpException("Le prestataire ".$slug." n'existe pas");
@@ -178,7 +179,7 @@ class ProviderController extends Controller
         }
 
         return $this->render(
-            "superlist/provider/provider-detail.html.twig",
+            "superlist/provider/provider-listing-detail.html.twig",
             array(
                 "provider"=>$provider,
                 "recentProviders" => $recentProviders
