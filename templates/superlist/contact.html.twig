@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="main">
+        <div class="main-inner">
+            <div class="container">
+                <div class="content">
+                    
+    <div class="document-title">
+        <h1>Contact</h1>
+
+        <ul class="breadcrumb">
+            <li><a href="{{ path('homepage') }}">Bien-Être</a></li>
+            <li><a href="{{ path('contact') }}">Contact</a></li>
+        </ul>
+    </div><!-- /.document-title -->
+
+
+
+                    <div class="background-white p30 mb30">
+    <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=Liége+INSTITUT+SAINT+LAURENT&amp;aq=t&amp;sll=37.0625,-95.677068&amp;sspn=60.376022,92.460937&amp;ie=UTF8&amp;hq=Liége+INSTITUT+SAINT+LAURENT&amp;t=m&amp;ll=50.643066,5.5582801&amp;spn=0.006295,0.006295&amp;output=embed" width="100%" height="350" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contact-form-wrapper clearfix">
+            <form class="contact-form" method="post" action="?">
+                    <div class="form-group">
+                        <label for="contact-form-name">Nom</label>
+                        <input type="text" name="name" id="contact-form-name" class="form-control">
+                    </div><!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label for="contact-form-subject">Sujet</label>
+                        <input type="text" name="subject" id="contact-form-subject" class="form-control">
+                    </div><!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label for="contact-form-email">E-mail</label>
+                        <input type="text" name="email" id="contact-form-email" class="form-control">
+                    </div><!-- /.form-group -->
+
+                <div class="form-group">
+                    <label for="contact-form-message">Message</label>
+                    <textarea class="form-control" id="contact-form-message" rows="6"></textarea>
+                </div><!-- /.form-group -->
+
+                <button class="btn btn-primary pull-right">Envoyer</button>
+            </form><!-- /.contact-form -->
+        </div><!-- /.contact-form-wrapper -->
+    </div>
+
+    <div class="col-sm-6">
+        <h3>Nous serons râvi d'entendre votre avis</h3>
+        <p>
+            <b>Confucius</b>
+        </p>
+        <blockquote>
+            Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie.
+        </blockquote>
+
+
+
+
+
+
+
+
+        </p>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Adresse</h3>
+
+                <p>
+                    13/2 Rue Saint-Laurent,<br>
+                    4800 Liège, Belgique
+                </p>
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-6">
+                <h3>Contacts</h3>
+
+                <p>
+                    04 223 11 31<br>
+                    0476 65 45 65
+                </p>
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.col-* -->
+</div><!-- /.row -->
+
+                </div><!-- /.content -->
+            </div><!-- /.container -->
+        </div><!-- /.main-inner -->
+    </div><!-- /.main -->
+
+{% endblock %}
+

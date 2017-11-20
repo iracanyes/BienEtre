@@ -1,0 +1,9 @@
+[Doctrine\DBAL\Exception\SyntaxErrorException]
+  An exception occurred while executing 'INSERT INTO be_position (order, clie
+  nt_id, bloc_id) VALUES (?, ?, ?)' with params [5, 11, 1]:
+                                                QLSTATE[42000]: Syntax error or access violation: 1064 You have an error i
+  n your SQL syntax; check the manual that corresponds to your MySQL server v
+  ersion for the right syntax to use near 'order, client_id, bloc_id) VALUES
+  (5, 11, 1)' at line 1
+
+  => Utilisation d'un mot-clé réservé de MySQL (order)

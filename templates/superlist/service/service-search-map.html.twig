@@ -1,0 +1,145 @@
+{#
+    Template : Provider Search Map
+
+
+#}
+{% extends "superlist/search-map.html.twig" %}
+
+{% block search_list %}
+
+<div class="fullscreen-scroll">
+    <div class="fullscreen-scroll-inner">
+        <div class="fullscreen-scroll-padding">
+            <form class="filter" method="post" action="{{ path('provider_search') }}">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nom du prestataire" class="form-control">
+                        </div><!-- /.form-group -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control" title="Choisir la localité">
+
+                                {% for locality in localities %}
+                                    <option>{{ locality.locality }}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div><!-- /.form-group -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control" title="Choisir la ville">
+                                {% for township in townships %}
+                                    <option value="">{{ township.township }}</option>
+                                {% endfor %}
+                            </select>
+                        </div><!-- /.form-group -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control" title="Choisir le code postal">
+                                {% for postalCode in postalCodes %}
+                                    <option value="">{{ postalCode.postalCode }}</option>
+                                {% endfor %}
+                            </select>
+                        </div><!-- /.form-group -->
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="filter-actions">
+                            <a href="#"><i class="fa fa-close"></i> Ré-initialiser</a>
+                            <a href="#"><i class="fa fa-save"></i> Enregistrez la recherche</a>
+                        </div><!-- /.filter-actions -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary">Modifier le résultat</button>
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </form>
+
+
+            <h2 class="page-title">
+                {{ services|length }} résultats correspondants
+
+                <form method="get" action="?" class="filter-sort">
+                    <div class="form-group">
+                        <select title="Sort by">
+                            <option name="price">Prix</option>
+                            <option name="rating">Meilleurs votes</option>
+                            <option name="title">Titre</option>
+                        </select>
+                    </div><!-- /.form-group -->
+
+                    <div class="form-group">
+                        <select title="Order">
+                            <option name="ASC">Asc</option>
+                            <option name="DESC">Desc</option>
+                        </select>
+                    </div><!-- /.form-group -->
+                </form>
+            </h2><!-- /.page-title -->
+
+            <div class="cards-row">
+
+                {% for service in services %}
+                    <div class="card-row">
+                        <div class="card-row-inner">
+                            <div class="card-row-image" data-background-image="{{ service.provider.logo.url }}">
+                                <div class="card-row-label"><a href="listing-detail.html">{{ service.name }}</a></div><!-- /.card-row-label -->
+
+                                <div class="card-row-price">{{ service.provider.totalFans }}</div><!-- -->
+
+                            </div><!-- /.card-row-image -->
+
+                            <div class="card-row-body">
+                                <h2 class="card-row-title"><a href="{{ path("service_detail",{ 'slug': service.slug }) }}">{{ service.provider.brandName }}</a></h2>
+                                <div class="card-row-content">
+                                    <p>
+                                        {{ service.description }}
+                                    </p>
+                                    <p>
+                                        {{ service.additionalInformation }}
+                                    </p>
+                                </div><!-- /.card-row-content -->
+                            </div><!-- /.card-row-body -->
+
+                            <div class="card-row-properties">
+                                <dl>
+
+                                    <dd>Prix</dd><dt>{{ service.pricing }}</dt>
+
+                                    <dd>Début</dd><dt>{{ service.startDate|date('d M Y') }}</dt>
+
+                                    <dd>Fin</dd><dt>{{ service.endDate|date('d M Y') }}</dt>
+
+
+                                    <dd>Votes</dd>
+                                    <dt>
+                                        <div class="card-row-rating">
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                        </div><!-- /.card-row-rating -->
+                                    </dt>
+                                </dl>
+                            </div><!-- /.card-row-properties -->
+                        </div><!-- /.card-row-inner -->
+                    </div><!-- /.card-row -->
+                {% endfor %}
+
+
+            </div><!-- /.cards-row -->
+
+        </div><!-- /.fullscreen-scroll-padding -->
+    </div><!-- /.fullscreen-scroll-inner -->
+</div><!-- /.fullscreen-scroll -->
+
+{% endblock %}
