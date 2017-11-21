@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'superlist/layout.html.twig' %}
 
 {% block main %}
     <div class="main">
@@ -8,7 +8,7 @@
                     <div class="detail-banner" style="background-image: url(assets/img/tmp/detail-banner-1.jpg);">
                         <div class="container">
 
-                            {% block provider_resume %}
+                            {% block title_resume %}
 
                             {% endblock %}
 
@@ -19,7 +19,7 @@
 
                 <div class="container">
 
-                    {% block provider_content %}
+                    {% block main_content %}
 
                     {% endblock %}
 

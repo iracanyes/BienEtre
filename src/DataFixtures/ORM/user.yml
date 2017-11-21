@@ -20,7 +20,7 @@ App\Entity\User:
         nbErrorConnection: 0
         banned: '<boolean()>'
         registryConfirmed: '<boolean(100)>'
-        avatar: '@image<numberBetween(1,2)>'
+        avatar (unique): '@image<numberBetween(1,10)>'
         userType: 'provider'
 
     user_client (template):
@@ -30,7 +30,7 @@ App\Entity\User:
         nbErrorConnection: 0
         banned: '<boolean()>'
         registryConfirmed: '<boolean(100)>'
-        avatar: '@image<numberBetween(1,2)>'
+        avatar: '@image<numberBetween(11,20)>'
         userType: 'client'
 
 App\Entity\Provider:
@@ -46,7 +46,7 @@ App\Entity\Provider:
         locality: '@locality<numberBetween(1,2)>'
         postalCode: '@postalCode<numberBetween(1,2)>'
         logo: '@image<numberBetween(3, 4)>'
-        images: '@image{1..2}'
+        images: ['@image<numberBetween(21,30)>']
         serviceCategories: '@serviceCategory{1..2}'
 
 App\Entity\Client:

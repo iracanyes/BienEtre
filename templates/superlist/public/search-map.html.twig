@@ -1,7 +1,7 @@
 {#
     Template: Recherche par localité|commune|code postal avec Map
 #}
-{% extends 'base.html.twig' %}
+{% extends 'superlist/layout.html.twig' %}
 
 
 {% block main %}
@@ -17,13 +17,13 @@
                 <form class="filter" method="post" action="{{ path('provider_search') }}">
     <div class="row">
         <div class="col-sm-12 col-md-4">
-            <div class="form-group">
+            <div class="hero-image-keyword form-group">
                 <input type="text" placeholder="Nom du prestataire" class="form-control">
             </div><!-- /.form-group -->
         </div><!-- /.col-* -->
 
         <div class="col-sm-12 col-md-4">
-            <div class="form-group">
+            <div class="hero-image-location form-group">
                 <select class="form-control" title="Choisir la localité">
 
                     {% for locality in localities %}
@@ -35,7 +35,7 @@
         </div><!-- /.col-* -->
 
         <div class="col-sm-12 col-md-4">
-            <div class="form-group">
+            <div class="hero-image-location form-group">
                 <select class="form-control" title="Choisir la ville">
                     {% for township in townships %}
                     <option value="">{{ township.township }}</option>
@@ -45,7 +45,7 @@
         </div><!-- /.col-* -->
 
         <div class="col-sm-12 col-md-4">
-            <div class="form-group">
+            <div class="hero-image-location form-group">
                 <select class="form-control" title="Choisir le code postal">
                     {% for postalCode in postalCodes %}
                         <option value="">{{ postalCode.postalCode }}</option>

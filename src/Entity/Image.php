@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * Image
  *
@@ -36,6 +35,20 @@ class Image
      */
     private $url;
 
+    /**
+     * @var Provider
+     *
+     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist", "remove"}, inversedBy="logos")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $providerLogos;
+    /**
+     * @var Provider
+     *
+     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="images")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $providerImages;
 
     /**
      * Get id
@@ -94,4 +107,22 @@ class Image
     {
         return $this->url;
     }
+
+    /**
+     * @return Provider
+     */
+    public function getProvider(): Provider
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @param Provider $provider
+     */
+    public function setProvider(Provider $provider)
+    {
+        $this->provider = $provider;
+    }
+
+
 }

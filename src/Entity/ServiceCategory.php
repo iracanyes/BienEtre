@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Entity\Image;
@@ -69,6 +70,16 @@ class ServiceCategory
      */
     private $providers;
 
+    /**
+     * @var string $slug
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
+    /**
+     * ServiceCategory constructor.
+     */
     public function __construct()
     {
         $this->providers = new ArrayCollection();
@@ -234,6 +245,24 @@ class ServiceCategory
     {
         $this->providers->removeElement($provider);
     }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
+    }
+
+
 
 }
 

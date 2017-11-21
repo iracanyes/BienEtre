@@ -1,4 +1,4 @@
 App\Entity\Image:
-    image{1..15}:
+    image{1..35}:
         place: '<numberBetween(1, 5)>'
         url: '<imageUrl(300, 300)>'

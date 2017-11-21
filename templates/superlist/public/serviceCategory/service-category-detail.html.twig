@@ -4,12 +4,12 @@
 {% block contentDetail %}
 
     <div class="page-title">
-        <h1>Information Prestataire : {{ provider.brandName }}</h1>
+        <h1>Catégorie de service : {{ serviceCategory.name }}</h1>
     </div><!-- /.page-title -->
 
     <div class="posts post-detail">
 
-        <img src="{{ provider.logo.url }}" alt="A Clockwork Origin">
+        <img src="{{ serviceCategory.image.url }}" alt="A Clockwork Origin">
 
         <div class="post-meta clearfix">
             <div class="post-meta-author">Par <a href="blog-detail.html">{{ provider.email }}</a></div><!-- /.post-meta-author -->

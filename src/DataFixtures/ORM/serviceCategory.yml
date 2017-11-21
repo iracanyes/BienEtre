@@ -4,4 +4,4 @@ App\Entity\ServiceCategory:
         description: '<fr_FR:realText(80)>'
         inFrontPage: '<boolean()>'
         isValid: '<boolean()>'
-        image (unique): '@image<numberBetween(6,15)>'
+        image: '@image<numberBetween(31,35)>'

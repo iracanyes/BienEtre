@@ -68,18 +68,18 @@ class Provider extends User
     private $street;
 
     /**
-     * @var Image
+     * @var ArrayCollection
      *
-     * @ORM\OneToOne(targetEntity="Image", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="providerLogos")
+     *
      */
-    private $logo;
+    private $logos;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Image", cascade={"persist","remove"})
-     * @ORM\JoinTable(name="be_provider_image")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="providerImages")
+     *
      */
     private $images;
 
@@ -347,6 +347,9 @@ class Provider extends User
     {
 
         $this->images[] = $image;
+
+        // Association avec de l'image avec le provider
+        $image->setProvider($this);
 
         return $this;
 
