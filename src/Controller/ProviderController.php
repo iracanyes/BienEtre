@@ -76,7 +76,7 @@ class ProviderController extends Controller
         }
 
         return $this->render(
-            'superlist/provider/provider-boxed.html.twig',
+            'superlist/public/provider/provider-boxed.html.twig',
             array(
                 'providers'=> $providers,
                 "recentProviders" => $recentProviders,
@@ -140,7 +140,7 @@ class ProviderController extends Controller
         }
 
         return $this->render(
-            'superlist/provider/provider-search-map.html.twig',
+            'superlist/public/provider/provider-search-map.html.twig',
             array(
                 "providers" => $providers,
                 "localities" => $localities,

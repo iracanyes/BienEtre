@@ -70,7 +70,7 @@ class Provider extends User
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="providerLogos")
+     * @ORM\OneToMany(targetEntity="Image", cascade={"persist"}, mappedBy="providerLogos")
      *
      */
     private $logos;
@@ -78,7 +78,7 @@ class Provider extends User
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="providerImages")
+     * @ORM\OneToMany(targetEntity="Image", cascade={"persist"}, mappedBy="providerImages")
      *
      */
     private $images;
@@ -109,7 +109,7 @@ class Provider extends User
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="favorites")
+     * @ORM\ManyToMany(targetEntity="Client", cascade={"persist"}, mappedBy="favorites")
      */
     private $fans;
 
@@ -139,6 +139,7 @@ class Provider extends User
      */
     public function __construct()
     {
+        $this->logos = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->serviceCategories = new ArrayCollection();
@@ -311,20 +312,34 @@ class Provider extends User
      *
      * @return \App\Entity\Image
      */
-    public function getLogo(): Image
+    public function getLogos(): Collection
     {
-        return $this->logo;
+        return $this->logos;
     }
 
     /**
+     * Add Logo
      * @param \App\Entity\Image $logo
      * @return Provider
      */
-    public function setLogo(Image $logo): Provider
+    public function addLogo(Image $logo): Provider
     {
-            $this->logo = $logo;
+            $this->logos[] = $logo;
+
+            $logo->setProviderLogos($this);
 
             return $this;
+    }
+
+    /**
+     * Remove Logo
+     *
+     * @param Image $logo
+     * @return void
+     */
+    public function removeLogo(Image $logo): void
+    {
+        $this->logos->removeElement($logo);
     }
 
     /**
@@ -349,7 +364,7 @@ class Provider extends User
         $this->images[] = $image;
 
         // Association avec de l'image avec le provider
-        $image->setProvider($this);
+        $image->setProviderImages($this);
 
         return $this;
 

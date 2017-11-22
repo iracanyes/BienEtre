@@ -27,7 +27,7 @@ class ServiceCategoryController extends Controller
         $categories = $em->getRepository("App:ServiceCategory");
 
         return $this->render(
-            "superlist/serviceCategory/service-category-listing-detail.html.twig"
+            "superlist/public/serviceCategory/service-category-listing-detail.html.twig"
         );
     }
 
@@ -54,7 +54,7 @@ class ServiceCategoryController extends Controller
         }
 
         return $this->render(
-            "superlist/serviceCategory/service-category-listing-detail.html.twig",
+            "superlist/public/serviceCategory/service-category-listing-detail.html.twig",
             array("serviceCategory"=>$serviceCategory)
         );
     }

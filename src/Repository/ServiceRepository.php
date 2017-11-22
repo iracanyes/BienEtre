@@ -15,7 +15,12 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->_em->createQueryBuilder()
             ->select('s')
             ->from($this->_entityName,'s')
-            ->orderBy('s.releaseDate','DESC');
+            ->innerJoin('s.provider', 'p')
+            ->addSelect('p')
+            ->innerJoin('p.logos', 'l')
+            ->addSelect('l')
+            ->orderBy('s.releaseDate','DESC')
+            ->setMaxResults(10);
 
         return $qb->getQuery()->getResult();
     }

@@ -74,6 +74,12 @@ class Client extends User
     private $abuses;
 
     /**
+     * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    protected $avatar;
+
+    /**
      * Client constructor.
      */
     public function __construct()
@@ -298,4 +304,20 @@ class Client extends User
       {
           $this->abuses->removeElement($abuse);
       }
+
+      /**
+      * @return \App\entity\Image
+      */
+    public function getAvatar(): Image
+    {
+        return $this->avatar;
+    }
+
+      /**
+     * @param \App\entity\Image $avatar
+     */
+      public function setAvatar(Image $avatar)
+    {
+        $this->avatar = $avatar;
+    }
 }

@@ -53,7 +53,10 @@ class HomeController extends Controller
         // Services récents : DQL à faire
         $services = $em->getRepository("App:Service")
             ->recentServices();
-
+        /*
+        dump($services);
+        die();
+        */
         // Promotions récentes : OK
         $promotions = $em->getRepository("App:Promotion")
             ->recentPromotions();
@@ -108,7 +111,7 @@ class HomeController extends Controller
 
 
         return $this->render(
-            "superlist/index.html.twig",
+            "superlist/public/index.html.twig",
             array(
                 "providers" => $providers,
                 "townships" => $townships,
@@ -130,6 +133,6 @@ class HomeController extends Controller
      */
     public function getContactPage(): Response
     {
-        return $this->render('superlist/contact.html.twig');
+        return $this->render('superlist/public/contact.html.twig');
     }
 }

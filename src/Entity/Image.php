@@ -45,7 +45,7 @@ class Image
     /**
      * @var Provider
      *
-     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist", "remove"}, inversedBy="images")
      * @ORM\JoinColumn(nullable=true)
      */
     private $providerImages;
@@ -111,17 +111,33 @@ class Image
     /**
      * @return Provider
      */
-    public function getProvider(): Provider
+    public function getProviderLogos(): Provider
     {
-        return $this->provider;
+        return $this->providerLogos;
     }
 
     /**
      * @param Provider $provider
      */
-    public function setProvider(Provider $provider)
+    public function setProviderLogos(Provider $provider)
     {
-        $this->provider = $provider;
+        $this->providerLogos = $provider;
+    }
+
+    /**
+     * @return Provider
+     */
+    public function getProviderImages(): Provider
+    {
+        return $this->providerImages;
+    }
+
+    /**
+     * @param Provider $providerImages
+     */
+    public function setProviderImages(Provider $providerImages)
+    {
+        $this->providerImages = $providerImages;
     }
 
 

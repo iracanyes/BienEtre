@@ -20,6 +20,8 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->_em->createQueryBuilder()
             ->select('p')
             ->from($this->_entityName,'p')
+            ->innerJoin('p.logos','l')
+            ->addSelect('l')
             ->orderBy('p.totalFans','DESC')
             ->setMaxResults($limit);
 

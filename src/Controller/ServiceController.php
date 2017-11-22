@@ -28,7 +28,7 @@ class ServiceController extends Controller
         }
 
         return $this->render(
-            "superlist/service/service-boxed.html.twig",
+            "superlist/public/service/service-boxed.html.twig",
             array("services"=>$services)
         );
     }
@@ -91,7 +91,7 @@ class ServiceController extends Controller
         }
 
         return $this->render(
-            'superlist/service/service-search-map.html.twig',
+            'superlist/public/service/service-search-map.html.twig',
             array(
                 'localities' => $localities,
                 "townships" => $townships,
@@ -123,7 +123,7 @@ class ServiceController extends Controller
         }
 
         return $this->render(
-            "superlist/service/service-detail.html.twig",
+            "superlist/public/service/service-detail.html.twig",
             array("service"=> $service)
         );
     }

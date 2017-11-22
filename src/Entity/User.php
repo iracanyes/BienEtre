@@ -95,12 +95,6 @@ class User
     protected $township;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    protected $avatar;
-
-    /**
      * @return int
      */
     public function getId()
@@ -287,21 +281,7 @@ class User
         $township->addUser($this);
     }
 
-    /**
-     * @return \App\entity\Image
-     */
-    public function getAvatar(): Image
-    {
-        return $this->avatar;
-    }
 
-    /**
-     * @param \App\entity\Image $avatar
-     */
-    public function setAvatar(Image $avatar)
-    {
-        $this->avatar = $avatar;
-    }
 
 
 

@@ -39,7 +39,7 @@ class PostalCode
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="postalCode")
+     * @ORM\OneToMany(targetEntity="User", cascade={"persist"}, mappedBy="postalCode")
      */
     private $users;
 

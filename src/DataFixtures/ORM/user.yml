@@ -20,7 +20,6 @@ App\Entity\User:
         nbErrorConnection: 0
         banned: '<boolean()>'
         registryConfirmed: '<boolean(100)>'
-        avatar (unique): '@image<numberBetween(1,10)>'
         userType: 'provider'
 
     user_client (template):
@@ -28,9 +27,8 @@ App\Entity\User:
         password: '<md5("client")>'
         registryDate: '<fr_FR:dateTimeBetween("-3 years","now")>'
         nbErrorConnection: 0
-        banned: '<boolean()>'
+        banned: '<boolean(80)>'
         registryConfirmed: '<boolean(100)>'
-        avatar: '@image<numberBetween(11,20)>'
         userType: 'client'
 
 App\Entity\Provider:
@@ -45,8 +43,8 @@ App\Entity\Provider:
         township: '@township<numberBetween(1,2)>'
         locality: '@locality<numberBetween(1,2)>'
         postalCode: '@postalCode<numberBetween(1,2)>'
-        logo: '@image<numberBetween(3, 4)>'
-        images: ['@image<numberBetween(21,30)>']
+        logos: ['@image<numberBetween(21, 30)>']
+        images: ['@image<numberBetween(31,40)>']
         serviceCategories: '@serviceCategory{1..2}'
 
 App\Entity\Client:
@@ -54,5 +52,6 @@ App\Entity\Client:
         lastname: '<lastname()>'
         firstname: '<firstname()>'
         newsletter: '<boolean()>'
+        avatar: '@image<numberBetween(11,20)>'
         favorites: ['@provider<numberBetween(1,4)>']
 
