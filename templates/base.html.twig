@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+    {% block head %}
+    <head>
+        <title>{{ site_name }} - {% block title %}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+        {% block stylesheets %}
+            <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="{{ asset('build/css/vendors.css') }}" rel="stylesheet" type="text/css">
+            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/images/favicon.png') }}">
+        {% endblock %}
+
+    </head>
+    {% endblock %}
+
+    {% block body %}
+    <body>
+        <div class="page-wrapper">
+            {% block header %}
+                <header class="header">
+                    <div class="header-wrapper">
+                        <div class="container">
+                            <div class="header-inner">
+                                <div class="header-logo">
+                                    <a href="index.html">
+                                        <img src="{{ asset('build/images/logo.png') }}" alt="Logo">
+                                        {# Les variables globales twig doitvent être definis dans son
+                                            fichier de config config/twig.yaml
+                                        #}
+                                        <span>{{ site_name }}</span>
+                                    </a>
+                                </div><!-- /.header-logo -->
+
+                                <div class="header-content">
+                                    <div class="header-top">
+                                        <div class="header-search">
+                                            <input type="text" class="form-control" placeholder="Recherche...">
+                                        </div><!-- /.header-search -->
+
+                                        <ul class="header-nav-social social-links nav nav-pills">
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        </ul><!-- /.header-nav-social -->
+
+                                        <ul class="header-nav-secondary nav nav-pills">
+                                            <li><a href="login.html">Connexion</a></li>
+                                            <li><a href="register.html">Inscription</a></li>
+                                        </ul>
+                                    </div><!-- /.header-top -->
+
+                                    <div class="header-bottom">
+                                        <div class="header-action">
+                                            <a href="listing-submit.html" class="header-action-inner" title="Add Listing" data-toggle="tooltip" data-placement="bottom">
+                                                <i class="fa fa-plus"></i>
+                                            </a><!-- /.header-action-inner -->
+                                        </div><!-- /.header-action -->
+
+                                        <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
+                                            <li class="active">
+                                                <a href="{{ path('homepage') }}">Accueil <i class="fa fa-chevron-down"></i></a>
+
+                                            </li>
+
+                                            <li >
+                                                <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
+
+                                                <ul class="sub-menu">
+                                                    <li><a href="{{ path('provider_list') }}">Liste des prestataires</a></li>
+                                                    <li><a href="{{ path('provider_search') }}">Recherche</a></li>
+
+                                                </ul>
+                                            </li>
+
+
+
+                                            <li >
+                                                <a href="{{ path('service_list') }}">Services <i class="fa fa-chevron-down"></i></a>
+
+                                                <ul class="sub-menu">
+                                                    <li><a href="{{ path('service_list') }}">Services disponibles</a></li>
+                                                    <li><a href="{{ path('service_search') }}">Recherche</a></li>
+
+                                                </ul>
+                                            </li>
+
+
+                                            <li >
+                                                <a href="{{ path('contact') }}">Contact <i class="fa fa-chevron-down"></i></a>
+
+                                            </li>
+                                            <li class="has-mega-menu ">
+                                                <a href="#">Administrateur <i class="fa fa-chevron-down"></i></a>
+
+                                                <ul class="mega-menu">
+                                                    <li>
+                                                        <a href="#">General</a>
+
+                                                        <ul>
+                                                            <li><a href="faq.html">FAQ</a></li>
+                                                            <li><a href="invoice.html">Invoice</a></li>
+                                                            <li><a href="pricing.html">Pricing</a></li>
+                                                            <li><a href="grid.html">Grid System</a></li>
+                                                            <li><a href="testimonials.html">Testimonials</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="#">Compte utilisateur</a>
+
+                                                        <ul>
+                                                            <li><a href="user-profile-edit.html">Profil - Édition</a></li>
+                                                            <li><a href="login.html">Connexion</a></li>
+                                                            <li><a href="register.html">Inscription</a></li>
+                                                            <li><a href="change-password.html">Changement de mot de passe</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="#">Miscellaneous</a>
+
+                                                        <ul>
+                                                            <li><a href="sticky-footer.html">Sticky Footer</a></li>
+                                                            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+                                                            <li><a href="error-403.html">403 - Forbidden</a></li>
+                                                            <li><a href="error-404.html">404 - Not Found</a></li>
+                                                            <li><a href="error-500.html">500 - Internal Error</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li class="hidden-xs">
+                                                        <div class="special">
+                                                            <a href="register.html">Inscrivez-vous!</a>
+                                                        </div><!-- /.special-->
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".header-nav-primary">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+
+                                    </div><!-- /.header-bottom -->
+                                </div><!-- /.header-content -->
+                            </div><!-- /.header-inner -->
+                        </div><!-- /.container -->
+                    </div><!-- /.header-wrapper -->
+                </header><!-- /.header -->
+            {% endblock %}
+
+            {% block main %}
+
+            {% endblock %}
+
+            {% block footer %}
+                <footer class="footer">
+                    <div class="footer-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h2>À propos de nous : </h2>
+
+                                    <p>La société « bien-être » est une association des 10 personnes dont le principal objectif est de promouvoir des services dans le domaine du bien-être</p>
+                                </div><!-- /.col-* -->
+
+                                <div class="col-sm-4">
+                                    <h2>Information de contact</h2>
+
+                                    <p>
+                                        Rue St Laurent 33, 4000 Liège, Belgique<br>
+                                        04 223 11 31, <a href="#">support@bien-etre.com</a>
+                                    </p>
+                                </div><!-- /.col-* -->
+
+                                <div class="col-sm-4">
+                                    <h2>Suivez-nous</h2>
+
+                                    <ul class="social-links nav nav-pills">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    </ul><!-- /.header-nav-social -->
+                                </div><!-- /.col-* -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container -->
+                    </div><!-- /.footer-top -->
+
+                    <div class="footer-bottom">
+                        <div class="container">
+                            <div class="footer-bottom-left">
+                                &copy; 2017 Tous droits réservé. Crée par <a href="https://iracanyes.com">Iracanyes</a>.
+                            </div><!-- /.footer-bottom-left -->
+
+                            <div class="footer-bottom-right">
+                                <ul class="nav nav-pills">
+                                    <li><a href="{{ path('homepage') }}">Accueil</a></li>
+                                    <li><a href="{{ path('provider_list') }}">Prestataires</a></li>
+                                    <li><a href="{{ path('service_list') }}">Services</a></li>
+                                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                                    <li><a href="contact-1.html">Admin</a></li>
+                                </ul><!-- /.nav -->
+                            </div><!-- /.footer-bottom-right -->
+                        </div><!-- /.container -->
+                    </div>
+                </footer><!-- /.footer -->
+            {% endblock %}
+        </div>
+
+        {% block javascripts %}
+            {#
+                Chargement unique de ressources JS compilé en bundle par Webpack
+             #}
+                <script src="{{ asset('build/js/vendors.js') }}"></script>
+            {#
+                API Google Maps
+             #}
+            <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false" type="text/javascript"></script>
+        {% endblock %}
+    </body>
+    {% endblock %}
+
+</html>

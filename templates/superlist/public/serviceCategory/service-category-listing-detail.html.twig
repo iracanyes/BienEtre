@@ -1,0 +1,490 @@
+{% extends "superlist/listing-detail.html.twig" %}
+
+{% block title_resume %}
+    <div class="detail-banner-left">
+    <div class="detail-banner-info">
+        <div class="detail-label">Restaurant</div>
+
+        {% if serviceCategory.is_valid %}
+        <div class="detail-verified">Validé</div>
+        {% endif %}
+    </div><!-- /.detail-banner-info -->
+
+    <h2 class="detail-title">
+        {{ serviceCategory.name }}
+    </h2>
+
+    <div class="detail-banner-address">
+        <i class="fa fa-map-o"></i>{{ serviceCategory.providers|length }} prestataires fournissent cette catégorie de service
+    </div><!-- /.detail-banner-address -->
+
+        <!-- /.detail-banner-rating
+        Créer une méthode calculant le cotation des prestataires :
+        Arrondir à 1 0.5 0
+        -->
+    <div class="detail-banner-rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-o"></i>
+    </div><!-- /.detail-banner-rating -->
+
+        <!-- /.detail-claim
+         Gestion de l'ajout aux favoris en JS
+         -->
+    <div class="detail-banner-btn bookmark">
+        <i class="fa fa-bookmark-o"></i> <span data-toggle="Bookmarked">Ajoutez aux favoris</span>
+    </div><!-- /.detail-claim -->
+
+        <!-- /.detail-claim
+         Gestion de l'ajout d'un vote en JS
+         -->
+    <div class="detail-banner-btn heart">
+        <i class="fa fa-heart-o"></i> <span data-toggle="I Love It">Votez</span>
+    </div><!-- /.detail-claim -->
+
+</div><!-- /.detail-banner-left -->
+{% endblock %}
+
+{% block main_content %}
+<div class="row detail-content">
+    <div class="col-sm-7">
+        <div class="detail-gallery">
+            <div class="detail-gallery-preview">
+                <a href="{{ serviceCategory.image.url }}">
+                    <img src="{{ provider.logo.url }}">
+                </a>
+            </div>
+
+            <ul class="detail-gallery-index">
+
+                {% for provider in serviceCategory.providers %}
+                <li class="detail-gallery-list-item active">
+                    <a data-target="{{ provider.logo.url }}">
+                        <img src="{{ provider.logo.url }}" alt="">
+                    </a>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div><!-- /.detail-gallery -->
+
+        <h2>Adresse des prestataires</h2>
+        <div class="background-white p20">
+
+            <!-- Nav tabs -->
+            <ul id="listing-detail-location" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#simple-map-panel" aria-controls="simple-map-panel" role="tab" data-toggle="tab">
+                        <i class="fa fa-map"></i>Carte
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#street-view-panel" aria-controls="street-view-panel" role="tab" data-toggle="tab">
+                        <i class="fa fa-street-view"></i>Street View
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="simple-map-panel">
+                    <div class="detail-map">
+                        <div class="map-position">
+                            <div id="listing-detail-map"
+                                 data-transparent-marker-image="assets/img/transparent-marker-image.png"
+                                 data-styles='[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.government","elementType":"labels.text.fill","stylers":[{"color":"#b43b3b"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"lightness":"8"},{"color":"#bcbec0"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#5b5b5b"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7cb3c9"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#abb9c0"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"color":"#fff1f1"},{"visibility":"off"}]}]'
+                                 data-zoom="15"
+                                 data-latitude="40.779995"
+                                 data-longitude="-73.969133"
+                                 data-icon="fa fa-coffee">
+                            </div><!-- /#map-property -->
+                        </div><!-- /.map-property -->
+                    </div><!-- /.detail-map -->
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="street-view-panel">
+                    <div id="listing-detail-street-view"
+                         data-latitude="40.758896"
+                         data-longitude="-73.985135"
+                         data-heading="225"
+                         data-pitch="0"
+                         data-zoom="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Vidéo</h2>
+        <div class="detail-video">
+            <iframe src="https://player.vimeo.com/video/36911719?color=009f8b&byline=0&portrait=0" width="653" height="366" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div><!-- /.detail-video -->
+
+        <h2 id="reviews">Commentaires de nos visiteurs</h2>
+        <div class="reviews">
+
+            {% for comment in provider.opinions %}
+                <div class="review">
+                <div class="review-image">
+                    <img src="{{ comment.client.avatar.url }}" alt="comment.client.email">
+                </div><!-- /.review-image -->
+
+                <div class="review-inner">
+                    <div class="review-title">
+                        <h2>{{ comment.client.firstname ~" "~ comment.client.lastname }}</h2>
+
+                        <span class="report">
+                    <span class="separator">&#8226;</span><i class="fa fa-flag" title="Report" data-toggle="tooltip" data-placement="top"></i>
+                </span>
+
+                        <div class="review-overall-rating">
+                            <span class="overall-rating-title">Vote :</span>
+                            <!-- /.review-rating
+                                Créer une méthode d'affichage vote client
+                            -->
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div><!-- /.review-rating -->
+                    </div><!-- /.review-title -->
+
+                    <div class="review-content-wrapper">
+                        <div class="review-content">
+                            <div class="review-pros">
+                                <p>
+                                    {{ comment.positiveComment }}
+                                </p>
+                            </div><!-- /.pros -->
+                            <div class="review-cons">
+                                <p>
+                                    {{ comment.negativeComment }}
+                                </p>
+                            </div><!-- /.cons -->
+                        </div><!-- /.review-content -->
+
+                        <div class="review-rating">
+                            <dl>
+                                <dt>Accueil</dt>
+                                <dd>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </dd>
+                                <dt>Equipe</dt>
+                                <dd>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </dd>
+                                <dt>Qualité du service</dt>
+                                <dd>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </dd>
+                                <dt>Atmosphère</dt>
+                                <dd>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </dd>
+                            </dl>
+                        </div><!-- /.review-rating -->
+                    </div><!-- /.review-content-wrapper -->
+
+                </div><!-- /.review-inner -->
+            </div><!-- /.review -->
+            {% endfor %}
+        </div><!-- /.reviews -->
+
+    </div><!-- /.col-sm-7 -->
+
+    <div class="col-sm-5">
+
+        <div class="background-white p20">
+            <div class="detail-overview-hearts">
+                <i class="fa fa-heart"></i> <strong>{{ serviceCategory.providers|length }} </strong>prestataires correspondants
+            </div>
+            <div class="detail-overview-rating">
+                <i class="fa fa-star"></i> <strong>4.3 / 5 </strong>sur <a href="#reviews">{{ serviceCategory.providers|length }} prestataires</a>
+            </div>
+
+            <div class="detail-actions row">
+                <div class="col-sm-4">
+                    <div class="btn btn-primary btn-book"><i class="fa fa-shopping-cart"></i> Réservation</div>
+                </div><!-- /.col-sm-4 -->
+                <div class="col-sm-4">
+                    <div class="btn btn-secondary btn-share"><i class="fa fa-share-square-o"></i> Partager
+                        <div class="share-wrapper">
+                            <ul class="share">
+                                <li><i class="fa fa-facebook"></i> Facebook</li>
+                                <li><i class="fa fa-twitter"></i> Twitter</li>
+                                <li><i class="fa fa-google-plus"></i> Google+</li>
+                                <li><i class="fa fa-pinterest"></i> Pinterest</li>
+                                <li><i class="fa fa-chain"></i> Link</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!-- /.col-sm-4 -->
+                <div class="col-sm-4">
+                    <div class="btn btn-secondary btn-claim"><i class="fa fa-hand-peace-o"></i> Réclamation</div>
+                </div><!-- /.col-sm-4 -->
+            </div><!-- /.detail-actions -->
+        </div>
+
+        <h2>Catégorie :  <span class="text-secondary">{{ serviceCategory.name }}</span></h2>
+        <div class="background-white p20">
+            <div class="detail-vcard">
+                <div class="detail-logo">
+                    <img src="{{ serviceCategory.image.url }}">
+                </div><!-- /.detail-logo -->
+
+                <div class="detail-contact">
+                    <div class="detail-contact-email">
+                        <i class="fa fa-envelope-o"></i> <a href="mailto:#">{{ provider.emailContact }}</a>
+                    </div>
+                    <div class="detail-contact-phone">
+                        <i class="fa fa-mobile-phone"></i> <a href="tel:#">{{ provider.phoneNumber }}</a>
+                    </div>
+                    <div class="detail-contact-website">
+                        <i class="fa fa-globe"></i> <a href="{{ provider.website }}">{{ provider.website }}</a>
+                    </div>
+                    <div class="detail-contact-address">
+                        <i class="fa fa-map-o"></i>
+                        {{ provider.getAddress()|raw }}
+                    </div>
+                </div><!-- /.detail-contact -->
+            </div><!-- /.detail-vcard -->
+
+            <div class="detail-description">
+                <p>
+                    {{ serviceCategory.description }}
+                </p>
+            </div>
+
+            <div class="detail-follow">
+                <h5>Suivez-nous:</h5>
+                <div class="follow-wrapper">
+                    <a class="follow-btn facebook" href="#"><i class="fa fa-facebook"></i></a>
+                    <a class="follow-btn youtube" href="#"><i class="fa fa-youtube"></i></a>
+                    <a class="follow-btn twitter" href="#"><i class="fa fa-twitter"></i></a>
+                    <a class="follow-btn tripadvisor" href="#"><i class="fa fa-tripadvisor"></i></a>
+                    <a class="follow-btn google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                </div><!-- /.follow-wrapper -->
+            </div><!-- /.detail-follow -->
+        </div>
+
+        <div class="widget">
+            <h2 class="widgettitle">Heure d'ouverture</h2>
+
+            <div class="p20 background-white">
+                <div class="working-hours">
+                    <div class="day clearfix">
+                        <span class="name">Mon</span><span class="hours">07:00 AM - 07:00 PM</span>
+                    </div><!-- /.day -->
+
+                    <div class="day clearfix">
+                        <span class="name">Tue</span><span class="hours">07:00 AM - 07:00 PM</span>
+                    </div><!-- /.day -->
+
+                </div>
+            </div>
+        </div><!-- /.widget -->
+
+
+        <h2>Catégories</h2>
+
+        <div class="background-white p20">
+            <ul class="detail-amenities">
+                <li class="yes">WiFi</li>
+                <li class="yes">Parking</li>
+                <li class="no">Vine</li>
+                <li class="yes">Terrace</li>
+                <li class="no">Bar</li>
+            </ul>
+        </div><!-- /.detail-amenities -->
+
+        <h2>Contactez-nous</h2>
+
+        <div class="detail-enquire-form background-white p20">
+            <form method="post" action="?">
+                <div class="form-group">
+                    <label for="">Nom</label>
+                    <input type="text" class="form-control" name="" id="">
+                </div><!-- /.form-group -->
+
+                <div class="form-group">
+                    <label for="">Email <span class="required">*</span></label>
+                    <input type="email" class="form-control" name="" id="" required>
+                </div><!-- /.form-group -->
+
+                <div class="form-group">
+                    <label for="">Message <span class="required">*</span></label>
+                    <textarea class="form-control" name="" id="" rows="5" required></textarea>
+                </div><!-- /.form-group -->
+
+                <p>Champs requis <span class="required">*</span></p>
+
+                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-paper-plane"></i>Envoyer le message</button>
+            </form>
+        </div><!-- /.detail-enquire-form -->
+
+        <h2>3 Raisons de nous choisir</h2>
+
+        <div class="background-white p20 reasons">
+            <div class="reason">
+                <div class="reason-icon">
+                    <i class="fa fa-trophy"></i>
+                </div><!-- /.reason-icon -->
+                <div class="reason-content">
+                    <h4>Coffee House of the Year 2015</h4>
+                    <p>Fusce at venenatis lorem. Quisque volutpat aliquam leo, a pellentesque orci varius sit amet.</p>
+                </div><!-- /.reason-content -->
+            </div><!-- /.reason -->
+            <div class="reason">
+                <div class="reason-icon">
+                    <i class="fa fa-coffee"></i>
+                </div><!-- /.reason-icon -->
+                <div class="reason-content">
+                    <h4>High Quality Coffee Beans</h4>
+                    <p>Fusce at venenatis lorem. Quisque volutpat aliquam leo, a pellentesque orci varius sit amet.</p>
+                </div><!-- /.reason-content -->
+            </div><!-- /.reason -->
+            <div class="reason">
+                <div class="reason-icon">
+                    <i class="fa fa-cutlery"></i>
+                </div><!-- /.reason-icon -->
+                <div class="reason-content">
+                    <h4>Snacks & Deserts</h4>
+                    <p>Fusce at venenatis lorem. Quisque volutpat aliquam leo, a pellentesque orci varius sit amet.</p>
+                </div><!-- /.reason-content -->
+            </div><!-- /.reason -->
+        </div>
+
+        <div class="detail-payments">
+            <h3>Mode de paiement autorisé</h3>
+
+            <ul>
+                <li><a href="#"><i class="fa fa-paypal"></i></a></li>
+                <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+                <li><a href="#"><i class="fa fa-cc-stripe"></i></a></li>
+                <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+            </ul>
+        </div>
+    </div><!-- /.col-sm-5 -->
+
+    <div class="col-sm-12">
+        <h2>Soumettre votre avis</h2>
+
+        <form class="background-white p20 add-review" method="post" action="?">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="">Nom <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="" required>
+                </div><!-- /.col-sm-6 -->
+
+                <div class="form-group col-sm-6">
+                    <label for="">Email <span class="required">*</span></label>
+                    <input type="email" class="form-control" id="" required>
+                </div><!-- /.col-sm-6 -->
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="form-group input-rating col-sm-3">
+
+                    <div class="rating-title">Accueil</div>
+
+                    <input type="radio" value="1" name="food" id="rating-food-1">
+                    <label for="rating-food-1"></label>
+                    <input type="radio" value="2" name="food" id="rating-food-2">
+                    <label for="rating-food-2"></label>
+                    <input type="radio" value="3" name="food" id="rating-food-3">
+                    <label for="rating-food-3"></label>
+                    <input type="radio" value="4" name="food" id="rating-food-4">
+                    <label for="rating-food-4"></label>
+                    <input type="radio" value="5" name="food" id="rating-food-5">
+                    <label for="rating-food-5"></label>
+
+                </div><!-- /.col-sm-3 -->
+                <div class="form-group input-rating col-sm-3">
+
+                    <div class="rating-title">Équipe</div>
+
+                    <input type="radio" value="1" name="staff" id="rating-staff-1">
+                    <label for="rating-staff-1"></label>
+                    <input type="radio" value="2" name="staff" id="rating-staff-2">
+                    <label for="rating-staff-2"></label>
+                    <input type="radio" value="3" name="staff" id="rating-staff-3">
+                    <label for="rating-staff-3"></label>
+                    <input type="radio" value="4" name="staff" id="rating-staff-4">
+                    <label for="rating-staff-4"></label>
+                    <input type="radio" value="5" name="staff" id="rating-staff-5">
+                    <label for="rating-staff-5"></label>
+
+                </div><!-- /.col-sm-3 -->
+                <div class="form-group input-rating col-sm-3">
+
+                    <div class="rating-title">Qualité</div>
+
+                    <input type="radio" value="1" name="value" id="rating-value-1">
+                    <label for="rating-value-1"></label>
+                    <input type="radio" value="2" name="value" id="rating-value-2">
+                    <label for="rating-value-2"></label>
+                    <input type="radio" value="3" name="value" id="rating-value-3">
+                    <label for="rating-value-3"></label>
+                    <input type="radio" value="4" name="value" id="rating-value-4">
+                    <label for="rating-value-4"></label>
+                    <input type="radio" value="5" name="value" id="rating-value-5">
+                    <label for="rating-value-5"></label>
+
+                </div><!-- /.col-sm-3 -->
+                <div class="form-group input-rating col-sm-3">
+
+                    <div class="rating-title">Atmosphère</div>
+
+                    <input type="radio" value="1" name="atmosphere" id="rating-atmosphere-1">
+                    <label for="rating-atmosphere-1"></label>
+                    <input type="radio" value="2" name="atmosphere" id="rating-atmosphere-2">
+                    <label for="rating-atmosphere-2"></label>
+                    <input type="radio" value="3" name="atmosphere" id="rating-atmosphere-3">
+                    <label for="rating-atmosphere-3"></label>
+                    <input type="radio" value="4" name="atmosphere" id="rating-atmosphere-4">
+                    <label for="rating-atmosphere-4"></label>
+                    <input type="radio" value="5" name="atmosphere" id="rating-atmosphere-5">
+                    <label for="rating-atmosphere-5"></label>
+
+                </div><!-- /.col-sm-3 -->
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="">Comentaire positif</label>
+                    <textarea class="form-control" rows="5" id=""></textarea>
+                </div><!-- /.col-sm-6 -->
+                <div class="form-group col-sm-6">
+                    <label for="">Commentaire négatif</label>
+                    <textarea class="form-control" rows="5" id=""></textarea>
+                </div><!-- /.col-sm-6 -->
+
+                <div class="col-sm-8">
+                    <p>Champs requis <span class="required">*</span></p>
+                </div><!-- /.col-sm-8 -->
+                <div class="col-sm-4">
+                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-star"></i>Envoyer le commentaire</button>
+                </div><!-- /.col-sm-4 -->
+            </div><!-- /.row -->
+        </form>
+    </div><!-- /.col-* -->
+</div><!-- /.row -->
+{% endblock %}
