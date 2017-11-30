@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Provider;
+
+
 /**
  * ProviderRepository
  *
@@ -11,6 +14,37 @@ namespace App\Repository;
 class ProviderRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
+     * Join Logos
+     *
+     */
+    protected function addLogo($qb)
+    {
+        $qb->innerJoin('p.logos', 'l')
+        ->addSelect('l');
+
+        return $qb;
+
+    }
+
+
+    /**
+     * Get All providers + logos
+     */
+    public function myFindAll(): array
+    {
+        //Syntaxe longue
+        $qb = $this->_em->createQueryBuilder()
+            ->select('p')
+            ->from($this->_entityName, 'p')
+            ->innerJoin('p.logos', 'l')
+            ->addSelect('l')
+            ->orderBy('p.registryDate','DESC');
+
+        return $qb->getQuery()
+            ->getResult();
+
+    }
+    /**
      * Get Best Providers
      *
      * @return array
@@ -19,10 +53,15 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->_em->createQueryBuilder()
             ->select('p')
-            ->from($this->_entityName,'p')
-            ->innerJoin('p.logos','l')
-            ->addSelect('l')
-            ->orderBy('p.totalFans','DESC')
+            ->from($this->_entityName,'p');
+
+        /* Utilisation de la fonction d'ajout des entités logos
+            //->innerJoin('p.logos','l')
+            //->addSelect('l')
+        */
+        $this->addLogo($qb);
+
+        $qb->orderBy('p.totalFans','DESC')
             ->setMaxResults($limit);
 
         return $qb->getQuery()->getResult();
@@ -35,10 +74,12 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
      */
     public function recentProviders(int $limit):array
     {
-        $qb = $this->_em->createQueryBuilder()
-            ->select('p')
-            ->from($this->_entityName, 'p')
-            ->orderBy('p.registryDate','DESC')
+        // Syntaxe courte
+        $qb = $this->createQueryBuilder('p');
+
+        $this->addLogo($qb);
+
+        $qb->orderBy('p.registryDate','DESC')
             ->setMaxResults($limit);
 
         return $qb->getQuery()->getResult();

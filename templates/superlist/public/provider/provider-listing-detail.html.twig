@@ -1,4 +1,4 @@
-{% extends "superlist/listing-detail.html.twig" %}
+{% extends "superlist/public/listing-detail.html.twig" %}
 
 {% block title_resume %}
     <div class="detail-banner-left">
@@ -20,12 +20,10 @@
         Arrondir à 1 0.5 0
         -->
     <div class="detail-banner-rating">
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star-half-o"></i>
-    </div><!-- /.detail-banner-rating -->
+
+        {{ include('superlist/template-part/rating.html.twig') }}
+    </div>
+        <!-- /.detail-banner-rating -->
 
         <!-- /.detail-claim
          Gestion de l'ajout aux favoris en JS
@@ -49,8 +47,8 @@
     <div class="col-sm-7">
         <div class="detail-gallery">
             <div class="detail-gallery-preview">
-                <a href="{{ provider.logo.url }}">
-                    <img src="{{ provider.logo.url }}">
+                <a href="{{ provider.logos.first().url }}">
+                    <img src="{{ provider.logos.first().url }}">
                 </a>
             </div>
 
@@ -241,7 +239,7 @@
         <div class="background-white p20">
             <div class="detail-vcard">
                 <div class="detail-logo">
-                    <img src="{{ provider.logo.url }}">
+                    <img src="{{ provider.logos.first().url }}">
                 </div><!-- /.detail-logo -->
 
                 <div class="detail-contact">

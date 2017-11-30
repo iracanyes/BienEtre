@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+use App\Rating\Vote;
+
 /**
  * Description of ProviderController
  *
@@ -33,7 +35,7 @@ class ProviderController extends Controller
 
 
         $providers = $em->getRepository('App:Provider')
-            ->findAll();
+            ->myFindAll();
 
         /**
          * Widget 1 : Prestataires ajoutés récemment
@@ -130,7 +132,7 @@ class ProviderController extends Controller
                 ));
         }else{
             $providers = $em ->getRepository("App:Provider")
-                ->findAll();
+                ->myFindAll();
         }
 
 
@@ -179,11 +181,25 @@ class ProviderController extends Controller
         }
 
         return $this->render(
-            "superlist/provider/provider-listing-detail.html.twig",
+            "superlist/public/provider/provider-listing-detail.html.twig",
             array(
                 "provider"=>$provider,
                 "recentProviders" => $recentProviders
             )
         );
+    }
+
+    /**
+     *
+     */
+    public function getMoyenVotes(Request $request): string
+    {
+        $provider = $this->request->get('provider');
+
+        $vote = new Vote($provider);
+
+        $moyen = $vote->calcMoyen();
+
+        return $vote->getStars($moyen);
     }
 }

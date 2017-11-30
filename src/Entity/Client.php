@@ -254,10 +254,6 @@ class Client extends User
          */
         $comment->setClient($this);
 
-        /*
-         * Ajout du commentaire dans les opinions du prestataire
-         */
-        $comment->getProvider()->addComment($comment);
 
         return $this;
     }

@@ -1,4 +1,4 @@
-{% extends 'superlist/blog-detail.html.twig' %}
+{% extends 'superlist/public/blog-detail.html.twig' %}
 
 
 {% block contentDetail %}
@@ -9,7 +9,7 @@
 
     <div class="posts post-detail">
 
-        <img src="{{ service.provider.logo.url }}" alt="A Clockwork Origin">
+        <img src="{{ service.provider.logos.first().url }}" alt="A Clockwork Origin">
 
         <div class="post-meta clearfix">
             <div class="post-meta-author">Par <a href="blog-detail.html">{{ service.provider.email }}</a></div><!-- /.post-meta-author -->

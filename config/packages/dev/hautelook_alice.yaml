@@ -4,7 +4,7 @@
 nelmio_alice:
     #Configuration optionnelle
     #locale: en_US
-    #seed: 200
+    #seed: 1000
     #persist_once: false
     loading_limit: 30
 

@@ -2,38 +2,67 @@
 Symfony3.3.9 application 
 <div>
 <h3>Tâches effectuées</h3>
-<ul>
-    <li>
-        Installation de symfony 3.3.9 via composer et symfony/skeleton
-    </li>
-    <li>
-        Installation des dépendances
-    </li>
-    <li>
-        Création des entités et relations 
-    </li>
-    <li>
-        Création des fixtures DB
-    </li>
-    <li>
-                Intégration librairies nodejs : Webpack(gestionnaire de bundles JS)
-        <ul>
-            <li>
-                Optimisation Assets 
-            </li>
-            <li>
-                Importation des ressources images : logo, logo-white, favicon
-            </li>
-        </ul>
-    </li>
-    <li>
-        Intégration du template
-        <ul>
-            <li>
-            </li>
-        </ul>
-    </li>
-</ul>
+    <ul>
+        <li>
+            Installation de symfony 3.3.9 via composer et symfony/skeleton
+        </li>
+        <li>
+            Installation des dépendances
+        </li>
+        <li>
+            Création des entités et relations 
+        </li>
+        <li>
+            Création des fixtures DB
+        </li>
+        <li>
+                    Intégration librairies nodejs : Webpack(gestionnaire de bundles JS)
+            <ul>
+                <li>
+                    Optimisation Assets 
+                </li>
+                <li>
+                    Importation des ressources images : logo, logo-white, favicon
+                </li>
+            </ul>
+        </li>
+        <li>
+            Intégration du template
+            <ul>
+                <li>
+                    Accueil
+                </li>
+                <li>
+                    Prestataire 
+                    <ul>
+                        <li>
+                            Accueil
+                        </li>
+                        <li>
+                            Liste des prestataires
+                        </li>
+                        <li>
+                            Recherche
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Service 
+                    <ul>
+                        <li>
+                            Accueil
+                        </li>
+                        <li>
+                            Liste des services
+                        </li>
+                        <li>
+                            Recherche
+                        </li>
+                    </ul>
+                </li>                                
+            </ul>
+        </li>
+    </ul>
 </div>
 <div>
 <h3>Tâches en cours</h3>
@@ -47,6 +76,20 @@ Symfony3.3.9 application
     <ul>
         <li>
             Entité Site-web : Définir les sliders de la page d'accueil
+        </li>
+        <li>
+            Pagination : 
+            <ul>
+                <li>
+                    Liste prestataire
+                </li>
+                <li>
+                    Liste des services
+                </li>
+                <li>
+                    Search Map
+                </li>
+            </ul>
         </li>
         <li>
             Template: provider-listing-detail.html.twig
@@ -94,6 +137,7 @@ Symfony3.3.9 application
         </li>
     </ul>
 </div>
+<br>
 <div class="alert">
     <p class="alert-info">
     Windows 10: Ne prend pas en charge "make" (commande GNU/Linux C++) <br>

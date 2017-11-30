@@ -195,6 +195,11 @@ class Comment
     public function setProvider(Provider $provider)
     {
         $this->provider = $provider;
+
+        /*
+         * Ajout du commentaire dans les opinions du prestataire
+         */
+        $provider->addComment($this);
     }
 
 

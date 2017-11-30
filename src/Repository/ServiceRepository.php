@@ -10,16 +10,48 @@ namespace App\Repository;
  */
 class ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function recentServices(): array
+    /**
+     * Join Provider & Logo
+     */
+    protected function addProviderAndLogos($qb)
+    {
+        $qb->innerJoin("s.provider", "p")
+            ->addSelect("p")
+            ->innerJoin("p.logos", "l")
+            ->addSelect("l");
+
+        return $qb;
+    }
+
+    /**
+     * Get All with associated providers & images
+     */
+    public function myFindAll(): array
     {
         $qb = $this->_em->createQueryBuilder()
             ->select('s')
-            ->from($this->_entityName,'s')
+            ->from($this->_entityName, 's')
             ->innerJoin('s.provider', 'p')
-            ->addSelect('p')
-            ->innerJoin('p.logos', 'l')
+            ->addSelect('p')    // Facultatif en 4.0
+            ->innerJoin('p.logos','l')
             ->addSelect('l')
-            ->orderBy('s.releaseDate','DESC')
+            ->orderBy('s.releaseDate','DESC');
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Get Recent Providers
+     * @return array
+     */
+    public function recentServices(): array
+    {
+        $qb = $this->createQueryBuilder("s");
+
+        $this->addProviderAndLogos($qb);
+
+        $qb->orderBy('s.releaseDate','DESC')
             ->setMaxResults(10);
 
         return $qb->getQuery()->getResult();
@@ -27,19 +59,16 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
 
     public function searchBy(array $criteria): array
     {
-        $qb = $this->_em->createQueryBuilder()
-            ->select('s')
-            ->from($this->_entityName, "s")
-            ->innerJoin('s.provider','p')
-            ->addSelect('p')
-            ->innerJoin('p.logo','i')
-            ->addSelect('i')
-            ->innerJoin('p.locality','l')
-            ->addSelect('l')
+        $qb = $this->_em->createQueryBuilder("s");
+
+        $this->addProviderAndLogos($qb);
+
+        $qb->innerJoin('p.locality','l')
+            ->addSelect("l")
             ->innerJoin('p.postalCode', 'pc')
-            ->addSelect('pc')
+            ->addSelect("pc")
             ->innerJoin('p.township','t')
-            ->addSelect('t');
+            ->addSelect("t  ");
 
         /* Exemple d'ajout de critère de recherche
         if($locality) {

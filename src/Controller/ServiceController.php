@@ -21,7 +21,22 @@ class ServiceController extends Controller
         $em = $this->get("doctrine.orm.entity_manager");
 
         $services = $em->getRepository('App:Service')
+            ->myFindAll();
+
+        $recentServices = $em->getRepository("App:Service")
+            ->recentServices();
+
+        $serviceCategories = $em->getRepository("App:ServiceCategory")
             ->findAll();
+
+        $localities = $em->getRepository("App:Locality")
+            ->findAll();
+
+        $bestProviders = $em->getRepository("App:Provider")
+            ->mostFans(5);
+
+        $recentPromotions = $em->getRepository("App:Promotion")
+            ->recentPromotions();
 
         if(!$services){
             throw new NotFoundHttpException("Aucun service enregistré en DB!");
@@ -29,7 +44,14 @@ class ServiceController extends Controller
 
         return $this->render(
             "superlist/public/service/service-boxed.html.twig",
-            array("services"=>$services)
+            array(
+                "services"=>$services,
+                "recentServices" => $recentServices,
+                "serviceCategories" => $serviceCategories,
+                "localities" => $localities,
+                "bestProviders" => $bestProviders,
+                "recentPromotions" => $recentPromotions
+            )
         );
     }
 

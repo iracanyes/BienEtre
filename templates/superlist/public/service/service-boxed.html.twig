@@ -1,4 +1,4 @@
-{% extends 'superlist/blog-boxed.html.twig' %}
+{% extends 'superlist/public/blog-boxed.html.twig' %}
 
 {# page title #}
     {% block pageTitle %}Liste des stages{% endblock %}
@@ -10,7 +10,7 @@
         {% for service in services %}
             <div class="post post-boxed">
                 <div class="post-image">
-                    <img src="{{ service.provider.logo.url }}" alt="{{ service.name }}">
+                    <img src="{{ service.provider.logos.first().url }}" alt="{{ service.name }}">
                     <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
                 </div><!-- /.post-image -->
 
@@ -58,4 +58,39 @@
     {% endblock %}
 {# endPager #}
 
+{# Widget 1 : Recent services #}
+{% block blog_boxed_widget1 %}
+    <div class="widget">
+        <h2 class="widgettitle">Services récents</h2>
+
+
+
+
+        {% for service in recentServices %}
+
+            <div class="cards-small">
+                <div class="card-small">
+                    <div class="card-small-image">
+                        <a href="listing-detail.html">
+                            <img src="{{ service.provider.logos.first().url }}" alt="{{ service.provider.brandName }}">
+                        </a>
+                    </div><!-- /.card-small-image -->
+
+                    <div class="card-small-content">
+                        <h3><a href="listing-detail.html">{{ service.name }}</a></h3>
+                        <h4><a href="listing-detail.html">{{ service.provider.brandName ~ " / " ~ service.provider.locality.locality }}</a></h4>
+
+                        <div class="card-small-price">{{ service.provider.website }}</div>
+                    </div><!-- /.card-small-content -->
+                </div><!-- /.card-small -->
+            </div><!-- /.cards-small -->
+
+        {% endfor %}
+
+
+
+    </div><!-- /.widget -->
+{% endblock %}
+
+{# End Widget 1 #}
 

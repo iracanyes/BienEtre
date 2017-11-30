@@ -3,7 +3,7 @@
 
 
 #}
-{% extends "superlist/search-map.html.twig" %}
+{% extends "superlist/public/search-map.html.twig" %}
 
 {% block search_list %}
 
@@ -94,7 +94,7 @@
                 {% for provider in providers %}
                     <div class="card-row">
                         <div class="card-row-inner">
-                            <div class="card-row-image" data-background-image="{{ provider.images[0].url }}">
+                            <div class="card-row-image" data-background-image="{{ provider.logos.first().url }}">
                                 <div class="card-row-label"><a href="{{ path('provider_detail', {'slug': provider.slug }) }}">{{ provider.serviceCategories[0].name }}</a></div><!-- /.card-row-label -->
 
                                 <div class="card-row-price">{{ provider.totalFans }}</div><!-- -->

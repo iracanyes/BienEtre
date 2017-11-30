@@ -37,7 +37,7 @@ class Locality
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="locality")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="locality")
      */
     private $users;
 

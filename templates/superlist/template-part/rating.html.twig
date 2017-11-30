@@ -1,0 +1,46 @@
+
+{%
+    set rating = provider.rating / 2
+%}
+
+{% if provider.rating > 0 %}
+
+    {% if ( provider.rating  % 2) == 0 %}
+
+        {# Boucle étoile pleine #}
+        {% for i in 1..rating %}
+            <i class="fa fa-star"></i>
+        {% endfor %}
+
+        {# Boucle étoile vide #}
+        {% for i in 1..(5 - rating) %}
+            <i class="fa fa-star-o"></i>
+        {% endfor %}
+    {% else %}
+
+        {# Cotation arrondi #}
+        {% set roundRate = rating|round(0,'floor') %}
+
+        {# Boucle étoile pleine #}
+        {% for i in 1..(roundRate) %}
+            <i class="fa fa-star"></i>
+        {% endfor %}
+        {# Boucle étoile moitié-plein #}
+        <i class="fa fa-star-half-o"></i>
+        {# Boucle étoile vide #}
+        {% if rating <= 3 %}
+            {% for i in 0..(5-(roundRate+1)) %}
+                <i class="fa fa-star-o"></i>
+            {% endfor %}
+        {% else %}
+            <i class="fa fa-star-o"></i>
+        {% endif %}
+    {% endif %}
+
+{% else %}
+    {# Boucle d'étoile vide en cas de valeur 0 #}
+    {% for i in 1..5 %}
+        <i class="fa fa-star-o"></i>
+    {% endfor %}
+
+{% endif %}

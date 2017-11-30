@@ -118,7 +118,7 @@ class Provider extends User
      *
      * @ORM\Column(name="total_fan", type="integer")
      */
-    private $totalFans;
+    private $totalFans = 0;
 
     /**
      * @var ArrayCollection
@@ -128,11 +128,20 @@ class Provider extends User
     private $opinions;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="rating", type="integer")
+     */
+    private $rating = 0;
+
+    /**
      * @var string
      * @Gedmo\Slug(fields={"brandName"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
+
+
 
     /**
      * Provider constructor.
@@ -526,6 +535,8 @@ class Provider extends User
     {
         $this->fans[] = $client;
 
+        $this->totalFans++;
+
         return $this;
     }
 
@@ -537,6 +548,8 @@ class Provider extends User
     public function removeFan(Client $client): void
     {
         $this->fans->removeElement($client);
+
+        $this->totalFans--;
     }
 
     /**
@@ -548,28 +561,30 @@ class Provider extends User
     }
 
     /**
-     * @return void
-     */
-
+     * Attention : Ralentit les processus car doit effectuer une boucle sur les entités
+     * pour connaître le nombre exact.
+     *
+     *
+     *
     public function setTotalFans(): void
     {
         $this->totalFans = count($this->fans);
     }
-
+     */
     /**
      * Les événements ORM-PrePersist permettent d'apporter des modifications à l'entité qui seront ensuite
      * enregistrés en DB par la méthode $this->flush().
      * Les événements ORM-PostPersist permettent de modifier l'entité après enregistrement de ces données en DB.
      *
-     * @ORM\PrePersist
-     * @ORM\PrePersist()
-     * @return void
-     */
+     * @ ORM PrePersist
+     * @ ORM PrePersist()
+     * @ return void
+
     public function updateTotalFans(): void
     {
         $this->setTotalFans();
     }
-
+     */
 
 
     /**
@@ -603,6 +618,44 @@ class Provider extends User
     public function removeComment(Comment $comment): void
     {
         $this->opinions->removeElement($comment);
+    }
+
+    /**
+     * @return int
+     */
+    public function getRating(): int
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param int $rating
+     */
+    public function setRating(int $rating): void
+    {
+        $this->rating = $rating;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function calcRating(): void
+    {
+
+        $n = $this->opinions->count();
+        $totalVotes = 0;
+        if($n > 0){
+            foreach ($this->opinions as $comment){
+
+                $totalVotes += (int) $comment->getVote();
+            }
+            $rate = $totalVotes / $n * 2;
+            $this->rating = round($rate, 1, PHP_ROUND_HALF_DOWN);
+        }else{
+            $this->rating = $n;
+        }
+
+
     }
 
     /**
