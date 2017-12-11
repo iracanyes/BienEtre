@@ -31,7 +31,7 @@ class HomeController extends Controller
         $providers = $em->getRepository("App:Provider")
             ->findAll();
 
-        // Information pour la barre de recherche
+        // Information pour la barre de recherche (créer un service gérant la recherche )
         $townships = $em->getRepository("App:Township")
             ->findAll();
         $localities = $em->getRepository("App:Locality")
@@ -50,7 +50,7 @@ class HomeController extends Controller
         dump($serviceCategories);
         die();
         */
-        // Services récents : DQL à faire
+
         $services = $em->getRepository("App:Service")
             ->recentServices();
         /*

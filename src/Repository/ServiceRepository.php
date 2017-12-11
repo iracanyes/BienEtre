@@ -32,7 +32,7 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
             ->select('s')
             ->from($this->_entityName, 's')
             ->innerJoin('s.provider', 'p')
-            ->addSelect('p')    // Facultatif en 4.0
+            ->addSelect('p')
             ->innerJoin('p.logos','l')
             ->addSelect('l')
             ->orderBy('s.releaseDate','DESC');

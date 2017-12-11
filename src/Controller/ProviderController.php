@@ -9,12 +9,18 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use App\Rating\Vote;
+use App\Entity\Provider;
+
 
 /**
  * Description of ProviderController
@@ -201,5 +207,42 @@ class ProviderController extends Controller
         $moyen = $vote->calcMoyen();
 
         return $vote->getStars($moyen);
+    }
+
+
+    /**
+     * @Route("/admin/providers/add", name="provider_add")
+     * @param Request $request
+     * @return Response
+     */
+    public function addAction(Request $request): Response
+    {
+        //Création d'une implémentation de l'entité cible du formulaire
+        $provider = new Provider();
+
+        //Création du formulaire à partir du FormBuilder
+        $formBuilder = $this->get("form.factory")->createBuilder(FormType::class, $provider);
+
+        //Ajout des champs de l'entité que l'on veut remplir avec le formulaire
+        $formBuilder->add('brandName', TextType::class)
+            ->add('website', UrlType::class)
+            ->add('emailContact', EmailType::class)
+            ->add('phoneNumber', TextType::class)
+            ->add('tvaNumber', TextType::class)
+            ->add('street', TextType::class)
+            ->add('submit', SubmitType::class);
+
+        // Relations ac d'autres entités
+
+        // Générer le formulaire à partir du FormBuilder
+        $form = $formBuilder->getForm();
+
+        // On retourne la vue du formulaire avec "$form->createView()
+        // dans notre réponse HTML retourné par "$this->render()
+
+        return $this->render(
+            "superlist:admin:provider:add.html.twig",
+            array("form" => $form->createView())
+        );
     }
 }

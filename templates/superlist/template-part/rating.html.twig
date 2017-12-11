@@ -28,7 +28,7 @@
         {# Boucle étoile moitié-plein #}
         <i class="fa fa-star-half-o"></i>
         {# Boucle étoile vide #}
-        {% if rating <= 3 %}
+        {% if roundRate <= 3 %}
             {% for i in 0..(5-(roundRate+1)) %}
                 <i class="fa fa-star-o"></i>
             {% endfor %}
