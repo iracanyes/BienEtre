@@ -138,20 +138,29 @@ Symfony3.3.9 application
     </ul>
 </div>
 <br>
-<div class="alert">
-    <p class="alert-info">
-    Windows 10: Ne prend pas en charge "make" (commande GNU/Linux C++) <br>
-    Il faut donc modifier le script de fichier de configuration <code>composer.json</code>
-    <code>"php bin/console cache:warmup": "script",</code> <br>
-     Linux : Prend en charge "make" <br>
-      <code>"make cache-warmup": "script",</code>
-    </p>
-    <p class="alert-info">
-    Windows 10 : Hautelook/Alice : catchPhrase() non-supporté remplacé par sentence(5)
-    </p>
-    <p>
-        
-</div>
-<div class="alert">
-    
+<div style="background:blue">
+    <h3>Remarques et notes </h3>
+    <div class="alert">
+        <p class="alert-info">
+        Windows 10: Ne prend pas en charge "make" (commande GNU/Linux C++) <br>
+        Il faut donc modifier le script de fichier de configuration <code>composer.json</code>
+        <code>"php bin/console cache:warmup": "script",</code> <br>
+         Linux : Prend en charge "make" <br>
+          <code>"make cache-warmup": "script",</code>
+        </p>
+        <p class="alert-info">
+        Windows 10 : Hautelook/Alice : catchPhrase() non-supporté remplacé par sentence(5)
+        </p>            
+    </div>
+    <br>
+    <div class="alert">
+        <p class='alert-info'>
+        Symfony 3.3+ : Activer, dans le fichier de configuration du framework , la prise en charge native des fichiers pour les sessions pour utiliser les fournisseurs d'utilisateurs en mode in_memory (utilisateurs contenus dans framework.yaml).
+        </p>
+        <ul>
+            <li>
+                Dé-commenter la section sur "sessions"
+            </li>
+        </ul>
+    </div>
 </div>

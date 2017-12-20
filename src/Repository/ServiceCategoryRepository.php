@@ -12,13 +12,14 @@ use Doctrine\ORM\EntityRepository;
 
 class ServiceCategoryRepository extends EntityRepository
 {
-    public function getServiceCategoriesAndProviders(): array
+    public function getServiceCategoriesAndProviders(int $max = 10): array
     {
         $qb = $this->_em->createQueryBuilder()
             ->select('sc')
             ->from($this->_entityName, 'sc')
             ->innerJoin('sc.providers','p')
-            ->addSelect('p');
+            ->addSelect('p')
+            ->setMaxResults($max);
 
         return $qb->getQuery()->getResult();
     }

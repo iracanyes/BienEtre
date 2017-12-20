@@ -178,7 +178,7 @@ class Provider extends User
      */
     public function getBrandName(): string
     {
-        return $this->brandName;
+        return $this->brandName ?? "";
     }
 
     /**
@@ -202,7 +202,7 @@ class Provider extends User
      */
     public function getWebSite(): string
     {
-        return $this->webSite;
+        return $this->webSite ?? "";
     }
 
     /**
@@ -226,7 +226,7 @@ class Provider extends User
      */
     public function getEmailContact(): string
     {
-        return $this->emailContact;
+        return $this->emailContact ?? "";
     }
 
     /**
@@ -250,7 +250,7 @@ class Provider extends User
      */
     public function getPhoneNumber(): string
     {
-        return $this->phoneNumber;
+        return $this->phoneNumber ?? "";
     }
 
     /**
@@ -274,7 +274,7 @@ class Provider extends User
      */
     public function getTvaNumber(): string
     {
-        return $this->tvaNumber;
+        return $this->tvaNumber ?? "";
     }
 
     /**
@@ -301,7 +301,7 @@ class Provider extends User
      */
     public function getStreet(): string
     {
-        return $this->street;
+        return $this->street ?? "";
 
     }
 

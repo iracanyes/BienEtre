@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contact-form-wrapper clearfix">
-            <form class="contact-form" method="post" action="?">
+            <form class="contact-form" method="post" action="{{ path('contact') }}">
                     <div class="form-group">
                         <label for="contact-form-name">Nom</label>
                         <input type="text" name="name" id="contact-form-name" class="form-control">
@@ -46,7 +46,7 @@
                     <textarea class="form-control" id="contact-form-message" rows="6"></textarea>
                 </div><!-- /.form-group -->
 
-                <button class="btn btn-primary pull-right">Envoyer</button>
+                <input type="button" class="btn btn-primary pull-right" value="Envoyer"/>
             </form><!-- /.contact-form -->
         </div><!-- /.contact-form-wrapper -->
     </div>

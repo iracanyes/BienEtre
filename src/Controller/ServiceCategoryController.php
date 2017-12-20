@@ -33,7 +33,7 @@ class ServiceCategoryController extends Controller
 
     /**
      * Route ServiceCategory Detail
-     * @Route("/categories              /{slug}", name="service_category_detail")
+     * @Route("/categories/{slug}", name="service_category_detail")
      */
     public function showAction(Request $request): Response
     {

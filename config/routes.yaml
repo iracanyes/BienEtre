@@ -6,3 +6,12 @@ index:
 controllers:
     resource: ../src/Controller/
     type: annotation
+
+# Routes Login & Logout
+login:
+    path: /login
+    defaults: { _controller: 'App\Security\SecurityController::loginAction' }
+logout:
+    path: /logout
+login_check:
+    path: /login

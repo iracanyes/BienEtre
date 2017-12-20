@@ -1,0 +1,96 @@
+{# Template : Login Form #}
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+
+    <div class="main">
+    <div class="main-inner">
+    <div class="container">
+    <div class="content">
+
+    <div class="document-title">
+        <h1>Connexion à l'espace membre</h1>
+
+        <ul class="breadcrumb">
+            <li><a href="{{ path('homepage') }}">Inscription</a></li>
+            <li><a href="{{ path('login') }}">Connexion</a></li>
+        </ul>
+    </div><!-- /.document-title -->
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="contact-form-wrapper clearfix">
+                <h3>Connexion</h3>
+                {% if error %}
+                    <div>
+                        {{ error.messageKey|trans(error.messageData, "security") }}
+                    </div>
+                {% endif %}
+                <form class="contact-form" action="{{ path('login') }}" method="post">
+                    <div class="form-group">
+                        <label for="username">
+                            Nom utilisateur :
+                        </label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}"  class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            Mot de passe :
+                        </label>
+                        <input type="password" id="password" name="_password" class="form-control" />
+                    </div>
+
+
+                    {#
+                        Si l'on veut contrôler l'URL auquel l'utilisateur sera redirigé en cas d'authentification réussie
+                        <input type="hidden" name="_target_path" value="/account" />
+                     #}
+
+
+                    <button id="submit" name="login" class="btn btn-primary pull-left">Connexion</button>
+
+                </form>
+            </div><!-- /.contact-form-wrapper -->
+        </div>
+
+
+        <div class="col-sm-6">
+            <h3>Rejoignez-nous</h3>
+            <p>
+                <b>Confucius</b>
+            </p>
+            <blockquote>
+                Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie.
+            </blockquote>
+            <!--
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Adresse</h3>
+
+                    <p>
+                        13/2 Rue Saint-Laurent,<br>
+                        4800 Liège, Belgique
+                    </p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3>Contacts</h3>
+
+                    <p>
+                        04 223 11 31<br>
+                        0476 65 45 65
+                    </p>
+                </div>
+            </div> end.row -->
+        </div><!-- /.col-* -->
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

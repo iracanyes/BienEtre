@@ -18,6 +18,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 use App\Entity\Provider;
 
@@ -30,6 +31,7 @@ class ProviderController extends Controller
 {
     private const HOME_NUM_RECENT_PROVIDERS = 3;
     private const HOME_NUM_BEST_PROVIDERS = 5;
+
     /**
      * Route interne /providers
      * 
@@ -215,33 +217,58 @@ class ProviderController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function addAction(Request $request): Response
+    public function addAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
+        // Accès autorisé aux utilisation ayant le rôle ROLE_PROVIDER
+        if(false === $authChecker->isGranted('ROLE_PROVIDER')){
+            return $this->redirectToRoute('login');
+        }
+
         //Création d'une implémentation de l'entité cible du formulaire
         $provider = new Provider();
 
         //Création du formulaire à partir du FormBuilder
-        $formBuilder = $this->get("form.factory")->createBuilder(FormType::class, $provider);
+        $formBuilder = $this->createFormBuilder($provider)
+                ->setAction($this->generateUrl('provider_add'))
+                ->setMethod('POST');
 
         //Ajout des champs de l'entité que l'on veut remplir avec le formulaire
-        $formBuilder->add('brandName', TextType::class)
-            ->add('website', UrlType::class)
-            ->add('emailContact', EmailType::class)
-            ->add('phoneNumber', TextType::class)
-            ->add('tvaNumber', TextType::class)
-            ->add('street', TextType::class)
-            ->add('submit', SubmitType::class);
+        $formBuilder->add('brandName', TextType::class, array('label'=>'Nom légal :'))
+            ->add('website', UrlType::class, array('label'=>"URL site-web :"))
+            ->add('emailContact', EmailType::class, array('label'=>"E-mail de contact :"))
+            ->add('phoneNumber', TextType::class, array('label'=>"Numéro de téléphone :"))
+            ->add('tvaNumber', TextType::class, array('label'=>"Numéro de TVA :"))
+            ->add('street', TextType::class, array('label'=>"Adresse (rue) :"))
+            ->add('submit', SubmitType::class, array('label'=>'Envoyer'));
 
         // Relations ac d'autres entités
 
         // Générer le formulaire à partir du FormBuilder
         $form = $formBuilder->getForm();
 
+        //hydratation de l'objet avec les données de la requête
+        $form->handleRequest($request);
+
+        //Gestion de la soumission du formulaire
+        // Si le formulaire est soumis et que les données sont valides
+        if($form->isSubmitted() && $form->isValid()){
+            // Action à accomplir en cas d'envoie de donnée
+            $em = $this->getDoctrine()->getManager();
+
+            //Si $provider n'est pas hydraté, on peut essayer de récupèrer les données du formulaire
+            // $provider = $form->getData()
+            $em->persist($provider);
+
+            return $this->redirectToRoute('admin_accueil');
+        }
+
+
+
         // On retourne la vue du formulaire avec "$form->createView()
         // dans notre réponse HTML retourné par "$this->render()
 
         return $this->render(
-            "superlist:admin:provider:add.html.twig",
+            "superlist/admin/provider/add.html.twig",
             array("form" => $form->createView())
         );
     }

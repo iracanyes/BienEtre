@@ -77,6 +77,7 @@ class HomeController extends Controller
             ->getServiceCategoriesAndProviders();
 
 
+
         if(!$providers){
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
         }

@@ -1,5 +1,5 @@
 {#
-    Template :
+    Template : Superlist : index-image.hmtl
 #}
 
 {% extends 'superlist/layout.html.twig' %}
@@ -58,7 +58,7 @@
 
                             </li>
                             <li class="has-mega-menu ">
-                                <a href="#">Administrateur <i class="fa fa-chevron-down"></i></a>
+                                <a href="#">Membre <i class="fa fa-chevron-down"></i></a>
 
                                 <ul class="mega-menu">
                                     <li>
@@ -98,7 +98,7 @@
 
                                     <li class="hidden-xs">
                                         <div class="special">
-                                            <a href="register.html">Sign Up Now</a>
+                                            <a href="{{ path('login') }}">Inscrivez-vous</a>
                                         </div><!-- /.special-->
                                     </li>
                                 </ul>
@@ -220,7 +220,7 @@
                                 -->
                                 {% for service in services %}
                                     <div class="col-sm-6 col-md-3">
-                                    <div class="card-simple" data-background-image="{{ service.provider.logos.first().url }}">
+                                    <div class="card-simple" data-background-image="{{ service.provider.logos.get(0).url }}">
                                         <div class="card-simple-background">
                                             <div class="card-simple-content">
                                                 <h2><a href="{{ path("provider_detail", {"slug": service.provider.slug }) }}">{{ service.provider.brandName }}</a></h2>
@@ -697,7 +697,7 @@
                                             {% for i in 0..4 %}
                                             <li><a href="{{ path('provider_detail', {slug: serviceCategoriesPlusProviders[h].providers[i].slug}) }}">{{ serviceCategoriesPlusProviders[h].providers[i].brandName }}</a>,</li>
                                             {% endfor %}
-                                            <li class="all"><a href="#">Voir toutes les prestataires de la catégorie <i class="fa fa-chevron-right"></i></a></li>
+                                            <li class="all"><a href="{{ path('service_category_detail', { slug: serviceCategoriesPlusProviders[h].slug } ) }}">Voir toutes les prestataires de la catégorie <i class="fa fa-chevron-right"></i></a></li>
 
                                         </ul>
                                     </li>
