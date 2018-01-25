@@ -10,6 +10,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Comment;
 use App\Entity\Provider;
 use App\Entity\Position;
@@ -19,6 +20,7 @@ use App\Entity\User;
  * Class Client
  *
  * @ORM\Entity(repositoryClass="App\Entity\ClientRepository")
+ * @ORM\Table(name="be_client")
  */
 class Client extends User
 {
@@ -76,6 +78,9 @@ class Client extends User
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     *
+     * @Assert\Type(type="App\Entity\Image")
+     * @Assert\Valid()
      */
     protected $avatar;
 

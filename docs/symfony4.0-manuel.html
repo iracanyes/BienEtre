@@ -1328,24 +1328,24 @@ $(function(){
                         Pour les options de surveillance de fichier par exemple
                     </p>
                     <pre class="exemple">
-                    /* webpack.config.js */
+/* webpack.config.js */
 
-                        const Encore = require('@symfony/webpack-encore');
+    const Encore = require('@symfony/webpack-encore');
 
-                        //... Ici on met toute notre configuration supportez par Encore ...
+    //... Ici on met toute notre configuration supportez par Encore ...
 
-                        /*
-                            récupération(fetch) de la configuration en tant qu'objet. Ensuite, on peut la modifier.
-                        */
-                        var config = Encore.getWebpackConfig();
-                        config.watchOptions = { poll: true, ignored: /node_modules/ };
-                        // Ajout d'un alias
-                        config.resolve.alias.local = path.resolve(__dirname, './resources/src');
-                        // Ajout d'une extension
-                        config.resolve.extensions.push('json');
+    /*
+        récupération(fetch) de la configuration en tant qu'objet. Ensuite, on peut la modifier.
+    */
+    var config = Encore.getWebpackConfig();
+    config.watchOptions = { poll: true, ignored: /node_modules/ };
+    // Ajout d'un alias
+    config.resolve.alias.local = path.resolve(__dirname, './resources/src');
+    // Ajout d'une extension
+    config.resolve.extensions.push('json');
 
-                        // Exportation de la configuration
-                        module.exports = config;
+    // Exportation de la configuration
+    module.exports = config;
 
                     </pre>
                     <div class="alert">
@@ -1476,6 +1476,396 @@ module.exports = Encore.getWebpackConfig();
                     </div>
                 </div>
             </div>
+            
+            <!-- Doctrine -->
+            <div id="doctrine">
+                <div>
+                    <h2>Doctrine et base de donnée</h2>
+                </div>
+                <div id="doctrineMigrations">
+                    <h3>Doctrine Migrations</h3>
+                    <div class="alert">
+                        <p class="alert-info">
+                            Voir la documentation officielle : <a href="https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html#content_wrapper">DoctrineMigrationsBundle</a>
+                        </p>
+                    </div>
+                    <p>
+                        Le composant de migrations de base de données est une extension de la couche d'abstraction DB. Il offre la possibilité de déployer de façon sûr des schemas de base de données misent à jour.
+                    </p>
+                    <p>
+                        Pour installer le composant <code>doctrine/doctrine-migrations-bundle</code>. <br>
+                        Le bundle sera installé dans le répertoire <code>vendor/doctrine/migrations</code>
+                    </p>
+                    <pre class="commande">
+$ composer require doctrine/doctrine-migrations-bundle: dev-master
+                    </pre>
+                    <p>
+                        Ensuite, on doit configurer le chemin, l'espace de nom, le nom de la table en DB, le nom et l'organisation des migrations
+                    </p>
+                    <pre class="exemple">
+// src/config/packages/doctrine_migrations.yaml
+
+doctrine_migrations:
+        dirname: "%kernel.root_dir%/DoctrineMigrations"
+        namespace: App\DoctrineMigrations
+        table_name: migration_versions
+        name: Application Migrations
+        organize_migrations: false # Version >= 1.2 valeur possible "BY_YEAR"
+                    </pre>
+                    <p>
+                        Voici les commandes disponibles <code>doctrine:migrations:[commande]</code>
+                    </p>
+                    <pre class="exemple">
+                    :diff   # Génére un schéma de migration par comparaison des différences entre la version courante et schéma actuelle en DB
+                        :execute    # Éxécute une migration "up" ou "down" manuellement
+                        :generate   # Génére une classe de migration
+                        :migrate    # Éxécute une migration vers une version spécifique ou la version la plus récénte disponible.
+                        :status     # Affiche le status de l'ensemble de la migration
+                        :version    # Ajoute et supprimer une version de migrations de la table des versions.
+                    </pre>
+                    <div id="exemple">
+                        <h3>Exemple : Intégration d'une table pour les sessions</h3>
+                        <p>
+                            On génére une comparaison entre l'état actuel de nos entités et le schéma en base de donnée
+                        </p>
+                        <pre class="commande">
+$ php bin/console doctrine:migrations:generate
+Generated new migration class to "chemin/vers/application/src/Migrations/Version20180124163101.php" from schema differences.
+                        </pre>
+                        <p>
+                            Ensuite on intégre ensuite notre script SQL pour l'ajout d'une table de session dans le fichier de version généré par . <br>
+                            Voir la documentation sur les <a href="https://symfony.com/doc/current/doctrine/pdo_session_storage.html">PDOSessionHandler</a>
+                        </p>
+                        <pre class="exemple">
+$this->addSql('CREATE TABLE `sessions` (
+    `sess_id` VARCHAR(128) NOT NULL PRIMARY KEY,
+    `sess_data` BLOB NOT NULL,
+    `sess_time` INTEGER UNSIGNED NOT NULL,
+    `sess_lifetime` MEDIUMINT NOT NULL
+) COLLATE utf8_bin, ENGINE = InnoDB
+');
+                        </pre>
+                        <p>
+                            Ensuite, il reste à mettre à jour la base de donnée avec la version de migration générée.
+                        </p>
+                        <pre class="commande">
+$ php bin/console doctrine:migrations:migrate
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <!-- End Doctrine -->
+
+            <!-- Service Container -->
+            <div id="serviceContainer">
+                <div>
+                    <h2>Service Container : Containeur de service</h2>
+                    <div class="alert">
+                        <p class="alert-info">
+                            Voir la documentation officielle : <a href="http://symfony.com/doc/current/service_container.html">Service Container</a>
+                        </p>
+                    </div>
+                    <p>
+                        Une application Symfony contient bcp de classes d'objets servant à accomplir de tous actions de l'application.
+                        <br>
+                        Par exemple, Mailer pour l'envoie d'e-mail, Doctrine pour la communication ac la base de donnée, etc.
+                    </p>
+                    <p>
+                        Les objets instanciés à partir de ces classes seront appelé <b>service</b> . <br>
+                        Chaque <i>service</i> seront contenu dans un objet spécial appelé <b>service container</b>. <br>
+
+                    </p>
+                    <p>
+                        Le <b>service container</b> permet de centraliser la façon dont les objets sont construits en améliorant aussi la vitesse et l'architecture des objets
+                    </p>
+
+                </div>
+
+                <div id="appelEtUtilisationService">
+                    <h3>Appel et utilisation de services</h3>
+                    <p>
+                        Au démarrage de l'application, le <i>container de service</i> contient déjà plusieurs <i>services</i> en attente d'utilisation.
+                    </p>
+                    <p>
+                        Pour utiliser un service dans un <i>controller</i>, on peut appeler ce <i>service</i> du container en typant un argument avec le nom de la <i>classe</i> ou de l'<i>interface</i> représentant le service.
+                    </p>
+                    <pre class="exemple">
+// src/Controller/ProviderController.php
+
+namespace App\Controller;
+
+// use ...
+
+class Provider extends Controller{
+    /**
+     * @Route("/provider", name="provider")
+     */
+    public function list(LoggerInterface $logger)
+    {
+        $logger->info('Je viens d'injecter le service "logger" dans mon contrôleur!');
+    }
+}
+
+                    </pre>
+                    <p>
+                        <b>Autowiring</b> permet utiliser le typage des arguments d'une méthode au sein d'un <i>controller</i> ou d'un <i>service personnalisé</i> , pour appeler automatiquement et injecter le service dont l'objet a un typage correspondant à celui défini comme argument.
+                    </p>
+                    <p>
+                        Pour voir les services disponibles au démarrage de l'application, on peut utiliser la commande en console <code>debug:autowiring</code>
+                    </p>
+                    <pre class="commande">
+$ php bin/console debug:autowiring
+                    </pre>
+                </div>
+
+                <div id="creationEtConfigurationServiceDansContainer">
+                    <h3>Création et configuration d'un service dans le container</h3>
+                    <p>
+                        Un service doit permettre d'accomplir une action spécifique. <br>
+                        Par exemple, on créer un simple service qui retourne un message au hasard dans une table de proposition
+
+                    </p>
+                    <pre class="exemple">
+// src/Service/MessageGenerator.php
+
+    namespace App\Service;
+
+    class MessageGenerator
+    {
+        public function getMonMessage()
+        {
+            $messages = [
+                "Ma première phrase au hasard",
+                "Ma deuxième phrase au hasard",
+                "Ma troisième phrase au hasard",
+            ];
+
+            $index = array_rand($messages);
+
+            return $messages[$index];
+        }
+    }
+                    </pre>
+                    <p>
+                        Grâce à l'<a href=""><i>autowiring</i> de multiple services</a>, on peut directement utiliser le service nouvellement créé dans nos <i>controller</i>.
+                        <br>
+                        Dans cette configuration, on indique d'importer toutes les classes trouvées dans le répertoire <code>src/</code> en tant que service.
+                    </p>
+                    <pre class="configuration">
+# config/services.yaml
+
+    services:
+        # default configuration for services in *this* file
+        _defaults:
+            autowire: true      # Automatically injects dependencies in your services.
+            autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+            public: false       # Allows optimizing the container by removing unused services; this also means
+                                # fetching services directly from the container via $container->get() won't work.
+                                # The best practice is to be explicit about your dependencies anyway.
+
+        # makes classes in src/ available to be used as services
+        # this creates a service per class whose id is the fully-qualified class name
+        App\:
+            resource: '../src/*'
+            exclude: '../src/{Entity,Migrations,Tests}'
+
+        # ...
+
+XML
+PHP
+                    </pre>
+                    <p>
+                        Lorsqu'une méthode demande le service <code>MessageGenerator</code>, le <i>service container</i> construit un objet à partir de sa classe et le retourne à la méthode qui le demande
+                    </p>
+                    <p class="alert-info">
+                        Si le service n'est pas appelé, il ne sera pas instancié ce qui permet d'epargner la mémoire et la vitesse de l'application.
+                        <br>
+                        Le service <code>MessageGenerator</code> sera créé qu'une seule fois et la même instance sera retourné à chaque appel du service.
+                    </p>
+                    <pre class="exemple">
+                    //src/Controller/ProviderController.php
+
+                        namespace App\Controller;
+
+                        use App\Service\MessageGenerator;
+
+                        class Provider extends Controller
+                        {
+                            public function add(Request $request, MessageGenerator $generateur)
+                            {
+                                // Le container instancie pour nous la classe MessageGenerator et le passe à cette fonction.
+                                // ...
+
+                                $mess = $generateur->getMonMessge();
+                                $this->addFlash('success', $mess);
+
+                                // ...
+                            }
+                        }
+                    </pre>
+
+                </div>
+
+                <div id="injectionEtConfigurationService">
+                    <h3>Injection et configuration de service</h3>
+                    <p>
+                        Lorsqu'on veut utiliser un service dans un autre service, il faudra injecter le service requis dans le deuxième service afin qu'il soit présent lors de la construction de l'objet représentant ce 2ème service.
+                        <br>
+                        Par exemple un service personnalisé d'envoie d'e-mail aura besoin du service d'envoie d'e-mail <code>Mailer</code>
+                    </p>
+                    <p>
+                        On crée la méthode de construction de l'objet <code>__construct()</code> dans laquelle on ajoute un argument ayant un typage <code>\Swift_Mailer</code> . Et on crée une propriété <code>mailer</code> qui recevra l'objet à la construction de l'objet de classe <code>UserMailer</code>
+                    </p>
+                    <pre class="exemple">
+namespace App\Email;
+
+use App\Entity\UserTemp;
+/**
+ * Class UserMailer
+ * @package App\Email
+ *
+ * Service d'envoie d'e-mail lié aux utilisateurs.
+ */
+class UserMailer
+{
+    /**
+     * @var \Swift_Mailer
+     */
+    protected $mailer;
+
+    public function __construct(\Swift_Mailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
+    /**
+     * Envoie un email de confirmation à l'utilisateur
+     *
+     * @param UserTemp $user
+     */
+    public function sendConfirmation(UserTemp $user)
+    {
+        /*
+         * Créer le template Twig du message
+         * et charger le template dans une variable
+         */
+
+        $message = new \Swift_Message("Confirmation inscription");
+
+        $message->setTo($user->getEmail())
+                ->setFrom('no-reply@bien-etre.com')
+                ->setBody(
+                    $this->renderView(
+                        // template d'email
+                        "emails/registration.html.twig",
+                        array(
+                            "user"=> $user
+                        )
+                    ),
+                    "text/html"
+                );
+        /*
+         * Si l'on veut inclur un version texte du message
+         * ->addpart(
+         *      $this->renderView(
+         *          "emails/registration.html.twig",
+         *          array("name" => $name)
+         *      ),
+         *      "text/plain"
+         * )
+         */
+
+         return $this->mailer->send($message) > 0;
+    }
+}
+                    </pre>
+                    <p>
+                        Ici, le <i>service container</i> sait qu'à l'instanciation du service <code>UserMailer</code>, il doit instancier un objet de classe <code>Swift_Mailer</code> pour le passer au constructeur de de l'objet <code>UserMailer</code>
+                    </p>
+                </div>
+            </div>
+            <!-- End Service container-->
+
+
+            <!-- Sécurité -->
+            <div id="securite">
+                <h2>Sécurité</h2>
+
+                <div id="chargementUtilisateurViaDatabase">
+                    <h3>Chargement des utilisateurs via la base de donnée (Entity Provider)</h3>
+                    <div class="alert">
+                        <p>
+                            Voir la documentation officielle : <a href="http://symfony.com/doc/current/security/entity_provider.html#security-serialize-equatable">Load Security Users from the Database(the Entity Provider)</a>
+                        </p>
+                    </div>
+                    <p>
+                        Le système de sécurité de Symfony peut charger des utilisateurs authentifiés à partir de n'importe où.
+                        <br>
+                        Par exemple, dans une base de donnée, via un serveur <i>Active Directory</i> ou <i>OAuth</i>.
+                    </p>
+                    
+                    
+                </div>
+
+                <div id="entityProvider">
+                    <h3>Provider d'utilisateurs authentifiés</h3>
+                    <div class="alert">
+                        <p class="alert-info">
+                            Voir la documentation officielle : <a href="https://symfony.com/doc/current/security/entity_provider.html">Entity Provider</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div id="registrationForm">
+                    <h3>Formulaire d'inscription d'utilisateurs authentifiable</h3>
+                    <div class="alert">
+                        <p>
+                            Voir la documentation officielle : <a href="http://symfony.com/doc/current/doctrine/registration_form.html">How to Implement a smple </a>
+                        </p>
+                    </div>
+                    <p>
+                        La création un formulaire d'inscription d'utilisateurs est assez simple. On commence par installer les composants nécessaires si cela n'est pas déjà fait
+                    </p>
+                    <pre class="exemple">
+$ composer require doctrine form security validator
+                    </pre>
+                    <div class="alert">
+                        <p class="alert-info">
+                            Le bundle <a href="https://github.com/FriendsOfSymfony/FOSUserBundle"><code>FOSUserBunble</code></a> fournit un formulaire d'inscription, de ré-initialiser un mot de passe et d'autres fonctionnalités de gestion des utilisateurs.
+                        </p>
+                    </div>
+                    <p>
+                        Ensuite, il faut créer une entité <code>User</code> qui contiendra obligatoirement les propriétés suivantes:
+                    </p>
+                    <ul>
+                        <li>
+                            <code>username</code> : <br>
+                            Si l'on veut que les utilisateurs s'identifient par leur nom d'utilisateur. Sinon il n'est pas nécessaire.
+                        <li>
+                        <li>
+                            <code>email</code>
+                        <li>
+                        <li>
+                            <code>password</code> : <br>
+                            Le mot de passe encodé.
+                        <li>
+                        <li>
+                            <code>plainPassword</code> : <br>
+                            Ce champ ne sera persisté en DB. Il contient temporairement le mot de passe en clair reçu par le formulaire d'inscription. Ce champ doit être validé et ensuite transmis à la propriété
+
+                        <li>
+                    </ul>
+                </div>
+
+                <div class="alert">
+                    <p class="alert-info">
+                        Pour encoder un mot de passe en <i>bcrypt</i>, vous pouvez utiliser la commande <code>php bin/console security:encode-password "mot de passe"</code>
+                    </p>
+                </div>
+            </div>
+
+
+
             <div id="informationComplémentaire">
                 <h2>Information complémentaire</h2>
                 <p>
@@ -1484,7 +1874,37 @@ module.exports = Encore.getWebpackConfig();
                     Pour en savoir un peu plus visitez leur page.
                 </p>
             </div>
+            <div id="reference">
+                <h2>Référence</h2>
+                <ul>
+                    <li>
 
+                    <li>
+                    <li>
+
+                    <li>
+                    <li>
+                        Sécurité:
+                        <ul>
+                            <li>
+                                <a href="http://symfony.com/doc/current/security.html">formulaire de login</a>
+                            <li>
+                            <li>
+                                <a href="http://symfony.com/doc/current/doctrine/registration_form.html">Formulaire d'inscription</a>
+                            <li>
+                            <li>
+                                <a href="https://symfony.com/doc/current/security/entity_provider.html">chargement des utilisateurs authentifiés en base de donnée</a>
+                            <li>
+                            <li>
+
+                            <li>
+                            <li>
+
+                            <li>
+                        </ul>
+                    <li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>

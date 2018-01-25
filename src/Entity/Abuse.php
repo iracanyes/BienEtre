@@ -9,8 +9,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Comment;
-use App\Entity\Internaute;
+use App\Entity\Client;
+
 
 /**
  * Class Abuse
@@ -35,6 +37,7 @@ class Abuse
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -42,6 +45,7 @@ class Abuse
      * @var \DateTime
      *
      * @ORM\Column(name="entry_date", type="datetime")
+     * @Assert\DateTime()
      */
     private $entryDate;
 
@@ -50,6 +54,8 @@ class Abuse
      *
      * @ORM\ManyToOne(targetEntity="\App\Entity\Client", cascade={"persist","remove"}, inversedBy="abuses")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Type(type="App\Entity\Client")
+     * @Assert\Valid()
      */
     private $client;
 
@@ -57,6 +63,8 @@ class Abuse
      * @var Comment
      *
      * @ORM\ManyToOne(targetEntity="\App\Entity\Comment", cascade={"persist","remove"})
+     * @Assert\Type(type="App\Entity\Comment")
+     * @Assert\Valid()
      */
     private $comment;
 
@@ -132,8 +140,13 @@ class Abuse
         $this->comment = $comment;
     }
 
-
-
+    /**
+     * @ORM\PrePersist()
+     * @return void
+     */
+    public function registryDate(){
+        $this->setEntryDate(new \Datetime());
+    }
 
 
 }

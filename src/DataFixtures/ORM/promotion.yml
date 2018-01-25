@@ -8,4 +8,4 @@ App\Entity\Promotion:
         releaseDate: '<dateTimeBetween("-2 years", "now")>'
         expiryDate: '<dateTimeBetween("now", "+2 years")>'
         serviceCategory: '@serviceCategory<numberBetween(1, 2)>'
-        provider: '@provider<numberBetween(1, 4)>'
+        provider: '@provider<numberBetween(1, 10)>'

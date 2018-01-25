@@ -10,6 +10,9 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+/** Composant de validation des propriétés **/
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use App\Entity\User;
 
@@ -19,6 +22,7 @@ use App\Entity\User;
  *
  * @ORM\Table(name="be_postal_code")
  * @ORM\Entity(repositoryClass="App\Repository\PostalCodeRepository")
+ * @UniqueEntity(fields={"postal_code"}, message="Ce code postal existe déjà!")
  */
 class PostalCode
 {
@@ -33,6 +37,7 @@ class PostalCode
      * @var string
      *
      * @ORM\Column(name="code_postal", type="integer", unique=true)
+     * @Assert\NotBlank()
      */
     private $postalCode;
 

@@ -1,0 +1,71 @@
+<div class="contact-form-wrapper clearfix">
+    <h3>Inscription</h3>
+
+
+    <form class="contact-form" action="{{ path('user_registration') }}" method="post">
+        <div class="form-group">
+
+            {{ form_label(form.email, "Adresse E-mail :") }}
+
+            {{ form_errors(form.email) }}
+            <br>
+            {{ form_widget(form.email, {"attr": {"class":"form-control"}}) }}
+        </div>
+
+        <div class="form-group">
+
+
+            {{ form_label(form.plainPassword, "Entrez votre mot de passe et confirmer celui-ci dans la seconde case :") }}
+
+            {{ form_errors(form.plainPassword) }}
+            <div class="form-group">
+                {{ form_label(form.plainPassword.first, "Entrez votre mot de passe :") }}
+                <br>
+                {{ form_widget(form.plainPassword.first, {"attr": {"class":"form-control"}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.plainPassword.second, "Confirmer votre mot de passe :") }}
+                <br>
+                {{ form_widget(form.plainPassword.second, {"attr": {"class":"form-control"}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            {{ form_label(form.userType, "Type d'utilisateur :") }}
+
+            {{ form_errors(form.userType) }}
+            <br>
+            {{ form_widget(form.userType, {"attr": {"class":"form-control"}}) }}
+        </div>
+
+        <div class="form-group">
+
+            {{ form_label(form.termsAccepted, "Conditions et termes :") }}
+            <p>
+
+            </p>
+
+            {{ form_errors(form.termsAccepted) }}
+            <br>
+            {{ form_widget(form.termsAccepted, {"attr": {"class":"form-control"}}) }}
+        </div>
+        {#
+        Ajout d'un champ invisible contenant le token de protection CSRF
+        #}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token("authenticate") }}">
+
+        {#
+            Si l'on veut contrôler l'URL auquel l'utilisateur sera redirigé en cas d'authentification réussie
+            <input type="hidden" name="_target_path" value="/account" />
+         #}
+
+        <!--
+        <button id="submit" name="login" class="btn btn-primary pull-left">Connexion</button>
+        -->
+        {{ form_widget(form.submit, {"attr": {"class":"btn btn-primary pull-left"}}) }}
+    </form>
+
+
+</div><!-- /.contact-form-wrapper -->

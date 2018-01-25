@@ -6852,7 +6852,8 @@ textarea {
 button i {
   margin-right: 10px; }
 
-.required {
+.required::after {
+  content: " *Champ obligatoire";
   color: #d81814; }
 
 .textarea-resize {

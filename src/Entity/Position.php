@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Client;
 use App\Entity\Bloc;
 
@@ -36,6 +36,9 @@ class Position
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", cascade={"persist","remove"}, inversedBy="positions")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Client")
+     * @Assert\Valid()
      */
     private $client;
 
@@ -44,6 +47,9 @@ class Position
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Bloc", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Bloc")
+     * @Assert\Valid()
      */
     private $bloc;
 

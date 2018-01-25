@@ -1,15 +1,28 @@
 security:
     # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    iracanyes:
-                        password: $2y$12$hH2H.CVqrOyV3pLPu.RySeBJwiHHEQJ6MI0Epqft8sjZgSP34ykQ6
-                        roles:  'ROLE_SUPER_ADMIN'
-                    user@bien-etre.com:
-                        password: $2y$12$CDhUVdecVZOsKo7ToVWELO8q4STavM0ph12lxZs/Bjz69lUcY8DoW
-                        roles:  'ROLE_CLIENT'
+        # Ici, le fournisseur d'utilisateur authentifié sera enregistré dans le fichier de configuration de sécurité
+        #in_memory:
+        #    memory:
+        #        users:
+        #            iracanyes:
+        #                password: $2y$12$hH2H.CVqrOyV3pLPu.RySeBJwiHHEQJ6MI0Epqft8sjZgSP34ykQ6
+        #                roles:  'ROLE_SUPER_ADMIN'
+        #            user@bien-etre.com:
+        #                password: $2y$12$CDhUVdecVZOsKo7ToVWELO8q4STavM0ph12lxZs/Bjz69lUcY8DoW
+        #                roles:  'ROLE_CLIENT'
+
+        # Ici, Le fournisseur d'utilisateur authentifié en DB sera l'entité
+        # Entity Provider
+        mon_entity_provider:
+            entity:
+                class: App\Entity\User
+                property: apiKey
+                # Si on utilise plusieurs "entity manager"
+                # manager_name : client
+        # User
+        mon_user_provider:
+            id: App\Security\User\UserProvider
 
     firewalls:
         dev:
@@ -21,7 +34,8 @@ security:
             pattern: ^/
             anonymous: ~
             # Fournisseur d'utilisateurs authentifié
-            provider: in_memory
+            # Si dans le fichier de sécurité :  in_memory
+            provider: mon_entity_provider
             form_login:
                 # Chemin formulaire de connexion
                 login_path: login
@@ -45,17 +59,25 @@ security:
     # Contrôle d'accès par le firewall
     access_control:
         # Accès à la route /admin après authentification par le firewall
-        - { path: ^/profile/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profile, roles: ROLE_MEMBER }
         - { path: ^/profile/members, roles: ROLE_CLIENT }
         - { path: ^/profile/providers, roles: ROLE_PROVIDER }
         - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
+
+
     # Définir le controller à utiliser pour encoder le mot de passe.
     # Il permet aussi d'indiquer à Symfony le type d'encodage utilisé pour les mots de passe des utilisateurs authentifiés
     encoders:
         #Classe de l'encodeur et le type d'encodage effectué
         # Ex: Symfony\Component\Security\Core\User\User: plaintext
-        Symfony\Component\Security\Core\User\User:
+        # Ici, On utilise le fichier de sécurité pour définir les utilisateurs qui seront encodé par le composant ci-dessous
+        #Symfony\Component\Security\Core\User\User:
+        #    algorithm: bcrypt
+        #    cost: 12
+
+        # Ici, nous utiliserons l'entité User qui implémente l'interface UserInterface pour encoder les données de celle-ci.
+        App\Entity\User:
             algorithm: bcrypt
             cost: 12
 

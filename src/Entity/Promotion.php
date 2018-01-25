@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Provider;
 use App\Entity\ServiceCategory;
 
@@ -48,6 +49,7 @@ class Promotion
      * @var \DateTime
      *
      * @ORM\Column(name="start_date", type="datetime")
+     * @Assert\DateTime()
      */
     private $startDate;
 
@@ -55,6 +57,7 @@ class Promotion
      * @var \DateTime
      *
      * @ORM\Column(name="end_date", type="datetime")
+     * @Assert\DateTime()
      */
     private $endDate;
 
@@ -62,6 +65,7 @@ class Promotion
      * @var \DateTime
      *
      * @ORM\Column(name="release_date", type="datetime")
+     * @Assert\DateTime()
      */
     private $releaseDate;
 
@@ -69,6 +73,7 @@ class Promotion
      * @var \DateTime
      *
      * @ORM\Column(name="expiry_date", type="datetime")
+     * @Assert\DateTime()
      */
     private $expiryDate;
 
@@ -77,6 +82,9 @@ class Promotion
      *
      * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="promotions")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Provider")
+     * @Assert\Valid()
      */
     private $provider;
 
@@ -85,6 +93,9 @@ class Promotion
      *
      * @ORM\ManyToOne(targetEntity="ServiceCategory", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\ServiceCategory")
+     * @Assert\Valid()
      */
     private $serviceCategory;
 

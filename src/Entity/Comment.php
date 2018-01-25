@@ -9,6 +9,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Provider;
 use App\Entity\Client;
 
@@ -61,6 +62,9 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="Client", cascade={"persist","remove"}, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Client")
+     * @Assert\Valid()
      */
     private $client;
 
@@ -69,6 +73,9 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="Provider", cascade={"persist","remove"}, inversedBy="opinions")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Provider")
+     * @Assert\Valid()
      */
     private $provider;
 

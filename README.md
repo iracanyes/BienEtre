@@ -75,6 +75,9 @@ Symfony3.3.9 application
     <h3>Tâches à effectuer</h3> 
     <ul>
         <li>
+            Ajouter le module Gedmo\Timestampable pour gérer les datations des modifications de nos entités
+        </li>
+        <li>
             Entité Site-web : Définir les sliders de la page d'accueil
         </li>
         <li>
@@ -133,12 +136,18 @@ Symfony3.3.9 application
                         </li>
                     </ul>
                 </li>
+                <li>
+                 Vérification de l'existence d'un identifiant lors de l'inscription
+                </li>
             </ol>
         </li>
     </ul>
 </div>
 <br>
-<div style="background:blue">
+<div>
+    
+</div>
+<div style="background-color:blue">
     <h3>Remarques et notes </h3>
     <div class="alert">
         <p class="alert-info">
@@ -162,5 +171,54 @@ Symfony3.3.9 application
                 Dé-commenter la section sur "sessions"
             </li>
         </ul>
+    </div>
+    <div>
+       <p>
+         À chaque nettoyage de la DB en développement "doctrine:database:drop --force", il ne faut pas oublier de créer la table qui contiendra les sessions authentifiés.
+       </p>
+       <ul>
+         <li>
+           Voir la documentation: <br>
+           <a href="https://symfony.com/doc/current/doctrine/pdo_session_storage.html">PDO Session Storage</a>
+         </li>
+         <li>
+            En utilisant la commande de migration de symfony (installer le bundle DoctrineMigrationsBundle) <br>
+            Commande : <code>php bin/console doctrine:migrations:diff</code>      
+         </li>
+         <li>
+              Ajouter au fichier de version de DB créé la ligne suivante                <pre>
+$this->addSql('CREATE TABLE `sessions` (
+       `sess_id` VARCHAR(128) NOT NULL PRIMARY KEY,
+       `sess_data` BLOB NOT NULL,
+       `sess_time` INTEGER UNSIGNED NOT NULL,
+       `sess_lifetime` MEDIUMINT NOT NULL
+   ) COLLATE utf8_bin, ENGINE = InnoDB
+');
+              </pre>
+         </li>
+         <li>
+            Ensuite pour mettre à jour la base de donnée utiliser la commande: <br>
+            <code> php bin/console doctrine:migrations:migrate</code>
+         </li>                  
+       </ul>
+       <p class="alert-info">
+         Attention, à chaque commande <code>doctrine:migrations:diff</code> pour calculer les différences entre les entités et la DB, la table session sera effacée car aucune entité ne la représente.
+       </p>
+       
+       
+       
+       
+    </div>
+    <div>
+      <h6>Remarque : Mise en production</h6>
+      <p>
+        Remettre toutes les contraintes d'unicités qui sont bloqués par les Fixtures dans les entités suivants:
+        Ou Créer sa propre fonction de fixtures pour chaque contrainte d'unicités
+      </p> 
+      <ul>
+        <li>
+           
+        </li>
+      </ul>
     </div>
 </div>

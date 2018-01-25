@@ -4,4 +4,5 @@ App\Entity\ServiceCategory:
         description: '<fr_FR:realText(80)>'
         inFrontPage: '<boolean()>'
         isValid: '<boolean()>'
-        image (unique): '@image*'
+        slug: '<slug()>'
+        image (unique): '@image<numberBetween(1, 9)>'

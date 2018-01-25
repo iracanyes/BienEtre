@@ -1,3 +1,3 @@
 App\Entity\Locality:
     locality{1..2}:
-        locality (unique): '<city()> <cityPrefix()>'
+        locality (unique): '<fr_BE:city()> <cityPrefix()>'

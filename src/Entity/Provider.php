@@ -6,6 +6,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 // Ajout de slug
 use Gedmo\Mapping\Annotation as Gedmo;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -20,6 +21,7 @@ use App\Entity\Client;
  * Provider
  *
  * @ORM\Entity(repositoryClass="App\Repository\ProviderRepository")
+ * @ORM\Table(name="be_provider")
  * @ORM\HasLifecycleCallbacks()
  */
 class Provider extends User
@@ -43,6 +45,7 @@ class Provider extends User
      * @var string
      *
      * @ORM\Column(name="email_contact", type="string", length=255, nullable=true)
+     *
      */
     private $emailContact;
 
@@ -136,7 +139,7 @@ class Provider extends User
 
     /**
      * @var string
-     * @Gedmo\Slug(fields={"brandName"})
+     * @Gedmo\Slug(fields={"brand_name"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;

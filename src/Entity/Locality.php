@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ *
  * User: isk
  * Date: 09.10.17
  * Time: 20:08
@@ -10,6 +10,11 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+// Contrainte d'unicité
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Class Locality
@@ -17,6 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="be_locality")
  * @ORM\Entity(repositoryClass="App\Repository\LocalityRepository")
+ * @UniqueEntity(fields={"locality"}, message="Cette localité existe déjà")
  */
 class Locality
 {
@@ -31,6 +37,7 @@ class Locality
      * @var string
      *
      * @ORM\Column(name="locality", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $locality;
 

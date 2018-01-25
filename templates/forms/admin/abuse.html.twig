@@ -1,0 +1,61 @@
+{{
+    form_start(
+        form,
+        {
+            "method":"POST",
+            "action":path('abuse_add'),
+            "attr":{"class":"form-horizontal"}
+        }
+    )
+}}
+
+{# Erreurs du formulaire #}
+{{ form_errors(form) }}
+
+{# Générer label+error+input pour un champ #}
+{# {{ form_row(form.brandName) }} #}
+<div class="form-group">
+    <label for="{{ form.description.vars.id }}"
+           class="{{ form.description.vars.required ? 'required' : '' }}">
+        {{ form.description.vars.label }}
+    </label>
+
+
+    {{ form_errors(form.description) }}
+
+    {{ form_widget(form.description, {"attr":{"class":"form-control"}}) }}
+</div>
+
+<div class="form-group">
+    <label for="{{ form.client.vars.id }}"
+           class="{{ form.client.vars.required ? 'required' : '' }}">
+        {{ form.client.vars.label }}
+    </label>
+
+
+    {{ form_errors(form.client) }}
+
+    {{ form_widget(form.client, {"attr":{"class":"form-control"}}) }}
+</div>
+
+<div class="form-group">
+    <label for="{{ form.comment.vars.id }}"
+           class="{{ form.comment.vars.required ? 'required' : '' }}">
+        {{ form.comment.vars.label }}
+    </label>
+
+
+    {{ form_errors(form.comment) }}
+
+    {{ form_widget(form.comment, {"attr":{"class":"form-control"}}) }}
+</div>
+{# Bouton submit #}
+{{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}
+
+
+
+{# Reste du formulaire #}
+{{ form_rest(form) }}
+
+{# End Form #}
+{{ form_end(form) }}

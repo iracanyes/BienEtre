@@ -1,4 +1,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
+# ATTENTION: Autowiring services based on the types they implement is deprecated since Symfony 3.3
+    # and won’t be supported in version 4.0. You should rename (or alias)
+    # the "security.user_password_encoder.generic" service
+    # to "Symfony\Component\Security\Core\Encoder\UserPasswordEncoder" instead.
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
@@ -27,22 +31,31 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-    ########################################################################################################
+    #######################################################################
+    # Stockage des sessions en base de données.
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - 'mysql:dbname=%env(DATABASE_NAME)%'
+            - { db_table: '%env(DATABASE_SESSION_TABLE)%', db_username: '%env(DATABASE_USERNAME)%' , db_password: '%env(DATABASE_PASSWORD)%'  }
+
+    ##########################################################################
     # Exemple :
     # Service d'envoie d'email de confirmation d'inscription
     # Installation de SwiftMailer nécessaire
-    #email.user_mailer:
-    #    class: App\Email\UserMailer
-    #    arguments:
-    #        - '@mailer'
+    App\Email\UserMailer:
+        alias: email.user_mailer
+        arguments:
+            - '@mailer'
+
     # Service écoutant l'événement postPersist pour déclencher l'action email.user_mailer
-    #doctrine_listener.user_confirmation:
-    #    class: App\DoctrineListener\UserConfirmationListener
-    #    arguments:
-    #        - '@email.user_mailer'
-    #    tags:
-    #        - { name: doctrine.event_listener, event: postPersist }
-    ##########################################################################################################
+    App\DoctrineListener\UserConfirmationListener:
+        alias: doctrine_listener.user_confirmation
+        arguments:
+            - '@email.user_mailer'
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    ##########################################################################
     # Chargement des extensions Twig : ERREUR
     # Cannot autowire service "Twig\Extensions\Node\TransNode"
     #
@@ -51,21 +64,23 @@ services:
     #    tags:
     #      - {name : 'twig.extension'}
     #
-    # ATTENTION: Autowiring services based on the types they implement is deprecated since Symfony 3.3
-    # and won’t be supported in version 4.0. You should rename (or alias)
-    # the "security.user_password_encoder.generic" service
-    # to "Symfony\Component\Security\Core\Encoder\UserPasswordEncoder" instead.
-    ######################################################################################################
-    app.twig.extension.text:
-        class: Twig_Extensions_Extension_Text
+
+    #########################################################################
+    Twig_Extensions_Extension_Text:
+        alias: app.twig.extension.text
         tags: { name: 'twig.extension' }
-    # Syntaxe Symfony 4.0 ne fonctionne pas
+
+    Twig_Extensions_Extension_I18n:
+        alias: app.twig.extension.i18n
+        tags: { name: 'twig.extension' }
+    Twig_Extensions_Extension_Date:
+        alias: app.twig.extension.date
+        tags: { name: 'twig.extension' }
+
+    # Syntaxe Symfony 4.0 ne fonctionne pas pour le bundle
+    # car upgrade de la 3.3 => 4.0 pas effectué
     #Twig_Extensions_Extension_Text:
     #    alias: app.twig.extension.text
     #    tags: { name: 'twig.extension' }
-    app.twig.extension.i18n:
-        class: Twig_Extensions_Extension_I18n
-        tags: { name: 'twig.extension' }
-    app.twig.extension.date:
-        class: Twig_Extensions_Extension_Date
-        tags: { name: 'twig.extension' }
+    ########################################################################
+

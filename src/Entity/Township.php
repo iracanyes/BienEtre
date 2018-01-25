@@ -10,6 +10,9 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+// Contrainte d'unicité
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Township
@@ -17,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="be_township")
  * @ORM\Entity(repositoryClass="App\Repository\TownshipRepository")
+ * @UniqueEntity(fields={"township"}, message="Cette commune existe déjà!")
  */
 class Township
 {
@@ -30,6 +34,7 @@ class Township
     /**
      * @var string
      * @ORM\Column(name="township", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $township;
 

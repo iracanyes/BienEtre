@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -51,7 +52,7 @@ class ServiceCategory
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_valid", type="boolean")
+     * @ORM\Column(name="is_valid", type="boolean", nullable=true)
      */
     private $isValid;
 
@@ -60,6 +61,9 @@ class ServiceCategory
      *
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
+     *
+     * @Assert\Type(type="App\Entity\Image")
+     * @Assert\Valid()
      */
     private $image;
 

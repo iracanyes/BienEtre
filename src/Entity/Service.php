@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 // Definition de slug avec les annotations @gedmo\slug
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Entity\Provider;
 
@@ -86,6 +87,9 @@ class Service
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Provider", cascade={"persist","remove"}, inversedBy="services")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Provider")
+     * @Assert\Valid()
      */
     private $provider;
 

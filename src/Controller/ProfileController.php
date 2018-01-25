@@ -14,9 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use App\Form\UserType;
+use App\Entity\User;
 
 class ProfileController extends Controller
 {
+
     /**
      * @Route("/profile", name="profile_home")
      *
@@ -25,15 +28,17 @@ class ProfileController extends Controller
     {
         try{
             if(false === $authChecker->isGranted('ROLE_MEMBER')){
-                throw new AccessDeniedException('You need administrative permissions to access this page!');
+                throw new AccessDeniedException('Vous devez vous identifier pour accéder à cette page!');
             }
         }catch(AccessDeniedException $e){
-            $this->redirectToRoute('login');
+            $this->redirectToRoute('login', array("error"=>$e));
         }
 
         return $this->render(
             "superlist/admin/admin-home.html.twig"
         );
     }
+
+
 
 }

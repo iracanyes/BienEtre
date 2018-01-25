@@ -7,3 +7,30 @@
   (5, 11, 1)' at line 1
 
   => Utilisation d'un mot-clé réservé de MySQL (order)
+
+Problème 2 :
+
+[ UnresolvableValueDuringGenerationExceptionFactory.php line 25:
+
+  [Nelmio\Alice\Throwable\Exception\Generator\Resolver\UnresolvableValueDuringGenerationException]
+  Could not resolve value during the generation process.
+
+   [Nelmio\Alice\Throwable\Exception\Generator\Resolver\UnresolvableValueException]
+    Could not find a variable "2y"
+
+Solution:
+  1. Vérifier s'il n'existe pas de caractère spéciaux utilisés par le composant dans les chaînes de caractères :
+   Ex: $, @,
+   Ex 1 : password: '$2y$12$hYaKtsuvQOT8qLzRgp6NtuTgpWjRLR6yk2m.3UL./icCpiGSzsFbi' Générera l'erreur ci-dessus
+   Utiliser plutôt les fonctions <sha256("mot de passe")> et <sha1("phrase aléatoire")>
+  2. It's possible that the @ is automatically escaped in some trivial examples, I forgot about that!
+  3. Mettre à jour la version de Hautelook/Alice et Nelmio/Alice
+
+Problèe 3 :
+
+  Doctrine\DBAL\Driver\PDOException (23000)]
+    SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Fleu
+    rus New' for key 'UNIQ_47AFBC8DDB97BC62'
+
+Solution:
+  Augmenter le "loading-limit" dans la configuration de hautelook_alice.yaml =~130

@@ -157,6 +157,20 @@
                 </header><!-- /.header -->
             {% endblock %}
 
+            {# Ici, on vérifie qu'une session authentifié existe avant d'afficher les messages de session #}
+            {% if app.request.hasPreviousSession %}
+
+                {% for message in app.flashes('notice_success') %}
+                    <div class="alert alert-icon alert-dismissible alert-success">
+                        \f164 {{ message }}
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-times" aria-hidden="true">\f00d</i>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             {% block main %}
 
             {% endblock %}

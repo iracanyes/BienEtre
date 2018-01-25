@@ -65,7 +65,11 @@ button {
     }
 }
 
-.required {
+.required{
+    color: $color-black-light;
+}
+.required::after {
+    content: " * Champ requis";
     color: $color-red;
 }
 

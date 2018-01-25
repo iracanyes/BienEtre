@@ -1,5 +1,5 @@
 App\Entity\Position:
     position{1..2}:
         place: '<numberBetween(1, 5)>'
-        client: '@client<numberBetween(1, 2)>'
+        client: '@client<numberBetween(1, 10)>'
         bloc: '@bloc<numberBetween(1, 2)>'

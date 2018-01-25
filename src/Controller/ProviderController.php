@@ -228,23 +228,11 @@ class ProviderController extends Controller
         $provider = new Provider();
 
         //Création du formulaire à partir du FormBuilder
-        $formBuilder = $this->createFormBuilder($provider)
+        $form= $this->createForm(ProviderType::class,$provider)
                 ->setAction($this->generateUrl('provider_add'))
                 ->setMethod('POST');
 
-        //Ajout des champs de l'entité que l'on veut remplir avec le formulaire
-        $formBuilder->add('brandName', TextType::class, array('label'=>'Nom légal :'))
-            ->add('website', UrlType::class, array('label'=>"URL site-web :"))
-            ->add('emailContact', EmailType::class, array('label'=>"E-mail de contact :"))
-            ->add('phoneNumber', TextType::class, array('label'=>"Numéro de téléphone :"))
-            ->add('tvaNumber', TextType::class, array('label'=>"Numéro de TVA :"))
-            ->add('street', TextType::class, array('label'=>"Adresse (rue) :"))
-            ->add('submit', SubmitType::class, array('label'=>'Envoyer'));
 
-        // Relations ac d'autres entités
-
-        // Générer le formulaire à partir du FormBuilder
-        $form = $formBuilder->getForm();
 
         //hydratation de l'objet avec les données de la requête
         $form->handleRequest($request);

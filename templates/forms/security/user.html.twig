@@ -1,0 +1,87 @@
+{{
+    form_start(
+        form,
+        {
+            "method":"POST",
+            "action":path('member_update'),
+            "attr":{"class":"form-horizontal"}
+        }
+    )
+}}
+
+{# Erreurs du formulaire #}
+{{ form_errors(form) }}
+
+{# Générer label+error+input pour un champ #}
+{# {{ form_row(form.brandName) }} #}
+<div class="form-group">
+    <label for="{{ form.email.vars.id }}"
+           class="{{ form.email.vars.required ? 'required' : '' }}">
+        {{ form.email.vars.label }}
+    </label>
+
+
+    {{ form_errors(form.email) }}
+
+    {{ form_widget(form.email, {"attr":{"class":"form-control"}}) }}
+</div>
+
+{# PlainPassword #}
+<div class="form-group">
+    <label for="{{ form.plainPassword.vars.id }}"
+           class="{{ form.plainPassword.vars.required ? 'required' : '' }}">
+        {{ form.plainPassword.vars.label }}
+    </label>
+
+    {{ form_errors(form.plainPassword) }}
+
+    {{ form_widget(form.plainPassword, {"attr":{"class":"form-control"}}) }}
+</div>
+
+{# Township #}
+<div class="form-group">
+    <label for="{{ form.township.vars.id }}"
+           class="{{ form.township.vars.required ? 'required' : '' }}">
+        {{ form.v.vars.label }}
+    </label>
+
+    {{ form_errors(form.township) }}
+
+    {{ form_widget(form.township, {"attr":{"class":"form-control"}}) }}
+</div>
+
+{# Locality #}
+<div class="form-group">
+    <label for="{{ form.locality.vars.id }}"
+           class="{{ form.v.vars.required ? 'required' : '' }}">
+        {{ form.locality.vars.label }}
+    </label>
+
+    {{ form_errors(form.locality) }}
+
+    {{ form_widget(form.locality, {"attr":{"class":"form-control"}}) }}
+</div>
+
+{# PostalCode #}
+<div class="form-group">
+    <label for="{{ form.postalCode.vars.id }}"
+           class="{{ form.postalCode.vars.required ? 'required' : '' }}">
+        {{ form.postalCode.vars.label }}
+    </label>
+
+    {{ form_errors(form.postalCode) }}
+
+    {{ form_widget(form.postalCode, {"attr":{"class":"form-control"}}) }}
+</div>
+
+
+{# Bouton submit #}
+{{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}
+
+
+
+{# Reste du formulaire #}
+{{ form_rest(form) }}
+
+{# End Form #}
+{{ form_end(form) }}

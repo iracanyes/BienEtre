@@ -8,4 +8,5 @@ App\Entity\Service:
         endDate: '<dateTimeBetween($startDate, "now")>'
         releaseDate: '<dateTimeBetween("-3 years", $startDate)>'
         expiryDate: '<dateTimeBetween("now", "+2 years")>'
-        provider: '@provider<numberBetween(1, 4)>'
+        slug: '<slug(@self->name)>'
+        provider: '@provider<numberBetween(1, 10)>'

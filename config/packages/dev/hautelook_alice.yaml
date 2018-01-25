@@ -4,9 +4,9 @@
 nelmio_alice:
     #Configuration optionnelle
     #locale: en_US
-    #seed: 1000
+    seed: 2000
     #persist_once: false
-    loading_limit: 30
+    loading_limit: 300
 
 hautelook_alice:
     fixtures_path: 'src/DataFixtures/ORM'

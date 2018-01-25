@@ -7,29 +7,49 @@
 App\Entity\User:
     # Ajouter une entité Admin avant de l'utiliser
     # + modifier l'entité User pour gérer le type 'admin' en single table inheritance
-    #user1:
-    #    email: 'iracanyes@gmail.com'
-    #    password: '<md5("admin")>'
-    #    registryDate: '<fr_FR:dateTimeBetween("-4 years", "-3 years")>'
-    #    userType: 'admin'
+    user1:
+        email: 'iracanyes@gmail.com'
+        password: '<sha256("admin")>'
+        registryDate: '<fr_FR:dateTimeBetween("-4 years", "-3 years")>'
+        nbErrorConnection: 0
+        banned: '<boolean(0)>'
+        registryConfirmed: '<boolean(100)>'
+        userType: 'admin'
+        isActive: '<boolean(100)>'
+        token: '<sha1(uniq(uuid()))>'
+        apiKey: '<sha1(uniq(uuid()))>'
+        township: '@township<numberBetween(1,2)>'
+        locality: '@locality<numberBetween(1,2)>'
+        postalCode: '@postalCode<numberBetween(1,2)>'
 
     user_provider (template):
         email: '<fr_FR:email()>'
-        password: '<md5("provider")>'
+        password: '<sha256("provider")>'
         registryDate: '<dateTimeBetween("-3 years","now")>'
         nbErrorConnection: 0
         banned: '<boolean()>'
         registryConfirmed: '<boolean(100)>'
         userType: 'provider'
+        isActive: '<boolean(100)>'
+        token: '<sha1(uniq(uuid()))>'
+        apiKey: '<sha1(uniq(uuid()))>'
+        township: '@township<numberBetween(1,2)>'
+        locality: '@locality<numberBetween(1,2)>'
+        postalCode: '@postalCode<numberBetween(1,2)>'
 
     user_client (template):
         email: '<fr_FR:email()>'
-        password: '<md5("client")>'
-        registryDate: '<fr_FR:dateTimeBetween("-3 years","now")>'
+        password: '<sha256("client")>'
         nbErrorConnection: 0
         banned: '<boolean(80)>'
         registryConfirmed: '<boolean(100)>'
         userType: 'client'
+        isActive: '<boolean(90)>'
+        token: '<sha1(uniq(uuid()))>'
+        apiKey: '<sha1(uniq(uuid()))>'
+        township: '@township<numberBetween(1,2)>'
+        locality: '@locality<numberBetween(1,2)>'
+        postalCode: '@postalCode<numberBetween(1,2)>'
 
 App\Entity\Provider:
     provider{1..10} (extends user_provider):
@@ -39,10 +59,8 @@ App\Entity\Provider:
         phoneNumber: '<e164PhoneNumber()>'
         tvaNumber: '<ean13()>'
         street: '<fr_BE:streetAddress()>'
+        slug: '<slug(@self->brandName)>'
         # Les relations seront créées par les utilisateurs
-        township: '@township<numberBetween(1,2)>'
-        locality: '@locality<numberBetween(1,2)>'
-        postalCode: '@postalCode<numberBetween(1,2)>'
         logos: ['@image<numberBetween(21, 30)>']
         images: ['@image<numberBetween(31,40)>']
         serviceCategories: '@serviceCategory{1..2}'
@@ -52,6 +70,6 @@ App\Entity\Client:
         lastname: '<lastname()>'
         firstname: '<firstname()>'
         newsletter: '<boolean()>'
-        avatar: '@image<numberBetween(11,20)>'
-        favorites: ['@provider<numberBetween(1,4)>']
+        avatar (unique): '@image<numberBetween(10, 20)>'
+        favorites: ['@provider<numberBetween(1, 10)>']
 
