@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Session
  * @package App\Entity
- * @ORM\Table(name="session")
+ * @ORM\Table(name="be_session")
  * @ORM\Entity()
  */
 class Session

@@ -29,7 +29,7 @@ class Service
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
@@ -97,7 +97,7 @@ class Service
      * @var string
      *
      * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=64, unique=true)
      */
     private $slug;
 

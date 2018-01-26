@@ -66,19 +66,19 @@ services:
     #
 
     #########################################################################
-    Twig_Extensions_Extension_Text:
-        alias: app.twig.extension.text
+    app.twig.extension.text:
+        class: Twig_Extensions_Extension_Text
         tags: { name: 'twig.extension' }
 
-    Twig_Extensions_Extension_I18n:
-        alias: app.twig.extension.i18n
+    app.twig.extension.i18n:
+        class: Twig_Extensions_Extension_I18n
         tags: { name: 'twig.extension' }
-    Twig_Extensions_Extension_Date:
-        alias: app.twig.extension.date
+    app.twig.extension.date:
+        class: Twig_Extensions_Extension_Date
         tags: { name: 'twig.extension' }
 
     # Syntaxe Symfony 4.0 ne fonctionne pas pour le bundle
-    # car upgrade de la 3.3 => 4.0 pas effectué
+    #
     #Twig_Extensions_Extension_Text:
     #    alias: app.twig.extension.text
     #    tags: { name: 'twig.extension' }

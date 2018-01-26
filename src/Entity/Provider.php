@@ -30,7 +30,7 @@ class Provider extends User
     /**
      * @var string
      *
-     * @ORM\Column(name="brand_name", type="string", length=255, unique=true, nullable=true)
+     * @ORM\Column(name="brand_name", type="string", length=255, unique=true)
      */
     private $brandName;
 
@@ -44,7 +44,7 @@ class Provider extends User
     /**
      * @var string
      *
-     * @ORM\Column(name="email_contact", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email_contact", type="string", length=255)
      *
      */
     private $emailContact;
@@ -52,14 +52,14 @@ class Provider extends User
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number", type="string", length=30, nullable=true)
+     * @ORM\Column(name="phone_number", type="string", length=30)
      */
     private $phoneNumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tva_number", type="string", length=20, unique=true, nullable=true)
+     * @ORM\Column(name="tva_number", type="string", length=20, unique=true)
      */
     private $tvaNumber;
 
@@ -139,8 +139,8 @@ class Provider extends User
 
     /**
      * @var string
-     * @Gedmo\Slug(fields={"brand_name"})
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"brandName"})
+     * @ORM\Column(name="slug", type="string", length=64, unique=true)
      */
     private $slug;
 

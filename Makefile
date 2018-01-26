@@ -18,6 +18,14 @@ else
 endif
 .PHONY: cache-clear
 
+db-reset-fixtures:
+ifdef CONSOLE
+ @$(CONSOLE) doctrine:database:drop --force && @$(CONSOLE) doctrine:database:create && @$(CONSOLE) doctrine:schema:update --force && @$(CONSOLE) hautelook:fixtures:load -vvv --purge-with-truncate
+else
+ @printf "Rechargement des fixtures impossible! \n"
+endif
+.PHONY: db-reset-fixtures
+
 cache-warmup: cache-clear
 ifdef CONSOLE
 	@$(CONSOLE) cache:warmup

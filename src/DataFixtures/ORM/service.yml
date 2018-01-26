@@ -1,6 +1,6 @@
 App\Entity\Service:
     service{1..10}:
-        name: '<fr_FR:sentence(7)>'
+        name (unique): '<fr_FR:sentence(7)>'
         description: '<fr_FR:realText(120)>'
         pricing: '<realText(60)>'
         additionalInformation: '<realText(100)>'
@@ -8,5 +8,5 @@ App\Entity\Service:
         endDate: '<dateTimeBetween($startDate, "now")>'
         releaseDate: '<dateTimeBetween("-3 years", $startDate)>'
         expiryDate: '<dateTimeBetween("now", "+2 years")>'
-        slug: '<slug(@self->name)>'
+        slug: '<slug()>'
         provider: '@provider<numberBetween(1, 10)>'

@@ -53,13 +53,13 @@ App\Entity\User:
 
 App\Entity\Provider:
     provider{1..10} (extends user_provider):
-        brandName: '<company()> <companySuffix()>'
+        brandName (unique): '<company()> <companySuffix()>'
         website: '<url()>'
         emailContact: '<freeEmail()>'
         phoneNumber: '<e164PhoneNumber()>'
         tvaNumber: '<ean13()>'
         street: '<fr_BE:streetAddress()>'
-        slug: '<slug(@self->brandName)>'
+        slug (unique): '<slug()>'
         # Les relations seront créées par les utilisateurs
         logos: ['@image<numberBetween(21, 30)>']
         images: ['@image<numberBetween(31,40)>']
