@@ -27,13 +27,13 @@ class Session
     protected $sess_id;
 
     /**
-     * @ORM\Column(name="sess_data", type="string", length=255)
+     * @ORM\Column(name="sess_data", type="blob")
      */
     protected $sess_data;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="sess_time", type="datetime")
+     * @ORM\Column(name="sess_time", type="integer")
      */
     protected $sess_time;
 

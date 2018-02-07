@@ -20,6 +20,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 use App\Entity\Provider;
 
 
@@ -36,6 +38,7 @@ class ProviderController extends Controller
      * Route interne /providers
      * 
      * @Route("/providers", name="provider_list")
+     *
      */
     public function indexAction(): Response
     {
@@ -214,6 +217,7 @@ class ProviderController extends Controller
 
     /**
      * @Route("/admin/providers/add", name="provider_add")
+     * @Security("has_role('ROLE_PROVIDER')")
      * @param Request $request
      * @return Response
      */
@@ -260,4 +264,60 @@ class ProviderController extends Controller
             array("form" => $form->createView())
         );
     }
+
+    public function updateAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
+    {
+        // Accès autorisé aux utilisation ayant le rôle ROLE_PROVIDER
+        if(false === $authChecker->isGranted('ROLE_PROVIDER')){
+            return $this->redirectToRoute('login');
+        }
+
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Id du provider
+        $token = $request->query->get("token");
+
+        // Chargement du prestataire
+        $provider = $em->getRepository("App:Provider")
+            ->findByToken($token);
+        //Création du formulaire à partir du FormBuilder
+        $form= $this->createForm(ProviderType::class,$provider)
+            ->setAction($this->generateUrl('provider_add'))
+            ->setMethod('POST');
+
+
+
+        //hydratation de l'objet avec les données de la requête
+        $form->handleRequest($request);
+
+        //Gestion de la soumission du formulaire
+        // Si le formulaire est soumis et que les données sont valides
+        if($form->isSubmitted() && $form->isValid()){
+
+
+            //Si $provider n'est pas hydraté, on peut essayer de récupèrer les données du formulaire
+            // $provider = $form->getData()
+            $em->persist($provider);
+
+            return $this->redirectToRoute('admin_accueil');
+        }
+
+
+
+        // On retourne la vue du formulaire avec "$form->createView()
+        // dans notre réponse HTML retourné par "$this->render()
+
+        return $this->render(
+            "superlist/admin/provider/add.html.twig",
+            array("form" => $form->createView())
+        );
+
+
+
+    }
+
+
+
+
 }

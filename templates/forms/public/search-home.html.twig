@@ -1,0 +1,40 @@
+{#
+    Formulaire de recherche : Page d'accueil
+#}
+<form method="POST" action="{{ path("search") }}">
+    <h2>Retrouver les prestataires de votre région</h2>
+
+    <div class="hero-image-keyword form-group">
+        <input type="text" class="form-control" placeholder="Prestataire">
+    </div><!-- /.form-group -->
+
+    <div class="hero-image-location form-group">
+        <select class="form-control" title="Ville">
+            {# Boucle sur les localités #}
+            {% for locality in localities %}
+                <option>{{ locality.locality }}</option>
+            {% endfor %}
+        </select>
+    </div><!-- /.form-group -->
+
+    <div class="hero-image-category form-group">
+        <select class="form-control" title="Commune">
+            {% for township in townships %}
+                <option value="{{ township.township }}">{{ township.township }}</option>
+            {% endfor %}
+        </select>
+    </div><!-- /.form-group -->
+    <div class="hero-image-location form-group">
+        <select class="form-control" title="Commune">
+            {% for postalCode in postalCodes %}
+                <option value="{{ postalCode.postalCode }}">{{ postalCode.postalCode }}</option>
+            {% endfor %}
+        </select>
+    </div><!-- /.form-group -->
+
+    <div class="hero-image-price form-group">
+        <input type="text" class="form-control" placeholder="Service">
+    </div><!-- /.form-group -->
+
+    <button type="submit" class="btn btn-primary btn-block">Lancer la recherche</button>
+</form>

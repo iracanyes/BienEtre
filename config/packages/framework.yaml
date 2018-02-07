@@ -10,7 +10,10 @@ framework:
         # handler_id: session.handler.native_file
         # save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
         handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
-    #esi: ~
+    # fragmenter la mise en cache d'une page via une passerelle cache
+    # Permet de charger des fragments de page en cache
+    # https://symfony.com/doc/current/http_cache/esi.html
+    esi: { enabled: true }
     #fragments: ~
     php_errors:
         log: true

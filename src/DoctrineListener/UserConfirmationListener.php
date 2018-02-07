@@ -15,7 +15,8 @@ namespace App\DoctrineListener;
  */
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use App\Email\UserMailer;
-use App\Entity\User;
+use App\Entity\UserTemp;
+
 class UserConfirmationListener
 {
     /**
@@ -28,11 +29,14 @@ class UserConfirmationListener
         $this->userMailer = $userMailer;
     }
 
+    /**
+     *
+     */
     public function postPersist(LifecycleEventArgs $args)
     {
         $user = $args->getObject();
 
-        if(!$user instanceof User){
+        if(!$user instanceof UserTemp){
             return;
         }
 

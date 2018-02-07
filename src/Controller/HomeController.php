@@ -28,16 +28,11 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
+
         $providers = $em->getRepository("App:Provider")
             ->findAll();
 
-        // Information pour la barre de recherche (créer un service gérant la recherche )
-        $townships = $em->getRepository("App:Township")
-            ->findAll();
-        $localities = $em->getRepository("App:Locality")
-            ->findAll();
-        $postalCodes = $em->getRepository("App:PostalCode")
-            ->findAll();
+
 
         // Slider d'image des catégories de services fournis par le site
         $serviceCategories = $em->getRepository("App:ServiceCategory")
@@ -47,16 +42,14 @@ class HomeController extends Controller
             dump(var) pour afficher les valeurs dans le navigateurs
             die($message) permet de sortir de l'exécution du script
 
-        dump($serviceCategories);
+        var_dump($serviceCategories);
         die();
         */
 
         $services = $em->getRepository("App:Service")
             ->recentServices();
-        /*
-        dump($services);
-        die();
-        */
+
+
         // Promotions récentes : OK
         $promotions = $em->getRepository("App:Promotion")
             ->recentPromotions();
@@ -78,21 +71,12 @@ class HomeController extends Controller
 
 
 
+
         if(!$providers){
             throw new NotFoundHttpException("Aucun provider enregistré en DB! ");
         }
 
-        if(!$townships){
-            throw new NotFoundHttpException("Aucune ville n'est enregistré en DB!");
-        }
 
-        if(!$localities){
-            throw new NotFoundHttpException("Aucune localité n'est enregistré en DB!");
-        }
-
-        if(!$postalCodes){
-            throw new NotFoundHttpException("Aucune code postal n'est enregistré en DB!");
-        }
 
         if(!$bestProviders){
             throw new NotFoundHttpException("Aucun vote pour un prestataire n'a été effectué!");
@@ -115,9 +99,6 @@ class HomeController extends Controller
             "superlist/public/index.html.twig",
             array(
                 "providers" => $providers,
-                "townships" => $townships,
-                "localities" => $localities,
-                "postalCodes" => $postalCodes,
                 "services" => $services,
                 "serviceCategories" => $serviceCategories,
                 "promotions" => $promotions,

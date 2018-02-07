@@ -44,7 +44,7 @@ class UserMailer
          * Générer une route pour la connexion de confirmation
          */
         $url = $this->router->generate(
-            "registration_confirmed",
+            "signin_confirmation",
             array("token" => $user->getToken())
         );
         /*

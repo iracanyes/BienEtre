@@ -137,7 +137,11 @@ Symfony3.3.9 application
                     </ul>
                 </li>
                 <li>
-                 Vérification de l'existence d'un identifiant lors de l'inscription
+                  Créer un formulaire pour ajouter le token reçu par e-mail avant de voir 
+                      * le formulaire de confirmation
+                </li>
+                <li>
+                  Vérification de l'existence d'un identifiant lors de l'inscription
                 </li>
             </ol>
         </li>

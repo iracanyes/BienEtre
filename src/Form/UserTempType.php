@@ -41,10 +41,10 @@ class UserTempType extends AbstractType
                 "userType",
                 ChoiceType::class,
                 array(
-                    "mapped"=>false,
+                    "mapped"=>true,
                     "choices" => array(
-                        "Prestataire"=>"Provider",
-                        "Client" => "Client"
+                        "Prestataire"=>"provider",
+                        "Client" => "client"
                     )
                 )
             )
@@ -52,8 +52,13 @@ class UserTempType extends AbstractType
                 "termsAccepted",
                 CheckboxType::class,
                 array(
-                    "mapped" => false,
-                    "constraints" => new IsTrue(),
+                    "attr" => array(
+                        "data" => 1,
+                        "checked" => "checked",
+                    ),
+                    "value" => "1",
+                    "required" => true,
+                    //"constraints" => new IsTrue()
                 )
             )
             ->add("submit", SubmitType::class, array("label"=>"Inscription"));
@@ -67,7 +72,7 @@ class UserTempType extends AbstractType
             // Activation protection CSRF
             "csrf_protection" => true,
             // Nom du champ contenant le token
-            "csrf_field_name" => "_token",
+            "csrf_field_name" => "_csrf_token",
             "csrf_token_id" => "email"
         ));
     }

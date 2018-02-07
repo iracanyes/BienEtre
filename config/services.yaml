@@ -44,14 +44,10 @@ services:
     # Installation de SwiftMailer nécessaire
     App\Email\UserMailer:
         alias: email.user_mailer
-        arguments:
-            - '@mailer'
 
     # Service écoutant l'événement postPersist pour déclencher l'action email.user_mailer
     App\DoctrineListener\UserConfirmationListener:
         alias: doctrine_listener.user_confirmation
-        arguments:
-            - '@email.user_mailer'
         tags:
             - { name: doctrine.event_listener, event: postPersist }
 

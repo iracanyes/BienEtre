@@ -12,13 +12,15 @@ use Doctrine\ORM\EntityRepository;
 
 class ServiceCategoryRepository extends EntityRepository
 {
-    public function getServiceCategoriesAndProviders(int $max = 10): array
+    public function getServiceCategoriesAndProviders(int $max = 20): array
     {
         $qb = $this->_em->createQueryBuilder()
             ->select('sc')
             ->from($this->_entityName, 'sc')
             ->innerJoin('sc.providers','p')
             ->addSelect('p')
+            // MaxResult prend en compte les sous-éléments dans le comptage des éléments à retourner
+            //   Ex: Si A a 10 sous-objets et 2 a 10 sous-objets alors MaxResults retourne A si max = 10
             ->setMaxResults($max);
 
         return $qb->getQuery()->getResult();

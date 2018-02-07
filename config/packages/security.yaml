@@ -77,9 +77,11 @@ security:
         #    cost: 12
 
         # Ici, nous utiliserons l'entité User qui implémente l'interface UserInterface pour encoder les données de celle-ci.
+        # Best algorithme : argon2i > bcrypt > sha512
         App\Entity\User:
-            algorithm: bcrypt
-            cost: 12
+            algorithm: argon2i
+        App\Entity\UserTemp:
+            algorithm: argon2i
 
     # Hiérarchie des rôles
     role_hierarchy:

@@ -2,7 +2,7 @@
     <h3>Inscription</h3>
 
 
-    <form class="contact-form" action="{{ path('user_registration') }}" method="post">
+    <form class="contact-form" action="{{ path('signin') }}" method="post" novalidate="novalidate">
         <div class="form-group">
 
             {{ form_label(form.email, "Adresse E-mail :") }}
@@ -42,27 +42,39 @@
 
         <div class="form-group">
 
-            {{ form_label(form.termsAccepted, "Conditions et termes :") }}
             <p>
-
+                Conditions et termes :
             </p>
 
             {{ form_errors(form.termsAccepted) }}
-            <br>
-            {{ form_widget(form.termsAccepted, {"attr": {"class":"form-control"}}) }}
+
+            <div class="checkbox">
+
+                <!--
+                <input type="checkbox" id="user_temp_termsAccepted" name="user_temp[termsAccepted]" value="1" >
+                -->
+
+                    {{ form_widget(form.termsAccepted) }}
+
+
+                <label for="user_temp_termsAccepted">J'ai lu et j'accepte les Conditions Générales d'Utilisation.</label>
+            </div>
+
         </div>
         {#
         Ajout d'un champ invisible contenant le token de protection CSRF
         #}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token("authenticate") }}">
-
+        <!--
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token("email") }}">
+        -->
+        {{ form_widget(form._csrf_token) }}
         {#
             Si l'on veut contrôler l'URL auquel l'utilisateur sera redirigé en cas d'authentification réussie
             <input type="hidden" name="_target_path" value="/account" />
          #}
 
         <!--
-        <button id="submit" name="login" class="btn btn-primary pull-left">Connexion</button>
+        <button id="submit" name="submit" class="btn btn-primary pull-left">Connexion</button>
         -->
         {{ form_widget(form.submit, {"attr": {"class":"btn btn-primary pull-left"}}) }}
     </form>

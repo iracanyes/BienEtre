@@ -15,7 +15,7 @@
                 <h3>Confirmation de l'inscription</h3>
                 <p>
                     Bonjour, <br>
-                    Merci de votre inscription en tant que <b>{{ user.user_type }}</b> sur notre annuaire.
+                    Merci de votre inscription en tant que <b>{{ user.userType }}</b> sur notre annuaire.
                 </p>
                 <ul>
                     <li>
@@ -25,19 +25,19 @@
                         Type d'utilisateur : {{ user.userType }}
                     <li>
                     <li>
-                        Date : {{ user.registryDate }}
+                        Date : {{ user.registryDate|date('l j F y ') }}
                     <li>
                 </ul>
 
                 <p>
                     Pour terminer l'inscription et profitez des avantages offerts à nos membres, veuillez cliquer sur le lien suivant :
-                    <a href="{{ url("registration_confirmed", array("token"=> user.token)) }}">Je confirme mon adresse et désire conclure l'inscription à l'annuaire</a>
+                    <a href="{{ url("signin_confirmation", {"token" : user.token}) }}">Je confirme mon adresse et désire conclure l'inscription à l'annuaire</a>
                 </p>
 
                 <p>
                     Par ailleurs, Si cette inscription n'est pas de votre fait, veuillez nous le signaler via le lien suivant:
                     <br>
-                    <a href="{{ url("registration_fraud") }}">Cette inscription est frauduleuse</a>
+                    <a href="{{ url("signin") }}">Cette inscription est frauduleuse</a>
                 </p>
             </div><!-- /.page-header -->
 

@@ -6,7 +6,7 @@
  * Time: 12:23
  */
 
-namespace App\Controller;
+namespace App\Security;
 
 use App\Entity\Client;
 use App\Entity\Provider;
@@ -21,15 +21,18 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Form\UserTempType;
 use App\Entity\UserTemp;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/signin", name="user_signin")
+     *
      */
-    public function signInAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, SessionInterface $session)
+    public function signInAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, SessionInterface $session, \Swift_Mailer $mailer)
     {
+
+        // Entity Manager
         $em = $this->getDoctrine()->getManager();
 
         // Création d'un formulaire à partir de l'objet vide
@@ -40,6 +43,18 @@ class RegistrationController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
+
+
+            /* test d'authenticité du token CSRF = PAS NECESSAIRE CAR GÉRER PAR LE COMPOSANT DE FORMULAIRE
+             * Nécessaire dans le cas de création de formulaire
+             * $submittedToken = $request->request->get("_csrf_token");
+             *   dump($submittedToken);
+             *   die();
+             *   if(!$this->isCsrfTokenValid("email", $submittedToken)){
+             *       throw new InvalidCsrfTokenException("Le token est invalide!");
+             *   }
+             */
 
             // Récupération de l'objet après hydratation
             $userTemp = $form->getData();
@@ -75,7 +90,44 @@ class RegistrationController extends Controller
             /*
              * Envoi d'un email de confirmation à l'adresse e-mail=> effectué par un Doctrine Event Listener
              */
+            /*
+         * Générer une route pour la connexion de confirmation
+         */
+            $url = $this->generateUrl(
+                "signin_confirmation",
+                array("token" => $userTemp->getToken())
+            );
+            /*
+             * Créer le template Twig du message
+             * et charger le template dans une variable
+             */
 
+            $message = (new \Swift_Message("Confirmation inscription"))
+                ->setTo($userTemp->getEmail())
+                ->setFrom('no-reply@bien-etre.com')
+                ->setBody(
+                    $this->renderView(
+                    // template d'email
+                        "emails/registration.html.twig",
+                        array(
+                            "user"=> $userTemp,
+                            "url" => $url
+                        )
+                    ),
+                    "text/html"
+                );
+            /*
+             * Si l'on veut inclur un version texte du message
+             * ->addpart(
+             *      $this->renderView(
+             *          "emails/registration.html.twig",
+             *          array("name" => $name)
+             *      ),
+             *      "text/plain"
+             * )
+             */
+
+            $mailer->send($message);
 
             /*
              * Message de confirmation de l'inscription
@@ -86,8 +138,11 @@ class RegistrationController extends Controller
                 "L'inscription est enregistré. Consultez votre adresse e-mail pour confirmer votre inscription."
             );
 
-            // Redirection vers la page de confirmation d'inscription par e-mail
-            return $this->redirectToRoute("registration_confirmation");
+            /* Redirection vers la page de confirmation d'inscription par e-mail
+             * Attention: Créer un formulaire pour ajouter le token reçu par e-mail avant de voir
+             * le formulaire de confirmation
+             */
+            return $this->redirectToRoute("homepage");
         }
 
         // Affichage du formulaire d'inscription
@@ -98,10 +153,10 @@ class RegistrationController extends Controller
     }
 
     /**
-     * @Route("/confirmation/{token}", name="confirmation_signin")
+     * @Route("/signin_confirmation?token={token}", name="signin_confirmation")
      * @param Request $request
      */
-    public function confirmation(Request $request, SessionInterface $session, UserConverter $converter)
+    public function confirmationAction(Request $request, SessionInterface $session, UserConverter $converter)
     {
         // Entity Manager
         $em = $this->getDoctrine()->getManager();
@@ -128,14 +183,25 @@ class RegistrationController extends Controller
             $provider = $converter->convertToProvider($userTemp);
 
             if($provider instanceof Provider){
+
+                // Ajout du nouveau role
+                $provider->addRole("ROLE_PROVIDER");
+
+                // Création du formulaire
                 $form = $this->createForm(ProviderType::class, $provider);
             }
+
+
 
         }else{
             $client = $converter->convertToClient($userTemp);
 
             if($client instanceof Client){
 
+                // Ajout du nouveau rôle
+                $client->addRole("ROLE_CLIENT");
+
+                // Création du formulaire
                 $form = $this->createForm(ClientType::class, $client);
             }
         }

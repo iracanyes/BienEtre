@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -83,6 +84,12 @@ class User implements AdvancedUserInterface, \Serializable
      *
      */
     protected $password;
+
+    /**
+     * @var array
+     * @ORM\Column(name="roles", type="array", length=255)
+     */
+    protected $roles;
 
     /**
      * @ORM\Column(name="registry_date", type="datetime")
@@ -179,7 +186,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function getUsername()
     {
         // TODO: Implement getUsername() method.
-        return $this->username;
+        return $this->email;
     }
 
     /**
@@ -212,6 +219,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+        $this->roles = new ArrayCollection();
     }
 
 
@@ -237,10 +245,35 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * Get Roles
-     * @return array
+     * @return Collection|string[]
      */
     public function getRoles(){
-        return array('ROLE_MEMBER');
+        return $this->roles;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function addRole(string $role)
+    {
+        //array_unshift($this->roles, array($role));
+        $this->roles[]=$role;
+    }
+
+    public function removeRole(string $role)
+    {
+        /* array_search(value, table)
+         * Recherche dans la table et retourne la clé de la valeur correspondante
+         * array_splice(table, start, length)
+         * Extrait une séquence d'éléments d'une table
+         *
+            if($key = array_search($role, $this->roles)){
+
+                array_splice($this->roles, $key, 1);
+            }
+         */
+        $this->roles->removeElement($role);
+
     }
 
     public function eraseCredentials()

@@ -3,8 +3,12 @@ index:
     defaults: { _controller: 'App\Controller\HomeController::index' }
 
 # first, run composer req annotations
+# On indique des routes sont définis dans ces répertoires via des annotations
 controllers:
     resource: ../src/Controller/
+    type: annotation
+security:
+    resource: ../src/Security/
     type: annotation
 
 # Routes Login & Logout
@@ -15,3 +19,6 @@ logout:
     path: /logout
 login_check:
     path: /login
+signin:
+    path: /signin
+    defaults: { _controller: 'App\Security\RegistrationController::signInAction' }

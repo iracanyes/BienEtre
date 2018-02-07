@@ -14,7 +14,8 @@ App\Entity\User:
         nbErrorConnection: 0
         banned: '<boolean(0)>'
         registryConfirmed: '<boolean(100)>'
-        userType: 'admin'
+        userType: 'Admin'
+        roles: ['ROLE_SUPER_ADMIN','ROLE_ADMIN','ROLE_MEMBER', 'ROLE_ALLOWED_TO_SWITCH']
         isActive: '<boolean(100)>'
         token: '<sha1(uniq(uuid()))>'
         apiKey: '<sha1(uniq(uuid()))>'
@@ -30,6 +31,7 @@ App\Entity\User:
         banned: '<boolean()>'
         registryConfirmed: '<boolean(100)>'
         userType: 'provider'
+        roles: ['ROLE_PROVIDER','ROLE_MEMBER']
         isActive: '<boolean(100)>'
         token: '<sha1(uniq(uuid()))>'
         apiKey: '<sha1(uniq(uuid()))>'
@@ -44,6 +46,7 @@ App\Entity\User:
         banned: '<boolean(80)>'
         registryConfirmed: '<boolean(100)>'
         userType: 'client'
+        roles: ['ROLE_CLIENT','ROLE_MEMBER']
         isActive: '<boolean(90)>'
         token: '<sha1(uniq(uuid()))>'
         apiKey: '<sha1(uniq(uuid()))>'

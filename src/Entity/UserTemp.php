@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Class UserTemp
  * @package App\Entity
  * @ORM\Table(name="be_temp_user")
- * @ORM\Entity(repositoryClass="App\Entity\UserTemp")
+ * @ORM\Entity(repositoryClass="App\Repository\UserTempRepository")
  *
  * Contrainte d'unicité sur la propriété "email"
  * @UniqueEntity(fields={"email"}, message="Cette adresse E-mail existe déjà ! ")
@@ -81,6 +81,11 @@ class UserTemp implements UserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @var boolean
+     */
+    private $termsAccepted;
 
     public function __construct()
     {
@@ -166,9 +171,9 @@ class UserTemp implements UserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUserType(): string
+    public function getUserType()
     {
         return $this->userType;
     }
@@ -214,11 +219,45 @@ class UserTemp implements UserInterface, \Serializable
     }
 
     /**
+     * @return bool|null
+     */
+    public function isActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param bool $isActive
+     */
+    public function setIsActive(bool $isActive): void
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isTermsAccepted()
+    {
+        return $this->termsAccepted;
+    }
+
+    /**
+     * @param bool $termsAccepted
+     */
+    public function setTermsAccepted(bool $termsAccepted): void
+    {
+        $this->termsAccepted = $termsAccepted;
+    }
+
+
+
+    /**
      * @return array
      */
     public function getRoles()
     {
-        return array("ROLE_USER");
+        return array("ROLE_MEMBER");
     }
 
     public function eraseCredentials()
