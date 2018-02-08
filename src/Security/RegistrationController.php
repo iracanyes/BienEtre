@@ -221,13 +221,21 @@ class RegistrationController extends Controller
 
         if($form->isSubmitted() && $form->isValid()){
 
+
             $newUser = $form->getData();
+
 
             // A mettre en événement Doctrine
             $newUser->setRegistryDate(new \DateTime());
 
-            // Création d'un nouveau token d'identification
+            // Création d'un ID token d'identification et de l'api key
             $newUser->setToken(bin2hex(random_bytes(64)));
+            $newUser->setApiKey(bin2hex(random_bytes(64)));
+
+            // Activation du compte
+            $newUser->setIsActive(true);
+            $newUser->setNbErrorConnection(true);
+            $newUser->setBanned(false);
 
 
             // Enregistrement du nouvel utilisateur
@@ -235,7 +243,6 @@ class RegistrationController extends Controller
             $em->flush();
 
             // Démarrage d'une session authentifié
-            $session->set("username", $newUser->getUsername());
             $session->set("token", $newUser->getToken());
 
             // Redirection vers le controller d'accueil des membres
@@ -246,7 +253,8 @@ class RegistrationController extends Controller
             "security/confirmation.html.twig",
             array(
                 "form" => $form->createView(),
-                "userType" => $userTemp->getUserType()
+                "userType" => $userTemp->getUserType(),
+                "token" => $userTemp->getToken()
             )
         );
     }

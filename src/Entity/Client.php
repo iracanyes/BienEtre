@@ -11,15 +11,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\Comment;
-use App\Entity\Provider;
-use App\Entity\Position;
-use App\Entity\User;
 
 /**
  * Class Client
  *
- * @ORM\Entity(repositoryClass="App\Entity\ClientRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
  * @ORM\Table(name="be_client")
  */
 class Client extends User
@@ -89,6 +85,7 @@ class Client extends User
      */
     public function __construct()
     {
+
         $this->positions = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->comments = new ArrayCollection();
@@ -98,9 +95,9 @@ class Client extends User
     /**
      * Get lastname
      *
-     * @return string
+     * @return string|null
      */
-    public function getLastname(): string
+    public function getLastname()
     {
         return $this->lastname;
     }
@@ -121,9 +118,9 @@ class Client extends User
     /**
      * Get firstname
      *
-     * @return string
+     * @return string|null
      */
-    public function getFirstname(): string
+    public function getFirstname()
     {
         return $this->firstname;
     }
@@ -144,9 +141,9 @@ class Client extends User
     /**
      * Get newsletter
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getNewsletter(): bool
+    public function getNewsletter()
     {
         return $this->newsletter;
     }
@@ -266,7 +263,7 @@ class Client extends User
     /**
      * Remove comment
      *
-     * @param \App\Entity\Comment $comment
+     * @param Comment $comment
      */
     public function removeComment(Comment $comment): void
     {
@@ -286,10 +283,10 @@ class Client extends User
       /**
        * Add Abuse
        *
-       * @param \App\Entity\Abuse $abuse
-       * @return Client
+       * @param Abuse $abuse
+       * @return void
        */
-      public function addAbuse(Abuse $abuse): Client
+      public function addAbuse(Abuse $abuse): void
       {
           $this->abuses = $abuse;
 
@@ -299,7 +296,7 @@ class Client extends User
       /**
        * Remove Abuse
        *
-       * @param \App\Entity\Abuse $abuse
+       * @param Abuse $abuse
        */
       public function removeAbuse(Abuse $abuse): void
       {
@@ -307,15 +304,15 @@ class Client extends User
       }
 
       /**
-      * @return \App\entity\Image
+      * @return Image|null
       */
-    public function getAvatar(): Image
+    public function getAvatar()
     {
         return $this->avatar;
     }
 
       /**
-     * @param \App\entity\Image $avatar
+     * @param Image $avatar
      */
       public function setAvatar(Image $avatar)
     {

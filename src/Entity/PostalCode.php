@@ -22,7 +22,7 @@ use App\Entity\User;
  *
  * @ORM\Table(name="be_postal_code")
  * @ORM\Entity(repositoryClass="App\Repository\PostalCodeRepository")
- * @UniqueEntity(fields={"postal_code"}, message="Ce code postal existe déjà!")
+ * @UniqueEntity(fields={"postalCode"}, message="Ce code postal existe déjà!")
  */
 class PostalCode
 {
@@ -36,7 +36,7 @@ class PostalCode
     /**
      * @var string
      *
-     * @ORM\Column(name="code_postal", type="integer", unique=true)
+     * @ORM\Column(name="postal_code", type="integer", unique=true)
      * @Assert\NotBlank()
      */
     private $postalCode;
@@ -62,9 +62,9 @@ class PostalCode
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPostalCode(): int
+    public function getPostalCode()
     {
         return $this->postalCode;
     }

@@ -19,7 +19,7 @@ class TownshipType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('township', TextType::class);
+        $builder->add('township', TextType::class, array("label"=> "Commune : "));
 
     }
 

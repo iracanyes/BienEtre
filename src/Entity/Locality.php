@@ -62,9 +62,9 @@ class Locality
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLocality(): string
+    public function getLocality()
     {
         return $this->locality;
     }

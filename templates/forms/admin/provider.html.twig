@@ -3,7 +3,7 @@
         form,
         {
             "method":"POST",
-            "action":path('provider_add'),
+            "action":path('signin_confirmation', {"token": token}),
             "attr":{"class":"form-horizontal"}
         }
     )
@@ -14,77 +14,115 @@
 
 {# Générer label+error+input pour un champ #}
 {# {{ form_row(form.brandName) }} #}
-<div class="form-group">
-    <label for="{{ form.brandName.vars.id }}"
-           class="{{ form.brandName.vars.required ? 'required' : '' }}">
-        {{ form.brandName.vars.label }}
-    </label>
+
+<div class="row">
+    <h4>Information de l'entreprise</h4>
+    {# BrandName #}
+    <div class="form-group">
+        <label for="{{ form.brandName.vars.id }}"
+               class="{{ form.brandName.vars.required ? 'required' : '' }}">
+            {{ form.brandName.vars.label }}
+        </label>
 
 
-    {{ form_errors(form.brandName) }}
+        {{ form_errors(form.brandName) }}
 
-    {{ form_widget(form.brandName, {"attr":{"class":"form-control"}}) }}
+        {{ form_widget(form.brandName, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Website #}
+    <div class="form-group">
+        <label for="{{ form.website.vars.id }}"
+               class="{{ form.website.vars.required ? 'required' : '' }}">
+            {{ form.website.vars.label }}
+        </label>
+
+        {{ form_errors(form.website) }}
+
+        {{ form_widget(form.website, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Contact E-mail #}
+    <div class="form-group">
+        <label for="{{ form.emailContact.vars.id }}"
+               class="{{ form.emailContact.vars.required ? 'required' : '' }}">
+            {{ form.emailContact.vars.label }}
+        </label>
+
+        {{ form_errors(form.emailContact) }}
+
+        {{ form_widget(form.emailContact, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Contact E-mail #}
+    <div class="form-group">
+        <label for="{{ form.phoneNumber.vars.id }}"
+               class="{{ form.phoneNumber.vars.required ? 'required' : '' }}">
+            {{ form.phoneNumber.vars.label }}
+        </label>
+
+        {{ form_errors(form.phoneNumber) }}
+
+        {{ form_widget(form.phoneNumber, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# TVA Number #}
+    <div class="form-group">
+        <label for="{{ form.tvaNumber.vars.id }}"
+               class="{{ form.tvaNumber.vars.required ? 'required' : '' }}">
+            {{ form.tvaNumber.vars.label }}
+        </label>
+
+        {{ form_errors(form.tvaNumber) }}
+
+        {{ form_widget(form.tvaNumber, {"attr":{"class":"form-control"}}) }}
+    </div>
 </div>
 
-{# Website #}
-<div class="form-group">
-    <label for="{{ form.website.vars.id }}"
-           class="{{ form.website.vars.required ? 'required' : '' }}">
-        {{ form.website.vars.label }}
-    </label>
+<div class="row">
+    <h4>Adresse</h4>
+    {# Street #}
+    <div class="form-group">
+        <label for="{{ form.street.vars.id }}"
+               class="{{ form.street.vars.required ? 'required' : '' }}">
+            {{ form.street.vars.label }}
+        </label>
 
-    {{ form_errors(form.website) }}
+        {{ form_errors(form.street) }}
 
-    {{ form_widget(form.website, {"attr":{"class":"form-control"}}) }}
+        {{ form_widget(form.street, {"attr":{"class":"form-control"}}) }}
+    </div>
+    <br>
+    {# Locality #}
+    <div class="form-group">
+        {{ form_label(form.locality.locality) }}
+
+        {{ form_errors(form.locality.locality) }}
+
+        {{ form_widget(form.locality.locality, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Township #}
+    <div class="form-group">
+        {{ form_label(form.township.township) }}
+
+        {{ form_errors(form.township.township) }}
+
+        {{ form_widget(form.township.township, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# PostalCode #}
+    <div class="form-group">
+        {{ form_label(form.postalCode.postalCode) }}
+
+        {{ form_errors(form.postalCode.postalCode) }}
+
+        {{ form_widget(form.postalCode.postalCode, {"attr":{"class":"form-control   "}}) }}
+    </div>
 </div>
 
-{# Contact E-mail #}
-<div class="form-group">
-    <label for="{{ form.emailContact.vars.id }}"
-           class="{{ form.emailContact.vars.required ? 'required' : '' }}">
-        {{ form.emailContact.vars.label }}
-    </label>
 
-    {{ form_errors(form.emailContact) }}
 
-    {{ form_widget(form.emailContact, {"attr":{"class":"form-control"}}) }}
-</div>
-
-{# Contact E-mail #}
-<div class="form-group">
-    <label for="{{ form.phoneNumber.vars.id }}"
-           class="{{ form.phoneNumber.vars.required ? 'required' : '' }}">
-        {{ form.phoneNumber.vars.label }}
-    </label>
-
-    {{ form_errors(form.phoneNumber) }}
-
-    {{ form_widget(form.phoneNumber, {"attr":{"class":"form-control"}}) }}
-</div>
-
-{# TVA Number #}
-<div class="form-group">
-    <label for="{{ form.tvaNumber.vars.id }}"
-           class="{{ form.tvaNumber.vars.required ? 'required' : '' }}">
-        {{ form.tvaNumber.vars.label }}
-    </label>
-
-    {{ form_errors(form.tvaNumber) }}
-
-    {{ form_widget(form.tvaNumber, {"attr":{"class":"form-control"}}) }}
-</div>
-
-{# Street #}
-<div class="form-group">
-    <label for="{{ form.street.vars.id }}"
-           class="{{ form.street.vars.required ? 'required' : '' }}">
-        {{ form.street.vars.label }}
-    </label>
-
-    {{ form_errors(form.street) }}
-
-    {{ form_widget(form.street, {"attr":{"class":"form-control"}}) }}
-</div>
 
 {# Bouton submit #}
 {{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}

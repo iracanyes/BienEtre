@@ -1,4 +1,4 @@
-{# Template : Register Form #}
+{# Template : Confirmation registration Form #}
 {% extends 'base.html.twig' %}
 
 {% block main %}
@@ -10,10 +10,10 @@
     <div class="content">
 
     <div class="document-title">
-        <h1>Connexion à l'espace membre</h1>
+        <h1>Confirmation de l'inscription</h1>
 
         <ul class="breadcrumb">
-            <li><a href="{{ path('homepage') }}">Inscription</a></li>
+            <li><a href="{{ path('homepage') }}">Accueil</a></li>
             <li><a href="{{ path('login') }}">Connexion</a></li>
         </ul>
     </div><!-- /.document-title -->
@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-sm-6 ">
-
+            <h3>Données de l'entreprise</h3>
             {# Inclusion du formulaire d'inscription #}
             {% if userType == "provider" %}
 

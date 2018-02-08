@@ -22,13 +22,58 @@ class ProviderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add("brandName", TextType::class)
-            ->add("website", UrlType::class)
-            ->add("emailContact", EmailType::class)
-            ->add("phoneNumber", TelType::class)
-            ->add("tvaNumber", TextType::class)
-            ->add("street", TextType::class)
-            ->add("submit", SubmitType::class);
+        $builder->add(
+                "brandName",
+                TextType::class,
+                array(
+                    "label" => "Nom de l'organisation :"
+                )
+            )
+            ->add(
+                "website",
+                UrlType::class,
+                array(
+                    "label" => "Site internet :"
+                )
+            )
+            ->add(
+                "emailContact",
+                EmailType::class,
+                array(
+                    "label" => "E-mail de contact:"
+                )
+            )
+            ->add("phoneNumber", TelType::class,
+                array(
+                    "label" => "Numéro de téléphone :"
+                )
+            )
+            ->add("tvaNumber", TextType::class,
+                array(
+                    "label" => "Numéro TVA :"
+                )
+            )
+            ->add("street", TextType::class,
+                array(
+                    "label" => "Rue :"
+                )
+            )
+            ->add(
+                "locality",
+                LocalityType::class,
+                array("label"=>"Localité : ")
+            )
+            ->add(
+                "township",
+                TownshipType::class,
+                array("label"=>"Commune : ")
+            )
+            ->add(
+                "postalCode",
+                PostalCodeType::class,
+                array("label"=>"Code postal : ")
+            )
+            ->add("submit", SubmitType::class, array("label"=>"Confirmer"));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -79,7 +79,7 @@ class User implements AdvancedUserInterface, \Serializable
     protected $plainPassword;
 
     /**
-     * @ORM\Column(name="password", type="string", length=64)
+     * @ORM\Column(name="password", type="string", length=255)
      * @Assert\NotBlank()
      *
      */
@@ -149,7 +149,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\ManyToOne(targetEntity="Locality", cascade={"persist"},inversedBy="users")
      * @ORM\JoinColumn(name="locality")
      *
-     * @Assert\Type(type="App\Entity\PostalCode")
+     * @Assert\Type(type="App\Entity\Locality")
      * @Assert\Valid()
      */
     protected $locality;
@@ -432,15 +432,15 @@ class User implements AdvancedUserInterface, \Serializable
 
 
     /**
-     * @return \App\Entity\PostalCode
+     * @return PostalCode|null
      */
-    public function getPostalCode(): PostalCode
+    public function getPostalCode()
     {
         return $this->postalCode;
     }
 
     /**
-     * @param \App\Entity\PostalCode $postalCode
+     * @param PostalCode $postalCode
      */
     public function setPostalCode(PostalCode $postalCode)
     {
@@ -455,9 +455,9 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Get locality
      *
-     * @return \App\Entity\Locality
+     * @return Locality
      */
-    public function getLocality(): Locality
+    public function getLocality()
     {
         return $this->locality;
     }
@@ -465,7 +465,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Set locality
      *
-     * @param \App\Entity\Locality $locality
+     * @param Locality $locality
      */
     public function setLocality(Locality $locality)
     {
@@ -480,7 +480,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @return \App\Entity\Township
      */
-    public function getTownship(): Township
+    public function getTownship()
     {
         return $this->township;
     }

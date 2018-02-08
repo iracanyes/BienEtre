@@ -26,6 +26,8 @@ class UserConverter
         $provider->setPassword($userTemp->getPassword());
         $provider->setUserType($userTemp->getUserType());
         $provider->setRegistryDate(new \DateTime());
+        $provider->setRegistryConfirmed(true);
+        $provider->setPlainPassword("abc");
 
         return $provider;
     }
@@ -42,6 +44,8 @@ class UserConverter
         $client->setPassword($userTemp->getPassword());
         $client->setUserType($userTemp->getUserType());
         $client->setRegistryDate(new \DateTime());
+        $client->setRegistryConfirmed(true);
+        $client->setPlainPassword("abc");
 
         return $client;
     }

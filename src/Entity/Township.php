@@ -58,7 +58,7 @@ class Township
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTownship()
     {
