@@ -16,6 +16,8 @@ use App\Security\User\UserConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Form\UserTempType;
@@ -27,7 +29,11 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 class RegistrationController extends Controller
 {
     /**
-     *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param SessionInterface $session
+     * @param \Swift_Mailer $mailer
+     * @return RedirectResponse|Response
      */
     public function signInAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, SessionInterface $session, \Swift_Mailer $mailer)
     {
@@ -153,7 +159,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * @Route("/signin_confirmation?token={token}", name="signin_confirmation")
+     * @Route("/signin_confirmation", name="signin_confirmation")
      * @param Request $request
      */
     public function confirmationAction(Request $request, SessionInterface $session, UserConverter $converter)
@@ -164,13 +170,17 @@ class RegistrationController extends Controller
         // Extraction du token de l'URL
         $token = $request->query->get("token");
 
-        if(!$token){
-            throw new BadCredentialsException();
+
+        if(empty($token)){
+            throw new BadCredentialsException("La voie du milieu est semé d'embuche!");
         }
 
         // Récupération de l'entité
+        // Attention findByX retourne un array de résultat tandis que findOneByX retourne un objet ou null
         $userTemp = $em->getRepository("App:UserTemp")
-            ->loadUserTempByToken($token);
+            ->findOneByToken($token);
+
+
 
         if(!$userTemp){
             throw new UsernameNotFoundException(sprintf("Aucun utilisateur ne posséde un token d'inscription équivalent à %s", $token));
@@ -178,7 +188,7 @@ class RegistrationController extends Controller
 
         // Transfert des infos en fonction du type d'utilisateur, dans un objet de type Client et Provider
 
-        if($userTemp->getUserType() === "provider"){
+        if($userTemp->getUserType() == "provider"){
 
             $provider = $converter->convertToProvider($userTemp);
 
@@ -209,7 +219,7 @@ class RegistrationController extends Controller
         // Gestion de la soumission d'un formulaire en fonction du type
         $form->handleRequest($request);
 
-        if($form->isValid() && $form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
 
             $newUser = $form->getData();
 
@@ -234,7 +244,10 @@ class RegistrationController extends Controller
 
         return $this->render(
             "security/confirmation.html.twig",
-            array("form" => $form->createView())
+            array(
+                "form" => $form->createView(),
+                "userType" => $userTemp->getUserType()
+            )
         );
     }
 

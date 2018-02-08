@@ -23,7 +23,6 @@ class UserConverter
         $provider = new Provider();
 
         $provider->setEmail($userTemp->getEmail());
-        $provider->setUsername($userTemp->getUsername());
         $provider->setPassword($userTemp->getPassword());
         $provider->setUserType($userTemp->getUserType());
         $provider->setRegistryDate(new \DateTime());
@@ -40,7 +39,6 @@ class UserConverter
         $client = new Client();
 
         $client->setEmail($userTemp->getEmail());
-        $client->setUsername($userTemp->getUsername());
         $client->setPassword($userTemp->getPassword());
         $client->setUserType($userTemp->getUserType());
         $client->setRegistryDate(new \DateTime());

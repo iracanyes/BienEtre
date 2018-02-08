@@ -1,0 +1,73 @@
+{# Template : Register Form #}
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+
+    <div class="main">
+    <div class="main-inner">
+    <div class="container">
+    <div class="content">
+
+    <div class="document-title">
+        <h1>Connexion à l'espace membre</h1>
+
+        <ul class="breadcrumb">
+            <li><a href="{{ path('homepage') }}">Inscription</a></li>
+            <li><a href="{{ path('login') }}">Connexion</a></li>
+        </ul>
+    </div><!-- /.document-title -->
+
+
+    <div class="row">
+        <div class="col-sm-6 ">
+
+            {# Inclusion du formulaire d'inscription #}
+            {% if userType == "provider" %}
+
+                {% include("forms/admin/provider.html.twig") %}
+
+            {% else %}
+
+                {% include("forms/admin/client.html.twig") %}
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="col-sm-6">
+            <h3>Rejoignez-nous</h3>
+            <h4>Confucius</h4>
+            <blockquote>
+                Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie.
+            </blockquote>
+            <!--
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Adresse</h3>
+
+                    <p>
+                        13/2 Rue Saint-Laurent,<br>
+                        4800 Liège, Belgique
+                    </p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3>Contacts</h3>
+
+                    <p>
+                        04 223 11 31<br>
+                        0476 65 45 65
+                    </p>
+                </div>
+            </div> end.row -->
+        </div><!-- /.col-* -->
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
