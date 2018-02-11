@@ -44,6 +44,7 @@ services:
     # Installation de SwiftMailer nécessaire
     #App\Email\UserMailer:
     #    alias: email.user_mailer
+    # Attention: toutes les classes sont chargés en tant que service voir plus haut.
 
     # Service écoutant l'événement postPersist pour déclencher l'action email.user_mailer
     App\DoctrineListener\UserConfirmationListener:

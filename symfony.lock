@@ -26,6 +26,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.0"
     },
+    "pagerfanta/pagerfanta": {
+        "version": "v1.0.5"
+    },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
         "recipe": {
@@ -38,6 +41,9 @@
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
     },
+    "symfony/asset": {
+        "version": "v4.0.4"
+    },
     "symfony/browser-kit": {
         "version": "v4.0.2"
     },
@@ -47,11 +53,26 @@
     "symfony/dom-crawler": {
         "version": "v4.0.2"
     },
+    "symfony/form": {
+        "version": "v4.0.4"
+    },
     "symfony/polyfill-apcu": {
         "version": "v1.6.0"
     },
     "symfony/property-info": {
         "version": "v4.0.2"
+    },
+    "symfony/security-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "03f21d01e3f41a095a43e0e7b2f7fbd9dbd33cf8"
+        }
+    },
+    "symfony/security-csrf": {
+        "version": "v4.0.4"
     },
     "symfony/swiftmailer-bundle": {
         "version": "2.5",

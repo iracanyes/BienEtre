@@ -69,15 +69,17 @@
     </div>
 
     {# Newsletter #}
-    <div class="form-group">
+    <div class="checkbox">
+
+
+        {{ form_errors(form.newsletter) }}
+
+        {{ form_widget(form.newsletter) }}
+
         <label for="{{ form.newsletter.vars.id }}"
                class="{{ form.newsletter.vars.required ? 'required' : '' }}">
             {{ form.newsletter.vars.label }}
         </label>
-
-        {{ form_errors(form.newsletter) }}
-
-        {{ form_widget(form.newsletter, {"attr":{"class":"form-control"}}) }}
     </div>
 </div>
 

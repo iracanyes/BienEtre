@@ -96,7 +96,7 @@ class RegistrationController extends Controller
             /*
              * Envoi d'un email de confirmation à l'adresse e-mail=> effectué par un Doctrine Event Listener
              */
-            
+
             /*
              * Message de confirmation de l'inscription
              * raccourci pour $request->getSession()->getFlashBag()->add("type_message", "mon message");

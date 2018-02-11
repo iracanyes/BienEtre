@@ -73,7 +73,7 @@ class UserMailer
                             "url" => $url
                         )
                     ),
-                    "text/html"
+                    "text/plain"
                 );
         /*
          * Si l'on veut inclur un version texte du message

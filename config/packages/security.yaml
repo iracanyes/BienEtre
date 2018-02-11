@@ -1,5 +1,5 @@
 security:
-    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # Ici, le fournisseur d'utilisateur authentifié sera enregistré dans le fichier de configuration de sécurité
         #in_memory:
