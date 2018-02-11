@@ -96,45 +96,7 @@ class RegistrationController extends Controller
             /*
              * Envoi d'un email de confirmation à l'adresse e-mail=> effectué par un Doctrine Event Listener
              */
-            /*
-         * Générer une route pour la connexion de confirmation
-         */
-            $url = $this->generateUrl(
-                "signin_confirmation",
-                array("token" => $userTemp->getToken())
-            );
-            /*
-             * Créer le template Twig du message
-             * et charger le template dans une variable
-             */
-
-            $message = (new \Swift_Message("Confirmation inscription"))
-                ->setTo($userTemp->getEmail())
-                ->setFrom('no-reply@bien-etre.com')
-                ->setBody(
-                    $this->renderView(
-                    // template d'email
-                        "emails/registration.html.twig",
-                        array(
-                            "user"=> $userTemp,
-                            "url" => $url
-                        )
-                    ),
-                    "text/html"
-                );
-            /*
-             * Si l'on veut inclur un version texte du message
-             * ->addpart(
-             *      $this->renderView(
-             *          "emails/registration.html.twig",
-             *          array("name" => $name)
-             *      ),
-             *      "text/plain"
-             * )
-             */
-
-            $mailer->send($message);
-
+            
             /*
              * Message de confirmation de l'inscription
              * raccourci pour $request->getSession()->getFlashBag()->add("type_message", "mon message");

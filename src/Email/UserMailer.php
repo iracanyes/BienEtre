@@ -9,6 +9,8 @@ namespace App\Email;
 
 use App\Entity\UserTemp;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Templating\EngineInterface;
+
 /**
  * Class UserMailer
  * @package App\Email
@@ -27,10 +29,16 @@ class UserMailer
      */
     protected $router;
 
-    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator)
+    /**
+     * @var EngineInterface
+     */
+    protected $twigEngine;
+
+    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, EngineInterface $twigEngine)
     {
         $this->mailer = $mailer;
         $this->router= $urlGenerator;
+        $this->twigEngine = $twigEngine;
     }
 
     /**
@@ -57,7 +65,7 @@ class UserMailer
         $message->setTo($user->getEmail())
                 ->setFrom('no-reply@bien-etre.com')
                 ->setBody(
-                    $this->renderView(
+                    $this->twigEngine->render(
                         // template d'email
                         "emails/registration.html.twig",
                         array(

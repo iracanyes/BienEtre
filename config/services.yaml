@@ -42,12 +42,12 @@ services:
     # Exemple :
     # Service d'envoie d'email de confirmation d'inscription
     # Installation de SwiftMailer nécessaire
-    App\Email\UserMailer:
-        alias: email.user_mailer
+    #App\Email\UserMailer:
+    #    alias: email.user_mailer
 
     # Service écoutant l'événement postPersist pour déclencher l'action email.user_mailer
     App\DoctrineListener\UserConfirmationListener:
-        alias: doctrine_listener.user_confirmation
+        #alias: doctrine_listener.user_confirmation
         tags:
             - { name: doctrine.event_listener, event: postPersist }
 

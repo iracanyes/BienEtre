@@ -17,7 +17,7 @@ security:
         mon_entity_provider:
             entity:
                 class: App\Entity\User
-                property: apiKey
+                property: email
                 # Si on utilise plusieurs "entity manager"
                 # manager_name : client
         # User
@@ -59,11 +59,12 @@ security:
     # Contrôle d'accès par le firewall
     access_control:
         # Accès à la route /admin après authentification par le firewall
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/profile, roles: ROLE_MEMBER }
-        - { path: ^/profile/members, roles: ROLE_CLIENT }
-        - { path: ^/profile/providers, roles: ROLE_PROVIDER }
         - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/profile/providers, roles: ROLE_PROVIDER }
+        - { path: ^/profile/members, roles: ROLE_CLIENT }
+        - { path: ^/profile, roles: ROLE_MEMBER }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
 
 
     # Définir le controller à utiliser pour encoder le mot de passe.

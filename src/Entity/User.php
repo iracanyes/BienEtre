@@ -165,6 +165,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function __construct()
     {
+        $this->roles = new ArrayCollection();
         $this->nbErrorConnection =0;
         $this->banned = false;
         $this->registryConfirmed = true;
@@ -256,7 +257,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function addRole(string $role)
     {
-        //array_unshift($this->roles, array($role));
+
         $this->roles[]=$role;
     }
 
