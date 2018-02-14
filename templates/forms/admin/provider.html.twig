@@ -121,7 +121,48 @@
     </div>
 </div>
 
+<div class="row">
+    <h4>Logos de l'entreprise</h4>
+    {{ form_label(form.logos) }}
 
+    {{ form_errors(form.logos) }}
+
+    <div id="provider_logos" class="logos"
+        data-widget-tags = "{{ "<li></li>"|e }}"
+        data-prototype="{{ form_widget(form.logos.vars.prototype)|e }}"
+    >
+
+        {% for logo in form.logos %}
+            <div>
+                {{ form_errors(logo) }}
+                {{ form_widget(logo) }}
+            </div>
+        {% endfor %}
+        {#
+        {% if form.logos|length > 0 %}
+            {% for logo in form.logos %}
+                <div class="form-group">
+                    {{ form_row(form.logos.vars.prototype) }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                {{ form_widget(form.logos.vars.prototype.url) }}
+            </div>
+        {% endif %}
+        #}
+
+    </div>
+
+
+        <a href="#provider_logos"
+           data-list="#provider_logos"
+                class="add-another-collection-widget btn btn-secondary"
+        >
+            Ajouter une image
+        </a>
+
+</div>
 
 
 {# Bouton submit #}

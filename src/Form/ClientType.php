@@ -33,6 +33,7 @@ class ClientType extends AbstractType
         ->add("locality", LocalityType::class, array("label"=>"Localité :"))
         ->add("township", TownshipType::class, array("label"=>"Commune :"))
         ->add("postalCode", PostalCodeType::class, array("label"=>"Code postal : "))
+        ->add("avatar", ImageType::class, array("label"=>"Avatar "))
         ->add("submit", SubmitType::class, array("label"=>"Confirmer"));
 
     }

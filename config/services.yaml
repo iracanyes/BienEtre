@@ -6,6 +6,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    upload_images_directory: '%kernel.project_dir%/public/uploads/images'
 
 services:
     # default configuration for services in *this* file
@@ -76,8 +77,11 @@ services:
 
     # Syntaxe Symfony 4.0 ne fonctionne pas pour le bundle
     #
-    #Twig_Extensions_Extension_Text:
+    # Twig_Extensions_Extension_Text:
     #    alias: app.twig.extension.text
     #    tags: { name: 'twig.extension' }
     ########################################################################
-
+    # Service UploadFile
+    App\Service\UploadFile:
+        arguments:
+            - Symfony\Component\HttpFoundation\File\UploadedFile

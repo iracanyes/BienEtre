@@ -10,7 +10,6 @@
 
         {% block stylesheets %}
             <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link href="{{ asset('build/css/vendors.css') }}" rel="stylesheet" type="text/css">
             <link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/images/favicon.png') }}">
         {% endblock %}
@@ -234,10 +233,14 @@
         </div>
 
         {% block javascripts %}
+            {# Permet à Webpack à savoir comment charger les modules partagés #}
+            <script src="{{ asset('build/manifest.js') }}"></script>
             {#
                 Chargement unique de ressources JS compilé en bundle par Webpack
              #}
-                <script src="{{ asset('build/js/vendors.js') }}"></script>
+            <script src="{{ asset('build/js/vendors.js') }}"></script>
+
+            <script src="{{ asset('build/js/main.js') }}"></script>
             {#
                 API Google Maps
              #}
@@ -245,5 +248,6 @@
         {% endblock %}
     </body>
     {% endblock %}
+
 
 </html>

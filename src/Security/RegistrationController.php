@@ -25,6 +25,9 @@ use App\Entity\UserTemp;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+//Updloader
+use App\Service\UploadFile;
+
 
 class RegistrationController extends Controller
 {
@@ -199,6 +202,13 @@ class RegistrationController extends Controller
             $newUser->setNbErrorConnection(true);
             $newUser->setBanned(false);
 
+
+            /** Chargement de l'image **/
+            $uploader = new UploadFile($newUser->getAvatar()->getUrl());
+            //Déplacement du fichier
+            $uploader->move();
+            //Définition du nom du fichier
+            $newUser->getAvatar()->setUrl($uploader->getFilename());
 
             // Enregistrement du nouvel utilisateur
             $em->persist($newUser);

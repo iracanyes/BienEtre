@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Image
@@ -32,6 +33,8 @@ class Image
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez, charger un image")
+     * @Assert\File(mimeTypes={"image/jpg","image/jpeg","image/png"}, mimeTypesMessage="Veuillez utilisez les formats suivants: jpeg, jpg, png")
      */
     private $url;
 

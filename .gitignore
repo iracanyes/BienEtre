@@ -4,6 +4,7 @@
 composer.lock
 sudo
 /.idea/
+/public/build/
 
 
 ###> symfony/framework-bundle ###

@@ -1,18 +1,21 @@
 webpackJsonp([1],{"1Hvh":/*!****************************!*\
   !*** ./assets/favicon.png ***!
   \****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
+/*! all exports used */
 function(n,i){n.exports="/build/images/favicon.png"},"5lf5":/*!***********************************!*\
   !*** ./assets/img/logo-white.png ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
+/*! all exports used */
 function(n,i){n.exports="/build/images/logo-white.png"},L7Xl:/*!***************************!*\
   !*** ./assets/js/main.js ***!
   \***************************/
-/*! exports provided:  */
+/*! dynamic exports provided */
 /*! all exports used */
-function(n,i,o){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),function(n){var i=o(/*! ../img/logo.png */"iPC3"),e=(o.n(i),o(/*! ../img/logo-white.png */"5lf5")),t=(o.n(e),o(/*! ../favicon.png */"1Hvh"));o.n(t);n(function(){})}.call(i,o(/*! jquery */"7t+N"))},iPC3:/*!*****************************!*\
+function(n,i,o){"use strict";(function(n){function i(n){return n&&n.__esModule?n:{default:n}}var t=o(/*! ../img/logo.png */"iPC3"),u=(i(t),o(/*! ../img/logo-white.png */"5lf5")),e=(i(u),o(/*! ../favicon.png */"1Hvh"));i(e);n(function(){})}).call(i,o(/*! jquery */"7t+N"))},iPC3:/*!*****************************!*\
   !*** ./assets/img/logo.png ***!
   \*****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
+/*! all exports used */
 function(n,i){n.exports="/build/images/logo.png"}},["L7Xl"]);

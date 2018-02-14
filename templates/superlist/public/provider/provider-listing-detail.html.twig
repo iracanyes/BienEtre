@@ -48,6 +48,9 @@
         <div class="detail-gallery">
             <div class="detail-gallery-preview">
                 <a href="{{ provider.logos.first().url }}">
+                    {# Modification après mise en place du service d'upload file "/uploads/images"
+                    <img src="{{ "/uploads/images/" ~ provider.logos.first().url }}" alt="{{ provider.brandName }}">
+                    #}
                     <img src="{{ provider.logos.first().url }}">
                 </a>
             </div>
@@ -56,6 +59,9 @@
                 {% for image in provider.images %}
                 <li class="detail-gallery-list-item active">
                     <a data-target="{{ image.url }}">
+                        {# Modification après mise en place du service d'upload file "/uploads/images"
+                        <img src="{{ "/uploads/images/" ~ image.url }}" alt="{{ provider.brandName }}">
+                        #}
                         <img src="{{ image.url }}" alt="">
                     </a>
                 </li>

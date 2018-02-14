@@ -30,7 +30,7 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="index.html">
-                        <img src="assets/img/logo.png" alt="Logo">
+                        <img src="{{ asset("assets/img/logo.png") }}" alt="Logo">
                         <span>Superlist</span>
                     </a>
                 </div><!-- /.header-logo -->
@@ -48,8 +48,8 @@
                         </ul><!-- /.header-nav-social -->
 
                         <ul class="header-nav-secondary nav nav-pills">
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href="{{ path("login") }}">Login</a></li>
+                            <li><a href="{{ path("signin") }}">Register</a></li>
                         </ul>
                     </div><!-- /.header-top -->
 
@@ -210,16 +210,16 @@
             </div><!-- /.post-image -->
 
             <div class="post-content">
-                <h2><a href="blog-detail.html">{{ provider.brandName }}<a></h2>
+                <h2><a href="{{ provider.website }}">{{ provider.brandName }}<a></h2>
                 <p>And from now on you're all named Bender Jr. The alien mothership is in orbit here. If we can hit that bullseye, the rest of the dominoes will fall like a house of cards. Checkmate. Now that the, uh, garbage ball is in space, Doctor, perh...</p>
             </div><!-- /.post-content -->
 
             <div class="post-meta clearfix">
-                <div class="post-meta-author">By <a href="blog-detail.html">Eric Yorick</a></div><!-- /.post-meta-author -->
+                <div class="post-meta-author">By <a href="{{ path("provider_detail",{"slug":provider.slug }) }}">Eric Yorick</a></div><!-- /.post-meta-author -->
                 <div class="post-meta-date">08/24/2015</div><!-- /.post-meta-date -->
                 <div class="post-meta-categories"><i class="fa fa-tags"></i> <a href="blog-detail.html">Restaurant</a></div><!-- /.post-meta-categories -->
                 <div class="post-meta-comments"><i class="fa fa-comments"></i> <a href="blog-detail.html">3 comments</a></div><!-- /.post-meta-comments -->
-                <div class="post-meta-more"><a href="blog-detail.html">Read More <i class="fa fa-chevron-right"></i></a></div><!-- /.post-meta-more -->
+                <div class="post-meta-more"><a href="{{ path("provider_detail",{ "slug":provider.slug }) }}">Read More <i class="fa fa-chevron-right"></i></a></div><!-- /.post-meta-more -->
             </div><!-- /.post-meta -->
         </div><!-- /.post -->
     {% endfor %}
