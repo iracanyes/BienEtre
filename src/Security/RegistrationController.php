@@ -20,11 +20,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use App\Form\UserTempType;
 use App\Entity\UserTemp;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+
+// Service d'Upload de fichier
+use App\Service\Uploads\UploadFile;
 
 class RegistrationController extends Controller
 {
@@ -124,7 +126,7 @@ class RegistrationController extends Controller
      * @Route("/signin_confirmation", name="signin_confirmation")
      * @param Request $request
      */
-    public function confirmationAction(Request $request, SessionInterface $session, UserConverter $converter)
+    public function confirmationAction(Request $request, SessionInterface $session, UserConverter $converter, UploadFile $uploader)
     {
         // Entity Manager
         $em = $this->getDoctrine()->getManager();
@@ -137,7 +139,7 @@ class RegistrationController extends Controller
             throw new BadCredentialsException("La voie du milieu est semé d'embuche!");
         }
 
-        // Récupération de l'entité
+        // Récupération de l'entité inscrit par son token
         // Attention findByX retourne un array de résultat tandis que findOneByX retourne un objet ou null
         $userTemp = $em->getRepository("App:UserTemp")
             ->findOneByToken($token);
@@ -199,16 +201,37 @@ class RegistrationController extends Controller
             $newUser->setNbErrorConnection(true);
             $newUser->setBanned(false);
 
+            // Chargement des images de logo&Images pr le provider et Avatars pr le client
 
-            // Enregistrement du nouvel utilisateur
-            $em->persist($newUser);
-            $em->flush();
+            if($newUser instanceof Provider){}
+
+            try{
+                // Enregistrement du nouvel utilisateur
+                $em->persist($newUser);
+                $em->flush();
+            }catch(\Exception $e){
+
+                if($e){
+                    throw $this->createAccessDeniedException(
+                        "Code : \n"
+                        .$e->getCode()
+                        ."\n"
+                        ."Fichier : \n"
+                        .$e->getFile()
+                        ."Message : \n"
+                        .$e->getMessage()
+                        ."\n"
+                        .$e->getTraceAsString()
+                    );
+                }
+            }
+
 
             // Démarrage d'une session authentifié
             $session->set("token", $newUser->getToken());
 
             // Redirection vers le controller d'accueil des membres
-            return $this->forward("App\Controller\ProfileController::homeAction", array("newUser"=> $newUser));
+            return $this->forward("App\Controller\ProfileController::homeAction", array("token"=> $newUser->getToken()));
         }
 
         return $this->render(

@@ -13,6 +13,9 @@
         {% for provider in providers %}
             <div class="post post-boxed">
                 <div class="post-image">
+                    {# Modification après mise en place du service d'upload file "/uploads/images"
+                    <img src="{{ "/uploads/images/" ~ provider.logos.first().url }}" alt="{{ provider.brandName }}">
+                     #}
                     <img src="{{ provider.logos.first().url }}" alt="{{ provider.brandName }}">
                     <a class="read-more" href="{{ path('provider_detail',{'slug': provider.slug }) }}">Voir</a>
                 </div><!-- /.post-image -->

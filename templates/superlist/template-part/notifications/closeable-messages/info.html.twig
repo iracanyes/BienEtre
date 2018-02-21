@@ -1,0 +1,13 @@
+<div class="alert alert-icon alert-dismissible alert-info" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <strong>
+        {% if flash_head %}
+            {{ flash_head }}
+        {% else %}
+        Heads up!
+        {% endif %}
+    </strong>
+    {{ flash_info }}
+</div>

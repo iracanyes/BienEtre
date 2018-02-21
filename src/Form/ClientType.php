@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Client;
@@ -33,6 +34,14 @@ class ClientType extends AbstractType
         ->add("locality", LocalityType::class, array("label"=>"Localité :"))
         ->add("township", TownshipType::class, array("label"=>"Commune :"))
         ->add("postalCode", PostalCodeType::class, array("label"=>"Code postal : "))
+        /* Embeed Collection of forms */
+        ->add(
+            "logos",
+            ImageType::class,
+            array(
+                "label" => "Votre avatar :",
+            )
+        )
         ->add("submit", SubmitType::class, array("label"=>"Confirmer"));
 
     }

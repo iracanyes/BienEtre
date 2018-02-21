@@ -1,0 +1,6 @@
+ERREUR
+
+Type error: Argument 1 passed to App\Service\Uploads\UploadFile::__construct() must implement interface Symfony\Component\DependencyInjection\ContainerInterface, string given, called in /home/iracanyes/kabati-server/developpement/isl/3e_web/projet_web_dynamique/BienEtre/var/cache/dev/ContainerVnlarj8/getServiceLocator_Kslom6gService.php on line 13
+
+CAUSE:
+    1. Vérifier qu'une définition d'un service dans service.yaml n'est pas en conflit avec l'autowiring

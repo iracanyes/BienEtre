@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Entity\Provider;
 
@@ -72,6 +73,55 @@ class ProviderType extends AbstractType
                 "postalCode",
                 PostalCodeType::class,
                 array("label"=>"Code postal : ")
+            )
+            /* Embeed Collection of forms */
+            ->add(
+                "logos",
+                CollectionType::class,
+                array(
+                    "label" => false,
+                    "entry_type" => ImageType::class,
+                    // Options passés à chaque formulaire image
+                    "entry_options" => array(
+                        "label" => false,
+                        "attr" => array("class" => "form-group")
+                    ),
+                    "allow_add" => true,
+                    "allow_delete" => true,
+                    "by_reference"=> false
+                )
+            )
+            ->add(
+                "images",
+                CollectionType::class,
+                array(
+                    "label"=> false,
+                    "entry_type" => ImageType::class,
+                    //Options de chaque widget
+                    "entry_options"=> array(
+                        "label" => false,
+                        "attr" => array("class"=>"form-group")
+                    ),
+                    "allow_add" => true,
+                    "allow_delete" => true,
+                    "by_reference"=> false
+                )
+            )
+            ->add(
+                "serviceCategories",
+                CollectionType::class,
+                array(
+                    "label"=> false,
+                    "entry_type" => ServiceCategoryType::class,
+                    //Options de chaque widget
+                    "entry_options"=> array(
+                        "label" => false,
+                        "attr" => array("class"=>"form-group")
+                    ),
+                    "allow_add" => true,
+                    "allow_delete" => true,
+                    "by_reference"=> false
+                )
             )
             ->add("submit", SubmitType::class, array("label"=>"Confirmer"));
     }

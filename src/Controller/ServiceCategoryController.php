@@ -8,6 +8,8 @@
 
 namespace App\Controller;
 
+use App\Entity\ServiceCategory;
+use App\Form\ServiceCategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +59,24 @@ class ServiceCategoryController extends Controller
             "superlist/public/serviceCategory/service-category-listing-detail.html.twig",
             array("serviceCategory"=>$serviceCategory)
         );
+    }
+
+    public function createAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $serviceCategory = new ServiceCategory();
+
+        $form = $this->createForm(ServiceCategoryType::class, $serviceCategory);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $newServiceCategory = $form->getData();
+
+            // test d'existence de la catégorie
+        }
     }
 
 }

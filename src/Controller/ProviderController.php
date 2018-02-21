@@ -23,6 +23,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use App\Entity\Provider;
+use App\Form\ProviderType;
 
 
 /**
@@ -113,11 +114,14 @@ class ProviderController extends Controller
         /*
          * Récupération des paramètres de recherches
          */
-        $locality = $request->request->get('locality') ? $request->request->get('locality') : null;
+        $criteria = array(
+            "locality" => $request->request->get('locality') ?? null,
 
-        $postalCode = $request->request->get('postalCode') ? $request->request->get('postalCode') : null;
+            "postalCode" => $request->request->get('postalCode') ?? null,
 
-        $township = $request->request->get('township') ? $request->request->get('township') : null;
+            "township" => $request->request->get('township') ?? null
+        );
+
 
 
         $em = $this->get('doctrine.orm.entity_manager');
@@ -134,22 +138,18 @@ class ProviderController extends Controller
 
 
 
-        if($locality !== null || $postalCode !== null || $township !== null){
+        if($criteria["locality"] !== null || $criteria["postalCode"] !== null || $criteria["township"] !== null){
             $providers = $em->getRepository('App:Provider')
-                ->findBy(array(
-                    "locality"=> $locality,
-                    "postalCode" => $postalCode,
-                    "township" => $township
-                ));
+                ->searchBy($criteria);
         }else{
             $providers = $em ->getRepository("App:Provider")
                 ->myFindAll();
         }
 
-
+        dump($providers);
 
         if(!$providers){
-            throw $this->createNotFoundException("Aucun provider n\'a été trouvé avec les critères suivants : \n Localité : ".$locality."\n Code postal : ".$postalCode."\n Ville : ".$township);
+            throw $this->createNotFoundException("Aucun provider n\'a été trouvé avec les critères suivants : \n Localité : ".$criteria["locality"]."\n Code postal : ".$criteria["postalCode"]."\n Ville : ".$criteria["township"]);
         }
 
         return $this->render(
@@ -214,64 +214,19 @@ class ProviderController extends Controller
         return $vote->getStars($moyen);
     }
 
-
     /**
-     * @Route("/admin/providers/add", name="provider_add")
-     * @Security("has_role('ROLE_PROVIDER')")
+     * @Route("/profile/update", name="provider_update")
+     * @ Security("is_granted('ROLE_PROVIDER')")
      * @param Request $request
      * @return Response
      */
-    public function addAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
-    {
-        // Accès autorisé aux utilisation ayant le rôle ROLE_PROVIDER
-        if(false === $authChecker->isGranted('ROLE_PROVIDER')){
-            return $this->redirectToRoute('login');
-        }
-
-        //Création d'une implémentation de l'entité cible du formulaire
-        $provider = new Provider();
-
-        //Création du formulaire à partir du FormBuilder
-        $form= $this->createForm(ProviderType::class,$provider)
-                ->setAction($this->generateUrl('provider_add'))
-                ->setMethod('POST');
-
-
-
-        //hydratation de l'objet avec les données de la requête
-        $form->handleRequest($request);
-
-        //Gestion de la soumission du formulaire
-        // Si le formulaire est soumis et que les données sont valides
-        if($form->isSubmitted() && $form->isValid()){
-            // Action à accomplir en cas d'envoie de donnée
-            $em = $this->getDoctrine()->getManager();
-
-            //Si $provider n'est pas hydraté, on peut essayer de récupèrer les données du formulaire
-            // $provider = $form->getData()
-            $em->persist($provider);
-
-            return $this->redirectToRoute('admin_accueil');
-        }
-
-
-
-        // On retourne la vue du formulaire avec "$form->createView()
-        // dans notre réponse HTML retourné par "$this->render()
-
-        return $this->render(
-            "superlist/admin/provider/add.html.twig",
-            array("form" => $form->createView())
-        );
-    }
-
     public function updateAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
-        // Accès autorisé aux utilisation ayant le rôle ROLE_PROVIDER
-        if(false === $authChecker->isGranted('ROLE_PROVIDER')){
+        /* Accès autorisé aux utilisation ayant le rôle ROLE_PROVIDER
+        if(false === $authChecker->isGranted('ROLE_PROVIDER') && $request->query->get('token')){
             return $this->redirectToRoute('login');
         }
-
+        */
         // Entity manager
         $em = $this->getDoctrine()->getManager();
 
@@ -280,10 +235,13 @@ class ProviderController extends Controller
 
         // Chargement du prestataire
         $provider = $em->getRepository("App:Provider")
-            ->findByToken($token);
+            ->findOneByToken($token);
+
+        dump($provider);
+
         //Création du formulaire à partir du FormBuilder
-        $form= $this->createForm(ProviderType::class,$provider)
-            ->setAction($this->generateUrl('provider_add'))
+        $form= $this->createForm(ProviderType::class, $provider)
+            ->setAction($this->generateUrl('provider_update'))
             ->setMethod('POST');
 
 
@@ -295,12 +253,13 @@ class ProviderController extends Controller
         // Si le formulaire est soumis et que les données sont valides
         if($form->isSubmitted() && $form->isValid()){
 
-
+            $provider = $form->getData();
             //Si $provider n'est pas hydraté, on peut essayer de récupèrer les données du formulaire
             // $provider = $form->getData()
             $em->persist($provider);
+            $em->flush();
 
-            return $this->redirectToRoute('admin_accueil');
+            return $this->redirectToRoute('profile_home');
         }
 
 
@@ -309,7 +268,7 @@ class ProviderController extends Controller
         // dans notre réponse HTML retourné par "$this->render()
 
         return $this->render(
-            "superlist/admin/provider/add.html.twig",
+            "superlist/profile/provider/update.html.twig",
             array("form" => $form->createView())
         );
 

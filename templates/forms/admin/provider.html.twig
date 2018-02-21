@@ -10,7 +10,14 @@
 }}
 
 {# Erreurs du formulaire #}
-{{ form_errors(form) }}
+<div class="alert alert-icon alert-dismissible alert-warning" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <strong>Warning!</strong> <br>
+    {{ form_errors(form) }}
+</div>
+
 
 {# Générer label+error+input pour un champ #}
 {# {{ form_row(form.brandName) }} #}
@@ -122,10 +129,102 @@
 </div>
 
 
+<div class="row">
+    <h4>Logos de l'entreprise</h4>
 
 
-{# Bouton submit #}
-{{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}
+    {{ form_errors(form.logos) }}
+
+    <div id="provider_logos" class="collection-widget logos"
+         data-widget-tags = "{{ "<li></li>"|e }}"
+         data-prototype="{{ form_widget(form.logos.vars.prototype)|e }}"
+    >
+
+
+        {#
+        {% if form.logos|length > 0 %}
+            {% for logo in form.logos %}
+                <div>
+                    {{ form_errors(logo) }}
+                    {{ form_widget(logo) }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                {{ form_widget(form.logos.vars.prototype.url) }}
+            </div>
+        {% endif %}
+        #}
+
+    </div>
+
+
+    <a href="#provider_logos"
+       data-list="#provider_logos"
+       class="add-another-collection-widget btn btn-secondary"
+    >
+        Ajouter un logo
+    </a>
+</div>
+
+{# Images de l'entreprise #}
+<div class="row">
+    <h4>Images de l'entreprise</h4>
+
+
+    {{ form_errors(form.logos) }}
+
+    <div id="provider_images" class="collection-widget images"
+         data-widget-tags = "{{ "<li></li>"|e }}"
+         data-prototype="{{ form_widget(form.images.vars.prototype)|e }}"
+    >
+
+
+
+    </div>
+
+
+    <a href="#provider_images"
+       data-list="#provider_images"
+       class="add-another-collection-widget btn btn-secondary"
+    >
+        Ajouter une image
+    </a>
+</div>
+
+{# Catégories de service #}
+<div class="row">
+    <h4>Catégorie de service</h4>
+
+
+    {{ form_errors(form.serviceCategories) }}
+
+    <div id="provider_service_categories" class="collection-widget service_categories"
+         data-widget-tags = "{{ "<li></li>"|e }}"
+         data-prototype="{{ form_widget(form.serviceCategories.vars.prototype)|e }}"
+    >
+
+
+    </div>
+
+
+    <a href="#provider_service_categories"
+       data-list="#provider_service_categories"
+       class="add-another-collection-widget btn btn-secondary"
+    >
+        Ajouter une catégorie de service
+    </a>
+</div>
+
+<br>
+<div class="row">
+
+        {# Bouton submit #}
+        {{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}
+
+
+</div>
+
 
 
 

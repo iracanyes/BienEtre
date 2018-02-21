@@ -27,8 +27,7 @@ class ServiceCategoryType extends AbstractType
         $builder->add("name", TextType::class)
             ->add("description", TextareaType::class)
             ->add("inFrontPage", CheckboxType::class)
-            ->add("image", ImageType::class)
-            ->add("submit", SubmitType::class);
+            ->add("image", ImageType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

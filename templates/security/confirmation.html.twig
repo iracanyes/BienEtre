@@ -5,69 +5,72 @@
 
 
     <div class="main">
-    <div class="main-inner">
-    <div class="container">
-    <div class="content">
+        <div class="main-inner">
+            <div class="container">
+                <div class="content">
 
-    <div class="document-title">
-        <h1>Confirmation de l'inscription</h1>
+                    <div class="document-title">
+                        <h1>Confirmation de l'inscription</h1>
 
-        <ul class="breadcrumb">
-            <li><a href="{{ path('homepage') }}">Accueil</a></li>
-            <li><a href="{{ path('login') }}">Connexion</a></li>
-        </ul>
-    </div><!-- /.document-title -->
+                        <ul class="breadcrumb">
+                            <li><a href="{{ path('homepage') }}">Accueil</a></li>
+                            <li><a href="{{ path('login') }}">Connexion</a></li>
+                        </ul>
+                    </div><!-- /.document-title -->
 
 
-    <div class="row">
-        <div class="col-sm-6 ">
-            <h3>Données de l'entreprise</h3>
-            {# Inclusion du formulaire d'inscription #}
-            {% if userType == "provider" %}
+                    <div class="row">
+                        <div class="col-sm-6 ">
+                            <h3>Données de l'entreprise</h3>
+                            {# Inclusion du formulaire d'inscription #}
+                            {% if userType == "provider" %}
 
-                {% include("forms/admin/provider.html.twig") %}
+                                {% include("forms/admin/provider.html.twig") %}
 
-            {% else %}
+                            {% else %}
 
-                {% include("forms/admin/client.html.twig") %}
+                                {% include("forms/admin/client.html.twig") %}
 
-            {% endif %}
+                            {% endif %}
 
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <h3>Rejoignez-nous</h3>
+                            <h4>Confucius</h4>
+                            <blockquote>
+                                Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie.
+                            </blockquote>
+
+                            <div class="row">
+
+
+
+
+                                <!--
+                                <div class="col-sm-6">
+                                    <h3>Contacts</h3>
+
+                                    <p>
+                                        04 223 11 31<br>
+                                        0476 65 45 65
+                                    </p>
+                                </div>
+                            </div> end.row -->
+                        </div><!-- /.col-* -->
+                    </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-        <div class="col-sm-6">
-            <h3>Rejoignez-nous</h3>
-            <h4>Confucius</h4>
-            <blockquote>
-                Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie.
-            </blockquote>
-            <!--
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Adresse</h3>
-
-                    <p>
-                        13/2 Rue Saint-Laurent,<br>
-                        4800 Liège, Belgique
-                    </p>
-                </div>
-
-                <div class="col-sm-6">
-                    <h3>Contacts</h3>
-
-                    <p>
-                        04 223 11 31<br>
-                        0476 65 45 65
-                    </p>
-                </div>
-            </div> end.row -->
-        </div><!-- /.col-* -->
     </div>
+{% endblock %}
 
-    </div>
-    </div>
-    </div>
-    </div>
+{% block javascripts %}
+    {# Intégration du block parent #}
+    {{ parent() }}
 
+    <script src="./build/js/add-collection-widget.js"></script>
 {% endblock %}

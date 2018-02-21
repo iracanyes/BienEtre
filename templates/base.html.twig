@@ -234,6 +234,9 @@
         </div>
 
         {% block javascripts %}
+            {# Permet à Webpack à savoir comment charger les modules partagés #}
+            <script src="{{ asset('build/manifest.js') }}"></script>
+
             {#
                 Chargement unique de ressources JS compilé en bundle par Webpack
              #}

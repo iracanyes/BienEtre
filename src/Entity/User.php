@@ -87,7 +87,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @var array
-     * @ORM\Column(name="roles", type="array", length=255)
+     * @ORM\Column(name="roles", type="simple_array", length=255)
      */
     protected $roles;
 
@@ -165,7 +165,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function __construct()
     {
-        $this->roles = new ArrayCollection();
+        $this->roles = [];
         $this->nbErrorConnection =0;
         $this->banned = false;
         $this->registryConfirmed = true;
@@ -220,7 +220,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
-        $this->roles = new ArrayCollection();
+        $this->roles = [];
     }
 
 
@@ -246,36 +246,39 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * Get Roles
-     * @return Collection|string[]
+     * @return (Role|string)[]
      */
     public function getRoles(){
+
         return $this->roles;
     }
 
     /**
+     * Add Roles
      * @param string $role
+     * @return void
      */
-    public function addRole(string $role)
-    {
+    public function addRole(string $role){
 
-        $this->roles[]=$role;
-    }
-
-    public function removeRole(string $role)
-    {
-        /* array_search(value, table)
-         * Recherche dans la table et retourne la clé de la valeur correspondante
-         * array_splice(table, start, length)
-         * Extrait une séquence d'éléments d'une table
-         *
-            if($key = array_search($role, $this->roles)){
-
-                array_splice($this->roles, $key, 1);
-            }
-         */
-        $this->roles->removeElement($role);
+        if(!array_search($role, $this->roles)){
+            array_unshift($this->roles, $role);
+        }
 
     }
+
+    /**
+     * Remove Role
+     * @param string $role
+     * @return void
+     */
+    public function removeRole(string $role){
+
+        if(!$key = array_search($role, $this->roles)){
+            array_splice($this->roles, $key, 1);
+        }
+    }
+
+
 
     public function eraseCredentials()
     {
@@ -318,9 +321,9 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return \Datetime
+     * @return \Datetime|null
      */
-    public function getUpdateDate(): \Datetime
+    public function getUpdateDate()
     {
         return $this->updateDate;
     }
@@ -506,26 +509,32 @@ class User implements AdvancedUserInterface, \Serializable
      * Finalement, le second objet est comparé avec l'objet User dé-serialisé pour s'assurer qu'elles représentent le même utilisateur.
      * Si par exemple, une propriété est différent, alors l'utilisateur sera déconnecté pour des raisons de sécurité.
      *
+     * @ see \Serializable::serialize()
      * @return mixed|string
      */
     public function serialize()
     {
-        return $this->serialize(array(
+        return serialize(array(
             $this->id,
             $this->email,
             $this->password,
-            $this->isActive
+            $this->isActive,
         ));
     }
 
+    /**
+     * @see \Serializable::unserialize()
+     * @param string $serialized
+     *
+     */
     public function unserialize($serialized)
     {
         list(
             $this->id,
             $this->email,
             $this->password,
-            $this->isActive
-            ) = $this->unserialize($serialized);
+            $this->isActive,
+            ) = unserialize($serialized);
     }
 
     /**************** Méthode EquatableInterface ********************/
@@ -597,6 +606,7 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->isActive;
     }
 
+
     /****************** Événement Doctrine.  ***********************/
     /**
      * @ORM\PrePersist
@@ -616,6 +626,16 @@ class User implements AdvancedUserInterface, \Serializable
     public function updateAt()
     {
         $this->setUpdateDate(new \Datetime());
+    }
+
+    /****************** Tests de type pour l'héritage (utilisation) ***************************/
+
+    public function isProvider(){
+        return $this instanceof Provider;
+    }
+
+    public function isClient(){
+        return $this instanceof Client;
     }
 
 

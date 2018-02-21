@@ -42,7 +42,7 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Get Recent Providers
+     * Get Recent Services
      * @return array
      */
     public function recentServices(): array
@@ -57,13 +57,40 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function recentServicesByProviderId(int $id):array
+    {
+        $qb = $this->createQueryBuilder("s")
+            ->orderBy("s.releaseDate","DESC");
+
+
+        $qb->innerJoin("s.provider","p") // Ici on ajoute le provider, on a juste besoin de son id
+        ->andWhere($qb->expr()->like("p.id", ":id"))
+        ->setParameter("id", $id)
+        ->setMaxResults(5);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param array $criteria
+     * @return array
+     */
     public function searchBy(array $criteria): array
     {
-        $qb = $this->_em->createQueryBuilder("s");
+        $qb = $this->_em->createQueryBuilder()
+            ->select("s")
+            ->from($this->_entityName, "s");
 
-        $this->addProviderAndLogos($qb);
+        $qb->innerJoin("s.provider", "p")
+            ->addSelect("p")
+            ->innerJoin("p.logos", "l")
+            ->addSelect("l");
 
-        $qb->innerJoin('p.locality','l')
+        $qb->innerJoin('p.locality','loc')
             ->addSelect("l")
             ->innerJoin('p.postalCode', 'pc')
             ->addSelect("pc")
@@ -96,5 +123,8 @@ class ServiceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
 
     }
+
+
+
 }
 

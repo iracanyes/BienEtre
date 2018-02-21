@@ -483,7 +483,7 @@ class Provider extends User
      *
      * @return ArrayCollection
      */
-    public function getPromotions(): ArrayCollection
+    public function getPromotions()
     {
         return $this->promotions;
     }
@@ -673,5 +673,19 @@ class Provider extends User
             .parent::getTownship()->getTownship()."</br>"
             .parent::getLocality()->getLocality();
     }
+
+    /**************** Compteurs élémments ***************/
+
+    public function nbServices():int
+    {
+        return count($this->services);
+    }
+
+    public function nbPromotions(): int
+    {
+        return count($this->promotions);
+    }
+
+
 }
 

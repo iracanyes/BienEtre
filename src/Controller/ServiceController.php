@@ -2,12 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Provider;
+use App\Entity\Service;
+use App\Form\ServicesType;
+use App\Form\ServiceType;
+use Doctrine\ORM\Persisters\PersisterException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
+use Doctrine\ORM\UnexpectedResultException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 class ServiceController extends Controller
@@ -15,6 +21,7 @@ class ServiceController extends Controller
     /**
      *
      * @Route("/services", name="service_list")
+     * @return Response
      */
     public function indexAction(): Response
     {
@@ -149,4 +156,93 @@ class ServiceController extends Controller
             array("service"=> $service)
         );
     }
+
+    /**
+     * Add service
+     */
+    public function addAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $provider = $em->getRepository("App:Provider")
+            ->findByToken($request->query->get("token"));
+
+        $form = $this->createForm(ServicesType::class, $provider);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $provider = $form->getData();
+
+            try{
+
+                $em->persist($provider);
+                $em->flush();
+
+                $this->addFlash("warning","Erreur dans les données saisies!");
+
+                $this->redirectToRoute("profile_service_list");
+
+            }catch (PersisterException $e){
+
+                $this->addFlash("warning","Erreur dans les données saisies!");
+
+                $this->render(
+                    "superlist/profile/service/update.html.twig",
+                    array(
+                        "form" => $form->createView()
+                    )
+                );
+            }
+        }
+    }
+
+    /**
+     * @Route("/profile/stage/update", name="profile_stage_update")
+     * @Security("is_granted('ROLE_PROVIDER')")
+     * @param Request $request
+     * @return Response
+     */
+    public function updateAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $service = $em->getRepository("App:Service")
+            ->find($request->query->get("id"));
+
+        $form = $this->createForm(ServiceType::class, $service)
+            ->setMethod("POST")
+            ->setAction($this->generateUrl("service_update"));
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $service = $form->getData();
+
+            try{
+                $em->persist($service);
+
+                $em->push();
+            }catch (UnexpectedResultException $e){
+                $this->addFlash("warning","Impossible d'enregistrer les modifications effectuées!");
+
+                $this->render(
+                    "superlist/profile/service/update.html.twig",
+                    array("form"=>$form->createView())
+                );
+            }
+
+
+            $this->addFlash("success","Mise à jour du stage effectué avec succés!");
+
+            $this->redirectToRoute("profile_service_list");
+        }
+
+        $this->render(
+            "superlist/profile/service/update.html.twig"
+        );
+
+    }
+
 }

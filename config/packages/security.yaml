@@ -43,6 +43,7 @@ security:
                 check_path: login
                 default_target_path: profile_home
                 failure_path: login
+                csrf_token_generator: security.csrf.token_manager
             logout:
                 path: logout
                 target: /
@@ -62,7 +63,7 @@ security:
         - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
         - { path: ^/profile/providers, roles: ROLE_PROVIDER }
         - { path: ^/profile/members, roles: ROLE_CLIENT }
-        - { path: ^/profile, roles: ROLE_MEMBER }
+        #- { path: ^/profile, roles: ROLE_MEMBER }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 

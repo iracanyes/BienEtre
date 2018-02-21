@@ -1,0 +1,51 @@
+{# Header Navigation User (left) #}
+
+{% if user.isProvider() %}
+
+    <div class="header-nav-user">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="user-image">
+                <img src="{{ asset("build/images/tmp/agent-2.jpg") }}">
+                <div class="notification"></div><!-- /.notification-->
+            </div><!-- /.user-image -->
+
+
+            <span class="header-nav-user-name">{{ user.brandName }}</span> <i class="fa fa-chevron-down"></i>
+
+
+        </button>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="user-profile-edit.html">Éditer le profil</a></li>
+            <li><a href="listing-submit.html">Éditer des listes</a></li>
+            <li><a href="change-password.html">Changer le mot de passe</a></li>
+        </ul>
+    </div><!-- /.dropdown -->
+
+</div><!-- /.header-nav-user -->
+
+{% else %}
+
+    <div class="header-nav-user">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <div class="user-image">
+                    <img src="{{ asset("build/images/tmp/agent-2.jpg") }}">
+                    <div class="notification"></div><!-- /.notification-->
+                </div><!-- /.user-image -->
+
+                <span class="header-nav-user-name">{{ user.firstname ~ " " ~ user.lastname }}</span> <i class="fa fa-chevron-down"></i>
+
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="user-profile-edit.html">Éditer le profil</a></li>
+                <li><a href="listing-submit.html">Éditer des listes</a></li>
+                <li><a href="change-password.html">Changer le mot de passe</a></li>
+            </ul>
+        </div><!-- /.dropdown -->
+
+    </div><!-- /.header-nav-user -->
+
+{% endif %}

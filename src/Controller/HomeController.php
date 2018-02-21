@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
 
         $providers = $em->getRepository("App:Provider")

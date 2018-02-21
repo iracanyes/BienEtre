@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Provider;
+use Doctrine\ORM\QueryBuilder;
 
 
 /**
@@ -15,9 +16,9 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
      * Join Logos
-     *
+     * @return QueryBuilder
      */
-    protected function addLogo($qb)
+    protected function addLogo(QueryBuilder $qb):QueryBuilder
     {
         $qb->innerJoin('p.logos', 'l')
         ->addSelect('l');
@@ -26,7 +27,42 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    protected function addImages(QueryBuilder $qb):QueryBuilder
+    {
+        $qb->leftJoin("p.images", "i")
+            ->addSelect("i");
 
+        return $qb;
+    }
+
+    protected function addRecentServices(QueryBuilder $qb):QueryBuilder
+    {
+        $qb->leftJoin("p.services", "s")
+            ->addSelect("s");
+            //->addOrderBy("s.releaseDate","DESC");
+
+        return $qb;
+    }
+
+    protected function addRecentServiceCategories(QueryBuilder $qb): QueryBuilder
+    {
+        $qb->leftJoin("p.serviceCategories","sc")
+            ->addSelect("sc");
+            // Aucun champ pour la date de création
+            //->addOrderBy("sc.releaseDate","DESC");
+
+        return $qb;
+    }
+
+
+    protected function addRecentPromotions(QueryBuilder $qb):QueryBuilder
+    {
+        $qb->leftJoin("p.promotions","pro")
+            ->addSelect("pro")
+            ->addOrderBy("pro.releaseDate","DESC");
+
+        return $qb;
+    }
     /**
      * Get All providers + logos
      */
@@ -42,6 +78,31 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()
             ->getResult();
+
+    }
+
+    public function myFindOneByToken(string $token):array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select('p')
+            ->from($this->_entityName, 'p');
+
+        $qb->andWhere($qb->expr()->like("p.token",":token"))
+            ->setParameter("token",$token);
+
+        $qb->innerJoin('p.logos', 'l')
+            ->addSelect('l');
+        $qb->leftJoin("p.services", "s")
+            ->addSelect("s");
+        $qb->leftJoin("p.serviceCategories","sc")
+            ->addSelect("sc");
+        $qb->leftJoin("p.images", "i")
+            ->addSelect("i");
+        $qb->leftJoin("p.promotions","pro")
+            ->addSelect("pro")
+            ->addOrderBy("pro.releaseDate","DESC");
+
+        return $qb->getQuery()->getResult();
 
     }
     /**
@@ -81,6 +142,50 @@ class ProviderRepository extends \Doctrine\ORM\EntityRepository
 
         $qb->orderBy('p.registryDate','DESC')
             ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Search by Provider (locality,postalCode,township)
+     *
+     * @param array $criteria
+     * @return array
+     */
+    public function searchBy(array $criteria):array
+    {
+        $qb = $this->_em->createQueryBuilder("p");
+
+        $qb->innerJoin('p.logos', 'l')
+            ->addSelect('l');
+        $qb->innerJoin('p.serviceCategories', 'sc')
+            ->addSelect('sc');
+
+        $qb->innerJoin('p.locality', 'loc')
+            ->addSelect('loc');
+
+        $qb->innerJoin('p.postalCode', 'pc')
+            ->addSelect('pc');
+        $qb->innerJoin('p.township', 't')
+            ->addSelect('t');
+
+        if(!empty($criteria['locality']) || !empty($criteria['postalCode']) || !empty($criteria['township'])){
+            foreach ($criteria as $key=>$value){
+
+                if(is_string($value)){
+
+                    $qb->andWhere($qb->expr()->like("p.".$key, ":".$key))
+                        ->setParameter($key, $value);
+
+                }
+
+                if($key === "postalCode" && is_int($value)){
+
+                    $qb->andWhere($qb->expr()->eq("p.".$key, ":".$key))
+                        ->setParameter($key, $value);
+                }
+            }
+        }
 
         return $qb->getQuery()->getResult();
     }

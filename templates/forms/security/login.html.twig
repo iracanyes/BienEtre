@@ -1,9 +1,13 @@
 <div class="contact-form-wrapper clearfix">
     <h3>Connexion</h3>
     {% if error %}
-        <div>
-            {{ error.messageKey|trans(error.messageData, "security") }}
+        <div class="alert alert-icon alert-dismissible alert-warning" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+            <strong>Warning!</strong> {{ error.messageKey|trans(error.messageData, "security") }}
         </div>
+
     {% endif %}
     <form class="contact-form" action="{{ path('login') }}" method="post">
         <div class="form-group">

@@ -45,5 +45,17 @@ class PromotionRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(3);
 
         return $qb->getQuery()->getResult();
+
+    }
+
+    public function findAllByProviderId(int $id):array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("pr")
+            ->from($this->_entityName, "pr")
+            ->innerJoin("pr.provider","p")
+            ->addSelect("p")
+            ->where("p.id", ":id")
+            ->setParameter("id", $id);
     }
 }

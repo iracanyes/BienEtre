@@ -23,14 +23,21 @@ class ProfileController extends Controller
 
     /**
      * @Route("/profile", name="profile_home")
-     * @Security("is_granted('ROLE_MEMBER')")
+     * @ Security("is_granted('ROLE_MEMBER')")
      */
     public function homeAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
+        $em = $this->getDoctrine()->getManager();
+
+
+        $user = $this->getUser();
 
 
         return $this->render(
-            "superlist/admin/admin-home.html.twig"
+            "superlist/admin/profile-home.html.twig",
+            array(
+                "user"=> $user,
+            )
         );
     }
 

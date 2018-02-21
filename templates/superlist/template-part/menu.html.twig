@@ -1,0 +1,90 @@
+{# Menu par défaut #}
+
+<ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
+    <li class="active">
+        <a href="{{ path('homepage') }}">Accueil</a>
+
+    </li>
+
+    <li >
+        <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
+
+        <ul class="sub-menu">
+            <li><a href="{{ path('provider_list') }}">Liste des prestataires</a></li>
+            <li><a href="{{ path('provider_search') }}">Recherche</a></li>
+
+        </ul>
+    </li>
+
+
+
+    <li >
+        <a href="{{ path('service_list') }}">Services <i class="fa fa-chevron-down"></i></a>
+
+        <ul class="sub-menu">
+            <li><a href="{{ path('service_list') }}">Services disponibles</a></li>
+            <li><a href="{{ path('service_search') }}">Recherche</a></li>
+            <li><a href="{{ path('service_category_list') }}">Catégorie de service</a></li>
+        </ul>
+    </li>
+
+
+    <li >
+        <a href="{{ path('contact') }}">Contact</a>
+
+    </li>
+
+    <li class="has-mega-menu ">
+        <a href="#">Membre <i class="fa fa-chevron-down"></i></a>
+
+        <ul class="mega-menu">
+            <li>
+                <a href="#">General</a>
+
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="grid.html">Grid System</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">User Account</a>
+
+                <ul>
+                    <li><a href="user-profile-edit.html">Profile Edit</a></li>
+                    <li><a href="login.html">Login Form</a></li>
+                    <li><a href="register.html">Register Form</a></li>
+                    <li><a href="change-password.html">Change Password Form</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">Miscellaneous</a>
+
+                <ul>
+                    <li><a href="sticky-footer.html">Sticky Footer</a></li>
+                    <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+                    <li><a href="error-403.html">403 - Forbidden</a></li>
+                    <li><a href="error-404.html">404 - Not Found</a></li>
+                    <li><a href="error-500.html">500 - Internal Error</a></li>
+                </ul>
+            </li>
+
+            <li class="hidden-xs">
+                <div class="special">
+                    <a href="{{ path('login') }}">Inscrivez-vous</a>
+                </div><!-- /.special-->
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".header-nav-primary">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
