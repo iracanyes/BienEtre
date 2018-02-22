@@ -35,7 +35,7 @@ function addCollectionWidget(){
             var newElement = $(list.attr('data-widget-tags')).html(newWidget);
 
             // also add a remove button, just for this example
-            $newElement.append('<a href="#" class="remove-tag btn-secondary">x</a>');
+            newElement.append('<a href="#" class="remove-tag btn-danger">Supprimer</a>');
 
             newElement.appendTo(list);
 

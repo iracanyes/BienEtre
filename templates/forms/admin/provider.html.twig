@@ -1,22 +1,27 @@
+
 {{
     form_start(
         form,
         {
             "method":"POST",
             "action":path('signin_confirmation', {"token": token}),
-            "attr":{"class":"form-horizontal"}
+            "attr":{"class":"form-horizontal", "novalidate":"novalidate"}
         }
     )
 }}
 
+
+
 {# Erreurs du formulaire #}
+{% if form_errors(form) %}
 <div class="alert alert-icon alert-dismissible alert-warning" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="fa fa-times" aria-hidden="true"></i>
     </button>
-    <strong>Warning!</strong> <br>
+    <strong>Attention!</strong> <br>
     {{ form_errors(form) }}
 </div>
+{% endif %}
 
 
 {# Générer label+error+input pour un champ #}
@@ -27,7 +32,7 @@
     {# BrandName #}
     <div class="form-group">
         <label for="{{ form.brandName.vars.id }}"
-               class="{{ form.brandName.vars.required ? 'required' : '' }}">
+               class="">
             {{ form.brandName.vars.label }}
         </label>
 
@@ -40,7 +45,7 @@
     {# Website #}
     <div class="form-group">
         <label for="{{ form.website.vars.id }}"
-               class="{{ form.website.vars.required ? 'required' : '' }}">
+               class="">
             {{ form.website.vars.label }}
         </label>
 
@@ -52,7 +57,7 @@
     {# Contact E-mail #}
     <div class="form-group">
         <label for="{{ form.emailContact.vars.id }}"
-               class="{{ form.emailContact.vars.required ? 'required' : '' }}">
+               class="">
             {{ form.emailContact.vars.label }}
         </label>
 
@@ -64,7 +69,7 @@
     {# Contact E-mail #}
     <div class="form-group">
         <label for="{{ form.phoneNumber.vars.id }}"
-               class="{{ form.phoneNumber.vars.required ? 'required' : '' }}">
+               class="">
             {{ form.phoneNumber.vars.label }}
         </label>
 
@@ -76,7 +81,7 @@
     {# TVA Number #}
     <div class="form-group">
         <label for="{{ form.tvaNumber.vars.id }}"
-               class="{{ form.tvaNumber.vars.required ? 'required' : '' }}">
+               class="">
             {{ form.tvaNumber.vars.label }}
         </label>
 
@@ -91,7 +96,7 @@
     {# Street #}
     <div class="form-group">
         <label for="{{ form.street.vars.id }}"
-               class="{{ form.street.vars.required ? 'required' : '' }}">
+               class="">
             {{ form.street.vars.label }}
         </label>
 
@@ -102,7 +107,11 @@
     <br>
     {# Locality #}
     <div class="form-group">
-        {{ form_label(form.locality.locality) }}
+        <label for="{{ form.street.vars.id }}"
+               class="">
+            {{ form.locality.locality.vars.label }}
+        </label>
+
 
         {{ form_errors(form.locality.locality) }}
 
@@ -111,7 +120,10 @@
 
     {# Township #}
     <div class="form-group">
-        {{ form_label(form.township.township) }}
+        <label for="{{ form.street.vars.id }}"
+               class="">
+            {{ form.township.township.vars.label }}
+        </label>
 
         {{ form_errors(form.township.township) }}
 
@@ -120,7 +132,10 @@
 
     {# PostalCode #}
     <div class="form-group">
-        {{ form_label(form.postalCode.postalCode) }}
+        <label for="{{ form.street.vars.id }}"
+               class="">
+            {{ form.postalCode.postalCode.vars.label }}
+        </label>
 
         {{ form_errors(form.postalCode.postalCode) }}
 
@@ -182,14 +197,14 @@
 
 
     </div>
-
-
     <a href="#provider_images"
        data-list="#provider_images"
        class="add-another-collection-widget btn btn-secondary"
     >
         Ajouter une image
     </a>
+
+
 </div>
 
 {# Catégories de service #}
@@ -199,13 +214,13 @@
 
     {{ form_errors(form.serviceCategories) }}
 
-    <div id="provider_service_categories" class="collection-widget service_categories"
+    <ul id="provider_service_categories" class="collection-widget service_categories"
          data-widget-tags = "{{ "<li></li>"|e }}"
          data-prototype="{{ form_widget(form.serviceCategories.vars.prototype)|e }}"
     >
 
 
-    </div>
+    </ul>
 
 
     <a href="#provider_service_categories"

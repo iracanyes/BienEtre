@@ -159,6 +159,8 @@ class ServiceController extends Controller
 
     /**
      * Add service
+     *
+     * @Route("/profile/stage/new", name="profile_service_add")
      */
     public function addAction(Request $request): Response
     {
@@ -198,7 +200,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * @Route("/profile/stage/update", name="profile_stage_update")
+     * @Route("/profile/stage/update/{slug}", name="profile_stage_update")
      * @Security("is_granted('ROLE_PROVIDER')")
      * @param Request $request
      * @return Response
@@ -208,7 +210,7 @@ class ServiceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $service = $em->getRepository("App:Service")
-            ->find($request->query->get("id"));
+            ->find($request->query->get("slug"));
 
         $form = $this->createForm(ServiceType::class, $service)
             ->setMethod("POST")
@@ -240,7 +242,10 @@ class ServiceController extends Controller
         }
 
         $this->render(
-            "superlist/profile/service/update.html.twig"
+            "superlist/profile/service/update.html.twig",
+            array(
+                "form"=> $form->createView()
+            )
         );
 
     }

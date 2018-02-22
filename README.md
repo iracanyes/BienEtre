@@ -59,6 +59,17 @@ Symfony3.3.9 application
                             Recherche
                         </li>
                     </ul>
+                </li>
+                <li>
+                    Contact
+                </li>
+                <li>
+                    Profile
+                    <ul>
+                        <li>
+                            home
+                        </li>
+                    </ul>
                 </li>                                
             </ul>
         </li>
@@ -68,7 +79,7 @@ Symfony3.3.9 application
 <h3>Tâches en cours</h3>
 <ul>
     <li>
-        Intégration du template
+        Création de l'interface d'administration
     </li>    
 </ul>
 <div>
@@ -166,53 +177,16 @@ Symfony3.3.9 application
         </p>            
     </div>
     <br>
-    <div class="alert">
-        <p class='alert-info'>
-        Symfony 3.3+ : Activer, dans le fichier de configuration du framework , la prise en charge native des fichiers pour les sessions pour utiliser les fournisseurs d'utilisateurs en mode in_memory (utilisateurs contenus dans framework.yaml).
-        </p>
+    <div class="alert">        
         <ul>
             <li>
-                Dé-commenter la section sur "sessions"
+                ?
             </li>
         </ul>
     </div>
     <div>
-       <p>
-         À chaque nettoyage de la DB en développement "doctrine:database:drop --force", il ne faut pas oublier de créer la table qui contiendra les sessions authentifiés.
-       </p>
-       <ul>
-         <li>
-           Voir la documentation: <br>
-           <a href="https://symfony.com/doc/current/doctrine/pdo_session_storage.html">PDO Session Storage</a>
-         </li>
-         <li>
-            En utilisant la commande de migration de symfony (installer le bundle DoctrineMigrationsBundle) <br>
-            Commande : <code>php bin/console doctrine:migrations:diff</code>      
-         </li>
-         <li>
-              Ajouter au fichier de version de DB créé la ligne suivante                <pre>
-$this->addSql('CREATE TABLE `sessions` (
-       `sess_id` VARCHAR(128) NOT NULL PRIMARY KEY,
-       `sess_data` BLOB NOT NULL,
-       `sess_time` INTEGER UNSIGNED NOT NULL,
-       `sess_lifetime` MEDIUMINT NOT NULL
-   ) COLLATE utf8_bin, ENGINE = InnoDB
-');
-              </pre>
-         </li>
-         <li>
-            Ensuite pour mettre à jour la base de donnée utiliser la commande: <br>
-            <code> php bin/console doctrine:migrations:migrate</code>
-         </li>                  
-       </ul>
-       <p class="alert-info">
-         Attention, à chaque commande <code>doctrine:migrations:diff</code> pour calculer les différences entre les entités et la DB, la table session sera effacée car aucune entité ne la représente.
-       </p>
-       
-       
-       
-       
-    </div>
+                   
+</div>
     <div>
       <h6>Remarque : Mise en production</h6>
       <p>
@@ -221,7 +195,7 @@ $this->addSql('CREATE TABLE `sessions` (
       </p> 
       <ul>
         <li>
-           
+           Composant selectPicker désactiver dans superlist.js : vérifier le bug
         </li>
       </ul>
     </div>
