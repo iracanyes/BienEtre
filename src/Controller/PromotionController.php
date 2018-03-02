@@ -8,7 +8,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Promotion;
 use App\Form\PromotionType;
+use Doctrine\ORM\Persisters\PersisterException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +22,11 @@ use Doctrine\ORM\EntityNotFoundException;
 class PromotionController extends Controller
 {
     /**
-     * @Route("/profile/promotions", name="profile_promotion_list")
-     * @ Security("is_granted('ROLE_PROVIDER')
+     * @Route("/promo", name="promotion_list")
+     * @param Request $request
+     * @return Response
      */
-    public function listAction(Request $request):Response
+    public function indexAction(Request $request):Response
     {
         // Entity Manager
         $em = $this->getDoctrine()->getManager();
@@ -31,7 +34,7 @@ class PromotionController extends Controller
         try{
             // promotion existant
             $promotions = $em->getRepository("App:Promotion")
-                ->findAllByProviderId($this->getUser()->getId());
+                ->findAll();
 
         }catch (EntityNotFoundException $e){
 
@@ -40,8 +43,10 @@ class PromotionController extends Controller
             $this->redirectToRoute("profile_home");
         }
 
+        dump($this->getUser());
+
         $this->render(
-            "superlist/admin/promotion/list.html.twig",
+            "superlist/public/promotion/list.html.twig",
             array(
                 "promotions" => $promotions
             )
@@ -49,7 +54,7 @@ class PromotionController extends Controller
     }
 
     /**
-     * @Route("/profile/edit/promotion/{id}", name="promotion_detail")
+     * @Route("/promo/{slug}", name="promotion_detail")
      * @param Request $request
      * @return Response
      *
@@ -58,12 +63,12 @@ class PromotionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $id = $request->query->get("id");
+        $id = $request->query->get("slug");
 
         try{
 
-            $promotions = $em->getRepository("App:Promotion")
-                ->find($id);
+            $promotion= $em->getRepository("App:Promotion")
+                ->findBySlug($slug);
 
         }catch (EntityNotFoundException $e){
 
@@ -77,6 +82,48 @@ class PromotionController extends Controller
         );
 
 
+    }
+
+    /**
+     * @Route("/profile/promo", name="profile_promotion_list")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     */
+    public function listAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $pendingPromotions = $em->getRepository("App:Promotion")
+            ->findPendingByProviderId($this->getUser()->getId());
+
+        $ongoingPromotions = $em->getRepository("App:Promotion")
+            ->findOngoingByProviderId($this->getUser()->getId());
+
+        $expiredPromotions = $em->getRepository("App:Promotion")
+            ->findExpiredByProviderId($this->getUser()->getId());
+
+        if(!$pendingPromotions){
+            $this->addFlash("warning_pending", "Aucune promotion en attente pour vous!");
+        }
+
+        if(!$ongoingPromotions){
+            $this->addFlash("warning_ongoing", "Aucune promotion en cours pour vous!");
+        }
+
+        if(!$expiredPromotions){
+            $this->addFlash("warning_expired", "Aucune promotion expirée pour vous!");
+        }
+
+        dump($pendingPromotions);
+
+        return $this->render(
+            "superlist/profile/promotion/list.html.twig",
+            array(
+                "pendingPromotions" => $pendingPromotions,
+                "ongoingPromotions" => $ongoingPromotions,
+                "expiredPromotions" => $expiredPromotions,
+                "user" => $this->getUser()
+            )
+        );
     }
 
 
@@ -130,6 +177,55 @@ class PromotionController extends Controller
             array(
                 "form" => $form->createView()
             )
+        );
+    }
+
+    /**
+     * @Route("/profile/promo/new", name="promotion_add")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     */
+    public function addAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $promo = new Promotion();
+
+        $form = $this->createForm(PromotionType::class, $promo);
+
+        $form->handleRequest($request);
+
+        if($form->isValid() && $form->isSubmitted()){
+
+            $promo = $form->getData();
+
+            // Association du prestataire à la promotion créée
+            $promo->setProvider($this->getUser());
+
+            try{
+                $em->persist($promo);
+
+                $em->flush();
+            }catch (PersisterException $e){
+
+                $this->addFlash("warning","Une erreur est survenue durant l'enregistrement, veuillez ré-essayer ou contacter nous pour plus d'aide!");
+
+                return $this->render(
+                    "superlist/profile/promotion/add.html.twig",
+                    array("form"=> $form->createView())
+                );
+            }
+
+            $this->addFlash("success","La promotion '".$promo->getName()."'' a été enregistré avec succés!");
+
+            return $this->redirectToRoute("profile_promotion_list");
+
+
+
+        }
+
+        return $this->render(
+            "superlist/profile/promotion/add.html.twig",
+            array("form"=> $form->createView())
         );
     }
 

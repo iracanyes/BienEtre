@@ -27,7 +27,10 @@ class UserConverter
         $provider->setUserType($userTemp->getUserType());
         $provider->setRegistryDate(new \DateTime());
         $provider->setRegistryConfirmed(true);
+        // éviter les erreurs de champs vides
         $provider->setPlainPassword("abc");
+
+        dump($provider);
 
         return $provider;
     }

@@ -25,11 +25,11 @@
                             {# Inclusion du formulaire d'inscription #}
                             {% if userType == "provider" %}
 
-                                {% include("forms/admin/provider.html.twig") %}
+                                {% include("forms/profile/provider.html.twig") %}
 
                             {% else %}
 
-                                {% include("forms/admin/client.html.twig") %}
+                                {% include("forms/profile/client.html.twig") %}
 
                             {% endif %}
 

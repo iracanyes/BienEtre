@@ -10,6 +10,103 @@ namespace App\Repository;
  */
 class PromotionRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Pending Promotions By Provider Id
+     *
+     * @param int $id
+     * @return array
+     */
+    public function findPendingByProviderId(int $id): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("pr")
+            ->from($this->_entityName, "pr")
+            ->innerJoin("pr.serviceCategory","sc")
+            ->addSelect("sc");
+
+        $qb->innerJoin("pr.provider","p")
+            ->addSelect("p")
+            ->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->andWhere($qb->expr()->gte("pr.releaseDate", ":date"))
+            ->setParameters(["id"=> $id, "date"=> new \DateTime()]);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Pending Promotions By Provider Id
+     *
+     * @param int $id
+     * @return array
+     */
+    public function findOngoingByProviderId(int $id): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("pr")
+            ->from($this->_entityName, "pr")
+            ->innerJoin("pr.serviceCategory","sc")
+            ->addSelect("sc");
+
+        $qb->innerJoin("pr.provider","p")
+            ->addSelect("p")
+            ->where($qb->expr()->eq("p.id", ":id"))
+            ->andWhere($qb->expr()->gte("pr.endDate", ":date"))
+            ->andWhere($qb->expr()->lte("pr.startDate", ":date"))
+            ->setParameters(["id"=> $id, "date" => new \DateTime()]);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Pending Promotions By Provider Id
+     *
+     * @param int $id
+     * @return array
+     */
+    public function findExpiredByProviderId(int $id): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("pr")
+            ->from($this->_entityName, "pr")
+            ->innerJoin("pr.serviceCategory","sc")
+            ->addSelect("sc");
+
+        $qb->innerJoin("pr.provider","p")
+            ->addSelect("p")
+            ->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->andWhere($qb->expr()->lte("pr.expiryDate", ":date"))
+            ->setParameters(["id"=> $id, "date"=> new \DateTime()]);
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+
+    /**
+     * Find All Services By Provider Id
+     *
+     * @param int $id
+     * @return array|mixed
+     */
+    public function findByProviderId(int $id)
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("pr")
+            ->from($this->_entityName, "pr")
+            ->innerJoin("pr.serviceCategory","sc")
+            ->addSelect("sc");
+
+        $qb->innerJoin("pr.provider","p")
+            ->addSelect("p")
+            ->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->setParameter("id", $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return array
+     */
     public function recentPromotions(): array
     {
         $queryBuilder = $this->_em->createQueryBuilder()

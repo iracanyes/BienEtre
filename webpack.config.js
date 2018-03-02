@@ -11,11 +11,19 @@ Encore
     // uncomment to create hashed filenames (e.g. app.abc123.css)
     // .enableVersioning(Encore.isProduction())
 
-    // uncomment to define the assets of the project
+    // Les assets javascripts du projets
+    // https://symfony.com/blog/introducing-webpack-encore-for-asset-management
+
     .addEntry('js/main', './assets/js/main.js')
     .addEntry('js/add-collection-widget',"./assets/libraries/custom/add-collection-widget.js")
+    // Style entries
+    .addStyleEntry('css/custom',
+        "./assets/scss/custom.scss"
+    )
     // Création d'entrées partagés par plusieurs scripts et pages.
-    .createSharedEntry("js/vendors",[
+    // Attention : télécharger le module sass-loader et css-loader
+    // https://symfony.com/doc/current/frontend/encore/shared-entry.html
+    .createSharedEntry("vendors",[
         "./assets/js/jquery.js",
         "./assets/js/superlist.js",
         "./assets/js/map.js",
@@ -35,20 +43,22 @@ Encore
         "./assets/libraries/flot/jquery.flot.min.js",
         "./assets/libraries/flot/jquery.flot.spline.js",
         "./assets/libraries/owl.carousel/owl.carousel.js",
+        // Style Entries
+        "./assets/scss/superlist.scss",
+        "./assets/libraries/bootstrap-select/bootstrap-select.min.css",
+        "./assets/libraries/owl.carousel/assets/owl.carousel.css",
+        "./assets/libraries/colorbox/example1/colorbox.css",
+        "./assets/libraries/bootstrap-fileinput/fileinput.min.css",
     ])
-     .addStyleEntry('css/vendors',
-         './assets/scss/superlist.scss',
-         "./assets/libraries/bootstrap-select/bootstrap-select.min.css",
-         "./assets/libraries/owl.carousel/assets/owl.carousel.css",
-         "./assets/libraries/colorbox/example1/colorbox.css",
-         "./assets/libraries/bootstrap-fileinput/fileinput.min.css",
-         "./assets/scss/custom.css"
-     )
 
-    // uncomment if you use Sass/SCSS files
+
+    // Permet le chargement et la conversion des fichiers .scss
+    // Attention : télécharger le module sass-loader et css-loader
+    // https://symfony.com/doc/current/frontend/encore/css-preprocessors.html
      .enableSassLoader()
 
     // uncomment for legacy applications that require $/jQuery as a global variable
+    // https://symfony.com/doc/current/frontend/encore/bootstrap.html
      .autoProvidejQuery()
 
 

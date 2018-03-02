@@ -147,12 +147,14 @@ Symfony3.3.9 application
                         </li>
                     </ul>
                 </li>
+            </ol>
+        </li>
+        <li>
+            Avant la mise en production : 
+            <ol>
                 <li>
-                  Créer un formulaire pour ajouter le token reçu par e-mail avant de voir 
-                      * le formulaire de confirmation
-                </li>
-                <li>
-                  Vérification de l'existence d'un identifiant lors de l'inscription
+                Décommenter la méthode ImagesUploadListener::postLoad() qui permet de convertir les URL en DB des fichiers uploadé en instance de HttpFoundation\File\File lors d'un chargement de l'entité Image. <br>
+                Autre solution, utiliser le type de chemin renvoyé par la méthode UploadedFile::move pour les fixtures afin d'éviter les confits de chargement d'images uploadé et les images obtenus sur lorempixel.com
                 </li>
             </ol>
         </li>

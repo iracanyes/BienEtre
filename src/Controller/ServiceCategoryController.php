@@ -10,10 +10,12 @@ namespace App\Controller;
 
 use App\Entity\ServiceCategory;
 use App\Form\ServiceCategoryType;
+use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 class ServiceCategoryController extends Controller
@@ -61,13 +63,62 @@ class ServiceCategoryController extends Controller
         );
     }
 
-    public function createAction(Request $request): Response
+
+    /**
+     * @Route("/profile/category", name="profile_service_category_list")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     */
+    public function listAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+
+        try{
+
+            $serviceCategories = $em->getRepository("App:ServiceCategory")
+                ->findByProviderId($user->getId());
+
+        }catch (EntityNotFoundException $e){
+
+            $this->addFlash("warning", "Erreur survenue!");
+
+            $this->forward("App\Controller\ProfileController::homeAction");
+
+        }
+
+        if(!$serviceCategories){
+
+            $this->addFlash(
+                "warning",
+                "Aucune catégorie de service n'enregistré pour vous!
+                 Définitions de catégorie de services obligatoire pour la création de service!"
+            );
+
+        }
+
+        return $this->render(
+            "superlist/profile/service-category/list.html.twig",
+            array(
+                "serviceCategories" => $serviceCategories,
+                "user" => $user
+                )
+        );
+    }
+
+    /**
+     * @Route("/profile/category/new", name="service_category_add")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
+     */
+    public function addAction(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
         $serviceCategory = new ServiceCategory();
 
-        $form = $this->createForm(ServiceCategoryType::class, $serviceCategory);
+        $form = $this->createForm(ServiceCategoriesType::class, $serviceCategory);
 
         $form->handleRequest($request);
 
@@ -76,7 +127,27 @@ class ServiceCategoryController extends Controller
             $newServiceCategory = $form->getData();
 
             // test d'existence de la catégorie
+
+            $serviceCategory = $form->getData();
+
+            $em->persist($serviceCategory);
+            $em->flush();
+
+            $this->addFlash("success", "Ajout de la catégorie de service '".$serviceCategory->getName()."' a été effectué avec succés! ");
+
+            $this->forward("App\Controller\ServiceCategoryController::listAction");
+
         }
+
+        dump($this->getUser());
+
+        return $this->render(
+            "superlist/profile/service-category/add.html.twig",
+            array(
+                "form" => $form->createView(),
+                "user" => $this->getUser()
+            )
+        );
     }
 
 }

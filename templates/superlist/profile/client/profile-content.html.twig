@@ -1,0 +1,215 @@
+<div class="content-admin">
+    <div class="content-admin-wrapper">
+        <div class="content-admin-main">
+            <div class="content-admin-main-inner">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="message">
+                                        <h1>Bienvenue sur le tableau de bord</h1>
+
+                                        <p>
+                                            Visitez votre profil <a href="{{ path("profile_update") }}">Bien-Être</a> .
+                                            <br>
+                                            Une question, contactez-nous via le formulaire de la section de configuration <a href="#">Contact</a>.
+                                            <br>
+                                            N'hésitez pas à visiter la  <a href="#">documentation</a>.</p>
+                                    </div><!-- /.message -->
+                                </div><!-- /.col-* -->
+                            </div><!-- /.row -->
+
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <h3>Status des publications</h3>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="statusbox">
+                                                <h2>Services</h2>
+                                                <div class="statusbox-content">
+                                                    <strong>{{ user.getServices()|length }}</strong> services publiés
+                                                    {% if user.updateDate %}
+                                                        <span>Mise à jour le {{ user.updateDate|date('d/m/Y') }}</span>
+                                                    {% else %}
+
+                                                        <span>Aucun mise à jour actuellement</span>
+                                                    {% endif %}
+                                                </div><!-- /.statusbox-content -->
+
+                                                <div class="statusbox-actions">
+                                                    <a href="#"><i class="fa fa-eye"></i></a>
+                                                    <a href="#"><i class="fa fa-bar-chart"></i></a>
+                                                    <a href="#"><i class="fa fa-share-alt"></i></a>
+                                                </div><!-- /.statusbox-actions -->
+                                            </div><!-- /.statusbox -->
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="statusbox">
+                                                <h2>Promotions</h2>
+                                                <div class="statusbox-content">
+                                                    <strong>{{ user.promotions|length }}</strong> promotions publiées
+                                                    {% if user.updateDate %}
+                                                        <span>Mise à jour le {{ user.updateDate|date('d/m/Y') }}</span>
+                                                    {% else %}
+
+                                                        <span>Aucun mise à jour actuellement</span>
+                                                    {% endif %}
+                                                </div><!-- /.statusbox-content -->
+
+                                                <div class="statusbox-actions">
+                                                    <a href="#"><i class="fa fa-eye"></i></a>
+                                                    <a href="#"><i class="fa fa-bar-chart"></i></a>
+                                                    <a href="#"><i class="fa fa-share-alt"></i></a>
+                                                </div><!-- /.statusbox-actions -->
+                                            </div>
+                                        </div>
+                                    </div><!-- /.row -->
+                                </div><!-- /.col-* -->
+
+                                <div class="col-sm-12 col-lg-6">
+                                    <h3>Activités récents</h3>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="statusbox">
+                                                <h2>Services</h2>
+                                                <div class="statusbox-content">
+                                                    <strong>$14,800</strong>
+                                                    <span>Mise à jour [A_FAIRE 27/04/2015] </span>
+                                                </div><!-- /.statusbox-content -->
+
+                                                <div class="statusbox-actions">
+                                                    <a href="#"><i class="fa fa-eye"></i></a>
+                                                    <a href="#"><i class="fa fa-bar-chart"></i></a>
+                                                    <a href="#"><i class="fa fa-share-alt"></i></a>
+                                                </div><!-- /.statusbox-actions -->
+                                            </div><!-- /.statusbox -->
+                                        </div><!-- /.col-* -->
+
+                                        <div class="col-sm-6">
+                                            <div class="statusbox">
+                                                <h2>Promotions</h2>
+                                                <div class="statusbox-content">
+                                                    <strong>$12,800</strong>
+                                                    <span>Updated 27/04/2015</span>
+                                                </div><!-- /.statusbox-content -->
+
+                                                <div class="statusbox-actions">
+                                                    <a href="#"><i class="fa fa-eye"></i></a>
+                                                    <a href="#"><i class="fa fa-bar-chart"></i></a>
+                                                    <a href="#"><i class="fa fa-share-alt"></i></a>
+                                                </div><!-- /.statusbox-actions -->
+                                            </div><!-- /.statusbox -->
+                                        </div><!-- /.col-* -->
+                                    </div><!-- /.row -->
+                                </div><!-- /.col-* -->
+                            </div><!-- /.row -->
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Graphique de satisfaction</h3>
+                                    <div class="p30 background-white mb50">
+                                        <div id="superlist-chart"></div>
+                                    </div>
+                                </div><!-- /.col-* -->
+                            </div><!-- /.row -->
+
+                            <div class="row">
+
+                                <div class="col-sm-12 col-lg-5">
+                                    <h3>Promotions en cours <a href="#">Voir tous les promotions <i class="fa fa-chevron-right"></i></a></h3>
+                                    {% if user.promotions|length > 0 %}
+                                        <div class="users">
+                                            <table class="table">
+                                                <tbody>
+                                                {% for promotion in user.promotions %}
+                                                    <tr>
+                                                        <td><a class="user" href="{{ path("promotion_detail",{ "id": promotion.id }) }}"><img src="{{ user.logos.first().url }}" alt=""></a></td>
+                                                        <td class="hidden-xs visible-sm visible-md visible-lg">
+                                                            <h2><a href="#">{{ promotion.name }}</a></h2>
+                                                            <h3>Début : {{ promotion.startDate|date('d/m/Y') }}</h3>
+                                                        </td>
+                                                        <td class="right">
+                                                            <a href="#" class="btn btn-xs btn-primary">Éditer</a>
+                                                            <a href="#" class="btn btn-xs btn-danger">Supprimer</a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+
+
+                                                </tbody>
+                                            </table>
+                                        </div><!-- /.users -->
+                                    {% else %}
+
+                                        {{ include(
+                                            "superlist/template-part/notifications/closeable-messages/info.html.twig",
+                                            {
+                                                "flash_head":"Infos :",
+                                                "flash_info":"Aucune promotion ajoutée"
+                                            }
+                                        ) }}
+                                    {% endif %}
+                                </div><!-- /.col-* -->
+
+                                <div class="col-sm-12 col-lg-7">
+                                    <h3>Catégories <a href="#">Tous les catégories de service <i class="fa fa-chevron-right"></i></a></h3>
+                                    {% if user.serviceCategories|length > 0 %}
+                                        <div class="background-white p30 mb50">
+                                            <div class="cards-system">
+
+
+                                                {% for serviceCategory in user.serviceCategories %}
+
+                                                    <div class="card-system">
+                                                        <div class="card-system-inner">
+                                                            <div class="card-system-image" data-background-image="{{ serviceCategory.image.url }}">
+                                                                <a href="{{ path("service_category_detail", { "slug": serviceCategory.slug }) }}"></a>
+                                                            </div><!-- /.card-system-image -->
+
+                                                            <div class="card-system-content">
+                                                                <h2><a href="{{ path("service_category_detail", { "slug": serviceCategory.slug }) }}">{{ serviceCategory.name }}</a></h2>
+                                                                <h3>Publié [DATE SERVICE CATEGORY A FAIRE]</h3>
+                                                                <a href="#" class="btn btn-primary btn-xs">Éditer</a>
+                                                                <a href="#" class="btn btn-secondary btn-xs">Supprimer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.card-system -->
+
+                                                {% endfor %}
+
+
+                                            </div><!-- /.cards-system -->
+                                        </div>
+                                    {% else %}
+
+                                        {{ include(
+                                            "superlist/template-part/notifications/closeable-messages/info.html.twig",
+                                            {
+                                                "flash_head": "Informations",
+                                                "flash_info":"Vous etez inscrit dans aucune catégorie de service"
+                                            }
+                                        ) }}
+                                    {% endif %}
+
+                                </div><!-- /.col-* -->
+                            </div><!-- /.row -->
+                        </div><!-- /.col-* -->
+
+                    </div>
+                </div><!-- /.container-fluid -->
+            </div><!-- /.content-admin-main-inner -->
+        </div><!-- /.content-admin-main -->
+
+        <div class="content-admin-footer">
+            <div class="container-fluid">
+                <div class="content-admin-footer-inner">
+                    &copy; 2015 All rights reserved. Created by <a href="https://iracanyes.com">Iracanyes</a>.
+                </div><!-- /.content-admin-footer-inner -->
+            </div><!-- /.container-fluid -->
+        </div><!-- /.content-admin-footer  -->
+    </div><!-- /.content-admin-wrapper -->
+</div><!-- /.content-admin -->

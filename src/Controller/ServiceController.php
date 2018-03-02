@@ -6,7 +6,7 @@ use App\Entity\Provider;
 use App\Entity\Service;
 use App\Form\ServicesType;
 use App\Form\ServiceType;
-use Doctrine\ORM\Persisters\PersisterException;
+use Doctrine\Common\CommonException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -158,16 +158,82 @@ class ServiceController extends Controller
     }
 
     /**
+     * @Route("/profile/stages", name="profile_service_list")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     */
+    public function listAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $id = $this->getUser()->getId();
+
+        $countServiceCategories = $em->getRepository("App:ServiceCategory")
+            ->countByProviderId($id);
+
+        $pendingServices = $em->getRepository("App:Service")
+            ->findPendingByProviderId($id);
+
+        $ongoingServices = $em->getRepository("App:Service")
+            ->findOngoingByProviderId($id);
+
+        $expiredServices = $em->getRepository("App:Service")
+            ->findExpiredByProviderId($id);
+
+
+        if($countServiceCategories == 0){
+            $this->addFlash("warning","Aucune catégories de service enregistré pour vous! \n Commencer par enregistrer les catégories de services pour lesquels vous offrez des services !");
+        }
+
+        if(empty($pendingServices)){
+            $this->addFlash("warning_pending", "Aucun stage en attente n'est enregistré pour vous");
+
+        }
+
+
+        if(!$ongoingServices){
+            $this->addFlash("warning_ongoing", "Aucun stage en cours n'est enregistré pour vous");
+
+        }
+
+        if(!$expiredServices){
+            $this->addFlash("warning_expired", "Aucun stage expiré n'est enregistré pour vous");
+
+        }
+
+
+        dump($request->getSession()->getFlashBag());
+
+        return $this->render(
+            "superlist/profile/service/list.html.twig",
+            array(
+                "pendingServices" => $pendingServices,
+                "ongoingServices" => $ongoingServices,
+                "expiredServices" => $expiredServices,
+                "user" => $this->getUser()
+            )
+        );
+    }
+
+    /**
      * Add service
      *
-     * @Route("/profile/stage/new", name="profile_service_add")
+     * @Route("/profile/stage/new", name="service_add")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
      */
     public function addAction(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
-        $provider = $em->getRepository("App:Provider")
-            ->findByToken($request->query->get("token"));
+        $provider = $this->getUser();
+
+        // Erreur
+        // Vérifiér l'erreur généré par plainPassword null à l'affichage du formulaire
+        // empêche la soumission du formulaire
+        $provider->setPlainPassword("0");
+
+        dump($provider);
 
         $form = $this->createForm(ServicesType::class, $provider);
 
@@ -185,23 +251,40 @@ class ServiceController extends Controller
 
                 $this->redirectToRoute("profile_service_list");
 
-            }catch (PersisterException $e){
+            }catch (CommonException $e){
 
                 $this->addFlash("warning","Erreur dans les données saisies!");
 
                 $this->render(
-                    "superlist/profile/service/update.html.twig",
+                    "superlist/profile/service/add.html.twig",
                     array(
                         "form" => $form->createView()
                     )
                 );
             }
         }
+
+        // Affichage des récents services
+        $services = $em->getRepository("App:Service")
+            ->findByProviderId($provider->getId());
+
+        if(!$services){
+            $this->addFlash("no_services","Aucun service enregistré pour vous!");
+        }
+
+        return $this->render(
+            "superlist/profile/service/add.html.twig",
+            array(
+                "form" => $form->createView(),
+                "services" => $services,
+                "user" => $provider
+            )
+        );
     }
 
     /**
-     * @Route("/profile/stage/update/{slug}", name="profile_stage_update")
-     * @Security("is_granted('ROLE_PROVIDER')")
+     * @Route("/profile/stage/update/{slug}", name="service_update")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
      * @param Request $request
      * @return Response
      */

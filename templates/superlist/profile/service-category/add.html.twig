@@ -1,0 +1,144 @@
+{% extends 'superlist/layout.html.twig' %}
+
+{% block header %}
+    <header class="header header-minimal">
+        <div class="header-wrapper">
+            <div class="container-fluid">
+                <div class="header-inner">
+                    <div class="header-logo">
+                        <a href="index.html">
+                            <img src="{{ asset('build/images/logo.png') }}" alt="Logo">
+                        </a>
+                    </div><!-- /.header-logo -->
+
+                    <div class="header-content">
+                        <div class="header-bottom">
+
+                            {# Menu par défaut #}
+
+
+                            {{ include('superlist/template-part/menu.html.twig') }}
+
+
+
+
+                            {{ include("superlist/template-part/profile/header-nav-user.html.twig") }}
+
+
+
+                        </div><!-- /.header-bottom -->
+                    </div><!-- /.header-content -->
+                </div><!-- /.header-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.header-wrapper -->
+
+        <div class="header-statusbar">
+            <div class="header-statusbar-inner">
+                <div class="header-statusbar-left">
+                    <h1>Tableau de bord</h1>
+
+                    <div class="display-inline-block">
+                        <div class="hidden-xs visible-lg">
+                            <div class="header-statusbar-search">
+                                <input type="text" class="form-control" placeholder="Recherche...">
+                            </div><!-- /.header-search -->
+                        </div>
+                    </div>
+                </div><!-- /.header-statusbar-left -->
+
+                <div class="header-statusbar-right">
+                    <div class="hidden-xs visible-lg">
+                        Navigation:
+                        <ul class="breadcrumb">
+                            <li><a href="{{ path("homepage") }}">Bien-Être</a></li>
+                            <li><a href="{{ path('profile_home') }}">Tableau de bord</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.header-statusbar-right -->
+            </div><!-- /.header-statusbar-inner -->
+        </div><!-- /.header-statusbar -->
+    </header><!-- /.header -->
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <div class="outer-admin">
+            <div class="wrapper-admin">
+                {# Menu admin #}
+
+
+                <div class="sidebar-admin">
+                    <ul>
+                        <li><a href="{{ path("profile_home") }}"><i class="fa fa-file"></i></a></li>
+                        <li class="active"><a href="{{ path("profile_edit_home") }}"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href="{{ path("profile_update") }}"><i class="fa fa-cog"></i></a></li>
+                    </ul>
+                </div><!-- /.sidebar-admin-->
+
+                <div class="sidebar-secondary-admin">
+                    <ul>
+                        <li>
+                            <a href="{{ path("service_add") }}">
+                                <span class="icon"><i class="fa fa-tachometer"></i></span>
+                                <span class="title">Service</span>
+                                <span class="subtitle">Ajouter un service</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ path("promotion_add") }}">
+                                <span class="icon"><i class="fa fa-i-cursor"></i></span>
+                                <span class="title">Promotion<span class="notification">3</span> </span>
+                                <span class="subtitle">Ajouter une promotion</span>
+                            </a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{ path("service_category_add") }}">
+                                <span class="icon"><i class="fa fa-table"></i></span>
+                                <span class="title">Catégorie</span>
+                                <span class="subtitle">Ajouter une catégorie</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div><!-- /.sidebar-secondary-admin -->
+                {# EndMenu #}
+
+                {# Admin Content Form #}
+                <div class="content-admin">
+                    <div class="content-admin-wrapper">
+                        <div class="content-admin-main">
+                            <div class="content-admin-main-inner">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="page-title">
+                                                <h1>Ajouter des catégories de services</h1>
+                                            </div><!-- /.page-title -->
+
+                                            {{ include("forms/profile/service.html.twig") }}
+                                        </div><!-- /.col-* -->
+
+                                    </div>
+                                </div><!-- /.container-fluid -->
+                            </div><!-- /.content-admin-main-inner -->
+                        </div><!-- /.content-admin-main -->
+
+                        <div class="content-admin-footer">
+                            <div class="container-fluid">
+                                <div class="content-admin-footer-inner">
+                                    &copy; 2015 All rights reserved. Created by <a href="#">Aviators</a>.
+                                </div><!-- /.content-admin-footer-inner -->
+                            </div><!-- /.container-fluid -->
+                        </div><!-- /.content-admin-footer  -->
+                    </div><!-- /.content-admin-wrapper -->
+                </div><!-- /.content-admin -->
+            </div><!-- /.wrapper-admin -->
+        </div><!-- /.outer-admin -->
+    </div><!-- /.main -->
+{% endblock %}
+
+
+

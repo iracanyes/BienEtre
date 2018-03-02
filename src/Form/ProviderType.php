@@ -17,7 +17,11 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Provider;
+use App\Entity\Township;
+use App\Entity\Locality;
+use App\Entity\PostalCode;
 
 class ProviderType extends AbstractType
 {
@@ -60,19 +64,40 @@ class ProviderType extends AbstractType
                 )
             )
             ->add(
-                "locality",
-                LocalityType::class,
-                array("label"=>"Localité : ")
+                "township",
+                EntityType::class,
+                array(
+                    "class" => Township::class,
+                    "label" => "Commune :",
+                    "choice_label" => "township",
+                    "multiple" => false,
+                    "expanded" => false,
+
+                )
             )
             ->add(
-                "township",
-                TownshipType::class,
-                array("label"=>"Commune : ")
+                "locality",
+                EntityType::class,
+                array(
+                    "class" => Locality::class,
+                    "label" => "Localité :",
+                    "choice_label" => "locality",
+                    "multiple" => false,
+                    "expanded" => false,
+
+                )
             )
             ->add(
                 "postalCode",
-                PostalCodeType::class,
-                array("label"=>"Code postal : ")
+                EntityType::class,
+                array(
+                    "class" => PostalCode::class,
+                    "label" => "Code postal :",
+                    "choice_label" => "postalCode",
+                    "multiple" => false,
+                    "expanded" => false,
+
+                )
             )
             /* Embeed Collection of forms */
             ->add(

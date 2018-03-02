@@ -19,7 +19,14 @@ class LocalityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('locality', TextType::class, array("label"=>"Localité : "));
+        $builder->add(
+            'locality',
+            TextType::class,
+            array(
+                "label"=>"Localité : ",
+                "attr" => array("class" => "form-control")
+            )
+        );
 
     }
 

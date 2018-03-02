@@ -26,12 +26,40 @@ class ServiceType extends AbstractType
             ->add("description", TextareaType::class)
             ->add("pricing", TextareaType::class)
             ->add("additionalInformation", TextareaType::class)
-            ->add("startDate", DateTimeType::class)
-            ->add("endDate", DateTimeType::class)
-            ->add("releaseDate", DateTimeType::class)
-            ->add("expiryDate", DateTimeType::class)
-            ->add("provider", ProviderType::class)
-            ->add("submit", SubmitType::class);
+            ->add(
+                "startDate",
+                DateTimeType::class,
+                array(
+                    "label" => "Date de début",
+                    //"html5" => false,
+                    //"input" => "datetime",
+                    //"attr" => array("class" =>"js-datepicker")
+                )
+            )
+            ->add("endDate", DateTimeType::class,
+                array(
+                    "label" => "Date de début",
+                    "html5" => false,
+                    "input" => "datetime",
+                    "attr" => array("class" =>"js-datepicker")
+                )
+            )
+            ->add("releaseDate", DateTimeType::class,
+                array(
+                    "label" => "Date de début",
+                    "html5" => false,
+                    "input" => "datetime",
+                    "attr" => array("class" =>"js-datepicker")
+                )
+            )
+            ->add("expiryDate", DateTimeType::class,
+                array(
+                    "label" => "Date de début",
+                    "html5" => false,
+                    "input" => "datetime",
+                    "attr" => array("class" =>"js-datepicker")
+                )
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

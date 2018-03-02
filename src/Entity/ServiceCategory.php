@@ -121,7 +121,7 @@ class ServiceCategory
      */
     public function getName(): string
     {
-        return $this->name;
+        return $this->name ?? "";
     }
 
     /**
@@ -145,7 +145,7 @@ class ServiceCategory
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->description ?? "";
     }
 
     /**
@@ -165,9 +165,9 @@ class ServiceCategory
     /**
      * Get inFrontPage
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getInFrontPage(): bool
+    public function getInFrontPage()
     {
         return $this->inFrontPage;
     }
@@ -255,7 +255,7 @@ class ServiceCategory
      */
     public function getSlug(): string
     {
-        return $this->slug;
+        return $this->slug ?? "";
     }
 
     /**

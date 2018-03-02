@@ -10,6 +10,72 @@ namespace App\Repository;
  */
 class ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findPendingByProviderId(int $id){
+        $qb = $this->_em->createQueryBuilder()
+            ->select("s")
+            ->from($this->_entityName, "s");
+
+        $qb->innerJoin("s.provider", "p")
+            ->addSelect("p")
+            ->where($qb->expr()->eq("p.id",":id"))
+            ->andWhere($qb->expr()->gte("s.releaseDate", ":date"))
+            ->setParameters(array("id"=> $id, "date"=> new \DateTime()));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findOngoingByProviderId(int $id){
+        $qb = $this->_em->createQueryBuilder()
+            ->select("s")
+            ->from($this->_entityName, "s");
+
+        $qb->innerJoin("s.provider", "p")
+            ->addSelect("p")
+            ->where($qb->expr()->eq("p.id",":id"))
+            ->andWhere($qb->expr()->gte("s.endDate", ":date"))
+            ->andWhere($qb->expr()->lte("s.startDate", ":date"))
+            ->setParameters(array("id"=> $id, "date"=> new \DateTime()));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param int $id
+     * @return array|mixed
+     */
+    public function findExpiredByProviderId(int $id){
+        $qb = $this->_em->createQueryBuilder()
+            ->select("s")
+            ->from($this->_entityName, "s");
+
+        $qb->innerJoin("s.provider", "p")
+            ->addSelect("p")
+            ->where($qb->expr()->eq("p.id",":id"))
+            ->andWhere($qb->expr()->lte("s.expiryDate", ":date"))
+            ->setParameters(array("id"=> $id, "date"=> new \DateTime()));
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+    /**
+     * @param int $id
+     * @return array|mixed
+     */
+    public function findByProviderId(int $id)
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("s")
+            ->from($this->_entityName, "s");
+
+        $qb->innerJoin("s.provider","p")
+            ->addSelect("p")
+            ->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->setParameter("id", $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
     /**
      * Join Provider & Logo
      */

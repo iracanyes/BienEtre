@@ -37,12 +37,12 @@ class Comment
     private $title;
 
     /**
-     * @ORM\Column(name="positiveComment", type="text", nullable=true)
+     * @ORM\Column(name="positive_comment", type="text", nullable=true)
      */
     private $positiveComment;
 
     /**
-     * @ORM\Column(name="negativeComment", type="text", nullable=true)
+     * @ORM\Column(name="negative_comment", type="text", nullable=true)
      */
     private $negativeComment;
 

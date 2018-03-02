@@ -1,18 +1,24 @@
 {
-  "build/css/vendors.css": "/build/css/vendors.css",
+  "build/css/custom.css": "/build/css/custom.css",
   "build/fonts/glyphicons-halflings-regular.eot": "/build/fonts/glyphicons-halflings-regular.eot",
   "build/fonts/glyphicons-halflings-regular.ttf": "/build/fonts/glyphicons-halflings-regular.ttf",
   "build/fonts/glyphicons-halflings-regular.woff": "/build/fonts/glyphicons-halflings-regular.woff",
   "build/fonts/glyphicons-halflings-regular.woff2": "/build/fonts/glyphicons-halflings-regular.woff2",
   "build/images/bg-transparent.jpg": "/build/images/bg-transparent.jpg",
+  "build/images/border.png": "/build/images/border.png",
+  "build/images/controls.png": "/build/images/controls.png",
   "build/images/favicon.png": "/build/images/favicon.png",
   "build/images/glyphicons-halflings-regular.svg": "/build/images/glyphicons-halflings-regular.svg",
+  "build/images/loading.gif": "/build/images/loading.gif",
+  "build/images/loading_background.png": "/build/images/loading_background.png",
   "build/images/logo-white.png": "/build/images/logo-white.png",
   "build/images/logo.png": "/build/images/logo.png",
+  "build/images/overlay.png": "/build/images/overlay.png",
   "build/images/product-4.jpg": "/build/images/product-4.jpg",
   "build/images/slider-large-3.jpg": "/build/images/slider-large-3.jpg",
   "build/js/add-collection-widget.js": "/build/js/add-collection-widget.js",
   "build/js/main.js": "/build/js/main.js",
-  "build/js/vendors.js": "/build/js/vendors.js",
-  "build/manifest.js": "/build/manifest.js"
+  "build/manifest.js": "/build/manifest.js",
+  "build/vendors.css": "/build/vendors.css",
+  "build/vendors.js": "/build/vendors.js"
 }

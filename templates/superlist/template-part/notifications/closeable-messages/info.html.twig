@@ -3,11 +3,15 @@
         <i class="fa fa-times" aria-hidden="true"></i>
     </button>
     <strong>
-        {% if flash_head %}
+        {% if flash_head is defined %}
             {{ flash_head }}
         {% else %}
         Heads up!
         {% endif %}
     </strong>
     {{ flash_info }}
+
+    {% if button_info is defined %}
+        <a href="{{ path( button_info.route ) }}" class="label label-gb label-info">{{ button_info.message }}</a>
+    {% endif %}
 </div>

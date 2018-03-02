@@ -12,6 +12,10 @@ use Doctrine\ORM\EntityRepository;
 
 class ServiceCategoryRepository extends EntityRepository
 {
+    /**
+     * @param int $max
+     * @return array
+     */
     public function getServiceCategoriesAndProviders(int $max = 20): array
     {
         $qb = $this->_em->createQueryBuilder()
@@ -24,5 +28,37 @@ class ServiceCategoryRepository extends EntityRepository
             ->setMaxResults($max);
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findByProviderId(int $id): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("sc")
+            ->from($this->_entityName, "sc")
+            ->innerJoin("sc.providers","p")
+            ->addSelect("p");
+
+        $qb->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->setParameter("id", $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function countByProviderId(int $id): int
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select($qb->expr()->count("sc"))
+            ->from($this->_entityName, "sc")
+            ->innerJoin("sc.providers","p");
+
+        $qb->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->setParameter("id", $id);
+
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }

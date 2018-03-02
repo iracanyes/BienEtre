@@ -1,0 +1,319 @@
+{% extends "superlist/layout.html.twig" %}
+
+{% block header %}
+    <header class="header header-minimal">
+        <div class="header-wrapper">
+            <div class="container-fluid">
+                <div class="header-inner">
+                    <div class="header-logo">
+                        <a href="index.html">
+                            <img src="{{ asset('build/images/logo.png') }}" alt="Logo">
+                        </a>
+                    </div><!-- /.header-logo -->
+
+                    <div class="header-content">
+                        <div class="header-bottom">
+
+                            {# Menu par défaut #}
+
+
+                            {{ include('superlist/template-part/menu.html.twig') }}
+
+
+
+
+                            {{ include("superlist/template-part/profile/header-nav-user.html.twig") }}
+
+
+
+                        </div><!-- /.header-bottom -->
+                    </div><!-- /.header-content -->
+                </div><!-- /.header-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.header-wrapper -->
+
+        <div class="header-statusbar">
+            <div class="header-statusbar-inner">
+                <div class="header-statusbar-left">
+                    <h1>Tableau de bord</h1>
+
+                    <div class="display-inline-block">
+                        <div class="hidden-xs visible-lg">
+                            <div class="header-statusbar-search">
+                                <input type="text" class="form-control" placeholder="Recherche...">
+                            </div><!-- /.header-search -->
+                        </div>
+                    </div>
+                </div><!-- /.header-statusbar-left -->
+
+                <div class="header-statusbar-right">
+                    <div class="hidden-xs visible-lg">
+                        Navigation:
+                        <ul class="breadcrumb">
+                            <li><a href="{{ path("homepage") }}">Bien-Être</a></li>
+                            <li><a href="{{ path('profile_home') }}">Tableau de bord</a></li>
+                            <li><a href="#">Promotions</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.header-statusbar-right -->
+            </div><!-- /.header-statusbar-inner -->
+        </div><!-- /.header-statusbar -->
+    </header><!-- /.header -->
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <div class="outer-admin">
+            <div class="wrapper-admin">
+
+                <div class="sidebar-admin">
+                    <ul>
+                        <li class="active"><a href="{{ path("profile_home") }}"><i class="fa fa-file"></i></a></li>
+                        <li><a href="{{ path("profile_edit_home") }}"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href="{{ path("profile_update") }}"><i class="fa fa-cog"></i></a></li>
+                    </ul>
+                </div><!-- /.sidebar-admin-->
+
+                <div class="sidebar-secondary-admin">
+                    <ul>
+                        <li>
+                            <a href="{{ path("profile_home") }}">
+                                <span class="icon"><i class="fa fa-tachometer"></i></span>
+                                <span class="title">Tableau de bord</span>
+                                <span class="subtitle">Gérer votre profil</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ path("profile_service_list") }}">
+                                <span class="icon"><i class="fa fa-i-cursor"></i></span>
+                                <span class="title">Services <span class="notification">3</span> </span>
+                                <span class="subtitle">Tous vos services</span>
+                            </a>
+                        </li>
+
+                        <li class="active" >
+                            <a href="{{ path("profile_promotion_list") }}">
+                                <span class="icon"><i class="fa fa-table"></i></span>
+                                <span class="title">Promotions</span>
+                                <span class="subtitle">Tous les promotions</span>
+                            </a>
+                        </li>
+
+                        <li >
+                            <a href="{{ path("profile_service_category_list") }}">
+                                <span class="icon"><i class="fa fa-th"></i></span>
+                                <span class="title">Catégories  <span class="notification">2</span></span>
+                                <span class="subtitle">Catégories de service offerts</span>
+                            </a>
+                        </li>
+
+                        <li >
+                            <a href="{{ path("profile_comment_list") }}">
+                                <span class="icon"><i class="fa fa-bell"></i></span>
+                                <span class="title">Commentaires</span>
+                                <span class="subtitle">Toutes les commentaires</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.sidebar-secondary-admin -->
+
+                <div class="content-admin">
+                    <div class="content-admin-wrapper">
+                        <div class="content-admin-main">
+                            <div class="content-admin-main-inner">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+    <div class="page-title">
+        <h1>Vos promotions</h1>
+    </div><!-- /.page-title -->
+
+    <div class="background-white p20 mb50">
+        <h2 class="page-title">Promotions en attente</h2>
+
+        <table class="table table-hover mb0">
+            <caption>
+
+                {% if app.session.flashbag.get("warning_pending") is defined %}
+                    {% for message in app.session.flashbag.get("warning_pending") %}
+
+                        {{ include("superlist/template-part/notifications/closeable-messages/info.html.twig",{"flash_info": message }) }}
+
+                    {% endfor %}
+                {% endif %}
+            </caption>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>PDF</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Date de publication</th>
+                <th>Date d'expiration</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for promotion in pendingPromotions %}
+                    <tr>
+                        <th scope="row">{{ promotion.id }}</th>
+                        <td>{{ promotion.name }}</td>
+                        <td>{{ promotion.description }}</td>
+                        <td>{{ promotion.pdf }}</td>
+                        <td>{{ promotion.startDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.endDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.releaseDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.expiryDate|date("d/m/Y") }}</td>
+                        <td>
+                            <a href="{{ path("promotion_update",{"slug": promotion.slug }) }}" class="label label-lg label-info">
+                                Modifier
+                            </a>
+                            <a href="{{ path("promotion_delete", {"id": promotion.id } ) }}" class="label label-lg label-danger">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="background-white p20 mb50">
+        <h2 class="page-title">Promotions en cours</h2>
+
+        <table class="table table-hover mb0">
+            <caption>
+                {% if app.flashes("warning_ongoing") is defined %}
+                    {% for message in app.flashes("warning_ongoing") %}
+
+                        {{ include("superlist/template-part/notifications/closeable-messages/info.html.twig",{"flash_info": message }) }}
+
+                    {% endfor %}
+                {% endif %}
+            </caption>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>PDF</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Date de publication</th>
+                <th>Date d'expiration</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for promotion in ongoingPromotions %}
+                    <tr>
+                        <th scope="row">{{ promotion.id }}</th>
+                        <td>{{ promotion.name }}</td>
+                        <td>{{ promotion.description }}</td>
+                        <td>{{ promotion.pdf }}</td>
+                        <td>{{ promotion.startDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.endDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.releaseDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.expiryDate|date("d/m/Y") }}</td>
+                        <td>
+                            <a href="{{ path("promotion_update",{"slug": promotion.slug }) }}" class="label label-lg label-info">
+                                Modifier
+                            </a>
+                            <a href="{{ path("promotion_delete", {"id": promotion.id } ) }}" class="label label-lg label-danger">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="background-white p20 mb50">
+        <h2 class="page-title">Promotions expirés</h2>
+
+        <table class="table table-hover mb0">
+            <caption>
+                {% if app.flashes("warning_expired") is defined %}
+                    {% for message in app.flashes("warning_expired") %}
+
+                        {{ include("superlist/template-part/notifications/closeable-messages/info.html.twig",{"flash_info": message }) }}
+
+                    {% endfor %}
+                {% endif %}
+            </caption>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>PDF</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Date de publication</th>
+                <th>Date d'expiration</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for promotion in expiredPromotions %}
+                    <tr>
+                        <th scope="row">{{ promotion.id }}</th>
+                        <td>{{ promotion.name }}</td>
+                        <td>{{ promotion.description }}</td>
+                        <td>{{ promotion.pdf }}</td>
+                        <td>{{ promotion.startDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.endDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.releaseDate|date("d/m/Y") }}</td>
+                        <td>{{ promotion.expiryDate|date("d/m/Y") }}</td>
+                        <td>
+                            <a href="{{ path("promotion_update",{"slug": promotion.slug }) }}" class="label label-lg label-info">
+                                Modifier
+                            </a>
+                            <a href="{{ path("promotion_delete", {"id": promotion.id } ) }}" class="label label-lg label-danger">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+                                    </div>
+                                </div><!-- /.container-fluid -->
+                            </div><!-- /.content-admin-main-inner -->
+                        </div><!-- /.content-admin-main -->
+
+                        <div class="content-admin-footer">
+                            <div class="container-fluid">
+                                <div class="content-admin-footer-inner">
+                                    &copy; 2018 All rights reserved. Created by <a href="#">Iracanyes</a>.
+                                </div><!-- /.content-admin-footer-inner -->
+                            </div><!-- /.container-fluid -->
+                        </div><!-- /.content-admin-footer  -->
+                    </div><!-- /.content-admin-wrapper -->
+                </div><!-- /.content-admin -->
+            </div><!-- /.wrapper-admin -->
+        </div><!-- /.outer-admin -->
+    </div><!-- /.main -->
+
+{% endblock %}
+
+

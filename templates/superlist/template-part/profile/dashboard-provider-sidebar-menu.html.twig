@@ -1,0 +1,52 @@
+
+<div class="sidebar-admin">
+    <ul>
+        <li class="active"><a href="{{ path("profile_home") }}"><i class="fa fa-file"></i></a></li>
+        <li><a href="{{ path("profile_edit_home") }}"><i class="fa fa-pencil"></i></a></li>
+        <li><a href="{{ path("profile_update") }}"><i class="fa fa-cog"></i></a></li>
+    </ul>
+</div><!-- /.sidebar-admin-->
+
+<div class="sidebar-secondary-admin">
+    <ul>
+        <li class="active" >
+            <a href="{{ path("profile_home") }}">
+                <span class="icon"><i class="fa fa-tachometer"></i></span>
+                <span class="title">Tableau de bord</span>
+                <span class="subtitle">Gérer votre profil</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ path("profile_service_list") }}">
+                <span class="icon"><i class="fa fa-i-cursor"></i></span>
+                <span class="title">Services <span class="notification">3</span> </span>
+                <span class="subtitle">Tous vos services</span>
+            </a>
+        </li>
+
+        <li >
+            <a href="{{ path("profile_promotion_list") }}">
+                <span class="icon"><i class="fa fa-table"></i></span>
+                <span class="title">Promotions</span>
+                <span class="subtitle">Tous les promotions</span>
+            </a>
+        </li>
+
+        <li >
+            <a href="{{ path("profile_service_category_list") }}">
+                <span class="icon"><i class="fa fa-th"></i></span>
+                <span class="title">Catégories  <span class="notification">2</span></span>
+                <span class="subtitle">Catégories de service offerts</span>
+            </a>
+        </li>
+
+        <li >
+            <a href="{{ path("profile_opinion_list") }}">
+                <span class ="icon"><i class="fa fa-bell"></i></span>
+                <span class="title">Commentaires</span>
+                <span class="subtitle">Toutes les commentaires</span>
+            </a>
+        </li>
+    </ul>
+</div><!-- /.sidebar-secondary-admin -->

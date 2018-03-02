@@ -13,15 +13,18 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\User;
-use App\Form\LocalityType;
-use App\Form\PostalCodeType;
-use App\Form\TownshipType;
+use App\Form\Township;
+use App\Form\Locality;
+use App\Form\PostalCode;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\ImageType;
+use Doctrine\ORM\EntityRepository;
+
 
 
 class UserType extends AbstractType
@@ -35,8 +38,8 @@ class UserType extends AbstractType
                 RepeatedType::class,
                 array(
                     "type" => PasswordType::class,
-                    "first_options" => array("label"=>"Mot de passe :"),
-                    "second_options" => array("label" => "Répéter le mot de passe :")
+                    "first_options" => array("label"=>"Mot de passe :", "empty_data"=> "abc"),
+                    "second_options" => array("label" => "Répéter le mot de passe :", "empty_data"=> "abc")
                 )
             )
             ->add(
@@ -50,9 +53,42 @@ class UserType extends AbstractType
                     )
                 )
             )
-            ->add("township", TownshipType::class)
-            ->add("locality", LocalityType::class)
-            ->add("postalCode", PostalCodeType::class)
+            ->add(
+                "township",
+                EntityType::class,
+                array(
+                    "class" => Township::class,
+                    "label" => "Commune :",
+                    "choice_label" => "township",
+                    "multiple" => false,
+                    "expanded" => false,
+
+                )
+            )
+            ->add(
+                "locality",
+                EntityType::class,
+                array(
+                    "class" => Locality::class,
+                    "label" => "Localité :",
+                    "choice_label" => "locality",
+                    "multiple" => false,
+                    "expanded" => false,
+
+                )
+            )
+            ->add(
+                "postalCode",
+                EntityType::class,
+                array(
+                    "class" => PostalCode::class,
+                    "label" => "Code postal :",
+                    "choice_label" => "postalCode",
+                    "multiple" => false,
+                    "expanded" => false,
+
+                )
+            )
             ->add("token", HiddenType::class)
             ->add("submit", SubmitType::class, array("label"=>"Inscription"));
     }

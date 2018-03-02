@@ -10,7 +10,7 @@
         {% block stylesheets %}
             <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link href="{{ asset('build/css/vendors.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('build/vendors.css') }}" rel="stylesheet" type="text/css">
             <link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/images/favicon.png') }}">
         {% endblock %}
 
@@ -162,68 +162,19 @@
             {% endblock %}
 
             {% block footer %}
-                <footer class="footer">
-                    <div class="footer-top">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <h2>À propos de nous : </h2>
 
-                                    <p>La société « bien-être » est une association des 10 personnes dont le principal objectif est de promouvoir des services dans le domaine du bien-être</p>
-                                </div><!-- /.col-* -->
-
-                                <div class="col-sm-4">
-                                    <h2>Information de contact</h2>
-
-                                    <p>
-                                        Rue St Laurent 33, 4000 Liège, Belgique<br>
-                                        04 223 11 31, <a href="#">support@bien-etre.com</a>
-                                    </p>
-                                </div><!-- /.col-* -->
-
-                                <div class="col-sm-4">
-                                    <h2>Suivez-nous</h2>
-
-                                    <ul class="social-links nav nav-pills">
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                    </ul><!-- /.header-nav-social -->
-                                </div><!-- /.col-* -->
-                            </div><!-- /.row -->
-                        </div><!-- /.container -->
-                    </div><!-- /.footer-top -->
-
-                    <div class="footer-bottom">
-                        <div class="container">
-                            <div class="footer-bottom-left">
-                                &copy; 2017 Tous droits réservé. Crée par <a href="https://iracanyes.com">Iracanyes</a>.
-                            </div><!-- /.footer-bottom-left -->
-
-                            <div class="footer-bottom-right">
-                                <ul class="nav nav-pills">
-                                    <li><a href="{{ path('homepage') }}">Accueil</a></li>
-                                    <li><a href="{{ path('provider_list') }}">Prestataires</a></li>
-                                    <li><a href="{{ path('service_list') }}">Services</a></li>
-                                    <li><a href="{{ path('contact') }}">Contact</a></li>
-                                    <li><a href="contact-1.html">Admin</a></li>
-                                </ul><!-- /.nav -->
-                            </div><!-- /.footer-bottom-right -->
-                        </div><!-- /.container -->
-                    </div>
-                </footer><!-- /.footer -->
             {% endblock %}
-        </div>
+
+        </div><!-- End page-wrapper -->
 
         {% block javascripts %}
+            {# Manifest Webpack #}
+            <script src="{{ asset("build/manifest.js") }}"></script>
+
             {#
                 Chargement unique de ressources JS compilé en bundle par Webpack
              #}
-                <script src="{{ asset('build/js/vendors.js') }}"></script>
+                <script src="{{ asset('build/vendors.js') }}"></script>
             {#
                 API Google Maps
              #}

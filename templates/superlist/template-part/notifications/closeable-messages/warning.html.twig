@@ -2,6 +2,15 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="fa fa-times" aria-hidden="true"></i>
     </button>
-    <strong>Warning!</strong> <br>
+    <strong>
+        {% if flash_head is defined %}
+            {{ flash_head }}
+        {% else %}
+            Warning!
+        {% endif %}
+    </strong> <br>
     {{ flash_warning }}
+    {% if button_info is defined %}
+        <a href="{{ path("service_category_add") }}" class="label label-gb label-info">{{ button_info }}</a>
+    {% endif %}
 </div>

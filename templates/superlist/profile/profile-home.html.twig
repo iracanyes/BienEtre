@@ -1,0 +1,98 @@
+{#
+    Template: Profile - Home
+#}
+{% extends 'superlist/layout.html.twig' %}
+
+{% block header %}
+    <header class="header header-minimal">
+        <div class="header-wrapper">
+            <div class="container-fluid">
+                <div class="header-inner">
+                    <div class="header-logo">
+                        <a href="index.html">
+                            <img src="{{ asset('build/images/logo.png') }}" alt="Logo">
+                        </a>
+                    </div><!-- /.header-logo -->
+
+                    <div class="header-content">
+                        <div class="header-bottom">
+
+                            {# Menu par défaut #}
+
+
+                            {{ include('superlist/template-part/menu.html.twig') }}
+
+
+
+
+                            {{ include("superlist/template-part/profile/header-nav-user.html.twig") }}
+
+
+
+                        </div><!-- /.header-bottom -->
+                    </div><!-- /.header-content -->
+                </div><!-- /.header-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.header-wrapper -->
+
+        <div class="header-statusbar">
+            <div class="header-statusbar-inner">
+                <div class="header-statusbar-left">
+                    <h1>Tableau de bord</h1>
+
+                    <div class="display-inline-block">
+                        <div class="hidden-xs visible-lg">
+                            <div class="header-statusbar-search">
+                                <input type="text" class="form-control" placeholder="Recherche...">
+                            </div><!-- /.header-search -->
+                        </div>
+                    </div>
+                </div><!-- /.header-statusbar-left -->
+
+                <div class="header-statusbar-right">
+                    <div class="hidden-xs visible-lg">
+                        Navigation:
+                        <ul class="breadcrumb">
+                            <li><a href="{{ path("homepage") }}">Bien-Être</a></li>
+                            <li><a href="{{ path('profile_home') }}">Tableau de bord</a></li>
+                            <li><a href="#">Accueil</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.header-statusbar-right -->
+            </div><!-- /.header-statusbar-inner -->
+        </div><!-- /.header-statusbar -->
+    </header><!-- /.header -->
+{% endblock %}
+
+{% block main %}
+
+    <div class="main">
+        <div class="outer-admin">
+            <div class="wrapper-admin">
+
+                {# Sidebar Menu Admin #}
+                {% if user.isProvider() %}
+
+                    {{ include("superlist/template-part/profile/dashboard-provider-sidebar-menu.html.twig") }}
+
+                {% else %}
+
+                    {{ include("superlist/template-part/profile/dashboard-client-sidebar-menu.html.twig") }}
+
+                {% endif %}
+
+                {% if user.isProvider() %}
+
+                    {{ include("superlist/profile/provider/profile-content.html.twig") }}
+
+                {% else %}
+
+                    {{ include("superlist/profile/client/profile-content.html.twig") }}
+
+                {% endif %}
+            </div><!-- /.wrapper-admin -->
+        </div><!-- /.outer-admin -->
+    </div><!-- /.main -->
+
+{% endblock %}
+

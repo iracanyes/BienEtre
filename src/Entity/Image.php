@@ -36,7 +36,9 @@ class Image
      * @Assert\NotBlank(message="Veuillez ajoutez une image")
      * @Assert\File(mimeTypes={"image/jpg","image/jpeg","image/png"}, mimeTypesMessage="Veuillez utilisez les formats suivants: jpeg, jpg, png")
      */
-    private $url;
+    protected $url;
+
+
 
     /**
      * @var Provider
@@ -110,6 +112,7 @@ class Image
     {
         return $this->url ?? "";
     }
+
 
     /**
      * @return Provider

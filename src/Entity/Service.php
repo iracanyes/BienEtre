@@ -226,7 +226,7 @@ class Service
      *
      * @return \DateTime
      */
-    public function getStartDate(): \DateTime
+    public function getStartDate()
     {
         return $this->startDate;
     }
@@ -250,7 +250,7 @@ class Service
      *
      * @return \DateTime
      */
-    public function getEndDate(): \DateTime
+    public function getEndDate()
     {
         return $this->endDate;
     }
@@ -274,7 +274,7 @@ class Service
      *
      * @return \DateTime
      */
-    public function getReleaseDate(): \DateTime
+    public function getReleaseDate()
     {
         return $this->releaseDate;
     }
@@ -298,7 +298,7 @@ class Service
      *
      * @return \DateTime
      */
-    public function getExpiryDate(): \DateTime
+    public function getExpiryDate()
     {
         return $this->expiryDate;
     }

@@ -36,7 +36,7 @@ class ClientType extends AbstractType
         ->add("postalCode", PostalCodeType::class, array("label"=>"Code postal : "))
         /* Embeed Collection of forms */
         ->add(
-            "logos",
+            "avatar",
             ImageType::class,
             array(
                 "label" => "Votre avatar :",

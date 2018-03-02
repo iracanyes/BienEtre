@@ -1,0 +1,37 @@
+{{
+    form_start(
+        form,
+        {
+            "method":"POST",
+            "action":path('service_add'),
+            "attr":{"class":"form-horizontal"}
+        }
+    )
+}}
+
+{# Erreurs du formulaire #}
+{{ form_errors(form) }}
+
+
+<div id="provider_services" class="collection-widget images"
+     data-widget-tags = "{{ "<div></div>"|e }}"
+     data-prototype="{{ include("forms/include/service.html.twig")|e }}"
+>
+
+
+
+</div>
+<a href="#provider_services"
+   data-list="#provider_services"
+   class="add-another-collection-widget btn btn-secondary"
+>
+    Ajouter un service
+</a>
+
+
+
+{# Reste du formulaire #}
+{{ form_rest(form) }}
+
+{# End Form #}
+{{ form_end(form) }}

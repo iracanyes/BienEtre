@@ -1,0 +1,250 @@
+
+{{
+    form_start(
+        form,
+        {
+            "method":"POST",
+            "action":path('signin_confirmation', {"token": token}),
+            "attr":{"class":"form-horizontal", "novalidate":"novalidate"}
+        }
+    )
+}}
+
+
+
+{# Erreurs du formulaire #}
+{% if form_errors(form) %}
+<div class="alert alert-icon alert-dismissible alert-warning" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <strong>Attention!</strong> <br>
+    {{ form_errors(form) }}
+</div>
+{% endif %}
+
+
+{# Générer label+error+input pour un champ #}
+{# {{ form_row(form.brandName) }} #}
+
+<div class="row">
+    <h4>Information de l'entreprise</h4>
+    {# BrandName #}
+    <div class="form-group">
+        <label for="{{ form.brandName.vars.id }}"
+               class="">
+            {{ form.brandName.vars.label }}
+        </label>
+
+
+        {{ form_errors(form.brandName) }}
+
+        {{ form_widget(form.brandName, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Website #}
+    <div class="form-group">
+        <label for="{{ form.website.vars.id }}"
+               class="">
+            {{ form.website.vars.label }}
+        </label>
+
+        {{ form_errors(form.website) }}
+
+        {{ form_widget(form.website, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Contact E-mail #}
+    <div class="form-group">
+        <label for="{{ form.emailContact.vars.id }}"
+               class="">
+            {{ form.emailContact.vars.label }}
+        </label>
+
+        {{ form_errors(form.emailContact) }}
+
+        {{ form_widget(form.emailContact, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Contact E-mail #}
+    <div class="form-group">
+        <label for="{{ form.phoneNumber.vars.id }}"
+               class="">
+            {{ form.phoneNumber.vars.label }}
+        </label>
+
+        {{ form_errors(form.phoneNumber) }}
+
+        {{ form_widget(form.phoneNumber, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# TVA Number #}
+    <div class="form-group">
+        <label for="{{ form.tvaNumber.vars.id }}"
+               class="">
+            {{ form.tvaNumber.vars.label }}
+        </label>
+
+        {{ form_errors(form.tvaNumber) }}
+
+        {{ form_widget(form.tvaNumber, {"attr":{"class":"form-control"}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <h4>Adresse</h4>
+    {# Street #}
+    <div class="form-group">
+        <label for="{{ form.street.vars.id }}"
+               class="">
+            {{ form.street.vars.label }}
+        </label>
+
+        {{ form_errors(form.street) }}
+
+        {{ form_widget(form.street, {"attr":{"class":"form-control"}}) }}
+    </div>
+    <br>
+    {# Locality #}
+    <div class="form-group">
+        <label for="{{ form.locality.vars.id }}"
+               class="">
+            {{ form.locality.vars.label }}
+        </label>
+
+
+        {{ form_errors(form.locality) }}
+
+        {{ form_widget(form.locality, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# Township #}
+    <div class="form-group">
+        <label for="{{ form.township.vars.id }}"
+               class="">
+            {{ form.township.vars.label }}
+        </label>
+
+        {{ form_errors(form.township) }}
+
+        {{ form_widget(form.township, {"attr":{"class":"form-control"}}) }}
+    </div>
+
+    {# PostalCode #}
+    <div class="form-group">
+        <label for="{{ form.postalCode.vars.id }}"
+               class="">
+            {{ form.postalCode.vars.label }}
+        </label>
+
+        {{ form_errors(form.postalCode) }}
+
+        {{ form_widget(form.postalCode, {"attr":{"class":"form-control   "}}) }}
+    </div>
+</div>
+
+
+<div class="row">
+    <h4>Logos de l'entreprise</h4>
+
+
+    {{ form_errors(form.logos) }}
+
+    <div id="provider_logos" class="collection-widget logos"
+         data-widget-tags = "{{ "<div class='collection-widget-item'></div>"|e }}"
+         data-prototype="{{ include("forms/include/logo.html.twig")|e }}"
+    >
+
+
+        {#
+        {% if form.logos|length > 0 %}
+            {% for logo in form.logos %}
+                <div>
+                    {{ form_errors(logo) }}
+                    {{ form_widget(logo) }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                {{ form_widget(form.logos.vars.prototype.url) }}
+            </div>
+        {% endif %}
+        #}
+
+    </div>
+
+
+    <a href="#provider_logos"
+       data-list="#provider_logos"
+       class="add-another-collection-widget btn btn-secondary"
+    >
+        Ajouter un logo
+    </a>
+</div>
+
+{# Images de l'entreprise #}
+<div class="row">
+    <h4>Images de l'entreprise</h4>
+
+
+    {{ form_errors(form.logos) }}
+
+    <div id="provider_images" class="collection-widget images"
+         data-widget-tags = "{{ "<div></div>"|e }}"
+         data-prototype="{{ form_widget(form.images.vars.prototype)|e }}"
+    >
+
+
+
+    </div>
+    <a href="#provider_images"
+       data-list="#provider_images"
+       class="add-another-collection-widget btn btn-secondary"
+    >
+        Ajouter une image
+    </a>
+
+
+</div>
+
+{# Catégories de service #}
+<div class="row">
+    <h4>Catégorie de service</h4>
+
+
+    {{ form_errors(form.serviceCategories) }}
+
+    <div id="provider_service_categories" class="collection-widget service_categories"
+         data-widget-tags = "{{ "<div></div>"|e }}"
+         data-prototype="{{ form_widget(form.serviceCategories.vars.prototype)|e }}"
+    >
+
+
+    </div>
+
+
+    <a href="#provider_service_categories"
+       data-list="#provider_service_categories"
+       class="add-another-collection-widget btn btn-secondary"
+    >
+        Ajouter une catégorie de service
+    </a>
+</div>
+
+<br>
+<div class="row">
+
+        {# Bouton submit #}
+        {{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}
+
+
+</div>
+
+
+
+
+{# Reste du formulaire #}
+{{ form_rest(form) }}
+
+{# End Form #}
+{{ form_end(form) }}

@@ -165,7 +165,8 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function __construct()
     {
-        $this->roles = [];
+        $this->plainPassword= "0";
+        $this->roles = array();
         $this->nbErrorConnection =0;
         $this->banned = false;
         $this->registryConfirmed = true;
@@ -260,7 +261,10 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function addRole(string $role){
 
+        dump(!array_search($role, $this->roles));
+
         if(!array_search($role, $this->roles)){
+
             array_unshift($this->roles, $role);
         }
 
@@ -282,6 +286,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function eraseCredentials()
     {
+        $this->plainPassword = null;
     }
 
 
@@ -630,11 +635,19 @@ class User implements AdvancedUserInterface, \Serializable
 
     /****************** Tests de type pour l'héritage (utilisation) ***************************/
 
-    public function isProvider(){
+    /**
+     * @return bool
+     */
+    public function isProvider(): bool
+    {
         return $this instanceof Provider;
     }
 
-    public function isClient(){
+    /**
+     * @return bool
+     */
+    public function isClient(): bool
+    {
         return $this instanceof Client;
     }
 

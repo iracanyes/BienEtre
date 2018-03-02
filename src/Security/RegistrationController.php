@@ -13,6 +13,7 @@ use App\Entity\Provider;
 use App\Form\ClientType;
 use App\Form\ProviderType;
 use App\Security\User\UserConverter;
+use Doctrine\ORM\Persisters\PersisterException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -126,7 +127,7 @@ class RegistrationController extends Controller
      * @Route("/signin_confirmation", name="signin_confirmation")
      * @param Request $request
      */
-    public function confirmationAction(Request $request, SessionInterface $session, UserConverter $converter, UploadFile $uploader)
+    public function confirmationAction(Request $request, SessionInterface $session, UserConverter $converter)
     {
         // Entity Manager
         $em = $this->getDoctrine()->getManager();
@@ -134,6 +135,9 @@ class RegistrationController extends Controller
         // Extraction du token de l'URL
         $token = $request->query->get("token");
 
+        dump($request->request->get('client'));
+
+        dump($request->files->get('url'));
 
         if(empty($token)){
             throw new BadCredentialsException("La voie du milieu est semé d'embuche!");
@@ -188,6 +192,8 @@ class RegistrationController extends Controller
 
             $newUser = $form->getData();
 
+            dump($newUser->getAvatar()->getUrl());
+
 
             // A mettre en événement Doctrine
             $newUser->setRegistryDate(new \DateTime());
@@ -198,18 +204,19 @@ class RegistrationController extends Controller
 
             // Activation du compte
             $newUser->setIsActive(true);
-            $newUser->setNbErrorConnection(true);
+            $newUser->setNbErrorConnection(0);
             $newUser->setBanned(false);
 
             // Chargement des images de logo&Images pr le provider et Avatars pr le client
 
-            if($newUser instanceof Provider){}
+
 
             try{
                 // Enregistrement du nouvel utilisateur
                 $em->persist($newUser);
                 $em->flush();
-            }catch(\Exception $e){
+
+            }catch(PersisterException $e){
 
                 if($e){
                     throw $this->createAccessDeniedException(
@@ -227,11 +234,11 @@ class RegistrationController extends Controller
             }
 
 
-            // Démarrage d'une session authentifié
-            $session->set("token", $newUser->getToken());
+            //Message de confirmation de l'inscription
+            $this->addFlash("success","Inscription terminée! Connectez-vous pour profitez de tous les avantages. ");
 
             // Redirection vers le controller d'accueil des membres
-            return $this->forward("App\Controller\ProfileController::homeAction", array("token"=> $newUser->getToken()));
+            return $this->forward("App\Security\SecurityController::loginAction");
         }
 
         return $this->render(

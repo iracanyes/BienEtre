@@ -20,4 +20,24 @@ class CommentRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findByProviderId(int $id): array
+    {
+        $qb = $this->_em->createQueryBuilder()
+            ->select("c")
+            ->from($this->_entityName, "c");
+
+        $qb ->innerJoin("c.client", "cl")
+            ->addSelect("cl")
+            ->innerJoin("c.provider", "p")
+            ->addSelect("p")
+            ->andWhere($qb->expr()->eq("p.id", ":id"))
+            ->setParameter("id", $id);
+
+        return $qb->getQuery()->getResult();
+    }
 }

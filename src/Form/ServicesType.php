@@ -25,7 +25,8 @@ class ServicesType extends AbstractType
             CollectionType::class,
             array(
                 "label" => false,
-                "entry_type" => array(
+                "entry_type" => ServiceType::class,
+                "entry_options" => array(
                     "label"=> false,
                     "attr" => array("class"=>"form-group")
                 ),

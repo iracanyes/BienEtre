@@ -81,7 +81,7 @@ class Provider extends User
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Image", cascade={"persist"}, mappedBy="providerImages")
+     * @ORM\OneToMany(targetEntity="Image", cascade={"persist","remove"}, mappedBy="providerImages")
      *
      */
     private $images;
@@ -89,7 +89,7 @@ class Provider extends User
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Service", mappedBy="provider")
+     * @ORM\OneToMany(targetEntity="Service", cascade={"persist","remove"}, mappedBy="provider")
      */
     private $services;
 

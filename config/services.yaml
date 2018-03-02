@@ -6,8 +6,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    uploads.default_directory: '%kernel.project_dir%/public/uploads'
-    uploads.images_directory: '%kernel.project_dir%/public/uploads/images'
+    app.uploads.default_directory: '%kernel.project_dir%/public/uploads'
+    app.uploads.images_directory: '%kernel.project_dir%/public/uploads/images'
 
 services:
     # default configuration for services in *this* file
@@ -83,23 +83,33 @@ services:
     ########################################################################
 
     # Service UploadFile => autowiring
-    App\Service\Uploads\UploadFile:
-        public: false
-        arguments:
-            - "%uploads.default_directory%"
 
-    uploads.upload_file:
-        alias: App\Service\Uploads\UploadFile
-        public: true
+    #App\Service\Uploads\UploadFile:
+    #    public: false
+
+    #uploads.upload_file:
+    #    alias: App\Service\Uploads\UploadFile
+    #    public: true
     # Service UploadImages = Obligatoire car typage de $entity obligatoire
-    App\Service\Uploads\UploadImages:
-        autowire: false
-        arguments:
-            - Doctrine\ORM\Event\LifecycleEventArgs
-            - "@uploads.upload_file"
-            - "@uploads.images_directory"
-
+    #App\Service\Uploads\UploadImages:
+    #    arguments:
+    #        $args: Doctrine\ORM\Event\LifecycleEventArgs
+    #        $uploader: "@uploads.upload_file"
     # Event Subscriber : UploadImages
-    App\DoctrineListener\UploadImagesSubscriber:
+    #App\DoctrineListener\UploadImagesSubscriber:
+    #    tags:
+    #        - { name: doctrine.event_subscriber, connection: default }
+
+    ########################################################################
+
+    # Service FileUploader
+    App\Service\Uploads\FileUploader:
+        arguments:
+            $uploadsDir: "%app.uploads.images_directory%"
+
+    # Doctrine Listener : ImageUploadListener
+    App\DoctrineListener\ImagesUploadListener:
         tags:
-            - { name: doctrine.event_subscriber, connection: default }
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            #- { name: doctrine.event_listener, event: postLoad }

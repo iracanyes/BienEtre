@@ -222,11 +222,7 @@ class ProviderController extends Controller
      */
     public function updateAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
-        /* Accès autorisé aux utilisation ayant le rôle ROLE_PROVIDER
-        if(false === $authChecker->isGranted('ROLE_PROVIDER') && $request->query->get('token')){
-            return $this->redirectToRoute('login');
-        }
-        */
+
         // Entity manager
         $em = $this->getDoctrine()->getManager();
 
