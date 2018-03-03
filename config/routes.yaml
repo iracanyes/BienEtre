@@ -24,3 +24,9 @@ login_check:
 signin:
     path: /signin
     defaults: { _controller: 'App\Security\RegistrationController::signInAction' }
+
+# Route Easyadmin-bundle
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type: annotation
+    prefix: /admin

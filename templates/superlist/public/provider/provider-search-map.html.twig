@@ -74,7 +74,7 @@
                 <form method="get" action="?" class="filter-sort">
                     <div class="form-group">
                         <select title="Sort by">
-                            <option name="price">Prix</option>
+                            <option name="price">{{ knp_pagination_sortable(providers, 'BrandName', 'p.brandName') }}</option>
                             <option name="rating">Meilleurs votes</option>
                             <option name="title">Titre</option>
                         </select>
@@ -82,8 +82,8 @@
 
                     <div class="form-group">
                         <select title="Order">
-                            <option name="ASC">Asc</option>
-                            <option name="DESC">Desc</option>
+                            <option name="ASC">{{ knp_pagination_sortable(providers, 'Date de Publication', ['a.releaseDate', 'a.startDate']) }}</option>
+                            <option name="DESC">{{ knp_pagination_sortable(providers, 'Date de Publication', ['a.expiryDate', 'a.endDate']) }}</option>
                         </select>
                     </div><!-- /.form-group -->
                 </form>
@@ -147,7 +147,10 @@
                     </div><!-- /.card-row -->
                 {% endfor %}
 
-
+                {# display navigation #}
+                <div class="navigation">
+                    {{ knp_pagination_render(providers) }}
+                </div>
             </div><!-- /.cards-row -->
 
         </div><!-- /.fullscreen-scroll-padding -->

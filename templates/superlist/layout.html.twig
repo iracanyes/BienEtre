@@ -68,10 +68,10 @@
                                             </li>
 
                                             <li >
-                                                <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
+                                                <a href="{{ path('provider_list',{"page":1}) }}">Prestataires <i class="fa fa-chevron-down"></i></a>
 
                                                 <ul class="sub-menu">
-                                                    <li><a href="{{ path('provider_list') }}">Liste des prestataires</a></li>
+                                                    <li><a href="{{ path('provider_list',{"page":1}) }}">Liste des prestataires</a></li>
                                                     <li><a href="{{ path('provider_search') }}">Recherche</a></li>
 
                                                 </ul>
@@ -80,10 +80,10 @@
 
 
                                             <li >
-                                                <a href="{{ path('service_list') }}">Services <i class="fa fa-chevron-down"></i></a>
+                                                <a href="{{ path('service_list',{"page":1}) }}">Services <i class="fa fa-chevron-down"></i></a>
 
                                                 <ul class="sub-menu">
-                                                    <li><a href="{{ path('service_list') }}">Services disponibles</a></li>
+                                                    <li><a href="{{ path('service_list',{"page":1}) }}">Services disponibles</a></li>
                                                     <li><a href="{{ path('service_search') }}">Recherche</a></li>
 
                                                 </ul>

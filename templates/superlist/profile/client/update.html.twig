@@ -1,117 +1,15 @@
-{% extends "superlist/layout.html.twig" %}
-
-{% block header %}
-    <header class="header header-minimal">
-        <div class="header-wrapper">
-            <div class="container-fluid">
-                <div class="header-inner">
-                    <div class="header-logo">
-                        <a href="index.html">
-                            <img src="{{ asset('build/images/logo.png') }}" alt="Logo">
-                        </a>
-                    </div><!-- /.header-logo -->
-
-                    <div class="header-content">
-                        <div class="header-bottom">
-
-                            {# Menu par défaut #}
-
-
-                            {{ include('superlist/template-part/menu.html.twig') }}
-
-
-
-
-                            {{ include("superlist/template-part/profile/header-nav-user.html.twig") }}
-
-
-
-                        </div><!-- /.header-bottom -->
-                    </div><!-- /.header-content -->
-                </div><!-- /.header-inner -->
-            </div><!-- /.container -->
-        </div><!-- /.header-wrapper -->
-
-        <div class="header-statusbar">
-            <div class="header-statusbar-inner">
-                <div class="header-statusbar-left">
-                    <h1>Tableau de bord</h1>
-
-                    <div class="display-inline-block">
-                        <div class="hidden-xs visible-lg">
-                            <div class="header-statusbar-search">
-                                <input type="text" class="form-control" placeholder="Recherche...">
-                            </div><!-- /.header-search -->
-                        </div>
-                    </div>
-                </div><!-- /.header-statusbar-left -->
-
-                <div class="header-statusbar-right">
-                    <div class="hidden-xs visible-lg">
-                        Navigation:
-                        <ul class="breadcrumb">
-                            <li><a href="{{ path("homepage") }}">Bien-Être</a></li>
-                            <li><a href="{{ path('profile_home') }}">Tableau de bord</a></li>
-                            <li><a href="#">Services</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /.header-statusbar-right -->
-            </div><!-- /.header-statusbar-inner -->
-        </div><!-- /.header-statusbar -->
-    </header><!-- /.header -->
-{% endblock %}
+{% extends 'base.html.twig' %}
 
 {% block main %}
     <div class="main">
         <div class="outer-admin">
             <div class="wrapper-admin">
+                {# Menu admin #}
 
-                <div class="sidebar-admin">
-                    <ul>
-                        <li><a href="{{ path("profile_home") }}"><i class="fa fa-file"></i></a></li>
-                        <li class="active"><a href="{{ path("profile_edit_home") }}"><i class="fa fa-pencil"></i></a></li>
-                        <li><a href="{{ path("profile_update") }}"><i class="fa fa-cog"></i></a></li>
-                    </ul>
-                </div><!-- /.sidebar-admin-->
+                {{ include("superlist/template-part/admin/admin-menu.html.twig") }}
+                {# EndMenu #}
 
-                {#
-                <div class="sidebar-secondary-admin">
-                    <ul>
-                        <li class="active">
-                            <a href="{{ path("profile_edit_home") }}">
-                                <span class="icon"><i class="fa fa-tachometer"></i></span>
-                                <span class="title">Tableau de bord</span>
-                                <span class="subtitle">Gérer votre publications</span>
-                            </a>
-                        </li>
-
-                        <li >
-                            <a href="{{ path("service_add") }}">
-                                <span class="icon"><i class="fa fa-i-cursor"></i></span>
-                                <span class="title">Services <span class="notification">3</span> </span>
-                                <span class="subtitle">Ajouter des services</span>
-                            </a>
-                        </li>
-
-                        <li >
-                            <a href="{{ path("promotion_add") }}">
-                                <span class="icon"><i class="fa fa-table"></i></span>
-                                <span class="title">Promotions</span>
-                                <span class="subtitle">Ajouter une promotion</span>
-                            </a>
-                        </li>
-
-                        <li >
-                            <a href="{{ path("service_category_add") }}">
-                                <span class="icon"><i class="fa fa-th"></i></span>
-                                <span class="title">Catégories  <span class="notification">2</span></span>
-                                <span class="subtitle">Ajouter une catégorie</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div><!-- /.sidebar-secondary-admin -->
-                #}
-
+                {# Admin Content Form #}
                 <div class="content-admin">
                     <div class="content-admin-wrapper">
                         <div class="content-admin-main">
@@ -120,7 +18,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="page-title">
-                                                <h1>Profil</h1>
+                                                <h1>Édition du profil</h1>
                                             </div><!-- /.page-title -->
 
                                             {% block profile %}
@@ -132,7 +30,7 @@
                                                                 <div class="user-photo">
                                                                     <a href="#">
                                                                         <img src="assets/img/tmp/agent-2.jpg" alt="User Photo">
-                                                                        <span class="user-photo-action">Charger une image</span>
+                                                                        <span class="user-photo-action">Click here to reupload</span>
                                                                     </a>
                                                                 </div><!-- /.user-photo -->
                                                             </div><!-- /.widget -->
@@ -141,10 +39,10 @@
                                                             <div class="widget">
 
                                                                 <ul class="menu-advanced">
-                                                                    <li><a href="{{ path("profile_update") }}"><i class="fa fa-pencil"></i> Confirmer les modifications</a></li>
-                                                                    <li class="active"><a href="{{ path("profile_update",{"id":user.id}) }}"><i class="fa fa-user"></i> Mise à jour du profile</a></li>
-                                                                    <li><a href="{{ path("change_pwd") }}"><i class="fa fa-key"></i> Changer mot de passe</a></li>
-                                                                    <li><a href="{{ path("logout") }}"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                                                                    <li><a href="listing-submit.html"><i class="fa fa-pencil"></i> Submit Listing</a></li>
+                                                                    <li class="active"><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
+                                                                    <li><a href="#"><i class="fa fa-key"></i> Password</a></li>
+                                                                    <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
                                                                 </ul>
                                                             </div><!-- /.widget -->
 
@@ -154,36 +52,25 @@
                                                     <div class="col-sm-8 col-lg-9">
                                                         <div class="content">
                                                             <div class="page-title">
-                                                                <h1>Mise à jour</h1>
+                                                                <h1>Edit Profile</h1>
                                                             </div><!-- /.page-title -->
 
                                                             <div class="background-white p20 mb30">
                                                                 <h3 class="page-title">
-                                                                    Information de contact
+                                                                    Contact Information
 
                                                                     <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
                                                                 </h3>
 
                                                                 <div class="row">
                                                                     <div class="form-group col-sm-6">
-                                                                        <label for="{{ form.email.vars.id }}"
-                                                                               class="">
-                                                                            {{ form.email.vars.label }}
-                                                                        </label>
-                                                                        {{ form_errors(form.email) }}
-
-                                                                         {{ form_widget(form.email, {"attr":{"class":"form-control"}}) }}
-
+                                                                        <label>Name</label>
+                                                                        <input type="text" class="form-control" value="John">
                                                                     </div><!-- /.form-group -->
 
                                                                     <div class="form-group col-sm-6">
-                                                                        <label for="{{ form.password.vars.id }}"
-                                                                               class="">
-                                                                            {{ form.password.vars.label }}
-                                                                        </label>
-                                                                        {{ form_errors(form.password) }}
-
-                                                                        {{ form_widget(form.password, {"attr":{"class":"form-control"}}) }}
+                                                                        <label>Surname</label>
+                                                                        <input type="text" class="form-control" value="Doe">
                                                                     </div><!-- /.form-group -->
 
                                                                     <div class="form-group col-sm-6">
@@ -317,7 +204,7 @@
             </div><!-- /.wrapper-admin -->
         </div><!-- /.outer-admin -->
     </div><!-- /.main -->
-
 {% endblock %}
+
 
 

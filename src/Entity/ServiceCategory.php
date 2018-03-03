@@ -237,6 +237,8 @@ class ServiceCategory
 
         $this->providers[] = $provider;
 
+        $provider->addServiceCategory($this);
+
     }
 
     /**

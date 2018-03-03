@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use Doctrine\Common\CommonException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,20 +35,37 @@ class ProviderController extends Controller
 {
     private const HOME_NUM_RECENT_PROVIDERS = 3;
     private const HOME_NUM_BEST_PROVIDERS = 5;
+    private const LIMIT_PAGINATION = 10;
 
     /**
      * Route interne /providers
      * 
-     * @Route("/providers", name="provider_list")
-     *
+     * @Route("/prestataires/{page}", name="provider_list")
+     * @param Request $request
+     * @return Response
      */
-    public function indexAction(): Response
+    public function indexAction(int $page, Request $request): Response
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
+        if(!is_int($page)){
+            $this->addFlash("warning","Erreur de page");
+
+            $this->redirectToRoute("provider_list", array("page"=> 1));
+        }
+
+        dump($request->query->get("page"));
 
         $providers = $em->getRepository('App:Provider')
             ->myFindAll();
+
+        $paginator = $this->get("knp_paginator");
+
+        $pagination = $paginator->paginate(
+            $providers,
+            $page,  // page demandé
+            self::LIMIT_PAGINATION  // nombre d'éléments par page
+        );
 
         /**
          * Widget 1 : Prestataires ajoutés récemment
@@ -92,7 +110,7 @@ class ProviderController extends Controller
         return $this->render(
             'superlist/public/provider/provider-boxed.html.twig',
             array(
-                'providers'=> $providers,
+                'providers'=> $pagination,
                 "recentProviders" => $recentProviders,
                 "serviceCategories" => $serviceCategories,
                 "localities" => $localities,
@@ -105,11 +123,11 @@ class ProviderController extends Controller
 
 
     /**
-     * Route /providers/search
+     * Route /providers/search/{page}
      *
-     * @Route("/providers/search", name="provider_search")
+     * @Route("/providers/search/{page}", name="provider_search")
      */
-    public function searchAction(Request $request = null): Response
+    public function searchAction(int $page = 1, Request $request = null): Response
     {
         /*
          * Récupération des paramètres de recherches
@@ -146,7 +164,13 @@ class ProviderController extends Controller
                 ->myFindAll();
         }
 
-        dump($providers);
+        $paginator = $this->get("knp_paginator");
+
+        $pagination = $paginator->paginate(
+            $providers,
+            $page,  // page demandé
+            self::LIMIT_PAGINATION  // nombre d'éléments par page
+        );
 
         if(!$providers){
             throw $this->createNotFoundException("Aucun provider n\'a été trouvé avec les critères suivants : \n Localité : ".$criteria["locality"]."\n Code postal : ".$criteria["postalCode"]."\n Ville : ".$criteria["township"]);
@@ -155,7 +179,7 @@ class ProviderController extends Controller
         return $this->render(
             'superlist/public/provider/provider-search-map.html.twig',
             array(
-                "providers" => $providers,
+                "providers" => $pagination,
                 "localities" => $localities,
                 "postalCodes" => $postalCodes,
                 "townships" => $townships
@@ -164,9 +188,9 @@ class ProviderController extends Controller
     }
 
     /**
-     * Route /providers/[slug]
+     * Route /provider/[slug]
      *
-     * @Route("/providers/{slug}", name="provider_detail")
+     * @Route("/provider/{slug}", name="provider_detail")
      */
     public function showAction(Request $request): Response
     {
@@ -201,7 +225,8 @@ class ProviderController extends Controller
     }
 
     /**
-     *
+     * @param Request $request
+     * @return string
      */
     public function getMoyenVotes(Request $request): string
     {
@@ -215,12 +240,12 @@ class ProviderController extends Controller
     }
 
     /**
-     * @Route("/profile/update", name="provider_update")
-     * @ Security("is_granted('ROLE_PROVIDER')")
+     * @Route("/provider/update", name="provider_update")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
      * @param Request $request
      * @return Response
      */
-    public function updateAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
+    public function updateAction(Request $request): Response
     {
 
         // Entity manager
@@ -236,9 +261,7 @@ class ProviderController extends Controller
         dump($provider);
 
         //Création du formulaire à partir du FormBuilder
-        $form= $this->createForm(ProviderType::class, $provider)
-            ->setAction($this->generateUrl('provider_update'))
-            ->setMethod('POST');
+        $form= $this->createForm(ProviderType::class, $provider);
 
 
 
@@ -250,12 +273,23 @@ class ProviderController extends Controller
         if($form->isSubmitted() && $form->isValid()){
 
             $provider = $form->getData();
-            //Si $provider n'est pas hydraté, on peut essayer de récupèrer les données du formulaire
-            // $provider = $form->getData()
-            $em->persist($provider);
-            $em->flush();
 
-            return $this->redirectToRoute('profile_home');
+            try{
+                //Si $provider n'est pas hydraté, on peut essayer de récupèrer les données du formulaire
+                // $provider = $form->getData()
+                $em->persist($provider);
+                $em->flush();
+
+                $this->addFlash("success","Mise à jour du profil effectué avec succés!");
+
+                $this->redirectToRoute('profile_home');
+            }catch (CommonException $e){
+
+                $this->addFlash("warning","Erreur durant la mise à jour");
+
+                $this->redirectToRoute("profile_edit_home");
+            }
+
         }
 
 
@@ -265,7 +299,10 @@ class ProviderController extends Controller
 
         return $this->render(
             "superlist/profile/provider/update.html.twig",
-            array("form" => $form->createView())
+            array(
+                "form" => $form->createView(),
+                "user" => $this->getUser()
+            )
         );
 
 

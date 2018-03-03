@@ -88,6 +88,8 @@ class PromotionController extends Controller
     /**
      * @Route("/profile/promo", name="profile_promotion_list")
      * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
      */
     public function listAction(Request $request): Response
     {
@@ -134,7 +136,9 @@ class PromotionController extends Controller
 
     /**
      * @Route("/profile/promo/update", name="promotion_update")
-     * @ Security("is_granted('ROLE_PROVIDER')
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
      */
     public function updateAction(Request $request):Response
     {
@@ -143,17 +147,11 @@ class PromotionController extends Controller
 
         // Attention validé l'input
         $id = $request->query->get("id");
-        try{
-            // promotion existant
-            $promotion = $em->getRepository("App:Promotion")
-                ->find($id);
-        }catch (EntityNotFoundException $e){
 
-            $this->addFlash("warning", "Aucune promotion ne correspond à cette ID");
 
-            $this->redirectToRoute("profile_home");
-        }
-
+        // promotion existant
+        $promotion = $em->getRepository("App:Promotion")
+            ->find($id);
 
         //Création du formulaire
         $form = $this->createForm(PromotionType::class, $promotion);
@@ -169,20 +167,38 @@ class PromotionController extends Controller
 
             $promotion->setProvider($this->getUser());
 
-            $em->persist($promotion);
-            $em->flush();
+            try{
+                $em->persist($promotion);
+                $em->flush();
 
-            $this->addFlash("success","Modifications enregistrés!");
+                $this->addFlash("success","Modifications enregistrés!");
 
-            $this->redirectToRoute("profile_promotions_list");
+                $this->redirectToRoute("profile_edit_home");
+
+            }catch (CommonException $e){
+
+                $this->addFlash("warning", "Erreur lors de la modification du service!");
+
+                $this->redirectToRoute("profile_edit_home");
+            }
         }
 
-        $this->render(
-            "superlist/admin/promotion-list.html.twig",
+        $promotions = $em->getRepository("App:Promotion")
+            ->findByProviderId($this->getUser()->getId());
+
+        return $this->render(
+            "superlist/profile/promotion/add.html.twig",
             array(
-                "form" => $form->createView()
+                "form" => $form->createView(),
+                "user" => $this->getUser(),
+                "promotion" => $promotion,
+                "promotions" => $promotions
             )
         );
+
+
+
+
     }
 
     /**

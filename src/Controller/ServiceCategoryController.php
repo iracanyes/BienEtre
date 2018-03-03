@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\ServiceCategory;
 use App\Form\CategoryType;
 use App\Form\ServiceCategoryType;
+use Doctrine\Common\CommonException;
 use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -131,6 +132,8 @@ class ServiceCategoryController extends Controller
 
             $serviceCategory = $form->getData();
 
+            $serviceCategory->addProvider($this->getUser());
+
             $em->persist($serviceCategory);
             $em->flush();
 
@@ -140,8 +143,8 @@ class ServiceCategoryController extends Controller
 
         }
 
-        $categories = $em->getRepository("App:ServiceCategory")
-            ->findByProviderId($this->getUser()->getId());
+        $categories = $em->getRepository("App:Provider")
+            ->getCategories($this->getUser()->getId());
 
         dump($this->getUser()->getId());
         dump($categories);
@@ -158,6 +161,86 @@ class ServiceCategoryController extends Controller
                 "categories" => $categories
             )
         );
+    }
+
+    /**
+     * @Route("/profile/category/update", name="service_category_update")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
+     */
+    public function updateAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $category  = $em->getRepository("App:ServiceCategory")
+            ->find($request->query->get("id"));
+
+        $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $category = $form->getData();
+
+            try{
+                $em->persist($category);
+
+                $em->flush();
+
+                $this->addFlash("success", "Modification enregistré avec succés!");
+
+                $this->redirectToRoute("profile_edit_home");
+
+            }catch (CommonException $e){
+
+                $this->addFlash("warning", "Erreur lors de la mise à jour!");
+            }
+
+            $this->redirectToRoute("profile_edit_home");
+        }
+
+        return $this->render(
+            "superlist/profile/service-category/update.html.twig",
+            array(
+                "form" => $form->createView(),
+                "user" => $this->getUser(),
+                "category" => $category
+            )
+        );
+    }
+
+
+    /**
+     * @Route("/profile/category/delete", name="service_category_delete")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
+     */
+    public function deleteAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $category = $em->getRepository("App:ServiceCategory")
+            ->find($request->query->get("id"));
+
+        try{
+
+            $em->remove($category);
+
+            $em->flush();
+
+            $this->addFlash("success","Suppression confirmé!");
+
+            $this->redirectToRoute("profile_edit_home");
+
+        }catch (CommonException $e){
+
+            $this->addFlash("warning", "Une erreur est survenue durant la suppression de la catégorie!");
+        }
+
+
     }
 
 }

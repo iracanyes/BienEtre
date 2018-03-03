@@ -8,6 +8,8 @@
 
 namespace App\Controller;
 
+use App\Form\PwdType;
+use Doctrine\Common\CommonException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\UnexpectedResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use App\Form\UserType;
 use App\Entity\User;
@@ -105,13 +108,64 @@ class ProfileController extends Controller
      * @Route("profile/update", name="profile_update")
      * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
      */
-    public function updateAction(Request $request): Response
+    public function updateAction(Request $request)
     {
         if($this->getUser()->isProvider()){
-            $this->forward("App\Controller\ProviderController::updateAction");
+            return $this->redirectToRoute("provider_update");
         }else{
-            $this->forward('App\Controller\ClientController::updateAction');
+            return $this->redirectToRoute("client_update");
         }
+    }
+
+    /**
+     * @Route("/change_password", name="change_pwd")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis")
+     * @param Request $request
+     *
+     */
+    public function changePwdAction(Request $request, UserPasswordEncoderInterface $passwordEncoder){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(PwdType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $user = $form->getData();
+
+            // Encodage du mot de passe(on peut aussi le faire via Doctrine Listener)
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+
+            $user->setPassword($password);
+
+            // Effacement du mot de passe en clair
+            $user->eraseCredentials();
+
+            // Création du nouveau token
+            $user->setToken(bin2hex(random_bytes(64)));
+
+            try{
+
+                $em->persist($user);
+                $em->flush();
+            }catch (CommonException $e){
+
+                $this->addFlash("warning","Erreur durant la mise à jour du mot de passe!");
+
+                return $this->redirectToRoute("profile_update");
+            }
+        }
+
+        return $this->render(
+            "superlist/profile/change-password.html.twig",
+            array(
+                "form" => $form->createView(),
+            )
+        );
     }
 
 }

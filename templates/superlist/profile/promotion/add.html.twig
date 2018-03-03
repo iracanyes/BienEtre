@@ -158,11 +158,11 @@
     {% endif %}
 
     <div class="background-white p20 mb50">
-        <h2 class="page-title">Ajouter des promotions</h2>
+        <h2 class="page-title">Mise à jour de la promotion : {{ promotion.name }}</h2>
 
 
         <div class="promotion_provider">
-            {{ include("forms/profile/promotion.html.twig") }}
+            {{ include("forms/profile/promotion.html.twig", {"path": path("promotion_update",{"id":promotion.id})}) }}
         </div>
 
     </div>

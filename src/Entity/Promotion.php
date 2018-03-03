@@ -42,6 +42,8 @@ class Promotion
      * @var string
      *
      * @ORM\Column(name="pdf", type="string", length=255, nullable=true)
+     * @ Assert\NotBlank(message="Veuillez ajoutez un PDF")
+     * @ Assert\File(mimeTypes={"application/pdf"}, mimeTypesMessage="Veuillez utilisez les formats suivants: .pdf")
      */
     private $pdf;
 

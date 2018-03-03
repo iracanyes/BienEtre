@@ -189,7 +189,7 @@
                         <td>{{ service.releaseDate|date("d/m/Y") }}</td>
                         <td>{{ service.expiryDate|date("d/m/Y") }}</td>
                         <td>
-                            <a href="{{ path("service_update",{"slug": service.slug }) }}" class="label label-md label-info">
+                            <a href="{{ path("service_update",{"id": service.id }) }}" class="label label-md label-info">
                                 Modifier
                             </a>
                             <a href="{{ path("service_delete", {"id": service.id } ) }}" class="label label-md label-danger">
@@ -316,7 +316,7 @@
                         <td>{{ category.isValid }}</td>
                         <td>{{ category.slug }}</td>
                         <td>
-                            <a href="{{ path("service_category_update",{"slug": category.slug }) }}" class="label label-lg label-info">
+                            <a href="{{ path("service_category_update",{"id": category.id }) }}" class="label label-lg label-info">
                                 Modifier
                             </a>
                             <a href="{{ path("service_category_delete", {"id": category.id } ) }}" class="label label-lg label-danger">

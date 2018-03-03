@@ -10,6 +10,18 @@
 {# /.posts #}
 
     {% block contentsElement %}
+        <table>
+            <thead>
+                <tr>
+                    <th class="btn btn-secondary">{{ knp_pagination_sortable(providers, 'BrandName', 'p.brandName') }}</th>
+                    <th class="btn btn-secondary {% if providers.isSorted('p.brandName') %} sorted{% endif %}">{{ knp_pagination_sortable(providers, 'BrandName', 'p.brandName') }}</th>
+                    <th class="btn btn-secondary">{{ knp_pagination_sortable(providers, 'Date de Publication', ['a.releaseDate', 'a.startDate']) }}</th>
+                </tr>
+            </thead>
+
+
+        </table>
+
         {% for provider in providers %}
             <div class="post post-boxed">
                 <div class="post-image">
@@ -46,13 +58,10 @@
 
 {# pager #}
     {% block pager %}
-        <ul>
-            <li><a href="#">Prev</a></li>
-            <li><a href="#">5</a></li>
-            <li class="active"><a>6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">Next</a></li>
-        </ul>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(providers) }}
+        </div>
     {% endblock %}
 {# endPager #}
 

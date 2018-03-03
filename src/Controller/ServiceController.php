@@ -21,15 +21,28 @@ class ServiceController extends Controller
 {
     /**
      *
+     */
+    private const LIMIT_PAGINATION = 10;
+
+    /**
+     *
      * @Route("/services", name="service_list")
      * @return Response
      */
-    public function indexAction(): Response
+    public function indexAction(Request $request): Response
     {
         $em = $this->get("doctrine.orm.entity_manager");
 
         $services = $em->getRepository('App:Service')
             ->myFindAll();
+
+        $paginator = $this->get("knp_paginator");
+
+        $pagination = $paginator->paginate(
+            $services,
+            $request->query->get("page") ?? 1,  // page demandé
+            self::LIMIT_PAGINATION  // nombre d'éléments par page
+        );
 
         $recentServices = $em->getRepository("App:Service")
             ->recentServices();
@@ -53,7 +66,7 @@ class ServiceController extends Controller
         return $this->render(
             "superlist/public/service/service-boxed.html.twig",
             array(
-                "services"=>$services,
+                "services"=>$pagination,
                 "recentServices" => $recentServices,
                 "serviceCategories" => $serviceCategories,
                 "localities" => $localities,
@@ -107,6 +120,13 @@ class ServiceController extends Controller
                 )
             );
 
+        $paginator = $this->get("knp_paginator");
+
+        $pagination = $paginator->paginate(
+            $services,
+            $request->query->get("page") ?? 1   ,  // page demandé
+            self::LIMIT_PAGINATION  // nombre d'éléments par page
+        );
 
         if(!$localities){
             throw $this->createNotFoundException("Aucune localité trouvé en DB!");
@@ -126,7 +146,7 @@ class ServiceController extends Controller
                 'localities' => $localities,
                 "townships" => $townships,
                 "postalCodes" => $postalCodes,
-                "services" => $services
+                "services" => $pagination
             )
         );
 
@@ -276,7 +296,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * @Route("/profile/stage/update/{slug}", name="service_update")
+     * @Route("/profile/stage/update", name="service_update")
      * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
      * @param Request $request
      * @return Response
@@ -286,11 +306,9 @@ class ServiceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $service = $em->getRepository("App:Service")
-            ->find($request->query->get("slug"));
+            ->find($request->query->get("id"));
 
-        $form = $this->createForm(ServiceType::class, $service)
-            ->setMethod("POST")
-            ->setAction($this->generateUrl("service_update"));
+        $form = $this->createForm(ServiceType::class, $service);
 
         $form->handleRequest($request);
 
@@ -302,13 +320,16 @@ class ServiceController extends Controller
                 $em->persist($service);
 
                 $em->push();
+
+                $this->addFlash("success","Modification enregistré avec succés");
+
+                $this->redirectToRoute("profile_edit_home");
+
             }catch (UnexpectedResultException $e){
+
                 $this->addFlash("warning","Impossible d'enregistrer les modifications effectuées!");
 
-                $this->render(
-                    "superlist/profile/service/update.html.twig",
-                    array("form"=>$form->createView())
-                );
+                $this->redirectToRoute("profile_edit_home");
             }
 
 
@@ -317,10 +338,16 @@ class ServiceController extends Controller
             $this->redirectToRoute("profile_service_list");
         }
 
-        $this->render(
+        $services = $em->getRepository("App:Service")
+            ->findByProviderId($this->getUser()->getId());
+
+        return $this->render(
             "superlist/profile/service/update.html.twig",
             array(
-                "form"=> $form->createView()
+                "form"=> $form->createView(),
+                "user" => $this->getUser(),
+                "service" => $service,
+                "services" => $services
             )
         );
 

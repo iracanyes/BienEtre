@@ -27,7 +27,14 @@ class PromotionType extends AbstractType
     {
         $builder->add("name", TextType::class, array("label"=>"Titre"))
             ->add("description", TextareaType::class, array("label"=>"Description"))
-            ->add("pdf", FileType::class, array("label"=>"PDF"))
+            ->add(
+                "pdf",
+                FileType::class,
+                array(
+                    "label"=>"PDF",
+                    "data_class" => null
+                )
+            )
             ->add("startDate", DateTimeType::class, array("label"=>"Date de début"))
             ->add("endDate", DateTimeType::class, array("label"=>"Date de fin"))
             ->add("releaseDate", DateTimeType::class, array("label"=>"Date de publication"))

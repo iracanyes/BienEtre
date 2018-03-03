@@ -92,6 +92,7 @@ class ImagesUploadListener
      */
     /* Activer la méthode après avoir supprimé les fixtures d'images provennant de lorempixel.com
         Ne pas oublier de décommenter la ligne concernant cette événement dans service.yaml
+    */
     public function postLoad(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
@@ -100,5 +101,5 @@ class ImagesUploadListener
             $entity->setUrl(new File($this->uploader->getUploadsDir().$entity->getUrl()));
         }
     }
-    */
+
 }

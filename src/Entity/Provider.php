@@ -457,10 +457,6 @@ class Provider extends User
 
         $this->serviceCategories[] = $serviceCategory;
 
-        /*
-         * Ajout du prestataire à la liste de la catégorie de service
-         */
-        $serviceCategory->addProvider($this);
 
         return $this;
 

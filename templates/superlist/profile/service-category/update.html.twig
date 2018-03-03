@@ -125,7 +125,7 @@
                                                 <h1>Ajouter des catégories de services</h1>
                                             </div><!-- /.page-title -->
 
-                                            {{ include("forms/profile/service-category.html.twig", {"path": path("service_category_add")}) }}
+                                            {{ include("forms/profile/service-category.html.twig", {"path": path("service_category_update",{"id": category.id })}) }}
                                         </div><!-- /.col-* -->
 
                                         <div class="background-white p20 mb50">

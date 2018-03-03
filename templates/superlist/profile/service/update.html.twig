@@ -144,12 +144,13 @@
     {% endif %}
 
     <div class="background-white p20 mb50">
-        <h2 class="page-title">Ajouter des services</h2>
+        <h2 class="page-title">Mise à jour du service : {{ service.name }}</h2>
 
 
 
-        {{ include("forms/profile/service.html.twig", {"path", path("service_add")}) }}
+        {{ include("forms/profile/service.html.twig", {"path": path('service_update', {"id": service.id })}) }}
     </div>
+
 
     <div class="background-white p20 mb50">
         <h2 class="page-title">Tous les services</h2>
