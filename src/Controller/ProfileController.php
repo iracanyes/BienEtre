@@ -30,12 +30,13 @@ class ProfileController extends Controller
      * @Route("/profile", name="profile_home")
      * @Security("is_granted('ROLE_MEMBER')", message="Authentification requis!")
      */
-    public function homeAction(Request $request, AuthorizationCheckerInterface $authChecker): Response
+    public function homeAction(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
 
-        $user = $this->getUser();
+        $user = $em->getRepository("App:Provider")
+            ->myFindOneByToken($this->getUser()->getToken())[0];
 
         dump($user);
 
@@ -103,19 +104,6 @@ class ProfileController extends Controller
     }
 
 
-
-    /**
-     * @Route("profile/update", name="profile_update")
-     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
-     */
-    public function updateAction(Request $request)
-    {
-        if($this->getUser()->isProvider()){
-            return $this->redirectToRoute("provider_update");
-        }else{
-            return $this->redirectToRoute("client_update");
-        }
-    }
 
     /**
      * @Route("/change_password", name="change_pwd")

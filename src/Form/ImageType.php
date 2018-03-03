@@ -37,7 +37,8 @@ class ImageType extends AbstractType
                 )
             )
         )
-            ->add("url", FileType::class, array("label"=>"Image (JPG, JPEG, PNG) "));
+            ->add("url", FileType::class, array("label"=>"Image (JPG, JPEG, PNG) ",
+                    "data_class" => null));
 
     }
 

@@ -7,10 +7,10 @@
     </li>
 
     <li >
-        <a href="{{ path('provider_list') }}">Prestataires <i class="fa fa-chevron-down"></i></a>
+        <a href="{{ path('provider_list',{"page":1}) }}">Prestataires <i class="fa fa-chevron-down"></i></a>
 
         <ul class="sub-menu">
-            <li><a href="{{ path('provider_list') }}">Liste des prestataires</a></li>
+            <li><a href="{{ path('provider_list',{"page":1}) }}">Liste des prestataires</a></li>
             <li><a href="{{ path('provider_search') }}">Recherche</a></li>
 
         </ul>

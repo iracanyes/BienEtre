@@ -55,7 +55,7 @@ class PromotionController extends Controller
     }
 
     /**
-     * @Route("/promo/{slug}", name="promotion_detail")
+     * @Route("/promo/{id}", name="promotion_detail")
      * @param Request $request
      * @return Response
      *

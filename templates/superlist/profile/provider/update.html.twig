@@ -70,7 +70,7 @@
                     <ul>
                         <li><a href="{{ path("profile_home") }}"><i class="fa fa-file"></i></a></li>
                         <li class="active"><a href="{{ path("profile_edit_home") }}"><i class="fa fa-pencil"></i></a></li>
-                        <li><a href="{{ path("profile_update") }}"><i class="fa fa-cog"></i></a></li>
+                        <li><a href="{{ path("profile_update",{"id":user.id}) }}"><i class="fa fa-cog"></i></a></li>
                     </ul>
                 </div><!-- /.sidebar-admin-->
 
@@ -166,34 +166,44 @@
 
                                                                 <div class="row">
                                                                     <div class="form-group col-sm-6">
-                                                                        <label for="{{ form.email.vars.id }}"
+                                                                        <label for="{{ form.emailContact.vars.id }}"
                                                                                class="">
-                                                                            {{ form.email.vars.label }}
+                                                                            {{ form.emailContact.vars.label }}
                                                                         </label>
-                                                                        {{ form_errors(form.email) }}
+                                                                        {{ form_errors(form.emailContact) }}
 
-                                                                         {{ form_widget(form.email, {"attr":{"class":"form-control"}}) }}
+                                                                         {{ form_widget(form.emailContact, {"attr":{"class":"form-control"}}) }}
 
                                                                     </div><!-- /.form-group -->
 
                                                                     <div class="form-group col-sm-6">
-                                                                        <label for="{{ form.password.vars.id }}"
+                                                                        <label for="{{ form.brandName.vars.id }}"
                                                                                class="">
-                                                                            {{ form.password.vars.label }}
+                                                                            {{ form.brandName.vars.label }}
                                                                         </label>
-                                                                        {{ form_errors(form.password) }}
+                                                                        {{ form_errors(form.brandName) }}
 
-                                                                        {{ form_widget(form.password, {"attr":{"class":"form-control"}}) }}
+                                                                        {{ form_widget(form.brandName, {"attr":{"class":"form-control"}}) }}
                                                                     </div><!-- /.form-group -->
 
                                                                     <div class="form-group col-sm-6">
-                                                                        <label>E-mail</label>
-                                                                        <input type="text" class="form-control" value="sample@example.com">
+                                                                        <label for="{{ form.website.vars.id }}"
+                                                                               class="">
+                                                                            {{ form.website.vars.label }}
+                                                                        </label>
+                                                                        {{ form_errors(form.website) }}
+
+                                                                        {{ form_widget(form.website, {"attr":{"class":"form-control"}}) }}
                                                                     </div><!-- /.form-group -->
 
                                                                     <div class="form-group col-sm-6">
-                                                                        <label>Phone</label>
-                                                                        <input type="text" class="form-control" value="123-456-789">
+                                                                        <label for="{{ form.website.vars.id }}"
+                                                                               class="">
+                                                                            {{ form.website.vars.label }}
+                                                                        </label>
+                                                                        {{ form_errors(form.website) }}
+
+                                                                        {{ form_widget(form.website, {"attr":{"class":"form-control"}}) }}
                                                                     </div><!-- /.form-group -->
                                                                 </div><!-- /.row -->
                                                             </div>

@@ -208,7 +208,7 @@ class ProviderController extends Controller
             ->recentProviders(self::HOME_NUM_RECENT_PROVIDERS);
 
         if(!$provider){
-            throw new NotFoundHttpException("Le prestataire ".$slug." n'existe pas");
+            $this->addFlash("warning","Le prestataire  n'existe pas");
         }
 
         if(!$recentProviders){
@@ -240,7 +240,7 @@ class ProviderController extends Controller
     }
 
     /**
-     * @Route("/provider/update", name="provider_update")
+     * @Route("/profile/update", name="profile_update")
      * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
      * @param Request $request
      * @return Response
@@ -248,15 +248,15 @@ class ProviderController extends Controller
     public function updateAction(Request $request): Response
     {
 
+        if($this->getUser()->isClient()){
+            $this->forward("App\Controller\ClientController::updateAction", array("id", $this->getUser()->getId()));
+        }
         // Entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // Id du provider
-        $token = $request->query->get("token");
-
         // Chargement du prestataire
         $provider = $em->getRepository("App:Provider")
-            ->findOneByToken($token);
+            ->findOneByToken($this->getUser()->getToken());
 
         dump($provider);
 
@@ -301,7 +301,8 @@ class ProviderController extends Controller
             "superlist/profile/provider/update.html.twig",
             array(
                 "form" => $form->createView(),
-                "user" => $this->getUser()
+                "user" => $this->getUser(),
+                "provider" => $provider
             )
         );
 

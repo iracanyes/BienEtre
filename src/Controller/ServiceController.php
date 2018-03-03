@@ -124,7 +124,7 @@ class ServiceController extends Controller
 
         $pagination = $paginator->paginate(
             $services,
-            $request->query->get("page") ?? 1   ,  // page demandé
+            $request->query->get("page") ?? 1           ,  // page demandé
             self::LIMIT_PAGINATION  // nombre d'éléments par page
         );
 
