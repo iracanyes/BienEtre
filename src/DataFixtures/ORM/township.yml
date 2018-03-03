@@ -1,3 +1,600 @@
-App\Entity\Township:
-    township{1..5}:
-        township (unique): <fr_BE:city()>
+App\Entity\Township: 
+     township1:
+        township: "Bruxelles"
+     township2: 
+        township: "Woluwe-Saint-Lambert"
+     township3: 
+        township: "Limal"
+     township4: 
+        township: "Wavre"
+     township5: 
+        township: "Monstreux"
+     township6: 
+        township: "Nivelles"
+     township7: 
+        township: "Halle"
+     township8: 
+        township: "Oudenaken"
+     township9: 
+        township: "Sint-Laureins-Berchem"
+     township10: 
+        township: "Sint-Pieters-Leeuw"
+     township11: 
+        township: "Dilbeek"
+     township12: 
+        township: "Sint-Martens-Bodegem"
+     township13: 
+        township: "Sint-Ulriks-Kapelle"
+     township14: 
+        township: "Peutie"
+     township15: 
+        township: "Vilvoorde"
+     township16: 
+        township: "Antwerpen"
+     township17: 
+        township: "Deurne"
+     township18: 
+        township: "Herentals"
+     township19: 
+        township: "Morkhoven"
+     township20: 
+        township: "Noorderwijk"
+     township21: 
+        township: "Turnhout"
+     township22: 
+        township: "Mol"
+     township23: 
+        township: "Koningshooikt"
+     township24: 
+        township: "Lier"
+     township25: 
+        township: "Berchem"
+     township26: 
+        township: "Mechelen"
+     township27: 
+        township: "Walem"
+     township28: 
+        township: "Schoten"
+     township29: 
+        township: "Leuven"
+     township30: 
+        township: "Aarschot"
+     township31: 
+        township: "Gelrode"
+     township32: 
+        township: "Bost"
+     township33: 
+        township: "Goetsenhoven"
+     township34: 
+        township: "Hakendover"
+     township35: 
+        township: "Kumtich"
+     township36: 
+        township: "Oorbeek"
+     township37: 
+        township: "Oplinter"
+     township38: 
+        township: "Sint-Margriete-Houtem"
+     township39: 
+        township: "Tienen"
+     township40: 
+        township: "Vissenaken"
+     township41: 
+        township: "Eliksem"
+     township42: 
+        township: "Ezemaal"
+     township43: 
+        township: "Laar"
+     township44: 
+        township: "Landen"
+     township45: 
+        township: "Neerwinden"
+     township46: 
+        township: "Overwinden"
+     township47: 
+        township: "Rumsdorp"
+     township48: 
+        township: "Wange"
+     township49: 
+        township: "Hasselt"
+     township50: 
+        township: "Sint-Lambrechts-Herk"
+     township51: 
+        township: "Genk"
+     township52: 
+        township: "'s Herenelderen"
+     township53: 
+        township: "Berg"
+     township54: 
+        township: "Diets-Heur"
+     township55: 
+        township: "Haren"
+     township56: 
+        township: "Henis"
+     township57: 
+        township: "Kolmont"
+     township58: 
+        township: "Koninksem"
+     township59: 
+        township: "Lauw"
+     township60: 
+        township: "Mal"
+     township61: 
+        township: "Neerrepen"
+     township62: 
+        township: "Nerem"
+     township63: 
+        township: "Overrepen"
+     township64: 
+        township: "Piringen"
+     township65: 
+        township: "Riksingen"
+     township66: 
+        township: "Rutten"
+     township67: 
+        township: "Sluizen"
+     township68: 
+        township: "Tongeren"
+     township69: 
+        township: "Vreren"
+     township70: 
+        township: "Widooie"
+     township71: 
+        township: "Aalst"
+     township72: 
+        township: "Brustem"
+     township73: 
+        township: "Engelmanshoven"
+     township74: 
+        township: "Gelinden"
+     township75: 
+        township: "Groot-Gelmen"
+     township76: 
+        township: "Halmaal"
+     township77: 
+        township: "Kerkom-Bij-Sint-Truiden"
+     township78: 
+        township: "Ordingen"
+     township79: 
+        township: "Sint-Truiden"
+     township80: 
+        township: "Zepperen"
+     township81: 
+        township: "Overpelt"
+     township82: 
+        township: "Glain"
+     township83: 
+        township: "Liège"
+     township84: 
+        township: "Rocourt"
+     township85: 
+        township: "Boncelles"
+     township86: 
+        township: "Seraing"
+     township87: 
+        township: "Bettincourt"
+     township88: 
+        township: "Bleret"
+     township89: 
+        township: "Bovenistier"
+     township90: 
+        township: "Grand-Axhe"
+     township91: 
+        township: "Lantremange"
+     township92: 
+        township: "Oleye"
+     township93: 
+        township: "Waremme"
+     township94: 
+        township: "Awirs"
+     township95: 
+        township: "Chokier"
+     township96: 
+        township: "Flémalle"
+     township97: 
+        township: "Flémalle-Grande"
+     township98: 
+        township: "Flémalle-Haute"
+     township99: 
+        township: "Ivoz-Ramet"
+     township100: 
+        township: "Mons-Lez-Liège"
+     township101: 
+        township: "Ben-Ahin"
+     township102: 
+        township: "Huy"
+     township103: 
+        township: "Tihange"
+     township104: 
+        township: "Lanaye"
+     township105: 
+        township: "Lixhe"
+     township106: 
+        township: "Richelle"
+     township107: 
+        township: "Visé"
+     township108: 
+        township: "Eupen"
+     township109: 
+        township: "Ensival"
+     township110: 
+        township: "Lambermont"
+     township111: 
+        township: "Petit-Rechain"
+     township112: 
+        township: "Polleur"
+     township113: 
+        township: "Verviers"
+     township114: 
+        township: "Spa"
+     township115: 
+        township: "Beez"
+     township116: 
+        township: "Namur"
+     township117: 
+        township: "Dave"
+     township118: 
+        township: "Jambes"
+     township119: 
+        township: "Naninne"
+     township120: 
+        township: "Wépion"
+     township121: 
+        township: "Wierde"
+     township122: 
+        township: "Andenne"
+     township123: 
+        township: "Bonneville"
+     township124: 
+        township: "Coutisse"
+     township125: 
+        township: "Landenne"
+     township126: 
+        township: "Maizeret"
+     township127: 
+        township: "Namêche"
+     township128: 
+        township: "Sclayn"
+     township129: 
+        township: "Seilles"
+     township130: 
+        township: "Thon"
+     township131: 
+        township: "Vezin"
+     township132: 
+        township: "Anseremme"
+     township133: 
+        township: "Bouvignes-Sur-Meuse"
+     township134: 
+        township: "Dinant"
+     township135: 
+        township: "Dréhance"
+     township136: 
+        township: "Falmagne"
+     township137: 
+        township: "Falmignoul"
+     township138: 
+        township: "Furfooz"
+     township139: 
+        township: "Fagnolle"
+     township140: 
+        township: "Franchimont"
+     township141: 
+        township: "Jamagne"
+     township142: 
+        township: "Jamiolle"
+     township143: 
+        township: "Merlemont"
+     township144: 
+        township: "Neuville"
+     township145: 
+        township: "Omezée"
+     township146: 
+        township: "Philippeville"
+     township147: 
+        township: "Roly"
+     township148: 
+        township: "Romedenne"
+     township149: 
+        township: "Samart"
+     township150: 
+        township: "Sart-En-Fagne"
+     township151: 
+        township: "Sautour"
+     township152: 
+        township: "Surice"
+     township153: 
+        township: "Villers-En-Fagne"
+     township154: 
+        township: "Villers-Le-Gambon"
+     township155: 
+        township: "Vodecée"
+     township156: 
+        township: "Charleroi"
+     township157: 
+        township: "Bouffioulx"
+     township158: 
+        township: "Châtelet"
+     township159: 
+        township: "Châtelineau"
+     township160: 
+        township: "Barbençon"
+     township161: 
+        township: "Beaumont"
+     township162: 
+        township: "Leugnies"
+     township163: 
+        township: "Leval-Chaudeville"
+     township164: 
+        township: "Renlies"
+     township165: 
+        township: "Solre-Saint-Géry"
+     township166: 
+        township: "Thirimont"
+     township167: 
+        township: "Bastogne"
+     township168: 
+        township: "Longvilly"
+     township169: 
+        township: "Noville"
+     township170: 
+        township: "Villers-La-Bonne-Eau"
+     township171: 
+        township: "Wardin"
+     township172: 
+        township: "Arlon"
+     township173: 
+        township: "Bonnert"
+     township174: 
+        township: "Heinsch"
+     township175: 
+        township: "Toernich"
+     township176: 
+        township: "Bras"
+     township177: 
+        township: "Freux"
+     township178: 
+        township: "Libramont-Chevigny"
+     township179: 
+        township: "Moircy"
+     township180: 
+        township: "Recogne"
+     township181: 
+        township: "Remagne"
+     township182: 
+        township: "Saint-Pierre"
+     township183: 
+        township: "Sainte-Marie-Chevigny"
+     township184: 
+        township: "Aye"
+     township185: 
+        township: "Hargimont"
+     township186: 
+        township: "Humain"
+     township187: 
+        township: "Marche-En-Famenne"
+     township188: 
+        township: "On"
+     township189: 
+        township: "Roy"
+     township190: 
+        township: "Waha"
+     township191: 
+        township: "Mons"
+     township192: 
+        township: "Haine-Saint-Paul"
+     township193: 
+        township: "Haine-Saint-Pierre"
+     township194: 
+        township: "La Louvière"
+     township195: 
+        township: "Saint-Vaast"
+     township196: 
+        township: "Trivières"
+     township197: 
+        township: "Boussu"
+     township198: 
+        township: "Ere"
+     township199: 
+        township: "Saint-Maur"
+     township200: 
+        township: "Tournai"
+     township201: 
+        township: "Péruwelz"
+     township202: 
+        township: "Luingne"
+     township203: 
+        township: "Mouscron"
+     township204: 
+        township: "Ath"
+     township205: 
+        township: "Lanquesaint"
+     township206: 
+        township: "Grandmetz"
+     township207: 
+        township: "Leuze-En-Hainaut"
+     township208: 
+        township: "Brugge"
+     township209: 
+        township: "Koolkerke"
+     township210: 
+        township: "Sint-Andries"
+     township211: 
+        township: "Sint-Michiels"
+     township212: 
+        township: "Knokke"
+     township213: 
+        township: "Knokke-Heist"
+     township214: 
+        township: "Westkapelle"
+     township215: 
+        township: "Oostende"
+     township216: 
+        township: "Stene"
+     township217: 
+        township: "Zandvoorde"
+     township218: 
+        township: "Kortrijk"
+     township219: 
+        township: "Beerst"
+     township220: 
+        township: "Diksmuide"
+     township221: 
+        township: "Driekapellen"
+     township222: 
+        township: "Esen"
+     township223: 
+        township: "Kaaskerke"
+     township224: 
+        township: "Keiem"
+     township225: 
+        township: "Lampernisse"
+     township226: 
+        township: "Leke"
+     township227: 
+        township: "Nieuwkapelle"
+     township228: 
+        township: "Oostkerke"
+     township229: 
+        township: "Oudekapelle"
+     township230: 
+        township: "Pervijze"
+     township231: 
+        township: "Stuivekenskerke"
+     township232: 
+        township: "Vladslo"
+     township233: 
+        township: "Woumen"
+     township234: 
+        township: "Aarsele"
+     township235: 
+        township: "Kanegem"
+     township236: 
+        township: "Schuiferskapelle"
+     township237: 
+        township: "Tielt"
+     township238: 
+        township: "Beveren"
+     township239: 
+        township: "Oekene"
+     township240: 
+        township: "Roeselare"
+     township241: 
+        township: "Rumbeke"
+     township242: 
+        township: "Brielen"
+     township243: 
+        township: "Dikkebus"
+     township244: 
+        township: "Ieper"
+     township245: 
+        township: "Sint-Jan"
+     township246: 
+        township: "Gent"
+     township247: 
+        township: "Nieuwkerken-Waas"
+     township248: 
+        township: "Sint-Niklaas"
+     township249: 
+        township: "Appels"
+     township250: 
+        township: "Baasrode"
+     township251: 
+        township: "Dendermonde"
+     township252: 
+        township: "Grembergen"
+     township253: 
+        township: "Mespelare"
+     township254: 
+        township: "Oudegem"
+     township255: 
+        township: "Schoonaarde"
+     township256: 
+        township: "Sint-Gillis-Dendermonde"
+     township257: 
+        township: "Appelterre-Eichem"
+     township258: 
+        township: "Denderwindeke"
+     township259: 
+        township: "Lieferinge"
+     township260: 
+        township: "Nederhasselt"
+     township261: 
+        township: "Ninove"
+     township262: 
+        township: "Okegem"
+     township263: 
+        township: "Voorde"
+     township264: 
+        township: "Geraardsbergen"
+     township265: 
+        township: "Goeferdinge"
+     township266: 
+        township: "Moerbeke"
+     township267: 
+        township: "Nederboelare"
+     township268: 
+        township: "Onkerzele"
+     township269: 
+        township: "Ophasselt"
+     township270: 
+        township: "Overboelare"
+     township271: 
+        township: "Viane"
+     township272: 
+        township: "Zarlardinge"
+     township273: 
+        township: "Renaix"
+     township274: 
+        township: "Bevere"
+     township275: 
+        township: "Edelare"
+     township276: 
+        township: "Eine"
+     township277: 
+        township: "Ename"
+     township278: 
+        township: "Heurne"
+     township279: 
+        township: "Leupegem"
+     township280: 
+        township: "Mater"
+     township281: 
+        township: "Melden"
+     township282: 
+        township: "Mullem"
+     township283: 
+        township: "Nederename"
+     township284: 
+        township: "Ooike"
+     township285: 
+        township: "Oudenaarde"
+     township286: 
+        township: "Volkegem"
+     township287: 
+        township: "Welden"
+     township288: 
+        township: "Astene"
+     township289: 
+        township: "Bachte-Maria-Leerne"
+     township290: 
+        township: "Deinze"
+     township291: 
+        township: "Gottem"
+     township292: 
+        township: "Grammene"
+     township293: 
+        township: "Meigem"
+     township294: 
+        township: "Petegem-Aan-De-Leie"
+     township295: 
+        township: "Sint-Martens-Leerne"
+     township296: 
+        township: "Vinkt"
+     township297: 
+        township: "Wontergem"
+     township298: 
+        township: "Zeveren"
+     township299: 
+        township: "Eeklo"
+ 

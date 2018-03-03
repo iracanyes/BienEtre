@@ -14,14 +14,17 @@ App\Entity\User:
         nbErrorConnection: 0
         banned: '<boolean(0)>'
         registryConfirmed: '<boolean(100)>'
-        userType: 'Admin'
-        roles: ['ROLE_SUPER_ADMIN','ROLE_ADMIN','ROLE_MEMBER', 'ROLE_ALLOWED_TO_SWITCH']
+        userType: 'admin'
+        roles: ['ROLE_SUPER_ADMIN','ROLE_ADMIN','ROLE_ALLOWED_TO_SWITCH']
         isActive: '<boolean(100)>'
         token: '<sha1(uniq(uuid()))>'
         apiKey: '<sha1(uniq(uuid()))>'
-        township: '@township<numberBetween(1,2)>'
-        locality: '@locality<numberBetween(1,2)>'
-        postalCode: '@postalCode<numberBetween(1,2)>'
+        #township: '@township<numberBetween(1,2)>'
+        #locality: '@locality<numberBetween(1,2)>'
+        #postalCode: '@postalCode<numberBetween(1,2)>'
+        township: '@township*'
+        locality: '@locality*'
+        postalCode: '@postalCode*'
 
     user_provider (template):
         email: '<fr_FR:email()>'
@@ -35,9 +38,9 @@ App\Entity\User:
         isActive: '<boolean(100)>'
         token: '<sha1(uniq(uuid()))>'
         apiKey: '<sha1(uniq(uuid()))>'
-        township: '@township<numberBetween(1,2)>'
-        locality: '@locality<numberBetween(1,2)>'
-        postalCode: '@postalCode<numberBetween(1,2)>'
+        township: '@township*'
+        locality: '@locality*'
+        postalCode: '@postalCode*'
 
     user_client (template):
         email: '<fr_FR:email()>'
@@ -50,9 +53,9 @@ App\Entity\User:
         isActive: '<boolean(90)>'
         token: '<sha1(uniq(uuid()))>'
         apiKey: '<sha1(uniq(uuid()))>'
-        township: '@township<numberBetween(1,2)>'
-        locality: '@locality<numberBetween(1,2)>'
-        postalCode: '@postalCode<numberBetween(1,2)>'
+        township: '@township*'
+        locality: '@locality*'
+        postalCode: '@postalCode*'
 
 App\Entity\Provider:
     provider{1..10} (extends user_provider):

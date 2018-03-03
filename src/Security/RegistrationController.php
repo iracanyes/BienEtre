@@ -135,9 +135,9 @@ class RegistrationController extends Controller
         // Extraction du token de l'URL
         $token = $request->query->get("token");
 
-        dump($request->request->get('client'));
+        //dump($request->request->get('client'));
 
-        dump($request->files->get('url'));
+        //dump($request->files->get('url'));
 
         if(empty($token)){
             throw new BadCredentialsException("La voie du milieu est semé d'embuche!");
@@ -163,7 +163,14 @@ class RegistrationController extends Controller
             if($provider instanceof Provider){
 
                 // Ajout du nouveau role
-                $provider->addRole("ROLE_PROVIDER");
+                $roles = $provider->getRoles();
+
+                $roles[] = "ROLE_PROVIDER";
+
+                dump($roles);
+                dump($provider->getRoles());
+
+                $provider->setRoles($roles);
 
                 // Création du formulaire
                 $form = $this->createForm(ProviderType::class, $provider);
@@ -177,7 +184,11 @@ class RegistrationController extends Controller
             if($client instanceof Client){
 
                 // Ajout du nouveau rôle
-                $client->addRole("ROLE_CLIENT");
+                $roles =$client->getRoles();
+
+                $roles[] = "ROLE_CLIENT";
+
+                $client->setRoles($roles);
 
                 // Création du formulaire
                 $form = $this->createForm(ClientType::class, $client);
@@ -192,7 +203,7 @@ class RegistrationController extends Controller
 
             $newUser = $form->getData();
 
-            dump($newUser->getAvatar()->getUrl());
+
 
 
             // A mettre en événement Doctrine

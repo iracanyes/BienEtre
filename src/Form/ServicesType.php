@@ -41,7 +41,7 @@ class ServicesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array("data_class"=>Provider::class)
+            array("data_class"=> Provider::class)
         );
     }
 

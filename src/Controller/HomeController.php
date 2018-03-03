@@ -49,6 +49,7 @@ class HomeController extends Controller
         $services = $em->getRepository("App:Service")
             ->recentServices();
 
+        dump($services);
 
         // Promotions récentes : OK
         $promotions = $em->getRepository("App:Promotion")
@@ -56,6 +57,8 @@ class HomeController extends Controller
         // Provider classé par nombre de fans.
         $bestProviders = $em->getRepository("App:Provider")
             ->mostFans(4);
+
+        dump($bestProviders);
 
         // Recent comments
         $recentComments = $em->getRepository("App:Comment")

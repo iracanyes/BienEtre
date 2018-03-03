@@ -131,7 +131,7 @@
                                                 </div><!-- /.card-simple-actions -->
                                             </div><!-- /.card-simple-content -->
 
-                                            <div class="card-simple-label">{{ service.provider.serviceCategories[0].name }}</div>
+                                            <div class="card-simple-label">{{ service.provider.serviceCategories.first().name }}</div>
 
                                         </div><!-- /.card-simple-background -->
                                     </div><!-- /.card-simple -->
@@ -254,13 +254,16 @@
                             </div><!-- /.page-header -->
 
                             <div class="cards-wrapper">
+                                {% if bestProviders|length > 0 %}
                                 <div class="row">
+
                                     <div class="col-sm-8">
+
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card" data-background-image="{{ bestProviders[1].logos.first().url }}">
                                                     <div class="card-label">
-                                                        <a href="{{ path('provider_detail', {slug: bestProviders[1].slug }) }}">{{ bestProviders[1].serviceCategories[0].name }}</a>
+                                                        <a href="{{ path('provider_detail', {slug: bestProviders[1].slug }) }}">{{ bestProviders[1].serviceCategories.first().name }}</a>
                                                     </div><!-- /.card-label -->
 
                                                     <div class="card-content">
@@ -382,6 +385,7 @@
                                         </div><!-- /.card -->
                                     </div><!-- /.col-* -->
                                 </div><!-- /.row -->
+                                {% endif %}
                             </div><!-- /.cards-wrapper -->
 
                         </div>

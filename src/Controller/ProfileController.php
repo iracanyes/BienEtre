@@ -65,6 +65,10 @@ class ProfileController extends Controller
 
             $serviceCategories = $em->getRepository("App:ServiceCategory")
                 ->findByProviderId($user->getId());
+
+            dump($user->getId());
+            dump($serviceCategories);
+
         }catch (UnexpectedResultException $e){
 
             $this->addFlash("warning","Une erreur est survenue durant le chargement! Ré-essayer ou contacter le support technique");

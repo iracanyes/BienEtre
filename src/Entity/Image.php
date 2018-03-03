@@ -33,8 +33,8 @@ class Image
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez ajoutez une image")
-     * @Assert\File(mimeTypes={"image/jpg","image/jpeg","image/png"}, mimeTypesMessage="Veuillez utilisez les formats suivants: jpeg, jpg, png")
+     * @ Assert\NotBlank(message="Veuillez ajoutez une image")
+     * @ Assert\File(mimeTypes={"image/jpg","image/jpeg","image/png"}, mimeTypesMessage="Veuillez utilisez les formats suivants: jpeg, jpg, png")
      */
     protected $url;
 

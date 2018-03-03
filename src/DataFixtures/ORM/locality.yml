@@ -1,3 +1,5406 @@
-App\Entity\Locality:
-    locality{1..2}:
-        locality (unique): '<fr_BE:city()> <cityPrefix()>'
+App\Entity\Locality: 
+     locality1:
+        locality: "Bruxelles"
+     locality2: 
+        locality: "Laeken"
+     locality3: 
+        locality: "Schaerbeek"
+     locality4: 
+        locality: "Etterbeek"
+     locality5: 
+        locality: "Ixelles"
+     locality6: 
+        locality: "Saint-Gilles"
+     locality7: 
+        locality: "Anderlecht"
+     locality8: 
+        locality: "Molenbeek-Saint-Jean"
+     locality9: 
+        locality: "Koekelberg"
+     locality10: 
+        locality: "Berchem-Sainte-Agathe"
+     locality11: 
+        locality: "Ganshoren"
+     locality12: 
+        locality: "Jette"
+     locality13: 
+        locality: "Neder-Over-Heembeek"
+     locality14: 
+        locality: "Haren"
+     locality15: 
+        locality: "Evere"
+     locality16: 
+        locality: "Woluwe-Saint-Pierre"
+     locality17: 
+        locality: "Auderghem"
+     locality18: 
+        locality: "Watermael-Boitsfort"
+     locality19: 
+        locality: "Uccle"
+     locality20: 
+        locality: "Forest"
+     locality21: 
+        locality: "Woluwe-Saint-Lambert"
+     locality22: 
+        locality: "Saint-Josse-Ten-Noode"
+     locality23: 
+        locality: "Limal"
+     locality24: 
+        locality: "Wavre"
+     locality25: 
+        locality: "Bierges"
+     locality26: 
+        locality: "La Hulpe"
+     locality27: 
+        locality: "Glimes"
+     locality28: 
+        locality: "Incourt"
+     locality29: 
+        locality: "Opprebais"
+     locality30: 
+        locality: "Piètrebais"
+     locality31: 
+        locality: "Roux-Miroir"
+     locality32: 
+        locality: "Beauvechain"
+     locality33: 
+        locality: "Hamme-Mille"
+     locality34: 
+        locality: "L'ecluse"
+     locality35: 
+        locality: "Nodebais"
+     locality36: 
+        locality: "Tourinnes-La-Grosse"
+     locality37: 
+        locality: "Bonlez"
+     locality38: 
+        locality: "Chaumont-Gistoux"
+     locality39: 
+        locality: "Corroy-Le-Grand"
+     locality40: 
+        locality: "Dion-Valmont"
+     locality41: 
+        locality: "Longueville"
+     locality42: 
+        locality: "Rixensart"
+     locality43: 
+        locality: "Rosières"
+     locality44: 
+        locality: "Genval"
+     locality45: 
+        locality: "Ottignies"
+     locality46: 
+        locality: "Ottignies-Louvain-La-Neuve"
+     locality47: 
+        locality: "Céroux-Mousty"
+     locality48: 
+        locality: "Limelette"
+     locality49: 
+        locality: "Louvain-La-Neuve"
+     locality50: 
+        locality: "Enines"
+     locality51: 
+        locality: "Folx-Les-Caves"
+     locality52: 
+        locality: "Jandrain-Jandrenouille"
+     locality53: 
+        locality: "Jauche"
+     locality54: 
+        locality: "Marilles"
+     locality55: 
+        locality: "Noduwez"
+     locality56: 
+        locality: "Orp-Jauche"
+     locality57: 
+        locality: "Orp-Le-Grand"
+     locality58: 
+        locality: "Hélécine"
+     locality59: 
+        locality: "Linsmeau"
+     locality60: 
+        locality: "Neerheylissem"
+     locality61: 
+        locality: "Opheylissem"
+     locality62: 
+        locality: "Malèves-Sainte-Marie-Wastines"
+     locality63: 
+        locality: "Orbais"
+     locality64: 
+        locality: "Perwez"
+     locality65: 
+        locality: "Thorembais-Les-Béguines"
+     locality66: 
+        locality: "Thorembais-Saint-Trond"
+     locality67: 
+        locality: "Autre-Eglise"
+     locality68: 
+        locality: "Bomal"
+     locality69: 
+        locality: "Gérompont"
+     locality70: 
+        locality: "Grand-Rosière-Hottomont"
+     locality71: 
+        locality: "Huppaye"
+     locality72: 
+        locality: "Mont-Saint-André"
+     locality73: 
+        locality: "Ramillies"
+     locality74: 
+        locality: "Dongelberg"
+     locality75: 
+        locality: "Jauchelette"
+     locality76: 
+        locality: "Jodoigne"
+     locality77: 
+        locality: "Jodoigne-Souveraine"
+     locality78: 
+        locality: "Lathuy"
+     locality79: 
+        locality: "Mélin"
+     locality80: 
+        locality: "Piétrain"
+     locality81: 
+        locality: "Saint-Jean-Geest"
+     locality82: 
+        locality: "Saint-Remy-Geest"
+     locality83: 
+        locality: "Zétrud-Lumay"
+     locality84: 
+        locality: "Couture-Saint-Germain"
+     locality85: 
+        locality: "Lasne"
+     locality86: 
+        locality: "Lasne-Chapelle-Saint-Lambert"
+     locality87: 
+        locality: "Maransart"
+     locality88: 
+        locality: "Ohain"
+     locality89: 
+        locality: "Plancenoit"
+     locality90: 
+        locality: "Archennes"
+     locality91: 
+        locality: "Biez"
+     locality92: 
+        locality: "Bossut-Gottechain"
+     locality93: 
+        locality: "Grez-Doiceau"
+     locality94: 
+        locality: "Nethen"
+     locality95: 
+        locality: "Monstreux"
+     locality96: 
+        locality: "Nivelles"
+     locality97: 
+        locality: "Baulers"
+     locality98: 
+        locality: "Thines"
+     locality99: 
+        locality: "Bornival"
+     locality100: 
+        locality: "Waterloo"
+     locality101: 
+        locality: "Braine-L'alleud"
+     locality102: 
+        locality: "Ophain-Bois-Seigneur-Isaac"
+     locality103: 
+        locality: "Lillois-Witterzée"
+     locality104: 
+        locality: "Bierghes"
+     locality105: 
+        locality: "Quenast"
+     locality106: 
+        locality: "Rebecq"
+     locality107: 
+        locality: "Rebecq-Rognon"
+     locality108: 
+        locality: "Corbais"
+     locality109: 
+        locality: "Hévillers"
+     locality110: 
+        locality: "Mont-Saint-Guibert"
+     locality111: 
+        locality: "Braine-Le-Château"
+     locality112: 
+        locality: "Wauthier-Braine"
+     locality113: 
+        locality: "Chastre"
+     locality114: 
+        locality: "Chastre-Villeroux-Blanmont"
+     locality115: 
+        locality: "Cortil-Noirmont"
+     locality116: 
+        locality: "Gentinnes"
+     locality117: 
+        locality: "Saint-Géry"
+     locality118: 
+        locality: "Nil-Saint-Vincent-Saint-Martin"
+     locality119: 
+        locality: "Tourinnes-Saint-Lambert"
+     locality120: 
+        locality: "Walhain"
+     locality121: 
+        locality: "Walhain-Saint-Paul"
+     locality122: 
+        locality: "Ittre"
+     locality123: 
+        locality: "Virginal-Samme"
+     locality124: 
+        locality: "Haut-Ittre"
+     locality125: 
+        locality: "Baisy-Thy"
+     locality126: 
+        locality: "Bousval"
+     locality127: 
+        locality: "Genappe"
+     locality128: 
+        locality: "Loupoigne"
+     locality129: 
+        locality: "Vieux-Genappe"
+     locality130: 
+        locality: "Glabais"
+     locality131: 
+        locality: "Ways"
+     locality132: 
+        locality: "Houtain-Le-Val"
+     locality133: 
+        locality: "Clabecq"
+     locality134: 
+        locality: "Oisquercq"
+     locality135: 
+        locality: "Saintes"
+     locality136: 
+        locality: "Tubize"
+     locality137: 
+        locality: "Court-Saint-Etienne"
+     locality138: 
+        locality: "Marbais"
+     locality139: 
+        locality: "Mellery"
+     locality140: 
+        locality: "Sart-Dames-Avelines"
+     locality141: 
+        locality: "Tilly"
+     locality142: 
+        locality: "Villers-La-Ville"
+     locality143: 
+        locality: "Halle"
+     locality144: 
+        locality: "Buizingen"
+     locality145: 
+        locality: "Lembeek"
+     locality146: 
+        locality: "Herfelingen"
+     locality147: 
+        locality: "Herne"
+     locality148: 
+        locality: "Sint-Pieters-Kapelle"
+     locality149: 
+        locality: "Biévène"
+     locality150: 
+        locality: "Hoeilaart"
+     locality151: 
+        locality: "Galmaarden"
+     locality152: 
+        locality: "Tollembeek"
+     locality153: 
+        locality: "Vollezele"
+     locality154: 
+        locality: "Oudenaken"
+     locality155: 
+        locality: "Sint-Laureins-Berchem"
+     locality156: 
+        locality: "Sint-Pieters-Leeuw"
+     locality157: 
+        locality: "Ruisbroek"
+     locality158: 
+        locality: "Vlezenbeek"
+     locality159: 
+        locality: "Drogenbos"
+     locality160: 
+        locality: "Linkebeek"
+     locality161: 
+        locality: "Rhode-Saint-Genèse"
+     locality162: 
+        locality: "Beersel"
+     locality163: 
+        locality: "Lot"
+     locality164: 
+        locality: "Alsemberg"
+     locality165: 
+        locality: "Dworp"
+     locality166: 
+        locality: "Huizingen"
+     locality167: 
+        locality: "Bogaarden"
+     locality168: 
+        locality: "Heikruis"
+     locality169: 
+        locality: "Pepingen"
+     locality170: 
+        locality: "Elingen"
+     locality171: 
+        locality: "Beert"
+     locality172: 
+        locality: "Bellingen"
+     locality173: 
+        locality: "Dilbeek"
+     locality174: 
+        locality: "Sint-Martens-Bodegem"
+     locality175: 
+        locality: "Sint-Ulriks-Kapelle"
+     locality176: 
+        locality: "Itterbeek"
+     locality177: 
+        locality: "Groot-Bijgaarden"
+     locality178: 
+        locality: "Schepdaal"
+     locality179: 
+        locality: "Asse"
+     locality180: 
+        locality: "Bekkerzeel"
+     locality181: 
+        locality: "Kobbegem"
+     locality182: 
+        locality: "Mollem"
+     locality183: 
+        locality: "Relegem"
+     locality184: 
+        locality: "Zellik"
+     locality185: 
+        locality: "Ternat"
+     locality186: 
+        locality: "Wambeek"
+     locality187: 
+        locality: "Sint-Katherina-Lombeek"
+     locality188: 
+        locality: "Mazenzele"
+     locality189: 
+        locality: "Opwijk"
+     locality190: 
+        locality: "Gaasbeek"
+     locality191: 
+        locality: "Lennik"
+     locality192: 
+        locality: "Sint-Kwintens-Lennik"
+     locality193: 
+        locality: "Sint-Martens-Lennik"
+     locality194: 
+        locality: "Gooik"
+     locality195: 
+        locality: "Kester"
+     locality196: 
+        locality: "Leerbeek"
+     locality197: 
+        locality: "Oetingen"
+     locality198: 
+        locality: "Onze-Lieve-Vrouw-Lombeek"
+     locality199: 
+        locality: "Pamel"
+     locality200: 
+        locality: "Roosdaal"
+     locality201: 
+        locality: "Strijtem"
+     locality202: 
+        locality: "Borchtlombeek"
+     locality203: 
+        locality: "Liedekerke"
+     locality204: 
+        locality: "Wemmel"
+     locality205: 
+        locality: "Brussegem"
+     locality206: 
+        locality: "Hamme"
+     locality207: 
+        locality: "Merchtem"
+     locality208: 
+        locality: "Affligem"
+     locality209: 
+        locality: "Essene"
+     locality210: 
+        locality: "Hekelgem"
+     locality211: 
+        locality: "Teralfene"
+     locality212: 
+        locality: "Peutie"
+     locality213: 
+        locality: "Vilvoorde"
+     locality214: 
+        locality: "Melsbroek"
+     locality215: 
+        locality: "Perk"
+     locality216: 
+        locality: "Steenokkerzeel"
+     locality217: 
+        locality: "Machelen"
+     locality218: 
+        locality: "Diegem"
+     locality219: 
+        locality: "Londerzeel"
+     locality220: 
+        locality: "Malderen"
+     locality221: 
+        locality: "Steenhuffel"
+     locality222: 
+        locality: "Grimbergen"
+     locality223: 
+        locality: "Humbeek"
+     locality224: 
+        locality: "Beigem"
+     locality225: 
+        locality: "Strombeek-Bever"
+     locality226: 
+        locality: "Meise"
+     locality227: 
+        locality: "Wolvertem"
+     locality228: 
+        locality: "Kapelle-Op-Den-Bos"
+     locality229: 
+        locality: "Nieuwenrode"
+     locality230: 
+        locality: "Ramsdonk"
+     locality231: 
+        locality: "Berg"
+     locality232: 
+        locality: "Buken"
+     locality233: 
+        locality: "Kampenhout"
+     locality234: 
+        locality: "Nederokkerzeel"
+     locality235: 
+        locality: "Nossegem"
+     locality236: 
+        locality: "Zaventem"
+     locality237: 
+        locality: "Sint-Stevens-Woluwe"
+     locality238: 
+        locality: "Sterrebeek"
+     locality239: 
+        locality: "Kraainem"
+     locality240: 
+        locality: "Wezembeek-Oppem"
+     locality241: 
+        locality: "Eppegem"
+     locality242: 
+        locality: "Zemst"
+     locality243: 
+        locality: "Hofstade"
+     locality244: 
+        locality: "Elewijt"
+     locality245: 
+        locality: "Weerde"
+     locality246: 
+        locality: "Antwerpen"
+     locality247: 
+        locality: "Berendrecht"
+     locality248: 
+        locality: "Lillo"
+     locality249: 
+        locality: "Zandvliet"
+     locality250: 
+        locality: "Burcht"
+     locality251: 
+        locality: "Zwijndrecht"
+     locality252: 
+        locality: "Deurne"
+     locality253: 
+        locality: "Wijnegem"
+     locality254: 
+        locality: "Borgerhout"
+     locality255: 
+        locality: "Borsbeek"
+     locality256: 
+        locality: "Wommelgem"
+     locality257: 
+        locality: "Merksem"
+     locality258: 
+        locality: "Ekeren"
+     locality259: 
+        locality: "Herentals"
+     locality260: 
+        locality: "Morkhoven"
+     locality261: 
+        locality: "Noorderwijk"
+     locality262: 
+        locality: "Hallaar"
+     locality263: 
+        locality: "Heist-Op-Den-Berg"
+     locality264: 
+        locality: "Booischot"
+     locality265: 
+        locality: "Itegem"
+     locality266: 
+        locality: "Wiekevorst"
+     locality267: 
+        locality: "Schriek"
+     locality268: 
+        locality: "Herselt"
+     locality269: 
+        locality: "Ramsel"
+     locality270: 
+        locality: "Houtvenne"
+     locality271: 
+        locality: "Hulshout"
+     locality272: 
+        locality: "Westmeerbeek"
+     locality273: 
+        locality: "Massenhoven"
+     locality274: 
+        locality: "Viersel"
+     locality275: 
+        locality: "Zandhoven"
+     locality276: 
+        locality: "Pulderbos"
+     locality277: 
+        locality: "Pulle"
+     locality278: 
+        locality: "Olen"
+     locality279: 
+        locality: "Oevel"
+     locality280: 
+        locality: "Tongerlo"
+     locality281: 
+        locality: "Westerlo"
+     locality282: 
+        locality: "Zoerle-Parwijs"
+     locality283: 
+        locality: "Herenthout"
+     locality284: 
+        locality: "Gierle"
+     locality285: 
+        locality: "Lille"
+     locality286: 
+        locality: "Poederlee"
+     locality287: 
+        locality: "Wechelderzande"
+     locality288: 
+        locality: "Grobbendonk"
+     locality289: 
+        locality: "Bouwel"
+     locality290: 
+        locality: "Vorselaar"
+     locality291: 
+        locality: "Turnhout"
+     locality292: 
+        locality: "Rijkevorsel"
+     locality293: 
+        locality: "Hoogstraten"
+     locality294: 
+        locality: "Meer"
+     locality295: 
+        locality: "Minderhout"
+     locality296: 
+        locality: "Wortel"
+     locality297: 
+        locality: "Meerle"
+     locality298: 
+        locality: "Merksplas"
+     locality299: 
+        locality: "Beerse"
+     locality300: 
+        locality: "Vlimmeren"
+     locality301: 
+        locality: "Vosselaar"
+     locality302: 
+        locality: "Oud-Turnhout"
+     locality303: 
+        locality: "Arendonk"
+     locality304: 
+        locality: "Ravels"
+     locality305: 
+        locality: "Weelde"
+     locality306: 
+        locality: "Poppel"
+     locality307: 
+        locality: "Baarle-Hertog"
+     locality308: 
+        locality: "Malle"
+     locality309: 
+        locality: "Oostmalle"
+     locality310: 
+        locality: "Westmalle"
+     locality311: 
+        locality: "Mol"
+     locality312: 
+        locality: "Eindhout"
+     locality313: 
+        locality: "Laakdal"
+     locality314: 
+        locality: "Vorst"
+     locality315: 
+        locality: "Varendonk"
+     locality316: 
+        locality: "Veerle"
+     locality317: 
+        locality: "Geel"
+     locality318: 
+        locality: "Meerhout"
+     locality319: 
+        locality: "Kasterlee"
+     locality320: 
+        locality: "Lichtaart"
+     locality321: 
+        locality: "Tielen"
+     locality322: 
+        locality: "Retie"
+     locality323: 
+        locality: "Dessel"
+     locality324: 
+        locality: "Balen"
+     locality325: 
+        locality: "Olmen"
+     locality326: 
+        locality: "Koningshooikt"
+     locality327: 
+        locality: "Lier"
+     locality328: 
+        locality: "Broechem"
+     locality329: 
+        locality: "Emblem"
+     locality330: 
+        locality: "Oelegem"
+     locality331: 
+        locality: "Ranst"
+     locality332: 
+        locality: "Boechout"
+     locality333: 
+        locality: "Vremde"
+     locality334: 
+        locality: "Hove"
+     locality335: 
+        locality: "Lint"
+     locality336: 
+        locality: "Kontich"
+     locality337: 
+        locality: "Waarloos"
+     locality338: 
+        locality: "Bevel"
+     locality339: 
+        locality: "Kessel"
+     locality340: 
+        locality: "Nijlen"
+     locality341: 
+        locality: "Duffel"
+     locality342: 
+        locality: "Beerzel"
+     locality343: 
+        locality: "Putte"
+     locality344: 
+        locality: "Berlaar"
+     locality345: 
+        locality: "Gestel"
+     locality346: 
+        locality: "Berchem"
+     locality347: 
+        locality: "Wilrijk"
+     locality348: 
+        locality: "Hemiksem"
+     locality349: 
+        locality: "Schelle"
+     locality350: 
+        locality: "Aartselaar"
+     locality351: 
+        locality: "Mortsel"
+     locality352: 
+        locality: "Edegem"
+     locality353: 
+        locality: "Hoboken"
+     locality354: 
+        locality: "Mechelen"
+     locality355: 
+        locality: "Walem"
+     locality356: 
+        locality: "Heffen"
+     locality357: 
+        locality: "Hombeek"
+     locality358: 
+        locality: "Leest"
+     locality359: 
+        locality: "Muizen"
+     locality360: 
+        locality: "Bonheiden"
+     locality361: 
+        locality: "Rijmenam"
+     locality362: 
+        locality: "Blaasveld"
+     locality363: 
+        locality: "Heindonk"
+     locality364: 
+        locality: "Tisselt"
+     locality365: 
+        locality: "Willebroek"
+     locality366: 
+        locality: "Reet"
+     locality367: 
+        locality: "Rumst"
+     locality368: 
+        locality: "Terhagen"
+     locality369: 
+        locality: "Niel"
+     locality370: 
+        locality: "Boom"
+     locality371: 
+        locality: "Sint-Katelijne-Waver"
+     locality372: 
+        locality: "Onze-Lieve-Vrouw-Waver"
+     locality373: 
+        locality: "Breendonk"
+     locality374: 
+        locality: "Liezele"
+     locality375: 
+        locality: "Puurs"
+     locality376: 
+        locality: "Bornem"
+     locality377: 
+        locality: "Hingene"
+     locality378: 
+        locality: "Mariekerke"
+     locality379: 
+        locality: "Weert"
+     locality380: 
+        locality: "Lippelo"
+     locality381: 
+        locality: "Oppuurs"
+     locality382: 
+        locality: "Sint-Amands"
+     locality383: 
+        locality: "Schoten"
+     locality384: 
+        locality: "Essen"
+     locality385: 
+        locality: "Kalmthout"
+     locality386: 
+        locality: "Brasschaat"
+     locality387: 
+        locality: "Hoevenen"
+     locality388: 
+        locality: "Stabroek"
+     locality389: 
+        locality: "Kapellen"
+     locality390: 
+        locality: "Brecht"
+     locality391: 
+        locality: "Sint-Job-In-'t-Goor"
+     locality392: 
+        locality: "Sint-Lenaarts"
+     locality393: 
+        locality: "'s Gravenwezel"
+     locality394: 
+        locality: "Schilde"
+     locality395: 
+        locality: "Zoersel"
+     locality396: 
+        locality: "Loenhout"
+     locality397: 
+        locality: "Wuustwezel"
+     locality398: 
+        locality: "Leuven"
+     locality399: 
+        locality: "Heverlee"
+     locality400: 
+        locality: "Kessel Lo"
+     locality401: 
+        locality: "Wilsele"
+     locality402: 
+        locality: "Wijgmaal"
+     locality403: 
+        locality: "Herent"
+     locality404: 
+        locality: "Veltem-Beisem"
+     locality405: 
+        locality: "Winksele"
+     locality406: 
+        locality: "Huldenberg"
+     locality407: 
+        locality: "Loonbeek"
+     locality408: 
+        locality: "Neerijse"
+     locality409: 
+        locality: "Ottenburg"
+     locality410: 
+        locality: "Sint-Agatha-Rode"
+     locality411: 
+        locality: "Oud-Heverlee"
+     locality412: 
+        locality: "Sint-Joris-Weert"
+     locality413: 
+        locality: "Blanden"
+     locality414: 
+        locality: "Haasrode"
+     locality415: 
+        locality: "Vaalbeek"
+     locality416: 
+        locality: "Bertem"
+     locality417: 
+        locality: "Korbeek-Dijle"
+     locality418: 
+        locality: "Leefdaal"
+     locality419: 
+        locality: "Kortenberg"
+     locality420: 
+        locality: "Erps-Kwerps"
+     locality421: 
+        locality: "Everberg"
+     locality422: 
+        locality: "Meerbeek"
+     locality423: 
+        locality: "Duisburg"
+     locality424: 
+        locality: "Tervuren"
+     locality425: 
+        locality: "Vossem"
+     locality426: 
+        locality: "Overijse"
+     locality427: 
+        locality: "Rotselaar"
+     locality428: 
+        locality: "Wezemaal"
+     locality429: 
+        locality: "Werchter"
+     locality430: 
+        locality: "Tremelo"
+     locality431: 
+        locality: "Baal"
+     locality432: 
+        locality: "Begijnendijk"
+     locality433: 
+        locality: "Betekom"
+     locality434: 
+        locality: "Keerbergen"
+     locality435: 
+        locality: "Haacht"
+     locality436: 
+        locality: "Tildonk"
+     locality437: 
+        locality: "Wespelaar"
+     locality438: 
+        locality: "Boortmeerbeek"
+     locality439: 
+        locality: "Hever"
+     locality440: 
+        locality: "Aarschot"
+     locality441: 
+        locality: "Gelrode"
+     locality442: 
+        locality: "Langdorp"
+     locality443: 
+        locality: "Rillaar"
+     locality444: 
+        locality: "Linden"
+     locality445: 
+        locality: "Lubbeek"
+     locality446: 
+        locality: "Binkom"
+     locality447: 
+        locality: "Pellenberg"
+     locality448: 
+        locality: "Holsbeek"
+     locality449: 
+        locality: "Kortrijk-Dutsel"
+     locality450: 
+        locality: "Sint-Pieters-Rode"
+     locality451: 
+        locality: "Nieuwrode"
+     locality452: 
+        locality: "Scherpenheuvel"
+     locality453: 
+        locality: "Scherpenheuvel-Zichem"
+     locality454: 
+        locality: "Averbode"
+     locality455: 
+        locality: "Zichem"
+     locality456: 
+        locality: "Messelbroek"
+     locality457: 
+        locality: "Testelt"
+     locality458: 
+        locality: "Diest"
+     locality459: 
+        locality: "Schaffen"
+     locality460: 
+        locality: "Webbekom"
+     locality461: 
+        locality: "Kaggevinne"
+     locality462: 
+        locality: "Molenstede"
+     locality463: 
+        locality: "Bost"
+     locality464: 
+        locality: "Goetsenhoven"
+     locality465: 
+        locality: "Hakendover"
+     locality466: 
+        locality: "Kumtich"
+     locality467: 
+        locality: "Oorbeek"
+     locality468: 
+        locality: "Oplinter"
+     locality469: 
+        locality: "Sint-Margriete-Houtem"
+     locality470: 
+        locality: "Tienen"
+     locality471: 
+        locality: "Vissenaken"
+     locality472: 
+        locality: "Hoegaarden"
+     locality473: 
+        locality: "Meldert"
+     locality474: 
+        locality: "Outgaarden"
+     locality475: 
+        locality: "Drieslinter"
+     locality476: 
+        locality: "Linter"
+     locality477: 
+        locality: "Melkwezer"
+     locality478: 
+        locality: "Neerhespen"
+     locality479: 
+        locality: "Neerlinter"
+     locality480: 
+        locality: "Orsmaal-Gussenhoven"
+     locality481: 
+        locality: "Overhespen"
+     locality482: 
+        locality: "Wommersom"
+     locality483: 
+        locality: "Bierbeek"
+     locality484: 
+        locality: "Korbeek-Lo"
+     locality485: 
+        locality: "Lovenjoel"
+     locality486: 
+        locality: "Opvelp"
+     locality487: 
+        locality: "Boutersem"
+     locality488: 
+        locality: "Kerkom"
+     locality489: 
+        locality: "Neervelp"
+     locality490: 
+        locality: "Roosbeek"
+     locality491: 
+        locality: "Vertrijk"
+     locality492: 
+        locality: "Willebringen"
+     locality493: 
+        locality: "Bunsbeek"
+     locality494: 
+        locality: "Glabbeek"
+     locality495: 
+        locality: "Attenrode"
+     locality496: 
+        locality: "Houwaart"
+     locality497: 
+        locality: "Sint-Joris-Winge"
+     locality498: 
+        locality: "Tielt"
+     locality499: 
+        locality: "Tielt-Winge"
+     locality500: 
+        locality: "Meensel-Kiezegem"
+     locality501: 
+        locality: "Eliksem"
+     locality502: 
+        locality: "Ezemaal"
+     locality503: 
+        locality: "Laar"
+     locality504: 
+        locality: "Landen"
+     locality505: 
+        locality: "Neerwinden"
+     locality506: 
+        locality: "Overwinden"
+     locality507: 
+        locality: "Rumsdorp"
+     locality508: 
+        locality: "Wange"
+     locality509: 
+        locality: "Waasmont"
+     locality510: 
+        locality: "Walsbets"
+     locality511: 
+        locality: "Walshoutem"
+     locality512: 
+        locality: "Wezeren"
+     locality513: 
+        locality: "Attenhoven"
+     locality514: 
+        locality: "Neerlanden"
+     locality515: 
+        locality: "Budingen"
+     locality516: 
+        locality: "Dormaal"
+     locality517: 
+        locality: "Halle-Booienhoven"
+     locality518: 
+        locality: "Helen-Bos"
+     locality519: 
+        locality: "Zoutleeuw"
+     locality520: 
+        locality: "Geetbets"
+     locality521: 
+        locality: "Grazen"
+     locality522: 
+        locality: "Rummen"
+     locality523: 
+        locality: "Assent"
+     locality524: 
+        locality: "Bekkevoort"
+     locality525: 
+        locality: "Molenbeek-Wersbeek"
+     locality526: 
+        locality: "Kortenaken"
+     locality527: 
+        locality: "Ransberg"
+     locality528: 
+        locality: "Hoeleden"
+     locality529: 
+        locality: "Kersbeek-Miskom"
+     locality530: 
+        locality: "Waanrode"
+     locality531: 
+        locality: "Hasselt"
+     locality532: 
+        locality: "Sint-Lambrechts-Herk"
+     locality533: 
+        locality: "Wimmertingen"
+     locality534: 
+        locality: "Kermt"
+     locality535: 
+        locality: "Spalbeek"
+     locality536: 
+        locality: "Kuringen"
+     locality537: 
+        locality: "Stokrooie"
+     locality538: 
+        locality: "Stevoort"
+     locality539: 
+        locality: "Zonhoven"
+     locality540: 
+        locality: "Helchteren"
+     locality541: 
+        locality: "Houthalen"
+     locality542: 
+        locality: "Houthalen-Helchteren"
+     locality543: 
+        locality: "Berbroek"
+     locality544: 
+        locality: "Donk"
+     locality545: 
+        locality: "Herk-De-Stad"
+     locality546: 
+        locality: "Schulen"
+     locality547: 
+        locality: "Halen"
+     locality548: 
+        locality: "Loksbergen"
+     locality549: 
+        locality: "Zelem"
+     locality550: 
+        locality: "Heusden"
+     locality551: 
+        locality: "Heusden-Zolder"
+     locality552: 
+        locality: "Zolder"
+     locality553: 
+        locality: "Linkhout"
+     locality554: 
+        locality: "Lummen"
+     locality555: 
+        locality: "Alken"
+     locality556: 
+        locality: "Beringen"
+     locality557: 
+        locality: "Beverlo"
+     locality558: 
+        locality: "Koersel"
+     locality559: 
+        locality: "Paal"
+     locality560: 
+        locality: "Diepenbeek"
+     locality561: 
+        locality: "Genk"
+     locality562: 
+        locality: "Gellik"
+     locality563: 
+        locality: "Lanaken"
+     locality564: 
+        locality: "Neerharen"
+     locality565: 
+        locality: "Veldwezelt"
+     locality566: 
+        locality: "Rekem"
+     locality567: 
+        locality: "Eisden"
+     locality568: 
+        locality: "Leut"
+     locality569: 
+        locality: "Maasmechelen"
+     locality570: 
+        locality: "Mechelen-Aan-De-Maas"
+     locality571: 
+        locality: "Meeswijk"
+     locality572: 
+        locality: "Opgrimbie"
+     locality573: 
+        locality: "Vucht"
+     locality574: 
+        locality: "Boorsem"
+     locality575: 
+        locality: "Uikhoven"
+     locality576: 
+        locality: "Kessenich"
+     locality577: 
+        locality: "Kinrooi"
+     locality578: 
+        locality: "Molenbeersel"
+     locality579: 
+        locality: "Ophoven"
+     locality580: 
+        locality: "Dilsen"
+     locality581: 
+        locality: "Dilsen-Stokkem"
+     locality582: 
+        locality: "Elen"
+     locality583: 
+        locality: "Lanklaar"
+     locality584: 
+        locality: "Rotem"
+     locality585: 
+        locality: "Stokkem"
+     locality586: 
+        locality: "Opglabbeek"
+     locality587: 
+        locality: "As"
+     locality588: 
+        locality: "Niel-Bij-As"
+     locality589: 
+        locality: "Ellikom"
+     locality590: 
+        locality: "Gruitrode"
+     locality591: 
+        locality: "Meeuwen"
+     locality592: 
+        locality: "Meeuwen-Gruitrode"
+     locality593: 
+        locality: "Neerglabbeek"
+     locality594: 
+        locality: "Wijshagen"
+     locality595: 
+        locality: "Maaseik"
+     locality596: 
+        locality: "Neeroeteren"
+     locality597: 
+        locality: "Opoeteren"
+     locality598: 
+        locality: "Zutendaal"
+     locality599: 
+        locality: "'s Herenelderen"
+     locality600: 
+        locality: "Diets-Heur"
+     locality601: 
+        locality: "Henis"
+     locality602: 
+        locality: "Kolmont"
+     locality603: 
+        locality: "Koninksem"
+     locality604: 
+        locality: "Lauw"
+     locality605: 
+        locality: "Mal"
+     locality606: 
+        locality: "Neerrepen"
+     locality607: 
+        locality: "Nerem"
+     locality608: 
+        locality: "Overrepen"
+     locality609: 
+        locality: "Piringen"
+     locality610: 
+        locality: "Riksingen"
+     locality611: 
+        locality: "Rutten"
+     locality612: 
+        locality: "Sluizen"
+     locality613: 
+        locality: "Tongeren"
+     locality614: 
+        locality: "Vreren"
+     locality615: 
+        locality: "Widooie"
+     locality616: 
+        locality: "Herstappe"
+     locality617: 
+        locality: "Kortessem"
+     locality618: 
+        locality: "Vliermaalroot"
+     locality619: 
+        locality: "Wintershoven"
+     locality620: 
+        locality: "Guigoven"
+     locality621: 
+        locality: "Vliermaal"
+     locality622: 
+        locality: "Hoeselt"
+     locality623: 
+        locality: "Romershoven"
+     locality624: 
+        locality: "Sint-Huibrechts-Hern"
+     locality625: 
+        locality: "Werm"
+     locality626: 
+        locality: "Schalkhoven"
+     locality627: 
+        locality: "Beverst"
+     locality628: 
+        locality: "Bilzen"
+     locality629: 
+        locality: "Eigenbilzen"
+     locality630: 
+        locality: "Grote-Spouwen"
+     locality631: 
+        locality: "Hees"
+     locality632: 
+        locality: "Kleine-Spouwen"
+     locality633: 
+        locality: "Mopertingen"
+     locality634: 
+        locality: "Munsterbilzen"
+     locality635: 
+        locality: "Rijkhoven"
+     locality636: 
+        locality: "Rosmeer"
+     locality637: 
+        locality: "Waltwilder"
+     locality638: 
+        locality: "Martenslinde"
+     locality639: 
+        locality: "Hoelbeek"
+     locality640: 
+        locality: "Genoelselderen"
+     locality641: 
+        locality: "Herderen"
+     locality642: 
+        locality: "Kanne"
+     locality643: 
+        locality: "Membruggen"
+     locality644: 
+        locality: "Millen"
+     locality645: 
+        locality: "Riemst"
+     locality646: 
+        locality: "Val-Meer"
+     locality647: 
+        locality: "Vlijtingen"
+     locality648: 
+        locality: "Vroenhoven"
+     locality649: 
+        locality: "Zichen-Zussen-Bolder"
+     locality650: 
+        locality: "Fouron-Saint-Martin"
+     locality651: 
+        locality: "Fourons"
+     locality652: 
+        locality: "Mouland"
+     locality653: 
+        locality: "Remersdaal"
+     locality654: 
+        locality: "Fouron-Saint-Pierre"
+     locality655: 
+        locality: "Teuven"
+     locality656: 
+        locality: "Fouron-Le-Comte"
+     locality657: 
+        locality: "Aalst"
+     locality658: 
+        locality: "Brustem"
+     locality659: 
+        locality: "Engelmanshoven"
+     locality660: 
+        locality: "Gelinden"
+     locality661: 
+        locality: "Groot-Gelmen"
+     locality662: 
+        locality: "Halmaal"
+     locality663: 
+        locality: "Kerkom-Bij-Sint-Truiden"
+     locality664: 
+        locality: "Ordingen"
+     locality665: 
+        locality: "Sint-Truiden"
+     locality666: 
+        locality: "Zepperen"
+     locality667: 
+        locality: "Duras"
+     locality668: 
+        locality: "Gorsem"
+     locality669: 
+        locality: "Runkelen"
+     locality670: 
+        locality: "Wilderen"
+     locality671: 
+        locality: "Velm"
+     locality672: 
+        locality: "Berlingen"
+     locality673: 
+        locality: "Wellen"
+     locality674: 
+        locality: "Herten"
+     locality675: 
+        locality: "Ulbeek"
+     locality676: 
+        locality: "Bommershoven"
+     locality677: 
+        locality: "Borgloon"
+     locality678: 
+        locality: "Broekom"
+     locality679: 
+        locality: "Gors-Opleeuw"
+     locality680: 
+        locality: "Gotem"
+     locality681: 
+        locality: "Groot-Loon"
+     locality682: 
+        locality: "Hendrieken"
+     locality683: 
+        locality: "Hoepertingen"
+     locality684: 
+        locality: "Jesseren"
+     locality685: 
+        locality: "Kerniel"
+     locality686: 
+        locality: "Kuttekoven"
+     locality687: 
+        locality: "Rijkel"
+     locality688: 
+        locality: "Voort"
+     locality689: 
+        locality: "Binderveld"
+     locality690: 
+        locality: "Kozen"
+     locality691: 
+        locality: "Nieuwerkerken"
+     locality692: 
+        locality: "Wijer"
+     locality693: 
+        locality: "Batsheers"
+     locality694: 
+        locality: "Bovelingen"
+     locality695: 
+        locality: "Heers"
+     locality696: 
+        locality: "Heks"
+     locality697: 
+        locality: "Horpmaal"
+     locality698: 
+        locality: "Klein-Gelmen"
+     locality699: 
+        locality: "Mechelen-Bovelingen"
+     locality700: 
+        locality: "Mettekoven"
+     locality701: 
+        locality: "Opheers"
+     locality702: 
+        locality: "Rukkelingen-Loon"
+     locality703: 
+        locality: "Vechmaal"
+     locality704: 
+        locality: "Veulen"
+     locality705: 
+        locality: "Boekhout"
+     locality706: 
+        locality: "Gingelom"
+     locality707: 
+        locality: "Jeuk"
+     locality708: 
+        locality: "Kortijs"
+     locality709: 
+        locality: "Montenaken"
+     locality710: 
+        locality: "Niel-Bij-Sint-Truiden"
+     locality711: 
+        locality: "Vorsen"
+     locality712: 
+        locality: "Borlo"
+     locality713: 
+        locality: "Buvingen"
+     locality714: 
+        locality: "Mielen-Boven-Aalst"
+     locality715: 
+        locality: "Overpelt"
+     locality716: 
+        locality: "Neerpelt"
+     locality717: 
+        locality: "Sint-Huibrechts-Lille"
+     locality718: 
+        locality: "Lommel"
+     locality719: 
+        locality: "Achel"
+     locality720: 
+        locality: "Hamont"
+     locality721: 
+        locality: "Hamont-Achel"
+     locality722: 
+        locality: "Hechtel"
+     locality723: 
+        locality: "Hechtel-Eksel"
+     locality724: 
+        locality: "Eksel"
+     locality725: 
+        locality: "Ham"
+     locality726: 
+        locality: "Kwaadmechelen"
+     locality727: 
+        locality: "Oostham"
+     locality728: 
+        locality: "Bocholt"
+     locality729: 
+        locality: "Kaulille"
+     locality730: 
+        locality: "Reppel"
+     locality731: 
+        locality: "Beek"
+     locality732: 
+        locality: "Bree"
+     locality733: 
+        locality: "Gerdingen"
+     locality734: 
+        locality: "Opitter"
+     locality735: 
+        locality: "Leopoldsburg"
+     locality736: 
+        locality: "Heppen"
+     locality737: 
+        locality: "Tessenderlo"
+     locality738: 
+        locality: "Grote-Brogel"
+     locality739: 
+        locality: "Kleine-Brogel"
+     locality740: 
+        locality: "Peer"
+     locality741: 
+        locality: "Wijchmaal"
+     locality742: 
+        locality: "Glain"
+     locality743: 
+        locality: "Liège"
+     locality744: 
+        locality: "Rocourt"
+     locality745: 
+        locality: "Bressoux"
+     locality746: 
+        locality: "Jupille-Sur-Meuse"
+     locality747: 
+        locality: "Wandre"
+     locality748: 
+        locality: "Grivegnee"
+     locality749: 
+        locality: "Angleur"
+     locality750: 
+        locality: "Chênee"
+     locality751: 
+        locality: "Herstal"
+     locality752: 
+        locality: "Milmort"
+     locality753: 
+        locality: "Vottem"
+     locality754: 
+        locality: "Liers"
+     locality755: 
+        locality: "Chaudfontaine"
+     locality756: 
+        locality: "Vaux-Sous-Chèvremont"
+     locality757: 
+        locality: "Beaufays"
+     locality758: 
+        locality: "Embourg"
+     locality759: 
+        locality: "Boncelles"
+     locality760: 
+        locality: "Seraing"
+     locality761: 
+        locality: "Jemeppe-Sur-Meuse"
+     locality762: 
+        locality: "Ougrée"
+     locality763: 
+        locality: "Ehein"
+     locality764: 
+        locality: "Neupré"
+     locality765: 
+        locality: "Rotheux-Rimière"
+     locality766: 
+        locality: "Neuville-En-Condroz"
+     locality767: 
+        locality: "Plainevaux"
+     locality768: 
+        locality: "Esneux"
+     locality769: 
+        locality: "Tilff"
+     locality770: 
+        locality: "Dolembreux"
+     locality771: 
+        locality: "Gomzé-Andoumont"
+     locality772: 
+        locality: "Rouvreux"
+     locality773: 
+        locality: "Sprimont"
+     locality774: 
+        locality: "Louveigné"
+     locality775: 
+        locality: "Anthisnes"
+     locality776: 
+        locality: "Villers-Aux-Tours"
+     locality777: 
+        locality: "Hody"
+     locality778: 
+        locality: "Tavier"
+     locality779: 
+        locality: "Comblain-Au-Pont"
+     locality780: 
+        locality: "Poulseur"
+     locality781: 
+        locality: "Comblain-Fairon"
+     locality782: 
+        locality: "Comblain-La-Tour"
+     locality783: 
+        locality: "Hamoir"
+     locality784: 
+        locality: "Filot"
+     locality785: 
+        locality: "Ferrières"
+     locality786: 
+        locality: "My"
+     locality787: 
+        locality: "Vieuxville"
+     locality788: 
+        locality: "Werbomont"
+     locality789: 
+        locality: "Xhoris"
+     locality790: 
+        locality: "Burdinne"
+     locality791: 
+        locality: "Hannêche"
+     locality792: 
+        locality: "Lamontzée"
+     locality793: 
+        locality: "Marneffe"
+     locality794: 
+        locality: "Oteppe"
+     locality795: 
+        locality: "Héron"
+     locality796: 
+        locality: "Lavoir"
+     locality797: 
+        locality: "Waret-L'evêque"
+     locality798: 
+        locality: "Couthuin"
+     locality799: 
+        locality: "Acosse"
+     locality800: 
+        locality: "Ambresin"
+     locality801: 
+        locality: "Meeffe"
+     locality802: 
+        locality: "Wasseiges"
+     locality803: 
+        locality: "Boëlhe"
+     locality804: 
+        locality: "Geer"
+     locality805: 
+        locality: "Hollogne-Sur-Geer"
+     locality806: 
+        locality: "Lens-Saint-Servais"
+     locality807: 
+        locality: "Omal"
+     locality808: 
+        locality: "Darion"
+     locality809: 
+        locality: "Ligney"
+     locality810: 
+        locality: "Berloz"
+     locality811: 
+        locality: "Corswarem"
+     locality812: 
+        locality: "Avennes"
+     locality813: 
+        locality: "Braives"
+     locality814: 
+        locality: "Ciplet"
+     locality815: 
+        locality: "Fallais"
+     locality816: 
+        locality: "Fumal"
+     locality817: 
+        locality: "Ville-En-Hesbaye"
+     locality818: 
+        locality: "Latinne"
+     locality819: 
+        locality: "Tourinne"
+     locality820: 
+        locality: "Abolens"
+     locality821: 
+        locality: "Avernas-Le-Bauduin"
+     locality822: 
+        locality: "Avin"
+     locality823: 
+        locality: "Bertrée"
+     locality824: 
+        locality: "Blehen"
+     locality825: 
+        locality: "Cras-Avernas"
+     locality826: 
+        locality: "Crehen"
+     locality827: 
+        locality: "Grand-Hallet"
+     locality828: 
+        locality: "Hannut"
+     locality829: 
+        locality: "Lens-Saint-Remy"
+     locality830: 
+        locality: "Merdorp"
+     locality831: 
+        locality: "Moxhe"
+     locality832: 
+        locality: "Petit-Hallet"
+     locality833: 
+        locality: "Poucet"
+     locality834: 
+        locality: "Thisnes"
+     locality835: 
+        locality: "Trognée"
+     locality836: 
+        locality: "Villers-Le-Peuplier"
+     locality837: 
+        locality: "Wansin"
+     locality838: 
+        locality: "Lincent"
+     locality839: 
+        locality: "Pellaines"
+     locality840: 
+        locality: "Racour"
+     locality841: 
+        locality: "Bettincourt"
+     locality842: 
+        locality: "Bleret"
+     locality843: 
+        locality: "Bovenistier"
+     locality844: 
+        locality: "Grand-Axhe"
+     locality845: 
+        locality: "Lantremange"
+     locality846: 
+        locality: "Oleye"
+     locality847: 
+        locality: "Waremme"
+     locality848: 
+        locality: "Aineffe"
+     locality849: 
+        locality: "Borlez"
+     locality850: 
+        locality: "Celles"
+     locality851: 
+        locality: "Faimes"
+     locality852: 
+        locality: "Les Waleffes"
+     locality853: 
+        locality: "Viemme"
+     locality854: 
+        locality: "Awans"
+     locality855: 
+        locality: "Fooz"
+     locality856: 
+        locality: "Othée"
+     locality857: 
+        locality: "Villers-L'evêque"
+     locality858: 
+        locality: "Hognoul"
+     locality859: 
+        locality: "Fexhe-Le-Haut-Clocher"
+     locality860: 
+        locality: "Freloux"
+     locality861: 
+        locality: "Noville"
+     locality862: 
+        locality: "Roloux"
+     locality863: 
+        locality: "Voroux-Goreux"
+     locality864: 
+        locality: "Lamine"
+     locality865: 
+        locality: "Momalle"
+     locality866: 
+        locality: "Pousset"
+     locality867: 
+        locality: "Remicourt"
+     locality868: 
+        locality: "Hodeige"
+     locality869: 
+        locality: "Donceel"
+     locality870: 
+        locality: "Haneffe"
+     locality871: 
+        locality: "Jeneffe"
+     locality872: 
+        locality: "Limont"
+     locality873: 
+        locality: "Bergilers"
+     locality874: 
+        locality: "Grandville"
+     locality875: 
+        locality: "Lens-Sur-Geer"
+     locality876: 
+        locality: "Oreye"
+     locality877: 
+        locality: "Otrange"
+     locality878: 
+        locality: "Crisnée"
+     locality879: 
+        locality: "Fize-Le-Marsal"
+     locality880: 
+        locality: "Kemexhe"
+     locality881: 
+        locality: "Odeur"
+     locality882: 
+        locality: "Thys"
+     locality883: 
+        locality: "Awirs"
+     locality884: 
+        locality: "Chokier"
+     locality885: 
+        locality: "Flémalle"
+     locality886: 
+        locality: "Flémalle-Grande"
+     locality887: 
+        locality: "Flémalle-Haute"
+     locality888: 
+        locality: "Ivoz-Ramet"
+     locality889: 
+        locality: "Mons-Lez-Liège"
+     locality890: 
+        locality: "Montegnée"
+     locality891: 
+        locality: "Saint-Nicolas"
+     locality892: 
+        locality: "Tilleur"
+     locality893: 
+        locality: "Ans"
+     locality894: 
+        locality: "Loncin"
+     locality895: 
+        locality: "Alleur"
+     locality896: 
+        locality: "Xhendremael"
+     locality897: 
+        locality: "Juprelle"
+     locality898: 
+        locality: "Lantin"
+     locality899: 
+        locality: "Slins"
+     locality900: 
+        locality: "Voroux-Lez-Liers"
+     locality901: 
+        locality: "Paifve"
+     locality902: 
+        locality: "Wihogne"
+     locality903: 
+        locality: "Villers-Saint-Siméon"
+     locality904: 
+        locality: "Fexhe-Slins"
+     locality905: 
+        locality: "Bierset"
+     locality906: 
+        locality: "Grâce-Berleur"
+     locality907: 
+        locality: "Grâce-Hollogne"
+     locality908: 
+        locality: "Hollogne-Aux-Pierres"
+     locality909: 
+        locality: "Horion-Hozémont"
+     locality910: 
+        locality: "Velroux"
+     locality911: 
+        locality: "Saint-Georges-Sur-Meuse"
+     locality912: 
+        locality: "Clermont-Sous-Huy"
+     locality913: 
+        locality: "Engis"
+     locality914: 
+        locality: "Hermalle-Sous-Huy"
+     locality915: 
+        locality: "Ben-Ahin"
+     locality916: 
+        locality: "Huy"
+     locality917: 
+        locality: "Tihange"
+     locality918: 
+        locality: "Antheit"
+     locality919: 
+        locality: "Bas-Oha"
+     locality920: 
+        locality: "Huccorgne"
+     locality921: 
+        locality: "Moha"
+     locality922: 
+        locality: "Vinalmont"
+     locality923: 
+        locality: "Wanze"
+     locality924: 
+        locality: "Fize-Fontaine"
+     locality925: 
+        locality: "Vaux-Et-Borset"
+     locality926: 
+        locality: "Vieux-Waleffe"
+     locality927: 
+        locality: "Villers-Le-Bouillet"
+     locality928: 
+        locality: "Warnant-Dreye"
+     locality929: 
+        locality: "Bodegnée"
+     locality930: 
+        locality: "Chapon-Seraing"
+     locality931: 
+        locality: "Seraing-Le-Château"
+     locality932: 
+        locality: "Verlaine"
+     locality933: 
+        locality: "Amay"
+     locality934: 
+        locality: "Ampsin"
+     locality935: 
+        locality: "Flône"
+     locality936: 
+        locality: "Jehay"
+     locality937: 
+        locality: "Ombret"
+     locality938: 
+        locality: "Nandrin"
+     locality939: 
+        locality: "Saint-Séverin"
+     locality940: 
+        locality: "Villers-Le-Temple"
+     locality941: 
+        locality: "Yernée-Fraineux"
+     locality942: 
+        locality: "Abée"
+     locality943: 
+        locality: "Fraiture"
+     locality944: 
+        locality: "Ramelot"
+     locality945: 
+        locality: "Seny"
+     locality946: 
+        locality: "Soheit-Tinlot"
+     locality947: 
+        locality: "Tinlot"
+     locality948: 
+        locality: "Bois-Et-Borsu"
+     locality949: 
+        locality: "Clavier"
+     locality950: 
+        locality: "Les Avins"
+     locality951: 
+        locality: "Ocquier"
+     locality952: 
+        locality: "Pailhe"
+     locality953: 
+        locality: "Terwagne"
+     locality954: 
+        locality: "Marchin"
+     locality955: 
+        locality: "Vyle-Et-Tharoul"
+     locality956: 
+        locality: "Modave"
+     locality957: 
+        locality: "Outrelouxhe"
+     locality958: 
+        locality: "Strée-Lez-Huy"
+     locality959: 
+        locality: "Vierset-Barse"
+     locality960: 
+        locality: "Ellemelle"
+     locality961: 
+        locality: "Ouffet"
+     locality962: 
+        locality: "Warzée"
+     locality963: 
+        locality: "Lanaye"
+     locality964: 
+        locality: "Lixhe"
+     locality965: 
+        locality: "Richelle"
+     locality966: 
+        locality: "Visé"
+     locality967: 
+        locality: "Argenteau"
+     locality968: 
+        locality: "Cheratte"
+     locality969: 
+        locality: "Saint-André"
+     locality970: 
+        locality: "Berneau"
+     locality971: 
+        locality: "Bombaye"
+     locality972: 
+        locality: "Dalhem"
+     locality973: 
+        locality: "Feneur"
+     locality974: 
+        locality: "Mortroux"
+     locality975: 
+        locality: "Neufchâteau"
+     locality976: 
+        locality: "Warsage"
+     locality977: 
+        locality: "Bellaire"
+     locality978: 
+        locality: "Beyne-Heusay"
+     locality979: 
+        locality: "Queue-Du-Bois"
+     locality980: 
+        locality: "Fléron"
+     locality981: 
+        locality: "Retinne"
+     locality982: 
+        locality: "Magnée"
+     locality983: 
+        locality: "Romsée"
+     locality984: 
+        locality: "Ayeneux"
+     locality985: 
+        locality: "Micheroux"
+     locality986: 
+        locality: "Soumagne"
+     locality987: 
+        locality: "Tignée"
+     locality988: 
+        locality: "Evegnée"
+     locality989: 
+        locality: "Cérexhe-Heuseux"
+     locality990: 
+        locality: "Melen"
+     locality991: 
+        locality: "Chaineux"
+     locality992: 
+        locality: "Grand-Rechain"
+     locality993: 
+        locality: "Herve"
+     locality994: 
+        locality: "Julémont"
+     locality995: 
+        locality: "Battice"
+     locality996: 
+        locality: "Xhendelesse"
+     locality997: 
+        locality: "Bolland"
+     locality998: 
+        locality: "Charneux"
+     locality999: 
+        locality: "Blégny"
+     locality1000: 
+        locality: "Mortier"
+     locality1001: 
+        locality: "Trembleur"
+     locality1002: 
+        locality: "Barchon"
+     locality1003: 
+        locality: "Housse"
+     locality1004: 
+        locality: "Saive"
+     locality1005: 
+        locality: "Saint-Remy"
+     locality1006: 
+        locality: "Hermée"
+     locality1007: 
+        locality: "Oupeye"
+     locality1008: 
+        locality: "Hermalle-Sous-Argenteau"
+     locality1009: 
+        locality: "Heure-Le-Romain"
+     locality1010: 
+        locality: "Houtain-Saint-Siméon"
+     locality1011: 
+        locality: "Vivegnis"
+     locality1012: 
+        locality: "Haccourt"
+     locality1013: 
+        locality: "Bassenge"
+     locality1014: 
+        locality: "Boirs"
+     locality1015: 
+        locality: "Eben-Emael"
+     locality1016: 
+        locality: "Glons"
+     locality1017: 
+        locality: "Roclenge-Sur-Geer"
+     locality1018: 
+        locality: "Wonck"
+     locality1019: 
+        locality: "Eupen"
+     locality1020: 
+        locality: "Kettenis"
+     locality1021: 
+        locality: "Lontzen"
+     locality1022: 
+        locality: "Walhorn"
+     locality1023: 
+        locality: "La Calamine"
+     locality1024: 
+        locality: "Neu-Moresnet"
+     locality1025: 
+        locality: "Hergenrath"
+     locality1026: 
+        locality: "Hauset"
+     locality1027: 
+        locality: "Raeren"
+     locality1028: 
+        locality: "Eynatten"
+     locality1029: 
+        locality: "Butgenbach"
+     locality1030: 
+        locality: "Elsenborn"
+     locality1031: 
+        locality: "Bullange"
+     locality1032: 
+        locality: "Manderfeld"
+     locality1033: 
+        locality: "Rocherath"
+     locality1034: 
+        locality: "Amblève"
+     locality1035: 
+        locality: "Meyerode"
+     locality1036: 
+        locality: "Heppenbach"
+     locality1037: 
+        locality: "Recht"
+     locality1038: 
+        locality: "Saint-Vith"
+     locality1039: 
+        locality: "Schoenberg"
+     locality1040: 
+        locality: "Lommersweiler"
+     locality1041: 
+        locality: "Crombach"
+     locality1042: 
+        locality: "Burg-Reuland"
+     locality1043: 
+        locality: "Reuland"
+     locality1044: 
+        locality: "Thommen"
+     locality1045: 
+        locality: "Ensival"
+     locality1046: 
+        locality: "Lambermont"
+     locality1047: 
+        locality: "Petit-Rechain"
+     locality1048: 
+        locality: "Polleur"
+     locality1049: 
+        locality: "Verviers"
+     locality1050: 
+        locality: "Stembert"
+     locality1051: 
+        locality: "Heusy"
+     locality1052: 
+        locality: "Dison"
+     locality1053: 
+        locality: "Andrimont"
+     locality1054: 
+        locality: "Limbourg"
+     locality1055: 
+        locality: "Bilstain"
+     locality1056: 
+        locality: "Goé"
+     locality1057: 
+        locality: "Baelen"
+     locality1058: 
+        locality: "Membach"
+     locality1059: 
+        locality: "Welkenraedt"
+     locality1060: 
+        locality: "Henri-Chapelle"
+     locality1061: 
+        locality: "Jalhay"
+     locality1062: 
+        locality: "Sart-Lez-Spa"
+     locality1063: 
+        locality: "Montzen"
+     locality1064: 
+        locality: "Moresnet"
+     locality1065: 
+        locality: "Plombières"
+     locality1066: 
+        locality: "Gemmenich"
+     locality1067: 
+        locality: "Sippenaeken"
+     locality1068: 
+        locality: "Hombourg"
+     locality1069: 
+        locality: "Cornesse"
+     locality1070: 
+        locality: "Pepinster"
+     locality1071: 
+        locality: "Wegnez"
+     locality1072: 
+        locality: "Soiron"
+     locality1073: 
+        locality: "Forêt"
+     locality1074: 
+        locality: "Fraipont"
+     locality1075: 
+        locality: "Nessonvaux"
+     locality1076: 
+        locality: "Trooz"
+     locality1077: 
+        locality: "Olne"
+     locality1078: 
+        locality: "Aubel"
+     locality1079: 
+        locality: "Clermont"
+     locality1080: 
+        locality: "Thimister"
+     locality1081: 
+        locality: "Thimister-Clermont"
+     locality1082: 
+        locality: "Spa"
+     locality1083: 
+        locality: "La Reid"
+     locality1084: 
+        locality: "Theux"
+     locality1085: 
+        locality: "Aywaille"
+     locality1086: 
+        locality: "Ernonheid"
+     locality1087: 
+        locality: "Harzé"
+     locality1088: 
+        locality: "Faymonville"
+     locality1089: 
+        locality: "Robertville"
+     locality1090: 
+        locality: "Sourbrodt"
+     locality1091: 
+        locality: "Waimes"
+     locality1092: 
+        locality: "Bevercé"
+     locality1093: 
+        locality: "Malmedy"
+     locality1094: 
+        locality: "Francorchamps"
+     locality1095: 
+        locality: "Stavelot"
+     locality1096: 
+        locality: "Fosse"
+     locality1097: 
+        locality: "Trois-Ponts"
+     locality1098: 
+        locality: "Wanne"
+     locality1099: 
+        locality: "Basse-Bodeux"
+     locality1100: 
+        locality: "Chevron"
+     locality1101: 
+        locality: "La Gleize"
+     locality1102: 
+        locality: "Lorcé"
+     locality1103: 
+        locality: "Rahier"
+     locality1104: 
+        locality: "Stoumont"
+     locality1105: 
+        locality: "Arbrefontaine"
+     locality1106: 
+        locality: "Bra"
+     locality1107: 
+        locality: "Lierneux"
+     locality1108: 
+        locality: "Beez"
+     locality1109: 
+        locality: "Namur"
+     locality1110: 
+        locality: "Belgrade"
+     locality1111: 
+        locality: "Saint-Servais"
+     locality1112: 
+        locality: "Saint-Marc"
+     locality1113: 
+        locality: "Bouge"
+     locality1114: 
+        locality: "Champion"
+     locality1115: 
+        locality: "Daussoulx"
+     locality1116: 
+        locality: "Flawinne"
+     locality1117: 
+        locality: "Malonne"
+     locality1118: 
+        locality: "Suarlée"
+     locality1119: 
+        locality: "Temploux"
+     locality1120: 
+        locality: "Vedrin"
+     locality1121: 
+        locality: "Boninne"
+     locality1122: 
+        locality: "Cognelée"
+     locality1123: 
+        locality: "Gelbressée"
+     locality1124: 
+        locality: "Marche-Les-Dames"
+     locality1125: 
+        locality: "Beuzet"
+     locality1126: 
+        locality: "Ernage"
+     locality1127: 
+        locality: "Gembloux"
+     locality1128: 
+        locality: "Grand-Manil"
+     locality1129: 
+        locality: "Lonzée"
+     locality1130: 
+        locality: "Sauvenière"
+     locality1131: 
+        locality: "Grand-Leez"
+     locality1132: 
+        locality: "Bossière"
+     locality1133: 
+        locality: "Bothey"
+     locality1134: 
+        locality: "Corroy-Le-Château"
+     locality1135: 
+        locality: "Isnes"
+     locality1136: 
+        locality: "Mazy"
+     locality1137: 
+        locality: "Arsimont"
+     locality1138: 
+        locality: "Auvelais"
+     locality1139: 
+        locality: "Falisolle"
+     locality1140: 
+        locality: "Keumiée"
+     locality1141: 
+        locality: "Moignelée"
+     locality1142: 
+        locality: "Sambreville"
+     locality1143: 
+        locality: "Tamines"
+     locality1144: 
+        locality: "Velaine-Sur-Sambre"
+     locality1145: 
+        locality: "Aisemont"
+     locality1146: 
+        locality: "Fosses-La-Ville"
+     locality1147: 
+        locality: "Le Roux"
+     locality1148: 
+        locality: "Sart-Eustache"
+     locality1149: 
+        locality: "Sart-Saint-Laurent"
+     locality1150: 
+        locality: "Vitrival"
+     locality1151: 
+        locality: "Emines"
+     locality1152: 
+        locality: "La Bruyère"
+     locality1153: 
+        locality: "Rhisnes"
+     locality1154: 
+        locality: "Villers-Lez-Heest"
+     locality1155: 
+        locality: "Warisoulx"
+     locality1156: 
+        locality: "Bovesse"
+     locality1157: 
+        locality: "Meux"
+     locality1158: 
+        locality: "Dave"
+     locality1159: 
+        locality: "Jambes"
+     locality1160: 
+        locality: "Naninne"
+     locality1161: 
+        locality: "Wépion"
+     locality1162: 
+        locality: "Wierde"
+     locality1163: 
+        locality: "Erpent"
+     locality1164: 
+        locality: "Lives-Sur-Meuse"
+     locality1165: 
+        locality: "Loyers"
+     locality1166: 
+        locality: "Boignée"
+     locality1167: 
+        locality: "Ligny"
+     locality1168: 
+        locality: "Sombreffe"
+     locality1169: 
+        locality: "Tongrinne"
+     locality1170: 
+        locality: "Floreffe"
+     locality1171: 
+        locality: "Floriffoux"
+     locality1172: 
+        locality: "Franière"
+     locality1173: 
+        locality: "Soye"
+     locality1174: 
+        locality: "Arbre"
+     locality1175: 
+        locality: "Bois-De-Villers"
+     locality1176: 
+        locality: "Lesve"
+     locality1177: 
+        locality: "Lustin"
+     locality1178: 
+        locality: "Profondeville"
+     locality1179: 
+        locality: "Rivière"
+     locality1180: 
+        locality: "Balâtre"
+     locality1181: 
+        locality: "Ham-Sur-Sambre"
+     locality1182: 
+        locality: "Jemeppe-Sur-Sambre"
+     locality1183: 
+        locality: "Mornimont"
+     locality1184: 
+        locality: "Moustier-Sur-Sambre"
+     locality1185: 
+        locality: "Onoz"
+     locality1186: 
+        locality: "Saint-Martin"
+     locality1187: 
+        locality: "Spy"
+     locality1188: 
+        locality: "Andenne"
+     locality1189: 
+        locality: "Bonneville"
+     locality1190: 
+        locality: "Coutisse"
+     locality1191: 
+        locality: "Landenne"
+     locality1192: 
+        locality: "Maizeret"
+     locality1193: 
+        locality: "Namêche"
+     locality1194: 
+        locality: "Sclayn"
+     locality1195: 
+        locality: "Seilles"
+     locality1196: 
+        locality: "Thon"
+     locality1197: 
+        locality: "Vezin"
+     locality1198: 
+        locality: "Aische-En-Refail"
+     locality1199: 
+        locality: "Bolinne"
+     locality1200: 
+        locality: "Boneffe"
+     locality1201: 
+        locality: "Branchon"
+     locality1202: 
+        locality: "Dhuy"
+     locality1203: 
+        locality: "Eghezée"
+     locality1204: 
+        locality: "Hanret"
+     locality1205: 
+        locality: "Leuze"
+     locality1206: 
+        locality: "Liernu"
+     locality1207: 
+        locality: "Longchamps"
+     locality1208: 
+        locality: "Mehaigne"
+     locality1209: 
+        locality: "Noville-Sur-Méhaigne"
+     locality1210: 
+        locality: "Saint-Germain"
+     locality1211: 
+        locality: "Taviers"
+     locality1212: 
+        locality: "Upigny"
+     locality1213: 
+        locality: "Waret-La-Chaussée"
+     locality1214: 
+        locality: "Assesse"
+     locality1215: 
+        locality: "Maillen"
+     locality1216: 
+        locality: "Sart-Bernard"
+     locality1217: 
+        locality: "Crupet"
+     locality1218: 
+        locality: "Sorinne-La-Longue"
+     locality1219: 
+        locality: "Florée"
+     locality1220: 
+        locality: "Courrière"
+     locality1221: 
+        locality: "Faulx-Les-Tombes"
+     locality1222: 
+        locality: "Gesves"
+     locality1223: 
+        locality: "Haltinne"
+     locality1224: 
+        locality: "Mozet"
+     locality1225: 
+        locality: "Sorée"
+     locality1226: 
+        locality: "Evelette"
+     locality1227: 
+        locality: "Ohey"
+     locality1228: 
+        locality: "Haillot"
+     locality1229: 
+        locality: "Goesnes"
+     locality1230: 
+        locality: "Jallet"
+     locality1231: 
+        locality: "Hamois"
+     locality1232: 
+        locality: "Natoye"
+     locality1233: 
+        locality: "Mohiville"
+     locality1234: 
+        locality: "Scy"
+     locality1235: 
+        locality: "Achet"
+     locality1236: 
+        locality: "Emptinne"
+     locality1237: 
+        locality: "Schaltin"
+     locality1238: 
+        locality: "Barvaux-Condroz"
+     locality1239: 
+        locality: "Flostoy"
+     locality1240: 
+        locality: "Havelange"
+     locality1241: 
+        locality: "Porcheresse"
+     locality1242: 
+        locality: "Verlée"
+     locality1243: 
+        locality: "Méan"
+     locality1244: 
+        locality: "Maffe"
+     locality1245: 
+        locality: "Miécret"
+     locality1246: 
+        locality: "Baillonville"
+     locality1247: 
+        locality: "Bonsin"
+     locality1248: 
+        locality: "Heure"
+     locality1249: 
+        locality: "Hogne"
+     locality1250: 
+        locality: "Nettinne"
+     locality1251: 
+        locality: "Noiseux"
+     locality1252: 
+        locality: "Sinsin"
+     locality1253: 
+        locality: "Somme-Leuze"
+     locality1254: 
+        locality: "Waillet"
+     locality1255: 
+        locality: "Bierwart"
+     locality1256: 
+        locality: "Cortil-Wodon"
+     locality1257: 
+        locality: "Fernelmont"
+     locality1258: 
+        locality: "Forville"
+     locality1259: 
+        locality: "Franc-Waret"
+     locality1260: 
+        locality: "Hemptinne"
+     locality1261: 
+        locality: "Hingeon"
+     locality1262: 
+        locality: "Marchovelette"
+     locality1263: 
+        locality: "Noville-Les-Bois"
+     locality1264: 
+        locality: "Pontillas"
+     locality1265: 
+        locality: "Tillier"
+     locality1266: 
+        locality: "Anseremme"
+     locality1267: 
+        locality: "Bouvignes-Sur-Meuse"
+     locality1268: 
+        locality: "Dinant"
+     locality1269: 
+        locality: "Dréhance"
+     locality1270: 
+        locality: "Falmagne"
+     locality1271: 
+        locality: "Falmignoul"
+     locality1272: 
+        locality: "Furfooz"
+     locality1273: 
+        locality: "Lisogne"
+     locality1274: 
+        locality: "Thynes"
+     locality1275: 
+        locality: "Sorinnes"
+     locality1276: 
+        locality: "Foy-Notre-Dame"
+     locality1277: 
+        locality: "Anthée"
+     locality1278: 
+        locality: "Onhaye"
+     locality1279: 
+        locality: "Serville"
+     locality1280: 
+        locality: "Falaen"
+     locality1281: 
+        locality: "Sommière"
+     locality1282: 
+        locality: "Weillen"
+     locality1283: 
+        locality: "Gerin"
+     locality1284: 
+        locality: "Dorinne"
+     locality1285: 
+        locality: "Durnal"
+     locality1286: 
+        locality: "Evrehailles"
+     locality1287: 
+        locality: "Godinne"
+     locality1288: 
+        locality: "Houx"
+     locality1289: 
+        locality: "Mont"
+     locality1290: 
+        locality: "Purnode"
+     locality1291: 
+        locality: "Spontin"
+     locality1292: 
+        locality: "Yvoir"
+     locality1293: 
+        locality: "Anhée"
+     locality1294: 
+        locality: "Annevoie-Rouillon"
+     locality1295: 
+        locality: "Bioul"
+     locality1296: 
+        locality: "Denée"
+     locality1297: 
+        locality: "Haut-Le-Wastia"
+     locality1298: 
+        locality: "Sosoye"
+     locality1299: 
+        locality: "Warnant"
+     locality1300: 
+        locality: "Hastière"
+     locality1301: 
+        locality: "Hastière-Lavaux"
+     locality1302: 
+        locality: "Hermeton-Sur-Meuse"
+     locality1303: 
+        locality: "Waulsort"
+     locality1304: 
+        locality: "Hastière-Par-Delà"
+     locality1305: 
+        locality: "Blaimont"
+     locality1306: 
+        locality: "Heer"
+     locality1307: 
+        locality: "Agimont"
+     locality1308: 
+        locality: "Alle"
+     locality1309: 
+        locality: "Bagimont"
+     locality1310: 
+        locality: "Bohan"
+     locality1311: 
+        locality: "Chairière"
+     locality1312: 
+        locality: "Laforet"
+     locality1313: 
+        locality: "Membre"
+     locality1314: 
+        locality: "Mouzaive"
+     locality1315: 
+        locality: "Nafraiture"
+     locality1316: 
+        locality: "Orchimont"
+     locality1317: 
+        locality: "Pussemange"
+     locality1318: 
+        locality: "Sugny"
+     locality1319: 
+        locality: "Vresse-Sur-Semois"
+     locality1320: 
+        locality: "Baillamont"
+     locality1321: 
+        locality: "Bellefontaine"
+     locality1322: 
+        locality: "Bièvre"
+     locality1323: 
+        locality: "Cornimont"
+     locality1324: 
+        locality: "Graide"
+     locality1325: 
+        locality: "Gros-Fays"
+     locality1326: 
+        locality: "Monceau-En-Ardenne"
+     locality1327: 
+        locality: "Naomé"
+     locality1328: 
+        locality: "Oizy"
+     locality1329: 
+        locality: "Petit-Fays"
+     locality1330: 
+        locality: "Ciergnon"
+     locality1331: 
+        locality: "Finnevaux"
+     locality1332: 
+        locality: "Houyet"
+     locality1333: 
+        locality: "Hulsonniaux"
+     locality1334: 
+        locality: "Mesnil-Eglise"
+     locality1335: 
+        locality: "Mesnil-Saint-Blaise"
+     locality1336: 
+        locality: "Custinne"
+     locality1337: 
+        locality: "Hour"
+     locality1338: 
+        locality: "Wanlin"
+     locality1339: 
+        locality: "Baronville"
+     locality1340: 
+        locality: "Beauraing"
+     locality1341: 
+        locality: "Dion"
+     locality1342: 
+        locality: "Felenne"
+     locality1343: 
+        locality: "Feschaux"
+     locality1344: 
+        locality: "Honnay"
+     locality1345: 
+        locality: "Javingue"
+     locality1346: 
+        locality: "Vonêche"
+     locality1347: 
+        locality: "Wancennes"
+     locality1348: 
+        locality: "Winenne"
+     locality1349: 
+        locality: "Wiesme"
+     locality1350: 
+        locality: "Focant"
+     locality1351: 
+        locality: "Martouzin-Neuville"
+     locality1352: 
+        locality: "Pondrôme"
+     locality1353: 
+        locality: "Bourseigne-Neuve"
+     locality1354: 
+        locality: "Bourseigne-Vieille"
+     locality1355: 
+        locality: "Gedinne"
+     locality1356: 
+        locality: "Houdremont"
+     locality1357: 
+        locality: "Louette-Saint-Denis"
+     locality1358: 
+        locality: "Louette-Saint-Pierre"
+     locality1359: 
+        locality: "Malvoisin"
+     locality1360: 
+        locality: "Patignies"
+     locality1361: 
+        locality: "Rienne"
+     locality1362: 
+        locality: "Sart-Custinne"
+     locality1363: 
+        locality: "Vencimont"
+     locality1364: 
+        locality: "Willerzie"
+     locality1365: 
+        locality: "Froidfontaine"
+     locality1366: 
+        locality: "Ave-Et-Auffe"
+     locality1367: 
+        locality: "Buissonville"
+     locality1368: 
+        locality: "Eprave"
+     locality1369: 
+        locality: "Han-Sur-Lesse"
+     locality1370: 
+        locality: "Jemelle"
+     locality1371: 
+        locality: "Lessive"
+     locality1372: 
+        locality: "Mont-Gauthier"
+     locality1373: 
+        locality: "Rochefort"
+     locality1374: 
+        locality: "Villers-Sur-Lesse"
+     locality1375: 
+        locality: "Wavreille"
+     locality1376: 
+        locality: "Achêne"
+     locality1377: 
+        locality: "Braibant"
+     locality1378: 
+        locality: "Chevetogne"
+     locality1379: 
+        locality: "Ciney"
+     locality1380: 
+        locality: "Conneux"
+     locality1381: 
+        locality: "Haversin"
+     locality1382: 
+        locality: "Leignon"
+     locality1383: 
+        locality: "Pessoux"
+     locality1384: 
+        locality: "Serinchamps"
+     locality1385: 
+        locality: "Sovet"
+     locality1386: 
+        locality: "Fagnolle"
+     locality1387: 
+        locality: "Franchimont"
+     locality1388: 
+        locality: "Jamagne"
+     locality1389: 
+        locality: "Jamiolle"
+     locality1390: 
+        locality: "Merlemont"
+     locality1391: 
+        locality: "Neuville"
+     locality1392: 
+        locality: "Omezée"
+     locality1393: 
+        locality: "Philippeville"
+     locality1394: 
+        locality: "Roly"
+     locality1395: 
+        locality: "Romedenne"
+     locality1396: 
+        locality: "Samart"
+     locality1397: 
+        locality: "Sart-En-Fagne"
+     locality1398: 
+        locality: "Sautour"
+     locality1399: 
+        locality: "Surice"
+     locality1400: 
+        locality: "Villers-En-Fagne"
+     locality1401: 
+        locality: "Villers-Le-Gambon"
+     locality1402: 
+        locality: "Vodecée"
+     locality1403: 
+        locality: "Corenne"
+     locality1404: 
+        locality: "Flavion"
+     locality1405: 
+        locality: "Florennes"
+     locality1406: 
+        locality: "Hemptinne-Lez-Florennes"
+     locality1407: 
+        locality: "Morville"
+     locality1408: 
+        locality: "Rosée"
+     locality1409: 
+        locality: "Saint-Aubin"
+     locality1410: 
+        locality: "Hanzinelle"
+     locality1411: 
+        locality: "Hanzinne"
+     locality1412: 
+        locality: "Morialmé"
+     locality1413: 
+        locality: "Cerfontaine"
+     locality1414: 
+        locality: "Daussois"
+     locality1415: 
+        locality: "Senzeille"
+     locality1416: 
+        locality: "Silenrieux"
+     locality1417: 
+        locality: "Soumoy"
+     locality1418: 
+        locality: "Villers-Deux-Eglises"
+     locality1419: 
+        locality: "Biesme"
+     locality1420: 
+        locality: "Biesmerée"
+     locality1421: 
+        locality: "Graux"
+     locality1422: 
+        locality: "Mettet"
+     locality1423: 
+        locality: "Oret"
+     locality1424: 
+        locality: "Saint-Gérard"
+     locality1425: 
+        locality: "Furnaux"
+     locality1426: 
+        locality: "Ermeton-Sur-Biert"
+     locality1427: 
+        locality: "Stave"
+     locality1428: 
+        locality: "Castillon"
+     locality1429: 
+        locality: "Chastrès"
+     locality1430: 
+        locality: "Fontenelle"
+     locality1431: 
+        locality: "Fraire"
+     locality1432: 
+        locality: "Pry"
+     locality1433: 
+        locality: "Vogenée"
+     locality1434: 
+        locality: "Walcourt"
+     locality1435: 
+        locality: "Yves-Gomezée"
+     locality1436: 
+        locality: "Berzée"
+     locality1437: 
+        locality: "Gourdinne"
+     locality1438: 
+        locality: "Laneffe"
+     locality1439: 
+        locality: "Rognée"
+     locality1440: 
+        locality: "Somzée"
+     locality1441: 
+        locality: "Tarcienne"
+     locality1442: 
+        locality: "Thy-Le-Château"
+     locality1443: 
+        locality: "Aublain"
+     locality1444: 
+        locality: "Boussu-En-Fagne"
+     locality1445: 
+        locality: "Brûly"
+     locality1446: 
+        locality: "Brûly-De-Pesche"
+     locality1447: 
+        locality: "Couvin"
+     locality1448: 
+        locality: "Cul-Des-Sarts"
+     locality1449: 
+        locality: "Dailly"
+     locality1450: 
+        locality: "Frasnes"
+     locality1451: 
+        locality: "Gonrieux"
+     locality1452: 
+        locality: "Mariembourg"
+     locality1453: 
+        locality: "Pesche"
+     locality1454: 
+        locality: "Petigny"
+     locality1455: 
+        locality: "Petite-Chapelle"
+     locality1456: 
+        locality: "Presgaux"
+     locality1457: 
+        locality: "Dourbes"
+     locality1458: 
+        locality: "Le Mesnil"
+     locality1459: 
+        locality: "Mazée"
+     locality1460: 
+        locality: "Nismes"
+     locality1461: 
+        locality: "Oignies-En-Thiérache"
+     locality1462: 
+        locality: "Olloy-Sur-Viroin"
+     locality1463: 
+        locality: "Treignes"
+     locality1464: 
+        locality: "Vierves-Sur-Viroin"
+     locality1465: 
+        locality: "Viroinval"
+     locality1466: 
+        locality: "Doische"
+     locality1467: 
+        locality: "Gimnée"
+     locality1468: 
+        locality: "Gochenée"
+     locality1469: 
+        locality: "Matagne-La-Grande"
+     locality1470: 
+        locality: "Matagne-La-Petite"
+     locality1471: 
+        locality: "Niverlée"
+     locality1472: 
+        locality: "Romerée"
+     locality1473: 
+        locality: "Soulme"
+     locality1474: 
+        locality: "Vaucelles"
+     locality1475: 
+        locality: "Vodelée"
+     locality1476: 
+        locality: "Charleroi"
+     locality1477: 
+        locality: "Marcinelle"
+     locality1478: 
+        locality: "Couillet"
+     locality1479: 
+        locality: "Dampremy"
+     locality1480: 
+        locality: "Goutroux"
+     locality1481: 
+        locality: "Marchienne-Au-Pont"
+     locality1482: 
+        locality: "Monceau-Sur-Sambre"
+     locality1483: 
+        locality: "Mont-Sur-Marchienne"
+     locality1484: 
+        locality: "Jumet"
+     locality1485: 
+        locality: "Gosselies"
+     locality1486: 
+        locality: "Lodelinsart"
+     locality1487: 
+        locality: "Ransart"
+     locality1488: 
+        locality: "Roux"
+     locality1489: 
+        locality: "Gilly"
+     locality1490: 
+        locality: "Montignies-Sur-Sambre"
+     locality1491: 
+        locality: "Montigny-Le-Tilleul"
+     locality1492: 
+        locality: "Landelies"
+     locality1493: 
+        locality: "Cour-Sur-Heure"
+     locality1494: 
+        locality: "Ham-Sur-Heure"
+     locality1495: 
+        locality: "Jamioulx"
+     locality1496: 
+        locality: "Marbaix"
+     locality1497: 
+        locality: "Nalinnes"
+     locality1498: 
+        locality: "Fontaine-L'evêque"
+     locality1499: 
+        locality: "Forchies-La-Marche"
+     locality1500: 
+        locality: "Leernes"
+     locality1501: 
+        locality: "Anderlues"
+     locality1502: 
+        locality: "Courcelles"
+     locality1503: 
+        locality: "Gouy-Lez-Piéton"
+     locality1504: 
+        locality: "Souvret"
+     locality1505: 
+        locality: "Trazegnies"
+     locality1506: 
+        locality: "Bouffioulx"
+     locality1507: 
+        locality: "Châtelet"
+     locality1508: 
+        locality: "Châtelineau"
+     locality1509: 
+        locality: "Frasnes-Lez-Gosselies"
+     locality1510: 
+        locality: "Les Bons Villers"
+     locality1511: 
+        locality: "Rèves"
+     locality1512: 
+        locality: "Villers-Perwin"
+     locality1513: 
+        locality: "Wayaux"
+     locality1514: 
+        locality: "Mellet"
+     locality1515: 
+        locality: "Fleurus"
+     locality1516: 
+        locality: "Heppignies"
+     locality1517: 
+        locality: "Lambusart"
+     locality1518: 
+        locality: "Wangenies"
+     locality1519: 
+        locality: "Saint-Amand"
+     locality1520: 
+        locality: "Brye"
+     locality1521: 
+        locality: "Wagnelée"
+     locality1522: 
+        locality: "Wanfercée-Baulet"
+     locality1523: 
+        locality: "Buzet"
+     locality1524: 
+        locality: "Obaix"
+     locality1525: 
+        locality: "Pont-À-Celles"
+     locality1526: 
+        locality: "Thiméon"
+     locality1527: 
+        locality: "Viesville"
+     locality1528: 
+        locality: "Liberchies"
+     locality1529: 
+        locality: "Luttre"
+     locality1530: 
+        locality: "Farciennes"
+     locality1531: 
+        locality: "Pironchamps"
+     locality1532: 
+        locality: "Aiseau"
+     locality1533: 
+        locality: "Aiseau-Presles"
+     locality1534: 
+        locality: "Pont-De-Loup"
+     locality1535: 
+        locality: "Presles"
+     locality1536: 
+        locality: "Roselies"
+     locality1537: 
+        locality: "Acoz"
+     locality1538: 
+        locality: "Gerpinnes"
+     locality1539: 
+        locality: "Gougnies"
+     locality1540: 
+        locality: "Joncret"
+     locality1541: 
+        locality: "Loverval"
+     locality1542: 
+        locality: "Villers-Poterie"
+     locality1543: 
+        locality: "Boussu-Lez-Walcourt"
+     locality1544: 
+        locality: "Fourbechies"
+     locality1545: 
+        locality: "Froidchapelle"
+     locality1546: 
+        locality: "Vergnies"
+     locality1547: 
+        locality: "Erpion"
+     locality1548: 
+        locality: "Bailièvre"
+     locality1549: 
+        locality: "Chimay"
+     locality1550: 
+        locality: "Robechies"
+     locality1551: 
+        locality: "Salles"
+     locality1552: 
+        locality: "Villers-La-Tour"
+     locality1553: 
+        locality: "Virelles"
+     locality1554: 
+        locality: "Vaulx-Lez-Chimay"
+     locality1555: 
+        locality: "Lompret"
+     locality1556: 
+        locality: "Baileux"
+     locality1557: 
+        locality: "Bourlers"
+     locality1558: 
+        locality: "Forges"
+     locality1559: 
+        locality: "L'escaillère"
+     locality1560: 
+        locality: "Rièzes"
+     locality1561: 
+        locality: "Grandrieu"
+     locality1562: 
+        locality: "Montbliart"
+     locality1563: 
+        locality: "Rance"
+     locality1564: 
+        locality: "Sautin"
+     locality1565: 
+        locality: "Sivry"
+     locality1566: 
+        locality: "Sivry-Rance"
+     locality1567: 
+        locality: "Barbençon"
+     locality1568: 
+        locality: "Beaumont"
+     locality1569: 
+        locality: "Leugnies"
+     locality1570: 
+        locality: "Leval-Chaudeville"
+     locality1571: 
+        locality: "Renlies"
+     locality1572: 
+        locality: "Solre-Saint-Géry"
+     locality1573: 
+        locality: "Thirimont"
+     locality1574: 
+        locality: "Strée"
+     locality1575: 
+        locality: "Leers-Et-Fosteau"
+     locality1576: 
+        locality: "Thuin"
+     locality1577: 
+        locality: "Biesme-Sous-Thuin"
+     locality1578: 
+        locality: "Ragnies"
+     locality1579: 
+        locality: "Biercée"
+     locality1580: 
+        locality: "Gozée"
+     locality1581: 
+        locality: "Donstiennes"
+     locality1582: 
+        locality: "Thuillies"
+     locality1583: 
+        locality: "Lobbes"
+     locality1584: 
+        locality: "Mont-Sainte-Geneviève"
+     locality1585: 
+        locality: "Sars-La-Buissière"
+     locality1586: 
+        locality: "Bienne-Lez-Happart"
+     locality1587: 
+        locality: "Bersillies-L'abbaye"
+     locality1588: 
+        locality: "Erquelinnes"
+     locality1589: 
+        locality: "Grand-Reng"
+     locality1590: 
+        locality: "Hantes-Wihéries"
+     locality1591: 
+        locality: "Montignies-Saint-Christophe"
+     locality1592: 
+        locality: "Solre-Sur-Sambre"
+     locality1593: 
+        locality: "Fontaine-Valmont"
+     locality1594: 
+        locality: "Labuissière"
+     locality1595: 
+        locality: "Merbes-Le-Château"
+     locality1596: 
+        locality: "Merbes-Sainte-Marie"
+     locality1597: 
+        locality: "Momignies"
+     locality1598: 
+        locality: "Macon"
+     locality1599: 
+        locality: "Monceau-Imbrechies"
+     locality1600: 
+        locality: "Macquenoise"
+     locality1601: 
+        locality: "Beauwelz"
+     locality1602: 
+        locality: "Forge-Philippe"
+     locality1603: 
+        locality: "Seloignes"
+     locality1604: 
+        locality: "Bastogne"
+     locality1605: 
+        locality: "Longvilly"
+     locality1606: 
+        locality: "Villers-La-Bonne-Eau"
+     locality1607: 
+        locality: "Wardin"
+     locality1608: 
+        locality: "Martelange"
+     locality1609: 
+        locality: "Fauvillers"
+     locality1610: 
+        locality: "Hollange"
+     locality1611: 
+        locality: "Tintange"
+     locality1612: 
+        locality: "Hompré"
+     locality1613: 
+        locality: "Morhet"
+     locality1614: 
+        locality: "Nives"
+     locality1615: 
+        locality: "Sibret"
+     locality1616: 
+        locality: "Vaux-Lez-Rosières"
+     locality1617: 
+        locality: "Vaux-Sur-Sûre"
+     locality1618: 
+        locality: "Juseret"
+     locality1619: 
+        locality: "Houffalize"
+     locality1620: 
+        locality: "Nadrin"
+     locality1621: 
+        locality: "Tailles"
+     locality1622: 
+        locality: "Tavigny"
+     locality1623: 
+        locality: "Mabompré"
+     locality1624: 
+        locality: "Wibrin"
+     locality1625: 
+        locality: "Gouvy"
+     locality1626: 
+        locality: "Limerlé"
+     locality1627: 
+        locality: "Bovigny"
+     locality1628: 
+        locality: "Beho"
+     locality1629: 
+        locality: "Cherain"
+     locality1630: 
+        locality: "Montleban"
+     locality1631: 
+        locality: "Amberloup"
+     locality1632: 
+        locality: "Sainte-Ode"
+     locality1633: 
+        locality: "Tillet"
+     locality1634: 
+        locality: "Lavacherie"
+     locality1635: 
+        locality: "Flamierge"
+     locality1636: 
+        locality: "Bertogne"
+     locality1637: 
+        locality: "Bihain"
+     locality1638: 
+        locality: "Vielsalm"
+     locality1639: 
+        locality: "Petit-Thier"
+     locality1640: 
+        locality: "Grand-Halleux"
+     locality1641: 
+        locality: "Arlon"
+     locality1642: 
+        locality: "Bonnert"
+     locality1643: 
+        locality: "Heinsch"
+     locality1644: 
+        locality: "Toernich"
+     locality1645: 
+        locality: "Guirsch"
+     locality1646: 
+        locality: "Autelbas"
+     locality1647: 
+        locality: "Attert"
+     locality1648: 
+        locality: "Nobressart"
+     locality1649: 
+        locality: "Nothomb"
+     locality1650: 
+        locality: "Thiaumont"
+     locality1651: 
+        locality: "Tontelange"
+     locality1652: 
+        locality: "Habay"
+     locality1653: 
+        locality: "Habay-La-Neuve"
+     locality1654: 
+        locality: "Hachy"
+     locality1655: 
+        locality: "Anlier"
+     locality1656: 
+        locality: "Habay-La-Vieille"
+     locality1657: 
+        locality: "Houdemont"
+     locality1658: 
+        locality: "Rulles"
+     locality1659: 
+        locality: "Rossignol"
+     locality1660: 
+        locality: "Saint-Vincent"
+     locality1661: 
+        locality: "Tintigny"
+     locality1662: 
+        locality: "Etalle"
+     locality1663: 
+        locality: "Sainte-Marie-Sur-Semois"
+     locality1664: 
+        locality: "Villers-Sur-Semois"
+     locality1665: 
+        locality: "Vance"
+     locality1666: 
+        locality: "Chantemelle"
+     locality1667: 
+        locality: "Buzenol"
+     locality1668: 
+        locality: "Châtillon"
+     locality1669: 
+        locality: "Meix-Le-Tige"
+     locality1670: 
+        locality: "Saint-Léger"
+     locality1671: 
+        locality: "Musson"
+     locality1672: 
+        locality: "Mussy-La-Ville"
+     locality1673: 
+        locality: "Signeulx"
+     locality1674: 
+        locality: "Bleid"
+     locality1675: 
+        locality: "Ethe"
+     locality1676: 
+        locality: "Ruette"
+     locality1677: 
+        locality: "Virton"
+     locality1678: 
+        locality: "Latour"
+     locality1679: 
+        locality: "Saint-Mard"
+     locality1680: 
+        locality: "Dampicourt"
+     locality1681: 
+        locality: "Harnoncourt"
+     locality1682: 
+        locality: "Lamorteau"
+     locality1683: 
+        locality: "Rouvroy"
+     locality1684: 
+        locality: "Torgny"
+     locality1685: 
+        locality: "Gérouville"
+     locality1686: 
+        locality: "Meix-Devant-Virton"
+     locality1687: 
+        locality: "Robelmont"
+     locality1688: 
+        locality: "Sommethonne"
+     locality1689: 
+        locality: "Villers-La-Loue"
+     locality1690: 
+        locality: "Hondelange"
+     locality1691: 
+        locality: "Messancy"
+     locality1692: 
+        locality: "Wolkrange"
+     locality1693: 
+        locality: "Sélange"
+     locality1694: 
+        locality: "Habergy"
+     locality1695: 
+        locality: "Aubange"
+     locality1696: 
+        locality: "Athus"
+     locality1697: 
+        locality: "Halanzy"
+     locality1698: 
+        locality: "Rachecourt"
+     locality1699: 
+        locality: "Bras"
+     locality1700: 
+        locality: "Freux"
+     locality1701: 
+        locality: "Libramont-Chevigny"
+     locality1702: 
+        locality: "Moircy"
+     locality1703: 
+        locality: "Recogne"
+     locality1704: 
+        locality: "Remagne"
+     locality1705: 
+        locality: "Saint-Pierre"
+     locality1706: 
+        locality: "Sainte-Marie-Chevigny"
+     locality1707: 
+        locality: "Chiny"
+     locality1708: 
+        locality: "Izel"
+     locality1709: 
+        locality: "Jamoigne"
+     locality1710: 
+        locality: "Les Bulles"
+     locality1711: 
+        locality: "Suxy"
+     locality1712: 
+        locality: "Termes"
+     locality1713: 
+        locality: "Florenville"
+     locality1714: 
+        locality: "Fontenoille"
+     locality1715: 
+        locality: "Muno"
+     locality1716: 
+        locality: "Sainte-Cécile"
+     locality1717: 
+        locality: "Lacuisine"
+     locality1718: 
+        locality: "Villers-Devant-Orval"
+     locality1719: 
+        locality: "Chassepierre"
+     locality1720: 
+        locality: "Bouillon"
+     locality1721: 
+        locality: "Les Hayons"
+     locality1722: 
+        locality: "Poupehan"
+     locality1723: 
+        locality: "Rochehaut"
+     locality1724: 
+        locality: "Noirfontaine"
+     locality1725: 
+        locality: "Sensenruth"
+     locality1726: 
+        locality: "Ucimont"
+     locality1727: 
+        locality: "Vivy"
+     locality1728: 
+        locality: "Bellevaux"
+     locality1729: 
+        locality: "Dohan"
+     locality1730: 
+        locality: "Corbion"
+     locality1731: 
+        locality: "Grandvoir"
+     locality1732: 
+        locality: "Grapfontaine"
+     locality1733: 
+        locality: "Hamipré"
+     locality1734: 
+        locality: "Longlier"
+     locality1735: 
+        locality: "Tournay"
+     locality1736: 
+        locality: "Carlsbourg"
+     locality1737: 
+        locality: "Offagne"
+     locality1738: 
+        locality: "Paliseul"
+     locality1739: 
+        locality: "Nollevaux"
+     locality1740: 
+        locality: "Maissin"
+     locality1741: 
+        locality: "Opont"
+     locality1742: 
+        locality: "Framont"
+     locality1743: 
+        locality: "Fays-Les-Veneurs"
+     locality1744: 
+        locality: "Assenois"
+     locality1745: 
+        locality: "Ebly"
+     locality1746: 
+        locality: "Léglise"
+     locality1747: 
+        locality: "Mellier"
+     locality1748: 
+        locality: "Witry"
+     locality1749: 
+        locality: "Arville"
+     locality1750: 
+        locality: "Awenne"
+     locality1751: 
+        locality: "Hatrival"
+     locality1752: 
+        locality: "Mirwart"
+     locality1753: 
+        locality: "Saint-Hubert"
+     locality1754: 
+        locality: "Vesqueville"
+     locality1755: 
+        locality: "Auby-Sur-Semois"
+     locality1756: 
+        locality: "Bertrix"
+     locality1757: 
+        locality: "Cugnon"
+     locality1758: 
+        locality: "Jehonville"
+     locality1759: 
+        locality: "Orgeo"
+     locality1760: 
+        locality: "Herbeumont"
+     locality1761: 
+        locality: "Saint-Médard"
+     locality1762: 
+        locality: "Straimont"
+     locality1763: 
+        locality: "Anloy"
+     locality1764: 
+        locality: "Libin"
+     locality1765: 
+        locality: "Ochamps"
+     locality1766: 
+        locality: "Redu"
+     locality1767: 
+        locality: "Smuid"
+     locality1768: 
+        locality: "Transinne"
+     locality1769: 
+        locality: "Villance"
+     locality1770: 
+        locality: "Aye"
+     locality1771: 
+        locality: "Hargimont"
+     locality1772: 
+        locality: "Humain"
+     locality1773: 
+        locality: "Marche-En-Famenne"
+     locality1774: 
+        locality: "On"
+     locality1775: 
+        locality: "Roy"
+     locality1776: 
+        locality: "Waha"
+     locality1777: 
+        locality: "Sohier"
+     locality1778: 
+        locality: "Wellin"
+     locality1779: 
+        locality: "Chanly"
+     locality1780: 
+        locality: "Halma"
+     locality1781: 
+        locality: "Lomprez"
+     locality1782: 
+        locality: "Bure"
+     locality1783: 
+        locality: "Grupont"
+     locality1784: 
+        locality: "Resteigne"
+     locality1785: 
+        locality: "Tellin"
+     locality1786: 
+        locality: "Daverdisse"
+     locality1787: 
+        locality: "Gembes"
+     locality1788: 
+        locality: "Haut-Fays"
+     locality1789: 
+        locality: "Durbuy"
+     locality1790: 
+        locality: "Grandhan"
+     locality1791: 
+        locality: "Septon"
+     locality1792: 
+        locality: "Wéris"
+     locality1793: 
+        locality: "Bende"
+     locality1794: 
+        locality: "Bomal-Sur-Ourthe"
+     locality1795: 
+        locality: "Borlon"
+     locality1796: 
+        locality: "Heyd"
+     locality1797: 
+        locality: "Izier"
+     locality1798: 
+        locality: "Tohogne"
+     locality1799: 
+        locality: "Villers-Sainte-Gertrude"
+     locality1800: 
+        locality: "Harsin"
+     locality1801: 
+        locality: "Nassogne"
+     locality1802: 
+        locality: "Bande"
+     locality1803: 
+        locality: "Grune"
+     locality1804: 
+        locality: "Ambly"
+     locality1805: 
+        locality: "Forrières"
+     locality1806: 
+        locality: "Lesterny"
+     locality1807: 
+        locality: "Masbourg"
+     locality1808: 
+        locality: "Dochamps"
+     locality1809: 
+        locality: "Grandmenil"
+     locality1810: 
+        locality: "Harre"
+     locality1811: 
+        locality: "Malempré"
+     locality1812: 
+        locality: "Manhay"
+     locality1813: 
+        locality: "Odeigne"
+     locality1814: 
+        locality: "Vaux-Chavanne"
+     locality1815: 
+        locality: "Tenneville"
+     locality1816: 
+        locality: "Champlon"
+     locality1817: 
+        locality: "Erneuville"
+     locality1818: 
+        locality: "Beausaint"
+     locality1819: 
+        locality: "La Roche-En-Ardenne"
+     locality1820: 
+        locality: "Samrée"
+     locality1821: 
+        locality: "Ortho"
+     locality1822: 
+        locality: "Hives"
+     locality1823: 
+        locality: "Halleux"
+     locality1824: 
+        locality: "Beffe"
+     locality1825: 
+        locality: "Hodister"
+     locality1826: 
+        locality: "Marcourt"
+     locality1827: 
+        locality: "Rendeux"
+     locality1828: 
+        locality: "Fronville"
+     locality1829: 
+        locality: "Hampteau"
+     locality1830: 
+        locality: "Hotton"
+     locality1831: 
+        locality: "Marenne"
+     locality1832: 
+        locality: "Amonines"
+     locality1833: 
+        locality: "Erezée"
+     locality1834: 
+        locality: "Mormont"
+     locality1835: 
+        locality: "Soy"
+     locality1836: 
+        locality: "Mons"
+     locality1837: 
+        locality: "Ghlin"
+     locality1838: 
+        locality: "Flénu"
+     locality1839: 
+        locality: "Jemappes"
+     locality1840: 
+        locality: "Maisières"
+     locality1841: 
+        locality: "Nimy"
+     locality1842: 
+        locality: "Havre"
+     locality1843: 
+        locality: "Harmignies"
+     locality1844: 
+        locality: "Harveng"
+     locality1845: 
+        locality: "Hyon"
+     locality1846: 
+        locality: "Mesvin"
+     locality1847: 
+        locality: "Nouvelles"
+     locality1848: 
+        locality: "Ciply"
+     locality1849: 
+        locality: "Saint-Symphorien"
+     locality1850: 
+        locality: "Villers-Saint-Ghislain"
+     locality1851: 
+        locality: "Spiennes"
+     locality1852: 
+        locality: "Cuesmes"
+     locality1853: 
+        locality: "Obourg"
+     locality1854: 
+        locality: "Saint-Denis"
+     locality1855: 
+        locality: "Asquillies"
+     locality1856: 
+        locality: "Aulnois"
+     locality1857: 
+        locality: "Blaregnies"
+     locality1858: 
+        locality: "Bougnies"
+     locality1859: 
+        locality: "Genly"
+     locality1860: 
+        locality: "Goegnies-Chaussée"
+     locality1861: 
+        locality: "Quévy"
+     locality1862: 
+        locality: "Quévy-Le-Grand"
+     locality1863: 
+        locality: "Quévy-Le-Petit"
+     locality1864: 
+        locality: "Givry"
+     locality1865: 
+        locality: "Havay"
+     locality1866: 
+        locality: "Erbaut"
+     locality1867: 
+        locality: "Erbisoeul"
+     locality1868: 
+        locality: "Herchies"
+     locality1869: 
+        locality: "Jurbise"
+     locality1870: 
+        locality: "Masnuy-Saint-Jean"
+     locality1871: 
+        locality: "Masnuy-Saint-Pierre"
+     locality1872: 
+        locality: "Horrues"
+     locality1873: 
+        locality: "Soignies"
+     locality1874: 
+        locality: "Casteau"
+     locality1875: 
+        locality: "Thieusies"
+     locality1876: 
+        locality: "Naast"
+     locality1877: 
+        locality: "Chaussée-Notre-Dame-Louvignies"
+     locality1878: 
+        locality: "Neufvilles"
+     locality1879: 
+        locality: "Gottignies"
+     locality1880: 
+        locality: "Le Roeulx"
+     locality1881: 
+        locality: "Mignault"
+     locality1882: 
+        locality: "Thieu"
+     locality1883: 
+        locality: "Ville-Sur-Haine"
+     locality1884: 
+        locality: "Eugies"
+     locality1885: 
+        locality: "Frameries"
+     locality1886: 
+        locality: "La Bouverie"
+     locality1887: 
+        locality: "Noirchain"
+     locality1888: 
+        locality: "Sars-La-Bruyère"
+     locality1889: 
+        locality: "Braine-Le-Comte"
+     locality1890: 
+        locality: "Hennuyères"
+     locality1891: 
+        locality: "Henripont"
+     locality1892: 
+        locality: "Petit-Roeulx-Lez-Braine"
+     locality1893: 
+        locality: "Ronquières"
+     locality1894: 
+        locality: "Steenkerque"
+     locality1895: 
+        locality: "Haine-Saint-Paul"
+     locality1896: 
+        locality: "Haine-Saint-Pierre"
+     locality1897: 
+        locality: "La Louvière"
+     locality1898: 
+        locality: "Saint-Vaast"
+     locality1899: 
+        locality: "Trivières"
+     locality1900: 
+        locality: "Boussoit"
+     locality1901: 
+        locality: "Houdeng-Aimeries"
+     locality1902: 
+        locality: "Houdeng-Goegnies"
+     locality1903: 
+        locality: "Maurage"
+     locality1904: 
+        locality: "Strépy-Bracquegnies"
+     locality1905: 
+        locality: "Croix-Lez-Rouveroy"
+     locality1906: 
+        locality: "Estinnes"
+     locality1907: 
+        locality: "Estinnes-Au-Mont"
+     locality1908: 
+        locality: "Estinnes-Au-Val"
+     locality1909: 
+        locality: "Fauroeulx"
+     locality1910: 
+        locality: "Haulchin"
+     locality1911: 
+        locality: "Peissant"
+     locality1912: 
+        locality: "Rouveroy"
+     locality1913: 
+        locality: "Vellereille-Le-Sec"
+     locality1914: 
+        locality: "Vellereille-Les-Brayeux"
+     locality1915: 
+        locality: "Battignies"
+     locality1916: 
+        locality: "Binche"
+     locality1917: 
+        locality: "Bray"
+     locality1918: 
+        locality: "Waudrez"
+     locality1919: 
+        locality: "Buvrinnes"
+     locality1920: 
+        locality: "Epinois"
+     locality1921: 
+        locality: "Leval-Trahegnies"
+     locality1922: 
+        locality: "Péronnes-Lez-Binche"
+     locality1923: 
+        locality: "Ressaix"
+     locality1924: 
+        locality: "Morlanwelz"
+     locality1925: 
+        locality: "Morlanwelz-Mariemont"
+     locality1926: 
+        locality: "Carnières"
+     locality1927: 
+        locality: "Mont-Sainte-Aldegonde"
+     locality1928: 
+        locality: "Chapelle-Lez-Herlaimont"
+     locality1929: 
+        locality: "Godarville"
+     locality1930: 
+        locality: "Piéton"
+     locality1931: 
+        locality: "Bellecourt"
+     locality1932: 
+        locality: "Bois-D'haine"
+     locality1933: 
+        locality: "Fayt-Lez-Manage"
+     locality1934: 
+        locality: "La Hestre"
+     locality1935: 
+        locality: "Manage"
+     locality1936: 
+        locality: "Seneffe"
+     locality1937: 
+        locality: "Arquennes"
+     locality1938: 
+        locality: "Familleureux"
+     locality1939: 
+        locality: "Feluy"
+     locality1940: 
+        locality: "Petit-Roeulx-Lez-Nivelles"
+     locality1941: 
+        locality: "Ecaussinnes"
+     locality1942: 
+        locality: "Ecaussinnes-D'enghien"
+     locality1943: 
+        locality: "Marche-Lez-Ecaussinnes"
+     locality1944: 
+        locality: "Ecaussinnes-Lalaing"
+     locality1945: 
+        locality: "Boussu"
+     locality1946: 
+        locality: "Hornu"
+     locality1947: 
+        locality: "Bernissart"
+     locality1948: 
+        locality: "Blaton"
+     locality1949: 
+        locality: "Harchies"
+     locality1950: 
+        locality: "Pommeroeul"
+     locality1951: 
+        locality: "Ville-Pommeroeul"
+     locality1952: 
+        locality: "Saint-Ghislain"
+     locality1953: 
+        locality: "Baudour"
+     locality1954: 
+        locality: "Neufmaison"
+     locality1955: 
+        locality: "Sirault"
+     locality1956: 
+        locality: "Tertre"
+     locality1957: 
+        locality: "Hautrage"
+     locality1958: 
+        locality: "Villerot"
+     locality1959: 
+        locality: "Colfontaine"
+     locality1960: 
+        locality: "Paturages"
+     locality1961: 
+        locality: "Warquignies"
+     locality1962: 
+        locality: "Wasmes"
+     locality1963: 
+        locality: "Hainin"
+     locality1964: 
+        locality: "Hensies"
+     locality1965: 
+        locality: "Montroeul-Sur-Haine"
+     locality1966: 
+        locality: "Thulin"
+     locality1967: 
+        locality: "Blaugies"
+     locality1968: 
+        locality: "Dour"
+     locality1969: 
+        locality: "Elouges"
+     locality1970: 
+        locality: "Wihéries"
+     locality1971: 
+        locality: "Baisieux"
+     locality1972: 
+        locality: "Quiévrain"
+     locality1973: 
+        locality: "Audregnies"
+     locality1974: 
+        locality: "Angre"
+     locality1975: 
+        locality: "Angreau"
+     locality1976: 
+        locality: "Athis"
+     locality1977: 
+        locality: "Autreppe"
+     locality1978: 
+        locality: "Erquennes"
+     locality1979: 
+        locality: "Fayt-Le-Franc"
+     locality1980: 
+        locality: "Honnelles"
+     locality1981: 
+        locality: "Marchipont"
+     locality1982: 
+        locality: "Montignies-Sur-Roc"
+     locality1983: 
+        locality: "Onnezies"
+     locality1984: 
+        locality: "Roisin"
+     locality1985: 
+        locality: "Quaregnon"
+     locality1986: 
+        locality: "Wasmuel"
+     locality1987: 
+        locality: "Ere"
+     locality1988: 
+        locality: "Saint-Maur"
+     locality1989: 
+        locality: "Tournai"
+     locality1990: 
+        locality: "Orcq"
+     locality1991: 
+        locality: "Esplechin"
+     locality1992: 
+        locality: "Froyennes"
+     locality1993: 
+        locality: "Froidmont"
+     locality1994: 
+        locality: "Willemeau"
+     locality1995: 
+        locality: "Ramegnies-Chin"
+     locality1996: 
+        locality: "Templeuve"
+     locality1997: 
+        locality: "Chercq"
+     locality1998: 
+        locality: "Blandain"
+     locality1999: 
+        locality: "Hertain"
+     locality2000: 
+        locality: "Lamain"
+     locality2001: 
+        locality: "Marquain"
+     locality2002: 
+        locality: "Gaurain-Ramecroix"
+     locality2003: 
+        locality: "Havinnes"
+     locality2004: 
+        locality: "Beclers"
+     locality2005: 
+        locality: "Thimougies"
+     locality2006: 
+        locality: "Barry"
+     locality2007: 
+        locality: "Maulde"
+     locality2008: 
+        locality: "Vaulx"
+     locality2009: 
+        locality: "Vezon"
+     locality2010: 
+        locality: "Kain"
+     locality2011: 
+        locality: "Melles"
+     locality2012: 
+        locality: "Quartes"
+     locality2013: 
+        locality: "Rumillies"
+     locality2014: 
+        locality: "Mont-Saint-Aubert"
+     locality2015: 
+        locality: "Mourcourt"
+     locality2016: 
+        locality: "Warchin"
+     locality2017: 
+        locality: "Péruwelz"
+     locality2018: 
+        locality: "Roucourt"
+     locality2019: 
+        locality: "Bury"
+     locality2020: 
+        locality: "Bon-Secours"
+     locality2021: 
+        locality: "Baugnies"
+     locality2022: 
+        locality: "Braffe"
+     locality2023: 
+        locality: "Brasmenil"
+     locality2024: 
+        locality: "Callenelle"
+     locality2025: 
+        locality: "Wasmes-Audemez-Briffoeil"
+     locality2026: 
+        locality: "Wiers"
+     locality2027: 
+        locality: "Rumes"
+     locality2028: 
+        locality: "La Glanerie"
+     locality2029: 
+        locality: "Taintignies"
+     locality2030: 
+        locality: "Bléharies"
+     locality2031: 
+        locality: "Brunehaut"
+     locality2032: 
+        locality: "Guignies"
+     locality2033: 
+        locality: "Hollain"
+     locality2034: 
+        locality: "Jollain-Merlin"
+     locality2035: 
+        locality: "Wez-Velvain"
+     locality2036: 
+        locality: "Lesdain"
+     locality2037: 
+        locality: "Laplaigne"
+     locality2038: 
+        locality: "Rongy"
+     locality2039: 
+        locality: "Howardries"
+     locality2040: 
+        locality: "Antoing"
+     locality2041: 
+        locality: "Maubray"
+     locality2042: 
+        locality: "Péronnes-Lez-Antoing"
+     locality2043: 
+        locality: "Bruyelle"
+     locality2044: 
+        locality: "Calonne"
+     locality2045: 
+        locality: "Fontenoy"
+     locality2046: 
+        locality: "Luingne"
+     locality2047: 
+        locality: "Mouscron"
+     locality2048: 
+        locality: "Dottignies"
+     locality2049: 
+        locality: "Herseaux"
+     locality2050: 
+        locality: "Bailleul"
+     locality2051: 
+        locality: "Estaimbourg"
+     locality2052: 
+        locality: "Estaimpuis"
+     locality2053: 
+        locality: "Evregnies"
+     locality2054: 
+        locality: "Leers-Nord"
+     locality2055: 
+        locality: "Néchin"
+     locality2056: 
+        locality: "Pecq"
+     locality2057: 
+        locality: "Warcoing"
+     locality2058: 
+        locality: "Hérinnes-Lez-Pecq"
+     locality2059: 
+        locality: "Esquelmes"
+     locality2060: 
+        locality: "Obigies"
+     locality2061: 
+        locality: "Amougies"
+     locality2062: 
+        locality: "Anseroeul"
+     locality2063: 
+        locality: "Mont-De-L'enclus"
+     locality2064: 
+        locality: "Orroir"
+     locality2065: 
+        locality: "Russeignies"
+     locality2066: 
+        locality: "Escanaffles"
+     locality2067: 
+        locality: "Molenbaix"
+     locality2068: 
+        locality: "Popuelles"
+     locality2069: 
+        locality: "Pottes"
+     locality2070: 
+        locality: "Velaines"
+     locality2071: 
+        locality: "Comines"
+     locality2072: 
+        locality: "Comines-Warneton"
+     locality2073: 
+        locality: "Houthem"
+     locality2074: 
+        locality: "Ploegsteert"
+     locality2075: 
+        locality: "Bizet"
+     locality2076: 
+        locality: "Bas-Warneton"
+     locality2077: 
+        locality: "Warneton"
+     locality2078: 
+        locality: "Ath"
+     locality2079: 
+        locality: "Lanquesaint"
+     locality2080: 
+        locality: "Irchonwelz"
+     locality2081: 
+        locality: "Ormeignies"
+     locality2082: 
+        locality: "Bouvignies"
+     locality2083: 
+        locality: "Ostiches"
+     locality2084: 
+        locality: "Rebaix"
+     locality2085: 
+        locality: "Maffle"
+     locality2086: 
+        locality: "Houtaing"
+     locality2087: 
+        locality: "Ligne"
+     locality2088: 
+        locality: "Mainvault"
+     locality2089: 
+        locality: "Moulbaix"
+     locality2090: 
+        locality: "Villers-Notre-Dame"
+     locality2091: 
+        locality: "Villers-Saint-Amand"
+     locality2092: 
+        locality: "Ghislenghien"
+     locality2093: 
+        locality: "Isières"
+     locality2094: 
+        locality: "Meslin-L'evêque"
+     locality2095: 
+        locality: "Gibecq"
+     locality2096: 
+        locality: "Bassilly"
+     locality2097: 
+        locality: "Fouleng"
+     locality2098: 
+        locality: "Gondregnies"
+     locality2099: 
+        locality: "Graty"
+     locality2100: 
+        locality: "Hellebecq"
+     locality2101: 
+        locality: "Hoves"
+     locality2102: 
+        locality: "Silly"
+     locality2103: 
+        locality: "Thoricourt"
+     locality2104: 
+        locality: "Enghien"
+     locality2105: 
+        locality: "Marcq"
+     locality2106: 
+        locality: "Petit-Enghien"
+     locality2107: 
+        locality: "Lessines"
+     locality2108: 
+        locality: "Papignies"
+     locality2109: 
+        locality: "Wannebecq"
+     locality2110: 
+        locality: "Ogy"
+     locality2111: 
+        locality: "Ghoy"
+     locality2112: 
+        locality: "Deux-Acren"
+     locality2113: 
+        locality: "Bois-De-Lessines"
+     locality2114: 
+        locality: "Ollignies"
+     locality2115: 
+        locality: "Bauffe"
+     locality2116: 
+        locality: "Cambron-Saint-Vincent"
+     locality2117: 
+        locality: "Lens"
+     locality2118: 
+        locality: "Lombise"
+     locality2119: 
+        locality: "Montignies-Lez-Lens"
+     locality2120: 
+        locality: "Flobecq"
+     locality2121: 
+        locality: "Ellezelles"
+     locality2122: 
+        locality: "Lahamaide"
+     locality2123: 
+        locality: "Wodecq"
+     locality2124: 
+        locality: "Grandmetz"
+     locality2125: 
+        locality: "Leuze-En-Hainaut"
+     locality2126: 
+        locality: "Thieulain"
+     locality2127: 
+        locality: "Blicquy"
+     locality2128: 
+        locality: "Chapelle-À-Oie"
+     locality2129: 
+        locality: "Chapelle-À-Wattines"
+     locality2130: 
+        locality: "Pipaix"
+     locality2131: 
+        locality: "Tourpes"
+     locality2132: 
+        locality: "Willaupuis"
+     locality2133: 
+        locality: "Gallaix"
+     locality2134: 
+        locality: "Anvaing"
+     locality2135: 
+        locality: "Arc-Wattripont"
+     locality2136: 
+        locality: "Cordes"
+     locality2137: 
+        locality: "Ellignies-Lez-Frasnes"
+     locality2138: 
+        locality: "Frasnes-Lez-Anvaing"
+     locality2139: 
+        locality: "Wattripont"
+     locality2140: 
+        locality: "Buissenal"
+     locality2141: 
+        locality: "Frasnes-Lez-Buissenal"
+     locality2142: 
+        locality: "Hacquegnies"
+     locality2143: 
+        locality: "Herquegies"
+     locality2144: 
+        locality: "Montroeul-Au-Bois"
+     locality2145: 
+        locality: "Moustier"
+     locality2146: 
+        locality: "Oeudeghien"
+     locality2147: 
+        locality: "Dergneau"
+     locality2148: 
+        locality: "Saint-Sauveur"
+     locality2149: 
+        locality: "Brugelette"
+     locality2150: 
+        locality: "Cambron-Casteau"
+     locality2151: 
+        locality: "Attre"
+     locality2152: 
+        locality: "Mévergnies-Lez-Lens"
+     locality2153: 
+        locality: "Gages"
+     locality2154: 
+        locality: "Chièvres"
+     locality2155: 
+        locality: "Grosage"
+     locality2156: 
+        locality: "Huissignies"
+     locality2157: 
+        locality: "Ladeuze"
+     locality2158: 
+        locality: "Tongre-Saint-Martin"
+     locality2159: 
+        locality: "Tongre-Notre-Dame"
+     locality2160: 
+        locality: "Beloeil"
+     locality2161: 
+        locality: "Basècles"
+     locality2162: 
+        locality: "Ramegnies"
+     locality2163: 
+        locality: "Thumaide"
+     locality2164: 
+        locality: "Wadelincourt"
+     locality2165: 
+        locality: "Aubechies"
+     locality2166: 
+        locality: "Quevaucamps"
+     locality2167: 
+        locality: "Grandglise"
+     locality2168: 
+        locality: "Stambruges"
+     locality2169: 
+        locality: "Brugge"
+     locality2170: 
+        locality: "Koolkerke"
+     locality2171: 
+        locality: "Hertsberge"
+     locality2172: 
+        locality: "Oostkamp"
+     locality2173: 
+        locality: "Ruddervoorde"
+     locality2174: 
+        locality: "Waardamme"
+     locality2175: 
+        locality: "Sint-Andries"
+     locality2176: 
+        locality: "Sint-Michiels"
+     locality2177: 
+        locality: "Loppem"
+     locality2178: 
+        locality: "Veldegem"
+     locality2179: 
+        locality: "Zedelgem"
+     locality2180: 
+        locality: "Aartrijke"
+     locality2181: 
+        locality: "Knokke"
+     locality2182: 
+        locality: "Knokke-Heist"
+     locality2183: 
+        locality: "Westkapelle"
+     locality2184: 
+        locality: "Ramskapelle"
+     locality2185: 
+        locality: "Assebroek"
+     locality2186: 
+        locality: "Sint-Kruis"
+     locality2187: 
+        locality: "Damme"
+     locality2188: 
+        locality: "Hoeke"
+     locality2189: 
+        locality: "Lapscheure"
+     locality2190: 
+        locality: "Moerkerke"
+     locality2191: 
+        locality: "Oostkerke"
+     locality2192: 
+        locality: "Sijsele"
+     locality2193: 
+        locality: "Blankenberge"
+     locality2194: 
+        locality: "Uitkerke"
+     locality2195: 
+        locality: "Houtave"
+     locality2196: 
+        locality: "Meetkerke"
+     locality2197: 
+        locality: "Nieuwmunster"
+     locality2198: 
+        locality: "Zuienkerke"
+     locality2199: 
+        locality: "Dudzele"
+     locality2200: 
+        locality: "Lissewege"
+     locality2201: 
+        locality: "Zeebrugge"
+     locality2202: 
+        locality: "Oostende"
+     locality2203: 
+        locality: "Stene"
+     locality2204: 
+        locality: "Zandvoorde"
+     locality2205: 
+        locality: "De Haan"
+     locality2206: 
+        locality: "Klemskerke"
+     locality2207: 
+        locality: "Wenduine"
+     locality2208: 
+        locality: "Vlissegem"
+     locality2209: 
+        locality: "Middelkerke"
+     locality2210: 
+        locality: "Wilskerke"
+     locality2211: 
+        locality: "Leffinge"
+     locality2212: 
+        locality: "Mannekensvere"
+     locality2213: 
+        locality: "Schore"
+     locality2214: 
+        locality: "Slijpe"
+     locality2215: 
+        locality: "Lombardsijde"
+     locality2216: 
+        locality: "Westende"
+     locality2217: 
+        locality: "Bredene"
+     locality2218: 
+        locality: "Ettelgem"
+     locality2219: 
+        locality: "Oudenburg"
+     locality2220: 
+        locality: "Roksem"
+     locality2221: 
+        locality: "Westkerke"
+     locality2222: 
+        locality: "Gistel"
+     locality2223: 
+        locality: "Moere"
+     locality2224: 
+        locality: "Snaaskerke"
+     locality2225: 
+        locality: "Zevekote"
+     locality2226: 
+        locality: "Bekegem"
+     locality2227: 
+        locality: "Eernegem"
+     locality2228: 
+        locality: "Ichtegem"
+     locality2229: 
+        locality: "Jabbeke"
+     locality2230: 
+        locality: "Snellegem"
+     locality2231: 
+        locality: "Stalhille"
+     locality2232: 
+        locality: "Varsenare"
+     locality2233: 
+        locality: "Zerkegem"
+     locality2234: 
+        locality: "Kortrijk"
+     locality2235: 
+        locality: "Bissegem"
+     locality2236: 
+        locality: "Heule"
+     locality2237: 
+        locality: "Bellegem"
+     locality2238: 
+        locality: "Kooigem"
+     locality2239: 
+        locality: "Marke"
+     locality2240: 
+        locality: "Rollegem"
+     locality2241: 
+        locality: "Aalbeke"
+     locality2242: 
+        locality: "Kuurne"
+     locality2243: 
+        locality: "Harelbeke"
+     locality2244: 
+        locality: "Bavikhove"
+     locality2245: 
+        locality: "Hulste"
+     locality2246: 
+        locality: "Deerlijk"
+     locality2247: 
+        locality: "Zwevegem"
+     locality2248: 
+        locality: "Heestert"
+     locality2249: 
+        locality: "Moen"
+     locality2250: 
+        locality: "Otegem"
+     locality2251: 
+        locality: "Sint-Denijs"
+     locality2252: 
+        locality: "Gullegem"
+     locality2253: 
+        locality: "Moorsele"
+     locality2254: 
+        locality: "Wevelgem"
+     locality2255: 
+        locality: "Anzegem"
+     locality2256: 
+        locality: "Gijzelbrechtegem"
+     locality2257: 
+        locality: "Ingooigem"
+     locality2258: 
+        locality: "Vichte"
+     locality2259: 
+        locality: "Kaster"
+     locality2260: 
+        locality: "Tiegem"
+     locality2261: 
+        locality: "Avelgem"
+     locality2262: 
+        locality: "Kerkhove"
+     locality2263: 
+        locality: "Waarmaarde"
+     locality2264: 
+        locality: "Outrijve"
+     locality2265: 
+        locality: "Bossuit"
+     locality2266: 
+        locality: "Espierres"
+     locality2267: 
+        locality: "Espierres-Helchin"
+     locality2268: 
+        locality: "Helchin"
+     locality2269: 
+        locality: "Beerst"
+     locality2270: 
+        locality: "Diksmuide"
+     locality2271: 
+        locality: "Driekapellen"
+     locality2272: 
+        locality: "Esen"
+     locality2273: 
+        locality: "Kaaskerke"
+     locality2274: 
+        locality: "Keiem"
+     locality2275: 
+        locality: "Lampernisse"
+     locality2276: 
+        locality: "Leke"
+     locality2277: 
+        locality: "Nieuwkapelle"
+     locality2278: 
+        locality: "Oudekapelle"
+     locality2279: 
+        locality: "Pervijze"
+     locality2280: 
+        locality: "Stuivekenskerke"
+     locality2281: 
+        locality: "Vladslo"
+     locality2282: 
+        locality: "Woumen"
+     locality2283: 
+        locality: "Handzame"
+     locality2284: 
+        locality: "Kortemark"
+     locality2285: 
+        locality: "Werken"
+     locality2286: 
+        locality: "Zarren"
+     locality2287: 
+        locality: "Nieuwpoort"
+     locality2288: 
+        locality: "Sint-Joris"
+     locality2289: 
+        locality: "Avekapelle"
+     locality2290: 
+        locality: "Booitshoeke"
+     locality2291: 
+        locality: "Bulskamp"
+     locality2292: 
+        locality: "De Moeren"
+     locality2293: 
+        locality: "Eggewaartskapelle"
+     locality2294: 
+        locality: "Houtem"
+     locality2295: 
+        locality: "Steenkerke"
+     locality2296: 
+        locality: "Veurne"
+     locality2297: 
+        locality: "Vinkem"
+     locality2298: 
+        locality: "Wulveringem"
+     locality2299: 
+        locality: "Zoutenaaie"
+     locality2300: 
+        locality: "Oostvleteren"
+     locality2301: 
+        locality: "Vleteren"
+     locality2302: 
+        locality: "Westvleteren"
+     locality2303: 
+        locality: "Woesten"
+     locality2304: 
+        locality: "Lo"
+     locality2305: 
+        locality: "Lo-Reninge"
+     locality2306: 
+        locality: "Noordschote"
+     locality2307: 
+        locality: "Pollinkhove"
+     locality2308: 
+        locality: "Reninge"
+     locality2309: 
+        locality: "Houthulst"
+     locality2310: 
+        locality: "Klerken"
+     locality2311: 
+        locality: "Merkem"
+     locality2312: 
+        locality: "Adinkerke"
+     locality2313: 
+        locality: "De Panne"
+     locality2314: 
+        locality: "Koksijde"
+     locality2315: 
+        locality: "Oostduinkerke"
+     locality2316: 
+        locality: "Wulpen"
+     locality2317: 
+        locality: "Bovekerke"
+     locality2318: 
+        locality: "Koekelare"
+     locality2319: 
+        locality: "Zande"
+     locality2320: 
+        locality: "Alveringem"
+     locality2321: 
+        locality: "Hoogstade"
+     locality2322: 
+        locality: "Oeren"
+     locality2323: 
+        locality: "Sint-Rijkers"
+     locality2324: 
+        locality: "Gijverinkhove"
+     locality2325: 
+        locality: "Izenberge"
+     locality2326: 
+        locality: "Leisele"
+     locality2327: 
+        locality: "Stavele"
+     locality2328: 
+        locality: "Aarsele"
+     locality2329: 
+        locality: "Kanegem"
+     locality2330: 
+        locality: "Schuiferskapelle"
+     locality2331: 
+        locality: "Ooigem"
+     locality2332: 
+        locality: "Sint-Baafs-Vijve"
+     locality2333: 
+        locality: "Wielsbeke"
+     locality2334: 
+        locality: "Dentergem"
+     locality2335: 
+        locality: "Markegem"
+     locality2336: 
+        locality: "Oeselgem"
+     locality2337: 
+        locality: "Wakken"
+     locality2338: 
+        locality: "Beernem"
+     locality2339: 
+        locality: "Oedelem"
+     locality2340: 
+        locality: "Egem"
+     locality2341: 
+        locality: "Pittem"
+     locality2342: 
+        locality: "Wingene"
+     locality2343: 
+        locality: "Zwevezele"
+     locality2344: 
+        locality: "Ruiselede"
+     locality2345: 
+        locality: "Meulebeke"
+     locality2346: 
+        locality: "Ingelmunster"
+     locality2347: 
+        locality: "Oostrozebeke"
+     locality2348: 
+        locality: "Waregem"
+     locality2349: 
+        locality: "Beveren"
+     locality2350: 
+        locality: "Desselgem"
+     locality2351: 
+        locality: "Sint-Eloois-Vijve"
+     locality2352: 
+        locality: "Oekene"
+     locality2353: 
+        locality: "Roeselare"
+     locality2354: 
+        locality: "Rumbeke"
+     locality2355: 
+        locality: "Lichtervelde"
+     locality2356: 
+        locality: "Torhout"
+     locality2357: 
+        locality: "Gits"
+     locality2358: 
+        locality: "Hooglede"
+     locality2359: 
+        locality: "Oostnieuwkerke"
+     locality2360: 
+        locality: "Staden"
+     locality2361: 
+        locality: "Westrozebeke"
+     locality2362: 
+        locality: "Ardooie"
+     locality2363: 
+        locality: "Koolskamp"
+     locality2364: 
+        locality: "Lendelede"
+     locality2365: 
+        locality: "Emelgem"
+     locality2366: 
+        locality: "Izegem"
+     locality2367: 
+        locality: "Kachtem"
+     locality2368: 
+        locality: "Ledegem"
+     locality2369: 
+        locality: "Rollegem-Kapelle"
+     locality2370: 
+        locality: "Sint-Eloois-Winkel"
+     locality2371: 
+        locality: "Dadizele"
+     locality2372: 
+        locality: "Moorslede"
+     locality2373: 
+        locality: "Brielen"
+     locality2374: 
+        locality: "Dikkebus"
+     locality2375: 
+        locality: "Ieper"
+     locality2376: 
+        locality: "Sint-Jan"
+     locality2377: 
+        locality: "Hollebeke"
+     locality2378: 
+        locality: "Voormezele"
+     locality2379: 
+        locality: "Zillebeke"
+     locality2380: 
+        locality: "Boezinge"
+     locality2381: 
+        locality: "Zuidschote"
+     locality2382: 
+        locality: "Elverdinge"
+     locality2383: 
+        locality: "Vlamertinge"
+     locality2384: 
+        locality: "Bikschote"
+     locality2385: 
+        locality: "Langemark"
+     locality2386: 
+        locality: "Langemark-Poelkapelle"
+     locality2387: 
+        locality: "Poelkapelle"
+     locality2388: 
+        locality: "Lauwe"
+     locality2389: 
+        locality: "Menen"
+     locality2390: 
+        locality: "Rekkem"
+     locality2391: 
+        locality: "Geluwe"
+     locality2392: 
+        locality: "Wervik"
+     locality2393: 
+        locality: "Heuvelland"
+     locality2394: 
+        locality: "Nieuwkerke"
+     locality2395: 
+        locality: "Dranouter"
+     locality2396: 
+        locality: "Wulvergem"
+     locality2397: 
+        locality: "Wijtschate"
+     locality2398: 
+        locality: "Westouter"
+     locality2399: 
+        locality: "Kemmel"
+     locality2400: 
+        locality: "Messines"
+     locality2401: 
+        locality: "Loker"
+     locality2402: 
+        locality: "Poperinge"
+     locality2403: 
+        locality: "Reningelst"
+     locality2404: 
+        locality: "Krombeke"
+     locality2405: 
+        locality: "Proven"
+     locality2406: 
+        locality: "Roesbrugge-Haringe"
+     locality2407: 
+        locality: "Watou"
+     locality2408: 
+        locality: "Beselare"
+     locality2409: 
+        locality: "Geluveld"
+     locality2410: 
+        locality: "Passendale"
+     locality2411: 
+        locality: "Zonnebeke"
+     locality2412: 
+        locality: "Gent"
+     locality2413: 
+        locality: "Mariakerke"
+     locality2414: 
+        locality: "Drongen"
+     locality2415: 
+        locality: "Wondelgem"
+     locality2416: 
+        locality: "Sint-Amandsberg"
+     locality2417: 
+        locality: "Oostakker"
+     locality2418: 
+        locality: "Desteldonk"
+     locality2419: 
+        locality: "Mendonk"
+     locality2420: 
+        locality: "Sint-Kruis-Winkel"
+     locality2421: 
+        locality: "Gentbrugge"
+     locality2422: 
+        locality: "Ledeberg"
+     locality2423: 
+        locality: "Afsnee"
+     locality2424: 
+        locality: "Sint-Denijs-Westrem"
+     locality2425: 
+        locality: "Zwijnaarde"
+     locality2426: 
+        locality: "Zelzate"
+     locality2427: 
+        locality: "Destelbergen"
+     locality2428: 
+        locality: "Beervelde"
+     locality2429: 
+        locality: "Lochristi"
+     locality2430: 
+        locality: "Zaffelare"
+     locality2431: 
+        locality: "Zeveneken"
+     locality2432: 
+        locality: "Gontrode"
+     locality2433: 
+        locality: "Melle"
+     locality2434: 
+        locality: "Nieuwkerken-Waas"
+     locality2435: 
+        locality: "Sint-Niklaas"
+     locality2436: 
+        locality: "Belsele"
+     locality2437: 
+        locality: "Sinaai-Waas"
+     locality2438: 
+        locality: "Haasdonk"
+     locality2439: 
+        locality: "Kallo"
+     locality2440: 
+        locality: "Melsele"
+     locality2441: 
+        locality: "Vrasene"
+     locality2442: 
+        locality: "Doel"
+     locality2443: 
+        locality: "Kieldrecht"
+     locality2444: 
+        locality: "Verrebroek"
+     locality2445: 
+        locality: "Elversele"
+     locality2446: 
+        locality: "Steendorp"
+     locality2447: 
+        locality: "Temse"
+     locality2448: 
+        locality: "Tielrode"
+     locality2449: 
+        locality: "Bazel"
+     locality2450: 
+        locality: "Kruibeke"
+     locality2451: 
+        locality: "Rupelmonde"
+     locality2452: 
+        locality: "Daknam"
+     locality2453: 
+        locality: "Eksaarde"
+     locality2454: 
+        locality: "Lokeren"
+     locality2455: 
+        locality: "De Klinge"
+     locality2456: 
+        locality: "Meerdonk"
+     locality2457: 
+        locality: "Sint-Gillis-Waas"
+     locality2458: 
+        locality: "Sint-Pauwels"
+     locality2459: 
+        locality: "Moerbeke-Waas"
+     locality2460: 
+        locality: "Wachtebeke"
+     locality2461: 
+        locality: "Kemzeke"
+     locality2462: 
+        locality: "Stekene"
+     locality2463: 
+        locality: "Appels"
+     locality2464: 
+        locality: "Baasrode"
+     locality2465: 
+        locality: "Dendermonde"
+     locality2466: 
+        locality: "Grembergen"
+     locality2467: 
+        locality: "Mespelare"
+     locality2468: 
+        locality: "Oudegem"
+     locality2469: 
+        locality: "Schoonaarde"
+     locality2470: 
+        locality: "Sint-Gillis-Dendermonde"
+     locality2471: 
+        locality: "Moerzeke"
+     locality2472: 
+        locality: "Massemen"
+     locality2473: 
+        locality: "Westrem"
+     locality2474: 
+        locality: "Wetteren"
+     locality2475: 
+        locality: "Zele"
+     locality2476: 
+        locality: "Waasmunster"
+     locality2477: 
+        locality: "Buggenhout"
+     locality2478: 
+        locality: "Opdorp"
+     locality2479: 
+        locality: "Schellebelle"
+     locality2480: 
+        locality: "Serskamp"
+     locality2481: 
+        locality: "Wichelen"
+     locality2482: 
+        locality: "Kalken"
+     locality2483: 
+        locality: "Laarne"
+     locality2484: 
+        locality: "Denderbelle"
+     locality2485: 
+        locality: "Lebbeke"
+     locality2486: 
+        locality: "Wieze"
+     locality2487: 
+        locality: "Berlare"
+     locality2488: 
+        locality: "Overmere"
+     locality2489: 
+        locality: "Uitbergen"
+     locality2490: 
+        locality: "Gijzegem"
+     locality2491: 
+        locality: "Baardegem"
+     locality2492: 
+        locality: "Herdersem"
+     locality2493: 
+        locality: "Moorsel"
+     locality2494: 
+        locality: "Erembodegem"
+     locality2495: 
+        locality: "Impe"
+     locality2496: 
+        locality: "Lede"
+     locality2497: 
+        locality: "Oordegem"
+     locality2498: 
+        locality: "Smetlede"
+     locality2499: 
+        locality: "Wanzele"
+     locality2500: 
+        locality: "Appelterre-Eichem"
+     locality2501: 
+        locality: "Denderwindeke"
+     locality2502: 
+        locality: "Lieferinge"
+     locality2503: 
+        locality: "Nederhasselt"
+     locality2504: 
+        locality: "Ninove"
+     locality2505: 
+        locality: "Okegem"
+     locality2506: 
+        locality: "Voorde"
+     locality2507: 
+        locality: "Pollare"
+     locality2508: 
+        locality: "Meerbeke"
+     locality2509: 
+        locality: "Neigem"
+     locality2510: 
+        locality: "Aspelare"
+     locality2511: 
+        locality: "Outer"
+     locality2512: 
+        locality: "Aaigem"
+     locality2513: 
+        locality: "Bambrugge"
+     locality2514: 
+        locality: "Burst"
+     locality2515: 
+        locality: "Erondegem"
+     locality2516: 
+        locality: "Erpe"
+     locality2517: 
+        locality: "Erpe-Mere"
+     locality2518: 
+        locality: "Mere"
+     locality2519: 
+        locality: "Ottergem"
+     locality2520: 
+        locality: "Denderhoutem"
+     locality2521: 
+        locality: "Haaltert"
+     locality2522: 
+        locality: "Heldergem"
+     locality2523: 
+        locality: "Kerksken"
+     locality2524: 
+        locality: "Denderleeuw"
+     locality2525: 
+        locality: "Iddergem"
+     locality2526: 
+        locality: "Welle"
+     locality2527: 
+        locality: "Geraardsbergen"
+     locality2528: 
+        locality: "Goeferdinge"
+     locality2529: 
+        locality: "Moerbeke"
+     locality2530: 
+        locality: "Nederboelare"
+     locality2531: 
+        locality: "Onkerzele"
+     locality2532: 
+        locality: "Ophasselt"
+     locality2533: 
+        locality: "Overboelare"
+     locality2534: 
+        locality: "Viane"
+     locality2535: 
+        locality: "Zarlardinge"
+     locality2536: 
+        locality: "Grimminge"
+     locality2537: 
+        locality: "Idegem"
+     locality2538: 
+        locality: "Nieuwenhove"
+     locality2539: 
+        locality: "Schendelbeke"
+     locality2540: 
+        locality: "Smeerebbe-Vloerzegem"
+     locality2541: 
+        locality: "Waarbeke"
+     locality2542: 
+        locality: "Zandbergen"
+     locality2543: 
+        locality: "Bavegem"
+     locality2544: 
+        locality: "Oombergen"
+     locality2545: 
+        locality: "Sint-Lievens-Houtem"
+     locality2546: 
+        locality: "Vlierzele"
+     locality2547: 
+        locality: "Zonnegem"
+     locality2548: 
+        locality: "Letterhoutem"
+     locality2549: 
+        locality: "Herzele"
+     locality2550: 
+        locality: "Hillegem"
+     locality2551: 
+        locality: "Sint-Antelinks"
+     locality2552: 
+        locality: "Sint-Lievens-Esse"
+     locality2553: 
+        locality: "Steenhuize-Wijnhuize"
+     locality2554: 
+        locality: "Woubrechtegem"
+     locality2555: 
+        locality: "Ressegem"
+     locality2556: 
+        locality: "Borsbeke"
+     locality2557: 
+        locality: "Deftinge"
+     locality2558: 
+        locality: "Lierde"
+     locality2559: 
+        locality: "Sint-Maria-Lierde"
+     locality2560: 
+        locality: "Hemelveerdegem"
+     locality2561: 
+        locality: "Sint-Martens-Lierde"
+     locality2562: 
+        locality: "Renaix"
+     locality2563: 
+        locality: "Elene"
+     locality2564: 
+        locality: "Erwetegem"
+     locality2565: 
+        locality: "Godveerdegem"
+     locality2566: 
+        locality: "Grotenberge"
+     locality2567: 
+        locality: "Leeuwergem"
+     locality2568: 
+        locality: "Sint-Goriks-Oudenhove"
+     locality2569: 
+        locality: "Sint-Maria-Oudenhove"
+     locality2570: 
+        locality: "Strijpen"
+     locality2571: 
+        locality: "Velzeke-Ruddershove"
+     locality2572: 
+        locality: "Zottegem"
+     locality2573: 
+        locality: "Beerlegem"
+     locality2574: 
+        locality: "Dikkele"
+     locality2575: 
+        locality: "Hundelgem"
+     locality2576: 
+        locality: "Meilegem"
+     locality2577: 
+        locality: "Munkzwalm"
+     locality2578: 
+        locality: "Paulatem"
+     locality2579: 
+        locality: "Roborst"
+     locality2580: 
+        locality: "Rozebeke"
+     locality2581: 
+        locality: "Sint-Blasius-Boekel"
+     locality2582: 
+        locality: "Sint-Denijs-Boekel"
+     locality2583: 
+        locality: "Sint-Maria-Latem"
+     locality2584: 
+        locality: "Zwalm"
+     locality2585: 
+        locality: "Nederzwalm-Hermelgem"
+     locality2586: 
+        locality: "Brakel"
+     locality2587: 
+        locality: "Elst"
+     locality2588: 
+        locality: "Everbeek"
+     locality2589: 
+        locality: "Michelbeke"
+     locality2590: 
+        locality: "Nederbrakel"
+     locality2591: 
+        locality: "Opbrakel"
+     locality2592: 
+        locality: "Zegelsem"
+     locality2593: 
+        locality: "Parike"
+     locality2594: 
+        locality: "Horebeke"
+     locality2595: 
+        locality: "Sint-Kornelis-Horebeke"
+     locality2596: 
+        locality: "Sint-Maria-Horebeke"
+     locality2597: 
+        locality: "Etikhove"
+     locality2598: 
+        locality: "Maarke-Kerkem"
+     locality2599: 
+        locality: "Maarkedal"
+     locality2600: 
+        locality: "Nukerke"
+     locality2601: 
+        locality: "Schorisse"
+     locality2602: 
+        locality: "Kluisbergen"
+     locality2603: 
+        locality: "Kwaremont"
+     locality2604: 
+        locality: "Ruien"
+     locality2605: 
+        locality: "Zulzeke"
+     locality2606: 
+        locality: "Bevere"
+     locality2607: 
+        locality: "Edelare"
+     locality2608: 
+        locality: "Eine"
+     locality2609: 
+        locality: "Ename"
+     locality2610: 
+        locality: "Heurne"
+     locality2611: 
+        locality: "Leupegem"
+     locality2612: 
+        locality: "Mater"
+     locality2613: 
+        locality: "Melden"
+     locality2614: 
+        locality: "Mullem"
+     locality2615: 
+        locality: "Nederename"
+     locality2616: 
+        locality: "Ooike"
+     locality2617: 
+        locality: "Oudenaarde"
+     locality2618: 
+        locality: "Volkegem"
+     locality2619: 
+        locality: "Welden"
+     locality2620: 
+        locality: "Huise"
+     locality2621: 
+        locality: "Ouwegem"
+     locality2622: 
+        locality: "Zingem"
+     locality2623: 
+        locality: "Kruishoutem"
+     locality2624: 
+        locality: "Nokere"
+     locality2625: 
+        locality: "Wannegem-Lede"
+     locality2626: 
+        locality: "Elsegem"
+     locality2627: 
+        locality: "Moregem"
+     locality2628: 
+        locality: "Petegem-Aan-De-Schelde"
+     locality2629: 
+        locality: "Wortegem"
+     locality2630: 
+        locality: "Wortegem-Petegem"
+     locality2631: 
+        locality: "Astene"
+     locality2632: 
+        locality: "Bachte-Maria-Leerne"
+     locality2633: 
+        locality: "Deinze"
+     locality2634: 
+        locality: "Gottem"
+     locality2635: 
+        locality: "Grammene"
+     locality2636: 
+        locality: "Meigem"
+     locality2637: 
+        locality: "Petegem-Aan-De-Leie"
+     locality2638: 
+        locality: "Sint-Martens-Leerne"
+     locality2639: 
+        locality: "Vinkt"
+     locality2640: 
+        locality: "Wontergem"
+     locality2641: 
+        locality: "Zeveren"
+     locality2642: 
+        locality: "Eke"
+     locality2643: 
+        locality: "Nazareth"
+     locality2644: 
+        locality: "Bottelare"
+     locality2645: 
+        locality: "Lemberge"
+     locality2646: 
+        locality: "Melsen"
+     locality2647: 
+        locality: "Merelbeke"
+     locality2648: 
+        locality: "Munte"
+     locality2649: 
+        locality: "Schelderode"
+     locality2650: 
+        locality: "Sint-Martens-Latem"
+     locality2651: 
+        locality: "Deurle"
+     locality2652: 
+        locality: "De Pinte"
+     locality2653: 
+        locality: "Zevergem"
+     locality2654: 
+        locality: "Hansbeke"
+     locality2655: 
+        locality: "Landegem"
+     locality2656: 
+        locality: "Merendree"
+     locality2657: 
+        locality: "Nevele"
+     locality2658: 
+        locality: "Poesele"
+     locality2659: 
+        locality: "Vosselare"
+     locality2660: 
+        locality: "Balegem"
+     locality2661: 
+        locality: "Gijzenzele"
+     locality2662: 
+        locality: "Landskouter"
+     locality2663: 
+        locality: "Moortsele"
+     locality2664: 
+        locality: "Oosterzele"
+     locality2665: 
+        locality: "Scheldewindeke"
+     locality2666: 
+        locality: "Olsene"
+     locality2667: 
+        locality: "Zulte"
+     locality2668: 
+        locality: "Aalter"
+     locality2669: 
+        locality: "Lotenhulle"
+     locality2670: 
+        locality: "Poeke"
+     locality2671: 
+        locality: "Bellem"
+     locality2672: 
+        locality: "Baaigem"
+     locality2673: 
+        locality: "Dikkelvenne"
+     locality2674: 
+        locality: "Gavere"
+     locality2675: 
+        locality: "Vurste"
+     locality2676: 
+        locality: "Eeklo"
+     locality2677: 
+        locality: "Knesselare"
+     locality2678: 
+        locality: "Ursel"
+     locality2679: 
+        locality: "Lovendegem"
+     locality2680: 
+        locality: "Vinderhoute"
+     locality2681: 
+        locality: "Zomergem"
+     locality2682: 
+        locality: "Oostwinkel"
+     locality2683: 
+        locality: "Ronsele"
+     locality2684: 
+        locality: "Ertvelde"
+     locality2685: 
+        locality: "Evergem"
+     locality2686: 
+        locality: "Kluizen"
+     locality2687: 
+        locality: "Sleidinge"
+     locality2688: 
+        locality: "Waarschoot"
+     locality2689: 
+        locality: "Assenede"
+     locality2690: 
+        locality: "Boekhoute"
+     locality2691: 
+        locality: "Bassevelde"
+     locality2692: 
+        locality: "Oosteeklo"
+     locality2693: 
+        locality: "Kaprijke"
+     locality2694: 
+        locality: "Lembeke"
+     locality2695: 
+        locality: "Sint-Laureins"
+     locality2696: 
+        locality: "Sint-Margriete"
+     locality2697: 
+        locality: "Sint-Jan-In-Eremo"
+     locality2698: 
+        locality: "Waterland-Oudeman"
+     locality2699: 
+        locality: "Watervliet"
+     locality2700: 
+        locality: "Maldegem"
+     locality2701: 
+        locality: "Adegem"
+     locality2702: 
+        locality: "Middelburg"
+ 

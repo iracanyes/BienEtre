@@ -189,10 +189,10 @@
                         <td>{{ service.releaseDate|date("d/m/Y") }}</td>
                         <td>{{ service.expiryDate|date("d/m/Y") }}</td>
                         <td>
-                            <a href="{{ path("service_update",{"slug": service.slug }) }}" class="label label-lg label-info">
+                            <a href="{{ path("service_update",{"slug": service.slug }) }}" class="label label-md label-info">
                                 Modifier
                             </a>
-                            <a href="{{ path("service_delete", {"id": service.id } ) }}" class="label label-lg label-danger">
+                            <a href="{{ path("service_delete", {"id": service.id } ) }}" class="label label-md label-danger">
                                 Supprimer
                             </a>
                         </td>
@@ -253,10 +253,10 @@
                         <td>{{ promotion.releaseDate|date("d/m/Y") }}</td>
                         <td>{{ promotion.expiryDate|date("d/m/Y") }}</td>
                         <td>
-                            <a href="{{ path("promotion_update",{"slug": promotion.slug }) }}" class="label label-lg label-info">
+                            <a href="{{ path("promotion_update",{"id": promotion.id }) }}" class="label label-md label-info">
                                 Modifier
                             </a>
-                            <a href="{{ path("promotion_delete", {"id": promotion.id } ) }}" class="label label-lg label-danger">
+                            <a href="{{ path("promotion_delete", {"id": promotion.id } ) }}" class="label label-md label-danger">
                                 Supprimer
                             </a>
                         </td>

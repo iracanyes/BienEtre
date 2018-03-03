@@ -39,12 +39,14 @@ class ServiceCategoryRepository extends EntityRepository
         $qb = $this->_em->createQueryBuilder()
             ->select("sc")
             ->from($this->_entityName, "sc")
-            ->innerJoin("sc.providers","p")
+            ->leftJoin("sc.providers","p")
             ->addSelect("p");
 
         $qb->andWhere($qb->expr()->eq("p.id", ":id"))
             ->setParameter("id", $id);
 
+        dump($qb);
+        dump($qb->getQuery()->getResult());
         return $qb->getQuery()->getResult();
     }
 

@@ -44,15 +44,15 @@ class PromotionRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->_em->createQueryBuilder()
             ->select("pr")
             ->from($this->_entityName, "pr")
-            ->innerJoin("pr.serviceCategory","sc")
+            ->leftJoin("pr.serviceCategory","sc")
             ->addSelect("sc");
 
         $qb->innerJoin("pr.provider","p")
             ->addSelect("p")
-            ->where($qb->expr()->eq("p.id", ":id"))
+            ->andWhere($qb->expr()->eq("p.id", ":id"))
             ->andWhere($qb->expr()->gte("pr.endDate", ":date"))
             ->andWhere($qb->expr()->lte("pr.startDate", ":date"))
-            ->setParameters(["id"=> $id, "date" => new \DateTime()]);
+            ->setParameters(["id" => $id, "date" => new \DateTime()]);
 
         return $qb->getQuery()->getResult();
     }
@@ -68,7 +68,7 @@ class PromotionRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->_em->createQueryBuilder()
             ->select("pr")
             ->from($this->_entityName, "pr")
-            ->innerJoin("pr.serviceCategory","sc")
+            ->leftJoin("pr.serviceCategory","sc")
             ->addSelect("sc");
 
         $qb->innerJoin("pr.provider","p")

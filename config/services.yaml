@@ -40,6 +40,9 @@ services:
             - 'mysql:dbname=%env(DATABASE_NAME)%'
             - { db_table: '%env(DATABASE_SESSION_TABLE)%', db_username: '%env(DATABASE_USERNAME)%' , db_password: '%env(DATABASE_PASSWORD)%'  }
 
+ ##############################################################
+
+
     ##########################################################################
     # Exemple :
     # Service d'envoie d'email de confirmation d'inscription
@@ -108,8 +111,8 @@ services:
             $uploadsDir: "%app.uploads.images_directory%"
 
     # Doctrine Listener : ImageUploadListener
-    App\DoctrineListener\ImagesUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            #- { name: doctrine.event_listener, event: postLoad }
+    #App\DoctrineListener\ImagesUploadListener:
+    #    tags:
+    #        - { name: doctrine.event_listener, event: prePersist }
+    #        - { name: doctrine.event_listener, event: preUpdate }
+    #        - { name: doctrine.event_listener, event: postLoad }

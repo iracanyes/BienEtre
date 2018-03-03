@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\ServiceCategory;
+use App\Form\CategoryType;
 use App\Form\ServiceCategoryType;
 use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -118,7 +119,7 @@ class ServiceCategoryController extends Controller
 
         $serviceCategory = new ServiceCategory();
 
-        $form = $this->createForm(ServiceCategoriesType::class, $serviceCategory);
+        $form = $this->createForm(CategoryType::class, $serviceCategory);
 
         $form->handleRequest($request);
 
@@ -135,17 +136,26 @@ class ServiceCategoryController extends Controller
 
             $this->addFlash("success", "Ajout de la catégorie de service '".$serviceCategory->getName()."' a été effectué avec succés! ");
 
-            $this->forward("App\Controller\ServiceCategoryController::listAction");
+            $this->redirectToRoute("profile_edit_home");
 
         }
 
-        dump($this->getUser());
+        $categories = $em->getRepository("App:ServiceCategory")
+            ->findByProviderId($this->getUser()->getId());
+
+        dump($this->getUser()->getId());
+        dump($categories);
+
+        if(!$categories){
+            $this->addFlash("no_categories","Aucune catégorie de service enregistré pour vous !");
+        }
 
         return $this->render(
             "superlist/profile/service-category/add.html.twig",
             array(
                 "form" => $form->createView(),
-                "user" => $this->getUser()
+                "user" => $this->getUser(),
+                "categories" => $categories
             )
         );
     }

@@ -87,9 +87,9 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @var array
-     * @ORM\Column(name="roles", type="simple_array", length=255)
+     * @ORM\Column(name="roles", type="json_array")
      */
-    protected $roles;
+    protected $roles ;
 
     /**
      * @ORM\Column(name="registry_date", type="datetime")
@@ -166,7 +166,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->plainPassword= "0";
-        $this->roles = array();
+        $this->roles  = array("ROLE_MEMBER");
         $this->nbErrorConnection =0;
         $this->banned = false;
         $this->registryConfirmed = true;
@@ -221,7 +221,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
-        $this->roles = [];
+
     }
 
 
@@ -247,42 +247,32 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * Get Roles
-     * @return (Role|string)[]
+     * @return array
      */
     public function getRoles(){
 
-        return $this->roles;
+        $roles = $this->roles;
+
+        // Ajout du rôle "ROLE_MEMBER"
+        // Eviter les erreurs de $this->roles null
+        $roles[] = 'ROLE_MEMBER';
+
+        return array_unique($roles);
     }
 
     /**
      * Add Roles
-     * @param string $role
-     * @return void
+     * @param array $role
+     * @return User
      */
-    public function addRole(string $role){
 
-        dump(!array_search($role, $this->roles));
+    public function setRoles(array $roles){
 
-        if(!array_search($role, $this->roles)){
+        $this->roles = $roles;
 
-            array_unshift($this->roles, $role);
-        }
+        return $this;
 
     }
-
-    /**
-     * Remove Role
-     * @param string $role
-     * @return void
-     */
-    public function removeRole(string $role){
-
-        if(!$key = array_search($role, $this->roles)){
-            array_splice($this->roles, $key, 1);
-        }
-    }
-
-
 
     public function eraseCredentials()
     {

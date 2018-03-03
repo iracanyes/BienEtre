@@ -300,7 +300,7 @@ class Promotion
      * @return Provider
      */
 
-    public function getProvider(): Provider
+    public function getProvider()
     {
         return $this->provider;
     }
@@ -315,6 +315,8 @@ class Promotion
     public function setServiceCategory(ServiceCategory $serviceCategory)
     {
         $this->serviceCategory = $serviceCategory;
+
+        return $this;
     }
 
     /**

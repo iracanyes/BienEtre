@@ -156,21 +156,6 @@
     >
 
 
-        {#
-        {% if form.logos|length > 0 %}
-            {% for logo in form.logos %}
-                <div>
-                    {{ form_errors(logo) }}
-                    {{ form_widget(logo) }}
-                </div>
-            {% endfor %}
-        {% else %}
-            <div>
-                {{ form_widget(form.logos.vars.prototype.url) }}
-            </div>
-        {% endif %}
-        #}
-
     </div>
 
 
@@ -191,7 +176,7 @@
 
     <div id="provider_images" class="collection-widget images"
          data-widget-tags = "{{ "<div></div>"|e }}"
-         data-prototype="{{ form_widget(form.images.vars.prototype)|e }}"
+         data-prototype="{{ include("forms/include/logo.html.twig")|e }}"
     >
 
 
@@ -215,8 +200,8 @@
     {{ form_errors(form.serviceCategories) }}
 
     <div id="provider_service_categories" class="collection-widget service_categories"
-         data-widget-tags = "{{ "<div></div>"|e }}"
-         data-prototype="{{ form_widget(form.serviceCategories.vars.prototype)|e }}"
+         data-widget-tags = "{{ "<div class='collection-widget-item'></div>"|e }}"
+         data-prototype="{{ include("forms/include/service_category.html.twig")|e }}"
     >
 
 

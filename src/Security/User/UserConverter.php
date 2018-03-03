@@ -30,7 +30,6 @@ class UserConverter
         // éviter les erreurs de champs vides
         $provider->setPlainPassword("abc");
 
-        dump($provider);
 
         return $provider;
     }

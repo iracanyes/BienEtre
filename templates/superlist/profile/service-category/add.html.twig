@@ -51,8 +51,8 @@
                         Navigation:
                         <ul class="breadcrumb">
                             <li><a href="{{ path("homepage") }}">Bien-Être</a></li>
-                            <li><a href="{{ path('profile_home') }}">Tableau de bord</a></li>
-                            <li><a href="#">Services</a></li>
+                            <li><a href="{{ path('profile_edit_home') }}">Édition</a></li>
+                            <li><a href="#">Catégories</a></li>
                         </ul>
                     </div>
                 </div><!-- /.header-statusbar-right -->
@@ -78,6 +78,13 @@
 
                 <div class="sidebar-secondary-admin">
                     <ul>
+                        <li>
+                            <a href="{{ path("profile_edit_home") }}">
+                                <span class="icon"><i class="fa fa-tachometer"></i></span>
+                                <span class="title">Tableau de bord</span>
+                                <span class="subtitle">Gérer votre publications</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ path("service_add") }}">
                                 <span class="icon"><i class="fa fa-tachometer"></i></span>
@@ -118,8 +125,73 @@
                                                 <h1>Ajouter des catégories de services</h1>
                                             </div><!-- /.page-title -->
 
-                                            {{ include("forms/profile/service.html.twig") }}
+                                            {{ include("forms/profile/service-category.html.twig") }}
                                         </div><!-- /.col-* -->
+
+                                        <div class="background-white p20 mb50">
+                                            <h2 class="page-title">Toutes catégories de stage</h2>
+
+                                            <table class="table table-hover mb0">
+                                                <caption>
+
+                                                    {% if app.flashes("no_categories") is defined %}
+                                                        {% for message in app.flashes("no_categories") %}
+
+                                                            {#
+                                                                Pour ajouter un bouton, il faut indiquer :
+                                                                "button_{type}" => { "route" : "path", "message":""}
+                                                            #}
+                                                            {{ include(
+                                                                "superlist/template-part/notifications/closeable-messages/info.html.twig"
+                                                                ,{
+                                                                    "flash_info": message,
+                                                                    "button_info": {"route":"service_category_add", "message":"Ajouter"}
+                                                                }
+                                                            )}}
+                                                        {% endfor %}
+
+                                                    {% endif %}
+                                                </caption>
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Image</th>
+                                                    <th>Nom</th>
+                                                    <th>Description</th>
+                                                    <th>Mis en avant</th>
+                                                    <th>Validé</th>
+                                                    <th>Slug</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                {% for category in categories %}
+                                                    <tr>
+                                                        <th scope="row">{{ service.id }}</th>
+                                                        <td>{{ category.image.url }}</td>
+                                                        <td>{{ category.name }}</td>
+                                                        <td>{{ category.description }}</td>
+                                                        <td>{{ category.pdf }}</td>
+                                                        <td>{{ category.isValid }}</td>
+                                                        <td>{{ category.slug }}</td>
+                                                        <td>
+                                                            <a href="{{ path("service_update",{"id": service.id }) }}" class="label label-md label-info">
+                                                                Modifier
+                                                            </a>
+                                                            <br>
+                                                            <a href="{{ path("service_delete", {"id": service.id } ) }}" class="label label-md label-danger">
+                                                                Supprimer
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
 
                                     </div>
                                 </div><!-- /.container-fluid -->

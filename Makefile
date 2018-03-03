@@ -20,9 +20,12 @@ endif
 
 db-reset-fixtures:
 ifdef CONSOLE
- @$(CONSOLE) doctrine:database:drop --force && @$(CONSOLE) doctrine:database:create && @$(CONSOLE) doctrine:schema:update --force && @$(CONSOLE) hautelook:fixtures:load -vvv --purge-with-truncate
+    @$(CONSOLE) doctrine:database:drop --force
+    @$(CONSOLE) doctrine:database:create
+    @$(CONSOLE) doctrine:schema:update --force
+    @$(CONSOLE) hautelook:fixtures:load -vvv --purge-with-truncate -y
 else
- @printf "Rechargement des fixtures impossible! \n"
+    @printf "Rechargement des fixtures impossible \n"
 endif
 .PHONY: db-reset-fixtures
 
@@ -53,3 +56,9 @@ serve:
 	@${MAKE} serve_as_sf
 .PHONY: sf_console serve serve_as_sf serve_as_php
 ###< symfony/framework-bundle ###
+
+doctrine-fixtures-load:
+ifndef @$(CONSOLE)
+    php src/DataFixtures/ORM/ville.php && @$(CONSOLE) doctrine:fixtures:load
+
+endif

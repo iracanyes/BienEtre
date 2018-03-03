@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Promotion;
 use App\Form\PromotionType;
+use Doctrine\Common\CommonException;
 use Doctrine\ORM\Persisters\PersisterException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -115,6 +116,10 @@ class PromotionController extends Controller
 
         dump($pendingPromotions);
 
+        dump($ongoingPromotions);
+
+        dump($expiredPromotions);
+
         return $this->render(
             "superlist/profile/promotion/list.html.twig",
             array(
@@ -128,7 +133,7 @@ class PromotionController extends Controller
 
 
     /**
-     * @Route("/profile/promo/update/{id}", name="promotion_update")
+     * @Route("/profile/promo/update", name="promotion_update")
      * @ Security("is_granted('ROLE_PROVIDER')
      */
     public function updateAction(Request $request):Response
@@ -194,10 +199,11 @@ class PromotionController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid() && $form->isSubmitted()){
+        if($form->isSubmitted() &&  $form->isValid()){
 
             $promo = $form->getData();
 
+            dump($promo);
             // Association du prestataire à la promotion créée
             $promo->setProvider($this->getUser());
 
@@ -223,10 +229,57 @@ class PromotionController extends Controller
 
         }
 
+         $promotions = $em->getRepository("App:Promotion")
+             ->findByProviderId($this->getUser()->getId());
+
         return $this->render(
             "superlist/profile/promotion/add.html.twig",
-            array("form"=> $form->createView())
+            array(
+                "form"=> $form->createView(),
+                "user" => $this->getUser(),
+                "promotions" => $promotions
+            )
         );
+    }
+
+    /**
+     * @Route("/profile/promo/delete", name="promotion_delete")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
+     */
+    public function deleteAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $id = $request->query->get("id");
+
+
+
+        try{
+            $promo = $em->getRepository("App:Promotion")
+                ->find($id);
+
+            $em->remove($promo);
+
+            $em->flush();
+
+            $this->addFlash("success","Service supprimé!");
+
+
+        }catch (EntityNotFoundException $e){
+
+            $this->addFlash("warning","Aucun service ne correspond à cette ID");
+         /* Vérifier les exceptions lancés lors de la suppression d'une entité */
+        }catch (CommonException $e){
+
+
+            $this->addFlash("warning","Impossible de supprimer ce service! Contacter l'administrateur du site.");
+        }
+
+
+
+
     }
 
 }

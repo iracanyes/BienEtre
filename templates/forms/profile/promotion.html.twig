@@ -1,98 +1,130 @@
 {{
-    form_start(
-        form,
-        {
-            "method":"POST",
-            "action":path('provider_add'),
-            "attr":{"class":"form-horizontal"}
-        }
-    )
+form_start(
+    form,
+    {
+        "method":"POST",
+        "action":path('promotion_add'),
+        "attr":{"class":"form-horizontal"}
+    }
+)
 }}
 
 {# Erreurs du formulaire #}
 {{ form_errors(form) }}
 
-{# Générer label+error+input pour un champ #}
-{# {{ form_row(form.brandName) }} #}
+
 <div class="form-group">
-    <label for="{{ form.brandName.vars.id }}"
-           class="{{ form.brandName.vars.required ? 'required' : '' }}">
-        {{ form.brandName.vars.label }}
+    <label for="{{ form.name.vars.id }}"
+           class="col-sm-2 control-label">
+        {{ form.name.vars.label }}
     </label>
-
-
-    {{ form_errors(form.brandName) }}
-
-    {{ form_widget(form.brandName, {"attr":{"class":"form-control"}}) }}
+    {{ form_errors(form.name) }}
+    <div class="col-sm-10">
+        {{ form_widget(form.name, {"attr":{"class":"form-control"}}) }}
+    </div>
 </div>
 
-{# Website #}
 <div class="form-group">
-    <label for="{{ form.website.vars.id }}"
-           class="{{ form.website.vars.required ? 'required' : '' }}">
-        {{ form.website.vars.label }}
+    <label for="{{ form.description.vars.id }}"
+           class="col-sm-2 control-label">
+        {{ form.description.vars.label }}
     </label>
+    {{ form_errors(form.description) }}
+    <div class="col-sm-10">
+        {{ form_widget(form.description, {"attr":{"class":"form-control"}}) }}
+    </div>
 
-    {{ form_errors(form.website) }}
-
-    {{ form_widget(form.website, {"attr":{"class":"form-control"}}) }}
 </div>
 
-{# Contact E-mail #}
 <div class="form-group">
-    <label for="{{ form.emailContact.vars.id }}"
-           class="{{ form.emailContact.vars.required ? 'required' : '' }}">
-        {{ form.emailContact.vars.label }}
+    <label for="{{ form.pdf.vars.id }}"
+           class="col-sm-2 control-label">
+        {{ form.pdf.vars.label }}
     </label>
+    {{ form_errors(form.pdf) }}
 
-    {{ form_errors(form.emailContact) }}
+    <div class="col-sm-10">
+        {{ form_widget(form.pdf, {"attr":{"class":""}}) }}
+    </div>
 
-    {{ form_widget(form.emailContact, {"attr":{"class":"form-control"}}) }}
 </div>
 
-{# Contact E-mail #}
-<div class="form-group">
-    <label for="{{ form.phoneNumber.vars.id }}"
-           class="{{ form.phoneNumber.vars.required ? 'required' : '' }}">
-        {{ form.phoneNumber.vars.label }}
-    </label>
+<div >
+    <div class="form-group">
+        <label for="{{ form.startDate.vars.id }}"
+               class="col-sm-2 control-label">
+            {{ form.startDate.vars.label }}
+        </label>
+        {{ form_errors(form.startDate) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.startDate, {"attr":{"class":"col-sm-2 control-label"}}) }}
+        </div>
 
-    {{ form_errors(form.phoneNumber) }}
+    </div>
 
-    {{ form_widget(form.phoneNumber, {"attr":{"class":"form-control"}}) }}
+    <div class="form-group">
+        <label for="{{ form.endDate.vars.id }}"
+               class="col-sm-2 control-label">
+            {{ form.endDate.vars.label }}
+        </label>
+        {{ form_errors(form.endDate) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.endDate, {"attr":{"class":"col-sm-2 control-label"}}) }}
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.releaseDate.vars.id }}"
+               class="col-sm-2 control-label">
+            {{ form.releaseDate.vars.label }}
+        </label>
+        {{ form_errors(form.releaseDate) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.releaseDate, {"attr":{"class":"col-sm-2 control-label"}}) }}
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.expiryDate.vars.id }}"
+               class="col-sm-2 control-label">
+            {{ form.expiryDate.vars.label }}
+        </label>
+        {{ form_errors(form.expiryDate) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.expiryDate, {"attr":{"class":"col-sm-2 control-label"}}) }}
+        </div>
+
+    </div>
 </div>
 
-{# TVA Number #}
+
 <div class="form-group">
-    <label for="{{ form.tvaNumber.vars.id }}"
-           class="{{ form.tvaNumber.vars.required ? 'required' : '' }}">
-        {{ form.tvaNumber.vars.label }}
+    <label for="{{ form.serviceCategory.vars.id }}"
+           class="col-sm-2 control-label">
+        {{ form.serviceCategory.vars.label }}
     </label>
 
-    {{ form_errors(form.tvaNumber) }}
+    {{ form_errors(form.serviceCategory) }}
+    <div class="col-sm-10">
+        {{ form_widget(form.serviceCategory) }}
+    </div>
 
-    {{ form_widget(form.tvaNumber, {"attr":{"class":"form-control"}}) }}
 </div>
 
-{# Street #}
-<div class="form-group">
-    <label for="{{ form.street.vars.id }}"
-           class="{{ form.street.vars.required ? 'required' : '' }}">
-        {{ form.street.vars.label }}
-    </label>
-
-    {{ form_errors(form.street) }}
-
-    {{ form_widget(form.street, {"attr":{"class":"form-control"}}) }}
-</div>
-
-{# Bouton submit #}
-{{ form_widget(form.submit, {"attr":{"class":"btn btn-primary"}}) }}
 
 
+<input type="hidden" name="_csrf_token" value="{{ csrf_token("authenticate") }}">
+
+{{ form_widget(form.submit) }}
 
 {# Reste du formulaire #}
+
 {{ form_rest(form) }}
+
+
+
 
 {# End Form #}
 {{ form_end(form) }}

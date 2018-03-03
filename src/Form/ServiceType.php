@@ -22,10 +22,10 @@ class ServiceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add("name", TextType::class)
-            ->add("description", TextareaType::class)
-            ->add("pricing", TextareaType::class)
-            ->add("additionalInformation", TextareaType::class)
+        $builder->add("name", TextType::class,array("label"=>"Nom du stage"))
+            ->add("description", TextareaType::class,array("label"=>"Description"))
+            ->add("pricing", TextareaType::class,array("label"=>"Prix"))
+            ->add("additionalInformation", TextareaType::class,array("label"=>"Informations additionnelles"))
             ->add(
                 "startDate",
                 DateTimeType::class,
@@ -38,7 +38,7 @@ class ServiceType extends AbstractType
             )
             ->add("endDate", DateTimeType::class,
                 array(
-                    "label" => "Date de début",
+                    "label" => "Date de fin",
                     "html5" => false,
                     "input" => "datetime",
                     "attr" => array("class" =>"js-datepicker")
@@ -46,7 +46,7 @@ class ServiceType extends AbstractType
             )
             ->add("releaseDate", DateTimeType::class,
                 array(
-                    "label" => "Date de début",
+                    "label" => "Date de publication",
                     "html5" => false,
                     "input" => "datetime",
                     "attr" => array("class" =>"js-datepicker")
@@ -54,10 +54,18 @@ class ServiceType extends AbstractType
             )
             ->add("expiryDate", DateTimeType::class,
                 array(
-                    "label" => "Date de début",
+                    "label" => "Date d'expiration",
                     "html5" => false,
                     "input" => "datetime",
                     "attr" => array("class" =>"js-datepicker")
+                )
+            )
+            ->add(
+                "submit",
+                SubmitType::class,
+                array(
+                    "label" => "Confirmer",
+                    "attr" => array("class" => "btn btn-primary")
                 )
             );
     }

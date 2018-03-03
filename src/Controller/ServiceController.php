@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Provider;
 use App\Entity\Service;
-use App\Form\ServicesType;
 use App\Form\ServiceType;
 use Doctrine\Common\CommonException;
+use Doctrine\ORM\EntityNotFoundException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -158,7 +159,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * @Route("/profile/stages", name="profile_service_list")
+     * @Route("/profile/stage", name="profile_service_list")
      * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
      */
     public function listAction(Request $request): Response
@@ -228,26 +229,23 @@ class ServiceController extends Controller
 
         $provider = $this->getUser();
 
-        // Erreur
-        // Vérifiér l'erreur généré par plainPassword null à l'affichage du formulaire
-        // empêche la soumission du formulaire
-        $provider->setPlainPassword("0");
+        $service = new Service();
 
-        dump($provider);
-
-        $form = $this->createForm(ServicesType::class, $provider);
+        $form = $this->createForm(ServiceType::class, $service);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $provider = $form->getData();
+            $service = $form->getData();
+
+            $service->setProvider($provider);
 
             try{
 
-                $em->persist($provider);
+                $em->persist($service);
                 $em->flush();
 
-                $this->addFlash("warning","Erreur dans les données saisies!");
+                $this->addFlash("warning","Ajout confirmé du service");
 
                 $this->redirectToRoute("profile_service_list");
 
@@ -255,12 +253,7 @@ class ServiceController extends Controller
 
                 $this->addFlash("warning","Erreur dans les données saisies!");
 
-                $this->render(
-                    "superlist/profile/service/add.html.twig",
-                    array(
-                        "form" => $form->createView()
-                    )
-                );
+                $this->redirectToRoute("profile_service_list");
             }
         }
 
@@ -332,5 +325,39 @@ class ServiceController extends Controller
         );
 
     }
+
+    /**
+     * @Route("/profile/stage/delete", name="service_delete")
+     * @Security("is_granted('ROLE_PROVIDER')", message="Authentification requis!")
+     * @param Request $request
+     * @return Response
+     */
+    public function deleteAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        try{
+            $service = $em->getRepository("App:Service")
+                ->find($request->query->get("id"));
+
+            $em->remove($service);
+
+            $em->flush();
+
+            $this->addFlash("success", "Suppression du service confirmé!");
+
+        }catch (EntityNotFoundException $e){
+
+            $this->addFlash("warning","Aucun service ne correspond à cette id");
+        }catch(ORMException $e){
+
+            $this->addFlash("warning", "Impossible de supprimer ce service!");
+        }
+
+
+
+        return $this->RedirectToRoute("profile_service_list");
+    }
+
 
 }
