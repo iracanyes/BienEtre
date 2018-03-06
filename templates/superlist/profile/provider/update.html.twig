@@ -325,16 +325,59 @@
                                                                 </div><!-- /.row -->
                                                             </div>
 
+
                                                             <div class="background-white p20 mb30">
-                                                                <h3 class="page-title">
-                                                                    Biography
+                                                                <h4 class="page-title">
+                                                                    Logos de l'entreprise
+                                                                    <a href="#" class="btn btn-primary btn-xs pull-right">Confirmer</a>
+                                                                </h4>
 
-                                                                    <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
-                                                                </h3>
 
-                                                                <textarea class="form-control" rows="7"></textarea>
+                                                                {{ form_errors(form.logos) }}
+
+                                                                <div id="provider_logos" class="collection-widget logos"
+                                                                     data-widget-tags = "{{ "<div class='collection-widget-item'></div>"|e }}"
+                                                                     data-prototype="{{ include("forms/include/logo.html.twig")|e }}"
+                                                                >
+
+
+                                                                </div>
+
+
+                                                                <a href="#provider_logos"
+                                                                   data-list="#provider_logos"
+                                                                   class="add-another-collection-widget btn btn-secondary"
+                                                                >
+                                                                    Ajouter un logo
+                                                                </a>
                                                             </div>
 
+
+                                                            <div class="background-white p20 mb30">
+                                                                <h4 class="page-title">
+                                                                    Images de l'entreprise
+                                                                    <a href="#" class="btn btn-primary btn-xs pull-right">Confirmer</a>
+                                                                </h4>
+
+
+                                                                {{ form_errors(form.images) }}
+
+                                                                <div id="provider_images" class="collection-widget images"
+                                                                     data-widget-tags = "{{ "<div class='collection-widget-item'></div>"|e }}"
+                                                                     data-prototype="{{ include("forms/include/provider-image.html.twig")|e }}"
+                                                                >
+
+
+                                                                </div>
+
+
+                                                                <a href="#provider_images"
+                                                                   data-list="#provider_images"
+                                                                   class="add-another-collection-widget btn btn-secondary"
+                                                                >
+                                                                    Ajouter un image
+                                                                </a>
+                                                            </div>
                                                         </div><!-- /.content -->
                                                     </div><!-- /.col-* -->
                                                 </div><!-- /.row -->
@@ -363,3 +406,9 @@
 {% endblock %}
 
 
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="build/js/add-collection-widget.js"></script>
+{% endblock %}

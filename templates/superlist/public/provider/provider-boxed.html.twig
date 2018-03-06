@@ -13,9 +13,9 @@
         <table>
             <thead>
                 <tr>
-                    <th class="btn btn-secondary">{{ knp_pagination_sortable(providers, 'BrandName', 'p.brandName') }}</th>
-                    <th class="btn btn-secondary {% if providers.isSorted('p.brandName') %} sorted{% endif %}">{{ knp_pagination_sortable(providers, 'BrandName', 'p.brandName') }}</th>
-                    <th class="btn btn-secondary">{{ knp_pagination_sortable(providers, 'Date de Publication', ['a.releaseDate', 'a.startDate']) }}</th>
+                    <th class="btn btn-secondary">{{ knp_pagination_sortable(providers, 'Nom de Marque', 'p.brandName') }}</th>
+                    <th class="btn btn-secondary {% if providers.isSorted('p.totalFans') %} sorted{% endif %}">{{ knp_pagination_sortable(providers, 'Total fans', 'p.totalFans') }}</th>
+                    <th class="btn btn-secondary">{{ knp_pagination_sortable(providers, 'Date de Publication', ['p.registryDate', 'p.registryDate']) }}</th>
                 </tr>
             </thead>
 

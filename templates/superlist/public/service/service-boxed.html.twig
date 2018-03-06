@@ -71,7 +71,17 @@
     <div class="widget">
         <h2 class="widgettitle">Services récents</h2>
 
+        <table>
+            <thead>
+            <tr>
+                <th class="btn btn-secondary">{{ knp_pagination_sortable(services, 'Nom', 's.name') }}</th>
+                <th class="btn btn-secondary {% if services.isSorted('p.brandName') %} sorted{% endif %}">{{ knp_pagination_sortable(services, 'Publication', 's.releaseDate') }}</th>
+                <th class="btn btn-secondary">{{ knp_pagination_sortable(services, 'Date d\'expiration', ['p.expiryDate', 's.expiryDate']) }}</th>
+            </tr>
+            </thead>
 
+
+        </table>
 
 
         {% for service in recentServices %}
@@ -95,7 +105,14 @@
 
         {% endfor %}
 
+        {# pager #}
 
+            {# display navigation #}
+            <div class="navigation">
+                {{ knp_pagination_render(services) }}
+            </div>
+
+        {# endPager #}
 
     </div><!-- /.widget -->
 {% endblock %}

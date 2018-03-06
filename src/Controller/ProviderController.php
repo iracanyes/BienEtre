@@ -44,7 +44,7 @@ class ProviderController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function indexAction(int $page, Request $request): Response
+    public function indexAction(int $page = 1, Request $request): Response
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
