@@ -22,24 +22,45 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ServiceCategoryController extends Controller
 {
+
+    private const LIMIT_PAGINATION = 10;
+
     /**
      * Route Service Category List
      *
-     * @Route("/categories", name="service_category_list")
+     * @Route("/categories/{page}", name="service_category_list")
      */
-    public function indexAction(Request $request): Response
+    public function indexAction(int $page = 1, Request $request): Response
     {
         $em = $this->getDoctrine();
-        $categories = $em->getRepository("App:ServiceCategory");
+        $categories = $em->getRepository("App:ServiceCategory")
+            ->myFindAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        dump($categories);
+
+        dump($page);
+
+
+
+        $pagination = $paginator->paginate(
+            $categories,
+            $page ?? 1,
+            self::LIMIT_PAGINATION
+        );
+
+        dump($pagination);
 
         return $this->render(
-            "superlist/public/serviceCategory/service-category-listing-detail.html.twig"
+            "superlist/public/serviceCategory/service-category-boxed.html.twig",
+            array("categories" => $pagination)
         );
     }
 
     /**
      * Route ServiceCategory Detail
-     * @Route("/categories/{slug}", name="service_category_detail")
+     * @Route("/category/{slug}", name="service_category_detail")
      */
     public function showAction(Request $request): Response
     {

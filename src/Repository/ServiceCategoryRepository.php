@@ -9,6 +9,7 @@ namespace App\Repository;
  * repository methods below.
  */
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class ServiceCategoryRepository extends EntityRepository
 {
@@ -62,5 +63,24 @@ class ServiceCategoryRepository extends EntityRepository
             ->setParameter("id", $id);
 
         return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * Get All Categories + provider + image
+     */
+    public function myFindAll(): Query
+    {
+        //Syntaxe longue
+        $qb = $this->_em->createQueryBuilder()
+            ->select('sc')
+            ->from($this->_entityName, 'sc')
+            ->innerJoin('sc.image', 'i')
+            ->addSelect('i')
+            ->innerJoin("sc.providers", "p")
+            ->addSelect("p")
+            ->orderBy('sc.name','DESC');
+
+        return $qb->getQuery();
+
     }
 }

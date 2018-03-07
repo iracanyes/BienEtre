@@ -1,11 +1,16 @@
-{% extends "superlist/listing-detail.html.twig" %}
+{#
+   Template : Catégorie de service - Détail
+#}
+
+{% extends "superlist/public/listing-detail.html.twig" %}
 
 {% block title_resume %}
     <div class="detail-banner-left">
     <div class="detail-banner-info">
         <div class="detail-label">Restaurant</div>
 
-        {% if serviceCategory.is_valid %}
+
+        {% if serviceCategory.isValid %}
         <div class="detail-verified">Validé</div>
         {% endif %}
     </div><!-- /.detail-banner-info -->

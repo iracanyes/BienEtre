@@ -1,4 +1,4 @@
-{% extends 'superlist/blog-boxed.html.twig' %}
+{% extends 'superlist/public/blog-boxed.html.twig' %}
 
 {# page title #}
     {% block pageTitle %}Liste des catégories de service{% endblock %}
@@ -7,28 +7,41 @@
 {# /.posts #}
 
     {% block contentsElement %}
-        {% for provider in providers %}
+        <table>
+            <thead>
+            <tr>
+                <th class="btn btn-secondary">{{ knp_pagination_sortable(categories, 'Nom', 'sc.name') }}</th>
+                <th class="btn btn-secondary {% if categories.isSorted('sc.isValid') %} sorted{% endif %}">{{ knp_pagination_sortable(categories, 'Validé', 'sc.isValid') }}</th>
+
+            </tr>
+            </thead>
+
+
+        </table>
+        {% for category in categories %}
             <div class="post post-boxed">
                 <div class="post-image">
-                    <img src="{{ provider.logo.url }}" alt="{{ provider.brandName }}">
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
                     <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
                 </div><!-- /.post-image -->
 
                 <div class="post-content">
-                    <h2><a href="blog-detail.html">{{ provider.brandName }}</a></h2>
+                    <h2><a href="{{ path("service_category_detail",{"slug": category.slug }) }}">{{ category.name }}</a></h2>
                     <p>And from now on you're all named Bender Jr. The alien mothership is in orbit here. If we can hit that bullseye, the rest of the dominoes will fall like a house of cards. Checkmate. Now that the, uh, garbage ball is in space, Doctor, perh...</p>
                 </div><!-- /.post-content -->
 
                 <div class="post-meta clearfix">
-                    <div class="post-meta-author">By <a href="blog-detail.html">{{ provider.emailContact }}</a></div><!-- /.post-meta-author -->
-                    <div class="post-meta-date">{{ provider.registryDate|date("d/m/Y h:i:s") }}</div><!-- /.post-meta-date -->
+                    <div class="post-meta-author">By <a href="{{ path("homepage") }}">Bien-TÊRE</a></div><!-- /.post-meta-author -->
+                    <!-- /.post-meta-date -->
                     <div class="post-meta-categories">
-                        {% for serviceCategory in provider.serviceCategories %}
-                            <i class="fa fa-tags"></i> <a href="blog-detail.html">{{ serviceCategory.name }}</a>
+                        {% for provider in category.providers %}
+                            <i class="fa fa-tags"></i> <a href="{{ path("provider_detail",{"slug": provider.slug}) }}">{{ provider.brandName }}</a>
                         {% endfor %}
                     </div><!-- /.post-meta-categories -->
-                    <div class="post-meta-comments"><i class="fa fa-comments"></i> <a href="blog-detail.html">{{ provider.opinions|length }} comments</a></div><!-- /.post-meta-comments -->
-                    <div class="post-meta-more"><a href="blog-detail.html">Plus d'infos <i class="fa fa-chevron-right"></i></a></div><!-- /.post-meta-more -->
+                    {% if category.isValid %}
+                    <div class="post-meta-comments"><i class="fa fa-comments"></i> <a href="blog-detail.html">Validé</a></div>
+                    {% endif %}<!-- /.category is valid -->
+                    <div class="post-meta-more"><a href="{{ path("service_category_detail",{"slug": category.slug }) }}">Plus d'infos <i class="fa fa-chevron-right"></i></a></div><!-- /.post-meta-more -->
                 </div><!-- /.post-meta -->
             </div><!-- /.post -->
         {% endfor %}
@@ -39,14 +52,40 @@
 
 {# pager #}
     {% block pager %}
-        <ul>
-            <li><a href="#">Prev</a></li>
-            <li><a href="#">5</a></li>
-            <li class="active"><a>6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">Next</a></li>
-        </ul>
+        {# pager #}
+
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(categories) }}
+        </div>
+
+        {# endPager #}
     {% endblock %}
 {# endPager #}
+
+{# Block Widget 1 #}
+{% block blog_boxed_widget1 %}
+
+{% endblock %}
+
+{# Block Widget 2 #}
+{% block blog_boxed_widget2 %}
+
+{% endblock %}
+
+{# Block Widget 3 #}
+{% block blog_boxed_widget3 %}
+
+{% endblock %}
+
+{# Block Widget 4 #}
+{% block blog_boxed_widget4 %}
+
+{% endblock %}
+
+{# Block Widget 5 #}
+{% block blog_boxed_widget5 %}
+
+{% endblock %}
 
 
